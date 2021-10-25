@@ -12,11 +12,11 @@ export function TopNavigation() {
   const history = useHistory();
 
   return (
-    <nav className="flex justify-between bb b--white-10 bg-dark-green white">
+    <nav className="flex justify-between bb b--red bg-light-green text-black">
       <Link
         to={route.home()}
         noUnderline
-        className="b white flex items-center pv2 ph3"
+        className="b black flex items-center pv2 ph3"
       >
         <FontAwesomeIcon icon={faFeatherAlt} className="mr2 f4" />
         Quacker
@@ -32,6 +32,9 @@ export function TopNavigation() {
         ))}
         <NavLink to={route.about()} className="pa3">
           About
+        </NavLink>
+        <NavLink to={route.foo()} className="pa3">
+          my foo page
         </NavLink>
         {user ? (
           <>

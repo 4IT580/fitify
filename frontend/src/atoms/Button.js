@@ -5,7 +5,7 @@ const DEFAULT_COLOR_CLASSES = 'white bg-green hover-bg-dark-green';
 
 const COLORS = {
   green: DEFAULT_COLOR_CLASSES,
-  navbar: 'f6 white bg-transparent hover-bg-white hover-black mh3 b--white-20',
+  navbar: 'f6 red bg-transparent hover-bg-white hover-black mh3 b--red-20',
   red: 'white bg-red hover-bg-dark-red',
 };
 

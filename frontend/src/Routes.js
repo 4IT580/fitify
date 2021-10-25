@@ -5,6 +5,7 @@ import { PageWrapper } from 'src/templates/PageWrapper';
 
 import { AboutPage } from 'src/pages/AboutPage';
 import { HomePage } from 'src/pages/HomePage';
+import { FooPage } from 'src/pages/FooPage';
 import { PageNotFound } from 'src/pages/PageNotFound';
 import { Practical01 } from 'src/pages/Practical01';
 import { SignInPage } from 'src/pages/SignInPage';
@@ -13,6 +14,7 @@ import { UserDetailPage } from 'src/pages/UserDetailPage';
 
 export const route = {
   home: () => `/`,
+  foo: () => `/foo`,
   practical: (id) => `/practical/${id}`,
   about: () => `/about`,
   signIn: () => `/auth/signin`,
@@ -29,6 +31,7 @@ export function Routes() {
   return (
     <Switch>
       <Route path={route.home()} exact component={HomePage} />
+      <Route path={route.foo()} exact component={FooPage} />
       {PRACTICALS.map(({ id, PageComponent }) => (
         <Route path={route.practical(id)} exact key={id}>
           <PageWrapper>
