@@ -1,6 +1,7 @@
 # [4IT580: Agilní vývoj webových aplikací](http://4it580.vse.cz/) na [VŠE](https://www.vse.cz/)
 
 ## [📖 4IT580: Docs](https://vse-4it580-docs-2021.vercel.app)
+## [❗❗❗ project workflow [cs]❗❗❗](workflow.md)
 
 ## JavaScript
 
