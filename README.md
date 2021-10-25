@@ -35,6 +35,11 @@ New JavaScript features (ES2015+) are "enabled" for for all modern browsers with
   - [npmjs.com](https://www.npmjs.com/)
   - **[js.coach/react](https://js.coach/react)**
 
+## Local setup
+1) `yarn install`
+2) see [frontend setup](frontend/README.md)
+2) see [backend setup](backend/README.md)
+
 ## Server Setup
 
 ## SSH
@@ -45,3 +50,5 @@ New JavaScript features (ES2015+) are "enabled" for for all modern browsers with
 ### Domains
 
 - [dev.frontend.**username**.vse.handson.pro](http://dev.frontend.username.vse.handson.pro)
+- [http://localhost:3000/](http://localhost:3000/)
+- [http://localhost:4000/graphql](http://localhost:4000/graphql)
