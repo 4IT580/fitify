@@ -1,6 +1,7 @@
 body {
   margin: 0;
   min-width: 700px;
+  font-family: Monsteratt, serif;
 }
 
 code {
@@ -14,4 +15,9 @@ code {
 
 .break-word {
   word-break: break-word;
+}
+
+@font-face {
+  font-family: "Monsteratt";
+  src: url("assets/Montserrat-Regular.ttf") format("truetype");
 }
