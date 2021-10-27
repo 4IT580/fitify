@@ -4,6 +4,10 @@ body {
   font-family: Monsteratt, serif;
 }
 
+#root{
+  height: 100vh;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -21,3 +25,30 @@ code {
   font-family: "Monsteratt";
   src: url("assets/Montserrat-Regular.ttf") format("truetype");
 }
+
+.main-section {
+  background-image: url("assets/images/background.svg");
+  background-color: #bffa29;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+
+  height: 100%;
+}
+
+.homepage-header{
+  position: relative;
+  /*left: -20%;*/
+  /*bottom: -60%;*/
+  font-size: 450%;
+}
+
+nav{
+  background-color: #151824;
+  color: #bffa29;
+}
+
+nav .link{
+  color: #bffa29;
+}
+

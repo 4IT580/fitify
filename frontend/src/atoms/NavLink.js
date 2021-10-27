@@ -8,8 +8,8 @@ export function NavLink({ className, ...rest }) {
   return (
     <Link
       as={RouterNavLink}
-      className={classNames(className, 'f6 dib black dim')}
-      activeClassName={'bg-black-30'}
+      className={classNames(className, 'f6 dib dim')}
+      activeClassName={''}
       noUnderline
       {...rest}
     />

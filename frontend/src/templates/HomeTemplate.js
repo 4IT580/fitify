@@ -15,26 +15,13 @@ export function HomeTemplate({
   return (
     <>
       <TopNavigation />
-      <MainSection>
-        <Heading>Home</Heading>
-
-        {currentUser && <QuackForm {...quackFormState} />}
-
-        {data && (
-          <ReloadButton
-            isLoading={loading}
-            onClick={() => refetchQuacks()}
-            className="fr"
-          />
-        )}
-
-        <QuackList
-          quacks={data && data.quacks}
-          isLoading={loading}
-          error={error}
-          refetch={refetchQuacks}
-        />
-      </MainSection>
+      <div className="pa3 bt b--black-10 main-section">
+        <section className="mw6 center pa5 o-90 homepage-header">
+          <section className="o-100">
+            <h1 className="black content-center">Fitify</h1>
+          </section>
+        </section>
+      </div>
     </>
   );
 }

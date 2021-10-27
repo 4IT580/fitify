@@ -1,35 +1,29 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFeatherAlt } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
+import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 
 import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
-import { route, PRACTICALS } from 'src/Routes';
+import { route } from 'src/Routes';
 
 export function TopNavigation() {
   const { user, signout } = useAuth();
   const history = useHistory();
 
   return (
-    <nav className="flex justify-between bb b--red bg-light-green text-black">
+    <nav className="flex justify-between bb">
       <Link
         to={route.home()}
         noUnderline
-        className="b black flex items-center pv2 ph3"
+        className="b flex items-center pv2 ph3"
       >
-        <FontAwesomeIcon icon={faFeatherAlt} className="mr2 f4" />
-        Quacker
+        <Logo style={{ height: 53, width: 36 }} className="mr2 f4"/>
+        Fitify
       </Link>
       <div className="flex-grow flex items-center">
         <NavLink exact to={route.home()} className="pa3">
           Home
         </NavLink>
-        {PRACTICALS.map(({ id }) => (
-          <NavLink to={route.practical(id)} className="pa3" key={id}>
-            {id}
-          </NavLink>
-        ))}
         <NavLink to={route.about()} className="pa3">
           About
         </NavLink>
@@ -69,16 +63,9 @@ export function TopNavigation() {
             <NavLink to={route.signIn()} className="pa3">
               Sign In
             </NavLink>
-            <Button
-              to={route.signUp()}
-              as={Link}
-              color="navbar"
-              narrow
-              border
-              noUnderline
-            >
-              Sign Up
-            </Button>
+            <NavLink to={route.signUp()} className="pa3">
+              Sign up
+            </NavLink>
           </>
         )}
       </div>
