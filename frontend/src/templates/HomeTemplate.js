@@ -18,7 +18,6 @@ export function HomeTemplate({
       <div className="pa3 bt b--black-10 main-section">
         <section className="mw6 center pa5 o-90 homepage-header">
           <section className="o-100">
-            <h1 className="black content-center">Fitify</h1>
           </section>
         </section>
       </div>
