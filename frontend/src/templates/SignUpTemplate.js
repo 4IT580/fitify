@@ -16,8 +16,19 @@ export function SignUpTemplate({ isLoading, error, onSubmit }) {
           errorMessage={error && error.message}
           onSubmit={onSubmit}
           className="mt3"
+<<<<<<< HEAD
         ></SignUpForm>
       </RightBlockSection>
+=======
+        >
+          <div className="lh-copy">
+            or{' '}
+            <Link className="f5 gray" to={route.signIn()}>
+              Sign In
+            </Link>
+          </div>
+        </SignUpForm>
+      </MainSection>
     </>
   );
 }

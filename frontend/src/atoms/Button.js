@@ -1,12 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const PRIMARY_COLOR_CLASSES = 'bg-green dark dim';
-const SECONDARY_COLOR_CLASSES = 'bg-dark green dim';
+const DEFAULT_COLOR_CLASSES = 'white bg-gray hover-bg-mid-gray';
 
 const COLORS = {
-  green: PRIMARY_COLOR_CLASSES,
-  dark: SECONDARY_COLOR_CLASSES,
+  green: DEFAULT_COLOR_CLASSES,
   navbar: 'f6 black bg-transparent hover-bg-white hover-black mh3 b--red-20',
   red: 'white bg-red hover-bg-dark-red',
 };
@@ -21,7 +19,7 @@ export function Button({
   disabled,
   ...rest
 }) {
-  const colorClasses = COLORS[color] || PRIMARY_COLOR_CLASSES;
+  const colorClasses = COLORS[color] || DEFAULT_COLOR_CLASSES;
 
   return (
     <Component
