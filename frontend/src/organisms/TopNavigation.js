@@ -15,9 +15,9 @@ export function TopNavigation() {
       <Link
         to={route.home()}
         noUnderline
-        className="b flex items-center pv2 ph3"
+        className="b flex items-center pv4 ph3"
       >
-        <Logo style={{ height: 53, width: 36 }} className="mr2 f4"/>
+        <Logo style={{ height:63, width: 90 }} className="mr1 f2"/>
         Fitify
       </Link>
       <div className="flex-grow flex items-center">
@@ -28,7 +28,7 @@ export function TopNavigation() {
           About
         </NavLink>
         <NavLink to={route.foo()} className="pa3">
-          my foo page
+          My foo page
         </NavLink>
         {user ? (
           <>
