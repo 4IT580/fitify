@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const DEFAULT_COLOR_CLASSES = 'white bg-green hover-bg-dark-green';
+const DEFAULT_COLOR_CLASSES = 'white bg-gray hover-bg-mid-gray';
 
 const COLORS = {
   green: DEFAULT_COLOR_CLASSES,
