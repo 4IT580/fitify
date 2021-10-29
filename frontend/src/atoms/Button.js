@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+<<<<<<< HEAD
 const PRIMARY_COLOR_CLASSES = 'bg-green dark dim';
 const SECONDARY_COLOR_CLASSES = 'bg-dark green dim';
 
