@@ -1,13 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const PRIMARY_COLOR_CLASSES = 'bg-green dark dim';
-const SECONDARY_COLOR_CLASSES = 'bg-dark green dim';
-=======
-const DEFAULT_COLOR_CLASSES = 'white bg-gray hover-bg-mid-gray';
->>>>>>> accfeb964ef39717cac706bdb185dcd3e783db30
+const PRIMARY_COLOR_CLASSES = 'bg-green dark dim f2 f5-ns';
+const SECONDARY_COLOR_CLASSES = 'bg-dark green dim f2 f5-ns';
 
 const COLORS = {
   green: PRIMARY_COLOR_CLASSES,

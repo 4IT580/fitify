@@ -11,11 +11,11 @@ export function TopNavigation() {
   const history = useHistory();
 
   return (
-    <nav className="flex justify-between bb">
+    <nav className="flex justify-between bb bg-dark">
       <Link
         to={route.home()}
         noUnderline
-        className="b flex items-center pv2 ph3"
+        className="b flex items-center pv2 ph3 green"
       >
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -47,7 +47,7 @@ export function TopNavigation() {
             <NavLink
               to={route.userDetail(user.userName)}
               noUnderline
-              className="ph3 pv1 h-100 flex items-center"
+              className="ph3 pv1 h-100 flex items-center green"
             >
               <AvatarPhoto
                 className="v-mid dib mr2"
