@@ -31,11 +31,9 @@ const SIGNUP_MUTATION = gql`
 
 export function SignUpPage() {
   const auth = useAuth();
-  const history = useHistory();
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
     onCompleted: ({ signup: { user, token } }) => {
       auth.signin({ token, user });
-      history.replace('/');
     },
     onError: () => {},
   });
