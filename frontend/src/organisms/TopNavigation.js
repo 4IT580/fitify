@@ -24,12 +24,6 @@ export function TopNavigation() {
         <NavLink exact to={route.home()} className="pa3">
           Home
         </NavLink>
-        <NavLink to={route.about()} className="pa3">
-          About
-        </NavLink>
-        <NavLink to={route.foo()} className="pa3">
-          My foo page
-        </NavLink>
         {user ? (
           <>
             <NavLink

@@ -37,7 +37,7 @@ code {
   height: 100%;
 }
 
-.main-section > div {
+.main-section > div.right-offset {
   padding-top: 35vh;
   padding-bottom: 10vh;
 }
