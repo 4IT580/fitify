@@ -11,7 +11,7 @@ export function TopNavigation() {
   const history = useHistory();
 
   return (
-    <nav className="flex justify-between bb">
+    <nav className="flex justify-between bb bg-dark">
       <Link
         to={route.home()}
         noUnderline
@@ -21,13 +21,13 @@ export function TopNavigation() {
         Fitify
       </Link>
       <div className="flex-grow flex items-center">
-        <NavLink exact to={route.home()} className="pa3 green">
+        <NavLink exact to={route.home()} className="pa3">
           Home
         </NavLink>
-        <NavLink to={route.about()} className="pa3 green">
+        <NavLink to={route.about()} className="pa3">
           About
         </NavLink>
-        <NavLink to={route.foo()} className="pa3 green">
+        <NavLink to={route.foo()} className="pa3">
           my foo page
         </NavLink>
         {user ? (
@@ -60,10 +60,10 @@ export function TopNavigation() {
           </>
         ) : (
           <>
-            <NavLink to={route.signIn()} className="pa3 green">
+            <NavLink to={route.signIn()} className="pa3">
               Sign In
             </NavLink>
-            <NavLink to={route.signUp()} className="pa3 green">
+            <NavLink to={route.signUp()} className="pa3">
               Sign up
             </NavLink>
           </>

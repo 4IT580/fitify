@@ -48,15 +48,6 @@ code {
   font-size: 450%;
 }
 
-nav {
-  background-color: #151824;
-  color: #bffa29;
-}
-
-.link {
-  color: #bffa29;
-}
-
 .bg-dark {
   background-color: #151824;
 }
@@ -67,6 +58,10 @@ nav {
 
 .dark {
   color: #151824;
+}
+
+.i-dark {
+  color: #151824 !important;
 }
 
 .green {
