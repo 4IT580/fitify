@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const PRIMARY_COLOR_CLASSES = 'bg-green dark dim';
-const SECONDARY_COLOR_CLASSES = 'bg-dark green dim';
+const PRIMARY_COLOR_CLASSES = 'bg-green dark dim f2 f5-ns';
+const SECONDARY_COLOR_CLASSES = 'bg-dark green dim f2 f5-ns';
 
 const COLORS = {
   green: PRIMARY_COLOR_CLASSES,
