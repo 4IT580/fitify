@@ -53,7 +53,7 @@ export function ForgottenPasswordForm({
               loading={isLoading}
               color="green"
             >
-              Odeslat
+              Reset password
             </LoadingButton>
           </span>
         </div>

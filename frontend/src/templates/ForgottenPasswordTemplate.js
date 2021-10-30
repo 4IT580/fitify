@@ -8,9 +8,9 @@ export function ForgottenPasswordTemplate({ isLoading, error, onSubmit }) {
     <>
       <TopNavigation />
       <RightBlockSection>
-        <Heading>Zapomenuté heslo</Heading>
+        <Heading>Forgotten password</Heading>
         <div className="mv2 f3 f5-ns">
-          zadejte svůj email, pošleme vám odkaz na změnu hesla
+          Insert your email, well send you link for password reset
         </div>
         <ForgottenPasswordForm
           isLoading={isLoading}
