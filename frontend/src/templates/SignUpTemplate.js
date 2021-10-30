@@ -19,7 +19,7 @@ export function SignUpTemplate({ isLoading, error, onSubmit }) {
         >
           <div className="lh-copy">
             or{' '}
-            <Link className="f5 dark-green" to={route.signIn()}>
+            <Link className="f5 gray" to={route.signIn()}>
               Sign In
             </Link>
           </div>
