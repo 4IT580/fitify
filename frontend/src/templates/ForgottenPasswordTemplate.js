@@ -9,7 +9,7 @@ export function ForgottenPasswordTemplate({ isLoading, error, onSubmit }) {
       <TopNavigation />
       <RightBlockSection>
         <Heading>Zapomenuté heslo</Heading>
-        <div className="mv2">
+        <div className="mv2 f3 f5-ns">
           zadejte svůj email, pošleme vám odkaz na změnu hesla
         </div>
         <ForgottenPasswordForm

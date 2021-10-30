@@ -2,10 +2,11 @@ body {
   margin: 0;
   min-width: 700px;
   font-family: Monsteratt, serif;
+  height: 200vh;
 }
 
-#root{
-  height: 100vh;
+#root {
+  height: 100%;
 }
 
 code {
@@ -22,12 +23,12 @@ code {
 }
 
 @font-face {
-  font-family: "Monsteratt";
-  src: url("assets/Montserrat-Regular.ttf") format("truetype");
+  font-family: 'Monsteratt';
+  src: url('assets/Montserrat-Regular.ttf') format('truetype');
 }
 
 .main-section {
-  background-image: url("assets/images/BackgroundFoto1920.png");
+  background-image: url('assets/images/background.svg');
   background-color: #bffa29;
   background-repeat: no-repeat, repeat;
   background-size: cover;
@@ -36,30 +37,38 @@ code {
   height: 100%;
 }
 
-.homepage-header{
+.main-section > div {
+  padding-top: 50vh;
+}
+
+.homepage-header {
   position: relative;
   /*left: -20%;*/
   /*bottom: -60%;*/
   font-size: 450%;
 }
 
-nav{
+nav {
   background-color: #151824;
   color: #bffa29;
 }
 
-nav .link{
+.link {
   color: #bffa29;
-  text-transform: capitalize;
 }
 
-.footer{
-  margin-top: 0,5rem;
-  padding: 1rem;
+.bg-dark {
   background-color: #151824;
+}
+
+.bg-green {
+  background-color: #bffa29;
+}
+
+.dark {
+  color: #151824;
+}
+
+.green {
   color: #bffa29;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }

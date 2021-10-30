@@ -58,8 +58,8 @@ export function SignInForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <div>
-          <span>
+        <div className="cf">
+          <div className="tl-ns tc fl w-100 w-50-ns dib-ns">
             <LoadingButton
               type="submit"
               className="mt2 mb3"
@@ -68,17 +68,16 @@ export function SignInForm({
             >
               Login
             </LoadingButton>
-          </span>
-          <span className="ml3">
+          </div>
+          <div className="tl-ns tc fr-ns w-100 w-50-ns dib-ns mt6 mt3-ns">
             <Link
-              className="f5"
               to={route.forgottenPassword()}
               color="dark"
               noUnderline={true}
             >
               Zapomněli jste si heslo?
             </Link>
-          </span>
+          </div>
         </div>
 
         {children}
