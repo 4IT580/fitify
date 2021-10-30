@@ -17,8 +17,7 @@ export function SignInTemplate({ isLoading, error, onSubmit }) {
 <<<<<<< HEAD
         />
       </RightBlockSection>
-=======
-        >
+       <>
           <div className="lh-copy">
             or{' '}
             <Link className="f5 dark green" to={route.signUp()}>
