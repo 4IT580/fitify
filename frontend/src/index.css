@@ -2,7 +2,7 @@ body {
   margin: 0;
   min-width: 700px;
   font-family: Monsteratt, serif;
-  height: 200vh;
+  height: 100vh;
 }
 
 #root {
@@ -66,27 +66,4 @@ code {
 
 .green {
   color: #bffa29;
-}
-
-.footer{
-  margin-top: 0,5rem;
-  padding: 1rem;
-  background-color: #151824;
-  color: #bffa29;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-transform: capitalize;
-}
-
-.footer{
-  margin-top: 0,5rem;
-  padding: 1rem;
-  background-color: #151824;
-  color: #bffa29;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }
