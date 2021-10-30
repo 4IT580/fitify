@@ -1,13 +1,17 @@
 import React from 'react';
+import { Footer } from 'src/atoms/';
 
 export function MainSection({ children }) {
   return (
-    <div className="pa3 bt b--black-10 main-section">
-      <section className="mw6 center bg-white pa4 o-90 mt6">
-        <section className="o-100">
-          {children}
-        </section>
-      </section>
-    </div>
+    <>
+      <main className="main-section ">
+        <div className="cf">
+          <section className="fl w-100 bg-white pa5 mt7">
+            <div className="tc">{children}</div>
+          </section>
+        </div>
+      </main>
+      <Footer/>
+    </>
   );
 }

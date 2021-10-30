@@ -1,27 +1,17 @@
 import React from 'react';
 
-import { Heading, MainSection } from 'src/atoms/';
+import { Heading, MainSection, Footer } from 'src/atoms/';
 import { QuackForm, ReloadButton } from 'src/molecules/';
 import { QuackList, TopNavigation } from 'src/organisms/';
 
 export function HomeTemplate({
-  data,
-  loading,
-  error,
-  refetchQuacks,
-  quackFormState,
-  currentUser,
 }) {
   return (
     <>
       <TopNavigation />
-      <div className="pa3 bt b--black-10 main-section">
-        <section className="mw6 center pa5 o-90 homepage-header">
-          <section className="o-100">
-            <h1 className="black content-center">Fitify</h1>
-          </section>
-        </section>
-      </div>
+      <MainSection>
+        <h1>home</h1>
+      </MainSection>
     </>
   );
 }

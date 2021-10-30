@@ -1,6 +1,7 @@
 # [4IT580: Agilní vývoj webových aplikací](http://4it580.vse.cz/) na [VŠE](https://www.vse.cz/)
 
 ## [📖 4IT580: Docs](https://vse-4it580-docs-2021.vercel.app)
+
 ## [❗❗❗ project workflow [cs]❗❗❗](workflow.md)
 
 ## JavaScript
@@ -37,9 +38,10 @@ New JavaScript features (ES2015+) are "enabled" for for all modern browsers with
   - **[js.coach/react](https://js.coach/react)**
 
 ## Local setup
-1) `yarn install`
-2) see [frontend setup](frontend/README.md)
-2) see [backend setup](backend/README.md)
+
+1. `yarn install`
+2. see [frontend setup](frontend/README.md)
+3. see [backend setup](backend/README.md)
 
 ## Server Setup
 
