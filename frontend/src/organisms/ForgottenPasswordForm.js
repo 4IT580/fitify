@@ -5,21 +5,17 @@ import * as yup from 'yup';
 import { ErrorBanner } from 'src/atoms/';
 import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
-import { route } from '../Routes';
 import { Link } from 'src/atoms/';
-import { Button } from '../atoms';
 
 const initialValues = {
   email: '',
-  password: '',
 };
 
 const schema = yup.object().shape({
   email: yup.string().email().required().label('Email'),
-  password: yup.string().required().label('Password'),
 });
 
-export function SignInForm({
+export function ForgottenPasswordForm({
   isLoading,
   errorMessage,
   className,
@@ -46,15 +42,6 @@ export function SignInForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <FormikField
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-        />
         <div>
           <span>
             <LoadingButton
@@ -63,18 +50,8 @@ export function SignInForm({
               loading={isLoading}
               color="green"
             >
-              Login
+              Odeslat
             </LoadingButton>
-          </span>
-          <span className="ml3">
-            <Link
-              className="f5"
-              to={route.forgottenPassword()}
-              color="dark"
-              noUnderline={true}
-            >
-              Zapomněli jste si heslo?
-            </Link>
           </span>
         </div>
 

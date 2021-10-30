@@ -17,7 +17,7 @@ export function TopNavigation() {
         noUnderline
         className="b flex items-center pv2 ph3"
       >
-        <Logo style={{ height: 53, width: 36 }} className="mr2 f4"/>
+        <Logo style={{ height: 53, width: 36 }} className="mr2 f4" />
         Fitify
       </Link>
       <div className="flex-grow flex items-center">
