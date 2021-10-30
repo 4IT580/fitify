@@ -17,19 +17,7 @@ export function TopNavigation() {
         noUnderline
         className="b flex items-center pv2 ph3 green"
       >
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <Logo style={{ height: 53, width: 36 }} className="mr2 f4" />
-=======
-        <Logo style={{ height:63, width: 90 }} className="mr1 f2"/>
->>>>>>> 78f36a6 (First homepage design changes)
-=======
-        <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
->>>>>>> c6bd60d (change color button - probably temporary version)
-=======
-        <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
->>>>>>> accfeb964ef39717cac706bdb185dcd3e783db30
+      <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
         Fitify
       </Link>
       <div className="flex-grow flex items-center">
