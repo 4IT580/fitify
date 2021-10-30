@@ -53,3 +53,13 @@ nav .link{
   text-transform: capitalize;
 }
 
+.footer{
+  margin-top: 0,5rem;
+  padding: 1rem;
+  background-color: #151824;
+  color: #bffa29;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

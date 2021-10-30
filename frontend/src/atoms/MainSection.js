@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 
 export function MainSection({ children }) {
   return (
@@ -8,6 +9,7 @@ export function MainSection({ children }) {
           {children}
         </section>
       </section>
+      <Footer></Footer>
     </div>
   );
 }
