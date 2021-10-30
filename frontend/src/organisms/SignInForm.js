@@ -75,7 +75,7 @@ export function SignInForm({
               color="dark"
               noUnderline={true}
             >
-              Zapomněli jste si heslo?
+              Did you forget password?
             </Link>
           </div>
         </div>
