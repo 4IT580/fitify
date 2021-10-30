@@ -14,13 +14,13 @@ export function SignInTemplate({ isLoading, error, onSubmit }) {
           errorMessage={error && error.message}
           onSubmit={onSubmit}
           className="mt3"
-<<<<<<< HEAD
-        />
+        </>
       </RightBlockSection>
        <>
           <div className="lh-copy">
             or{' '}
             <Link className="f5 dark green" to={route.signUp()}>
+
               Sign Up
             </Link>
           </div>
