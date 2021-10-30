@@ -2,6 +2,7 @@ export { AvatarPhoto } from './AvatarPhoto';
 export { Button } from './Button';
 export { ErrorBanner } from './ErrorBanner';
 export { ErrorMessage } from './ErrorMessage';
+export { Footer } from './Footer';
 export { Heading } from './Heading';
 export { Label } from './Label';
 export { Link } from './Link';

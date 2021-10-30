@@ -1,7 +1,6 @@
 import React from 'react';
-import Footer from 'src/atoms/Footer';
 
-import { Heading, MainSection } from 'src/atoms/';
+import { Heading, MainSection, Footer } from 'src/atoms/';
 import { QuackForm, ReloadButton } from 'src/molecules/';
 import { QuackList, TopNavigation } from 'src/organisms/';
 
@@ -22,7 +21,7 @@ export function HomeTemplate({
           </section>
         </section>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }
