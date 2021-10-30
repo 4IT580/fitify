@@ -1,16 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Field } from 'formik';
 
 export function RadioInput({ className, error, ...props }) {
   let map = props.radioOptions.map((optionValue) => (
-      <label className="ml3">
-        <input
+      <label className="ml3 f5-ns f2">
+        <Field
           type="radio"
-          className={classNames('', error ? 'b--red' : 'b--black-20', className)}
-          value={optionValue}
           name={props.name}
+          value={optionValue}
         />
-        {optionValue}
+        <span className="ml2">{optionValue}</span>
       </label>
   ));
 

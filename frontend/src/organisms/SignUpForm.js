@@ -38,7 +38,7 @@ const schema = yup.object().shape({
     .label('Weight'),
   gender: yup
     .string()
-    // .required()
+    .required()
     .oneOf(['male', 'female'])
     .label('Gender'),
   birthdate: yup.date().required().label('Birth date'),
