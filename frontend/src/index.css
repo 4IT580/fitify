@@ -33,8 +33,7 @@ code {
   background-repeat: no-repeat, repeat;
   background-size: cover;
   background-position: center top;
-
-  height: 100%;
+  width: 100%
 }
 
 .main-section > div.right-offset {
