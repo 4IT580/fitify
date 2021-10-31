@@ -5,21 +5,17 @@ import * as yup from 'yup';
 import { ErrorBanner } from 'src/atoms/';
 import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
-import { route } from '../Routes';
 import { Link } from 'src/atoms/';
-import { Button } from '../atoms';
 
 const initialValues = {
   email: '',
-  password: '',
 };
 
 const schema = yup.object().shape({
   email: yup.string().email().required().label('Email'),
-  password: yup.string().required().label('Password'),
 });
 
-export function SignInForm({
+export function ForgottenPasswordForm({
   isLoading,
   errorMessage,
   className,
@@ -28,7 +24,7 @@ export function SignInForm({
 }) {
   return (
     <Formik
-      onSubmit={function (values, actions) {
+      onSubmit={function (values, actions){
         alert(JSON.stringify(values, null, 2));
         // onSubmit();
       }}
@@ -49,35 +45,17 @@ export function SignInForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <FormikField
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-        />
-        <div className="cf">
-          <div className="tl-ns tc fl w-100 w-50-ns dib-ns">
+        <div>
+          <span>
             <LoadingButton
               type="submit"
               className="mt2 mb3"
               loading={isLoading}
               color="green"
             >
-              Login
+              Reset password
             </LoadingButton>
-          </div>
-          <div className="tl-ns tc fr-ns w-100 w-50-ns dib-ns mt6 mt3-ns">
-            <Link
-              to={route.forgottenPassword()}
-              color="dark"
-              noUnderline={true}
-            >
-              Did you forget password?
-            </Link>
-          </div>
+          </span>
         </div>
 
         {children}

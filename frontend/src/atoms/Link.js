@@ -12,7 +12,8 @@ export function Link({
   return (
     <Component
       className={classNames(
-        'link no-underline',
+        'link underline-hover',
+        'dark pv2 ph3 f2 f5-ns',
         { 'underline-hover': !noUnderline },
         className,
       )}

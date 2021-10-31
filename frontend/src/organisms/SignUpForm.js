@@ -1,28 +1,54 @@
 import React from 'react';
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import * as yup from 'yup';
 
 import { ErrorBanner } from 'src/atoms/';
 import { FormikField, LoadingButton } from 'src/molecules/';
 
 const initialValues = {
-  email: '',
   name: '',
+  surname: '',
+  height: '',
+  weight: '',
+  gender: '',
+  birthdate: '',
+  email: '',
   password: '',
   passwordConfirmation: '',
-  userName: '',
 };
 
 const schema = yup.object().shape({
-  email: yup.string().email().required().label('Email'),
   name: yup.string().required().label('Name'),
+  surname: yup.string().required().label('Surname'),
+  height: yup.number().required()
+    .test(
+      'Is positive?',
+      'ERROR: The number must be greater than 0 and whole!',
+      (value) => value > 0 && value % 1 === 0,
+    )
+    .label('Height'),
+  weight: yup
+    .number()
+    .required()
+    .test(
+      'Is positive?',
+      'ERROR: The number must be greater than 0!',
+      (value) => value > 0,
+    )
+    .label('Weight'),
+  gender: yup
+    .string()
+    .required()
+    .oneOf(['male', 'female'])
+    .label('Gender'),
+  birthdate: yup.date().required().label('Birth date'),
+  email: yup.string().email().required().label('Email'),
   password: yup.string().required().label('Password'),
   passwordConfirmation: yup
     .string()
     .required()
     .oneOf([yup.ref('password'), null], 'Passwords must match')
     .label('Password Confirmation'),
-  userName: yup.string().required().label('Username'),
 });
 
 export function SignUpForm({
@@ -34,7 +60,11 @@ export function SignUpForm({
 }) {
   return (
     <Formik
-      onSubmit={onSubmit}
+      onSubmit={function (values, actions) {
+        alert(JSON.stringify(values, null, 2));
+        //set default values
+        // onSubmit();
+      }}
       initialValues={initialValues}
       validationSchema={schema}
       validateOnBlur={false}
@@ -52,10 +82,48 @@ export function SignUpForm({
           autoCapitalize="off"
         />
         <FormikField
-          id="userName"
-          name="userName"
-          label="Username"
+          id="surname"
+          name="surname"
+          label="Surname"
           type="text"
+          autoFocus="autofocus"
+          autoComplete="on"
+          autoCorrect="off"
+          autoCapitalize="off"
+        />
+        <FormikField
+          id="height"
+          name="height"
+          label="Height (cm)"
+          type="number"
+          autoFocus="autofocus"
+          autoComplete="on"
+          autoCorrect="off"
+          autoCapitalize="off"
+        />
+        <FormikField
+          id="weight"
+          name="weight"
+          label="Weight (kg)"
+          type="number"
+          autoFocus="autofocus"
+          autoComplete="on"
+          autoCorrect="off"
+          autoCapitalize="off"
+        />
+        <FormikField
+          id="gender"
+          name="gender"
+          label="Gender"
+          as="radio"
+          radioOptions={['male', 'female']}
+          autoFocus="autofocus"
+        />
+        <FormikField
+          id="birthdate"
+          name="birthdate"
+          label="Birth Date"
+          type="date"
           autoComplete="on"
           autoCorrect="off"
           autoCapitalize="off"
