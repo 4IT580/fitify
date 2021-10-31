@@ -4,6 +4,7 @@ import { Heading, MainSection, Footer } from 'src/atoms/';
 import { QuackForm, ReloadButton } from 'src/molecules/';
 import { QuackList, TopNavigation } from 'src/organisms/';
 
+
 export function HomeTemplate({
 }) {
   return (
@@ -18,3 +19,4 @@ export function HomeTemplate({
     </>
   );
 }
+
