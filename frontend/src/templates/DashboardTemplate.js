@@ -50,8 +50,12 @@ export function DashboardTemplate({}) {
             <h2>Večerní nabíječka</h2>
             <p>1001 Kcal</p>
             <p><b>11.10.2021</b> 21:13-22:01</p>
-        </div> 
+        </div>
     </main>
+    <p style={{padding: 20, marging: 20}}> 
+
+
+      </p>
       </MainSection>
     </>
   );
