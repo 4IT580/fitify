@@ -27,13 +27,27 @@ code {
   src: url('assets/Montserrat-Regular.ttf') format('truetype');
 }
 
-.main-section {
+.home-page {
   background-image: url('assets/images/BackgroundFoto1920.png');
   background-color: #bffa29;
   background-repeat: no-repeat, repeat;
   background-size: cover;
   background-position: center top;
   width: 100%
+}
+
+.main-section {
+  background-color: #151824;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+
+  height: 100%;
+}
+
+.home-page > div.right-offset {
+  padding-top: 35vh;
+  padding-bottom: 10vh;
 }
 
 .main-section > div.right-offset {

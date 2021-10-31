@@ -9,6 +9,7 @@ import { SignInPage } from 'src/pages/SignInPage';
 import { SignUpPage } from 'src/pages/SignUpPage';
 import { ForgottenPasswordPage } from 'src/pages/ForgottenPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
+import { Dashboard } from 'src/pages/Dashboard';
 
 export const route = {
   home: () => `/`,
@@ -19,6 +20,7 @@ export const route = {
   signUp: () => `/auth/signup`,
   forgottenPassword: () => `/auth/forgotten-password`,
   userDetail: (userName) => `/${userName}`,
+  dashboard: (userName) => `/${userName}/dashboard`,
 };
 
 export function Routes() {
@@ -36,6 +38,11 @@ export function Routes() {
         path={route.userDetail(':userName')}
         exact
         component={UserDetailPage}
+      />
+      <Route
+        path={route.dashboard(':userName')}
+        exact
+        component={Dashboard}
       />
       <Route path="*" component={PageNotFound} />
     </Switch>
