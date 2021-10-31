@@ -11,7 +11,7 @@ import mockResolver from './__mocks__/mockResolver';
 
 dotenv.config();
 
-const MOCKS = process.env.MOCKS === 'false';
+const MOCKS = process.env.MOCKS === 'true';
 
 const typeDefs = gql`
   type User {
