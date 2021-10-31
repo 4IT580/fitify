@@ -2,21 +2,30 @@ import React from 'react';
 
 import {
   MainSection,
-  Button
+  Button,
+  NavLink
 } from 'src/atoms/';
-import { QuackForm, ReloadButton } from 'src/molecules/';
-import { QuackList, TopNavigation } from 'src/organisms/';
+import {  ReloadButton } from 'src/molecules/';
+import {  TopNavigationLogged } from 'src/organisms/';
+import { route } from 'src/Routes';
 
+//import {  TopNavigation } from 'src/organisms/';
 
 export function DashboardTemplate({}) {
 
 
   return (
     <>
-      <TopNavigation />
-      <MainSection>
+      <TopNavigationLogged />
+          <MainSection>
       <h1>Dashboard</h1>
-      <h2 style={{textAlign: "left",}}>Nové tréninky <Button>Nový trénink</Button></h2>
+      <h2 style={{textAlign: "left",}}>Nové tréninky
+<NavLink to={route.newTraining('tt123')} className="pa3">
+      <Button>
+      Nový trénink
+      </Button>
+</NavLink>
+      </h2>
     <main className="grid-container-left">
     <Button>
         <div>
@@ -37,7 +46,7 @@ export function DashboardTemplate({}) {
             <h2>Večerní HIIT</h2>
             <p>6 kol - 8 cviků - 40 minut</p>
             <p>40s cvik - 10s pauza</p>
-        </div>  
+        </div>
         </Button>
     </main>
     <h2 style={{textAlign: "left",}}>Histore tréninků</h2>
@@ -64,10 +73,6 @@ export function DashboardTemplate({}) {
         </div>
         </Button>
     </main>
-    <p style={{padding: 20, marging: 20}}> 
-
-
-      </p>
       </MainSection>
     </>
   );
