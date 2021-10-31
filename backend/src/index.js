@@ -11,59 +11,23 @@ import mockResolver from './__mocks__/mockResolver';
 
 dotenv.config();
 
-const MOCKS = process.env.MOCKS === 'false';
+const MOCKS = process.env.MOCKS === 'true';
 
 const typeDefs = gql`
   type User {
     id: Int!
     name: String!
-    surname: String!
-    email: String!
-    password: String!
-    role: UserRole!
-    active: Boolean!
-    height: Int!
-    weight: Int!
-    sex: UserSex!
-    birthdate: String!
-    lostPasswordHash: String!
-    lastLoginAt: String!
+    userName: String!
+    profileImageUrl: String
+    quacks: [Quack!]!
+  }
+
+  type Quack {
+    id: Int!
     createdAt: String!
-  }
-
-  type WorkoutPlan {
-    id: Int!
-    name: String!
-    rounds: Int!
-    intervalLength: Int!
-    intervalPauseLength: Int!
-    roundsPauseLength: Int!
-    wourkoutLength: Int!
-    createdAt: String!
-  }
-
-  type WorkoutHistory {
-    id: Int!
-    calories: Int!
-    status: WorkoutHistoryStatus!
-    start_at: String!
-    end_at: String!
-  }
-
-  type Excercise {
-    id: Int!
-    name: String!
-    description: String!
-  }
-
-  type BodyPart{
-    id: Int!
-    name: String!
-  }
-
-  type Equipment {
-  id: Int!
-  name: String!
+    user: User!
+    userId: Int!
+    text: String!
   }
 
   type AuthUser {
@@ -81,6 +45,7 @@ const typeDefs = gql`
   type Query {
     users: [User!]!
     user(userName: String!): User
+    quacks: [Quack!]!
   }
 
   type Mutation {
@@ -93,19 +58,8 @@ const typeDefs = gql`
       userName: String!
       profileImageUrl: String
     ): AuthInfo!
-  }
 
-  enum UserRole{
-    admin
-    user
-  }
-  enum UserSex{
-    M
-    F
-  }
-  enum WorkoutHistoryStatus{
-    active
-    finished
+    addQuack(userId: Int!, text: String!): Quack!
   }
 `;
 
