@@ -82,14 +82,14 @@ INSERT INTO `exercise` (`id`, `name`, `description`) VALUES
 (32, 'Bicepsový zdvih', NULL),
 (33, 'Shyby podhmatem', NULL);
 
-CREATE TABLE `exercise_body` (
+CREATE TABLE `exerciseBody` (
   `id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL,
-  `body_id` int(11) NOT NULL
+  `exerciseId` int(11) NOT NULL,
+  `bodyId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `exercise_body` (`id`, `exercise_id`, `body_id`) VALUES
+INSERT INTO `exerciseBody` (`id`, `exerciseId`, `bodyId`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 10),
@@ -141,14 +141,14 @@ INSERT INTO `exercise_body` (`id`, `exercise_id`, `body_id`) VALUES
 (49, 33, 3),
 (50, 33, 7);
 
-CREATE TABLE `exercise_equipment` (
+CREATE TABLE `exerciseEquipment` (
   `id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL,
-  `equipment_id` int(11) NOT NULL
+  `exerciseId` int(11) NOT NULL,
+  `equipmentId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `exercise_equipment` (`id`, `exercise_id`, `equipment_id`) VALUES
+INSERT INTO `exerciseEquipment` (`id`, `exerciseId`, `equipmentId`) VALUES
 (1, 1, 3),
 (2, 1, 1),
 (3, 1, 2),
@@ -209,7 +209,7 @@ INSERT INTO `exercise_equipment` (`id`, `exercise_id`, `equipment_id`) VALUES
 (88, 33, 9);
 
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
@@ -219,38 +219,46 @@ CREATE TABLE `users` (
   `active` tinyint(4) DEFAULT '0',
   `height` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
-  `sex` enum('M','F') NOT NULL,
+  `sex` enum('male','female') NOT NULL,
   `birthdate` date NOT NULL,
-  `lost_password_hash` text,
-  `last_login` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `lostPasswordHash` text,
+  `lastLogin` int(11) DEFAULT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `workout_history` (
+CREATE TABLE `workoutHistory` (
   `id` int(11) NOT NULL,
   `calories` int(11) NOT NULL,
   `status` enum('active','finished') NOT NULL,
-  `start_at` datetime NOT NULL,
-  `end_at` datetime NOT NULL,
-  `workout_plan_id` int(11) NOT NULL
+  `startAt` datetime NOT NULL,
+  `endAt` datetime NOT NULL,
+  `workoutPlanId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `workout_plan` (
+CREATE TABLE `workoutPlan` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `rounds` int(11) NOT NULL,
-  `interval_length` int(11) NOT NULL,
-  `interval_pause_length` int(11) NOT NULL,
-  `rounds_pause_length` int(11) NOT NULL,
-  `workout_lenght` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `intervalLength` int(11) NOT NULL,
+  `intervalPauseLength` int(11) NOT NULL,
+  `roundsPauseLength` int(11) NOT NULL,
+  `workoutLenght` int(11) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `workout_plan_exercise` (
+CREATE TABLE `workoutPlanExercise` (
   `id` int(11) NOT NULL,
-  `workout_plan_id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL
+  `workoutPlanId` int(11) NOT NULL,
+  `exerciseId` int(11) NOT NULL,
+  `sequence` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `userWorkoutPlan` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `workoutPlanId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -273,20 +281,20 @@ ALTER TABLE `exercise`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `exercise_body`
+-- Indexes for table `exerciseBody`
 --
-ALTER TABLE `exercise_body`
+ALTER TABLE `exerciseBody`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `body_id` (`body_id`),
-  ADD KEY `exercise_id` (`exercise_id`);
+  ADD KEY `bodyId` (`bodyId`),
+  ADD KEY `exerciseId` (`exerciseId`);
 
 --
--- Indexes for table `exercise_equipment`
+-- Indexes for table `exerciseEquipment`
 --
-ALTER TABLE `exercise_equipment`
+ALTER TABLE `exerciseEquipment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `equipment_id` (`equipment_id`),
-  ADD KEY `exercise` (`exercise_id`);
+  ADD KEY `equipmentId` (`equipmentId`),
+  ADD KEY `exerciseId` (`exerciseId`);
 
 --
 -- Indexes for table `users`
@@ -295,21 +303,21 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `workout_history`
+-- Indexes for table `workoutHistory`
 --
-ALTER TABLE `workout_history`
-  ADD KEY `workout_plan_id` (`workout_plan_id`);
+ALTER TABLE `workoutHistory`
+  ADD KEY `workoutPlanId` (`workoutPlanId`);
 
 --
--- Indexes for table `workout_plan`
+-- Indexes for table `workoutPlan`
 --
-ALTER TABLE `workout_plan`
+ALTER TABLE `workoutPlan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `workout_plan_exercise`
+-- Indexes for table `workoutPlanExercise`
 --
-ALTER TABLE `workout_plan_exercise`
+ALTER TABLE `workoutPlanExercise`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -332,14 +340,14 @@ ALTER TABLE `equipment`
 ALTER TABLE `exercise`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
--- AUTO_INCREMENT for table `exercise_body`
+-- AUTO_INCREMENT for table `exerciseBody`
 --
-ALTER TABLE `exercise_body`
+ALTER TABLE `exerciseBody`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
--- AUTO_INCREMENT for table `exercise_equipment`
+-- AUTO_INCREMENT for table `exerciseEquipment`
 --
-ALTER TABLE `exercise_equipment`
+ALTER TABLE `exerciseEquipment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT for table `users`
@@ -347,32 +355,32 @@ ALTER TABLE `exercise_equipment`
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `workout_plan`
+-- AUTO_INCREMENT for table `workoutPlan`
 --
-ALTER TABLE `workout_plan`
+ALTER TABLE `workoutPlan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `workout_plan_exercise`
+-- AUTO_INCREMENT for table `workoutPlanExercise`
 --
-ALTER TABLE `workout_plan_exercise`
+ALTER TABLE `workoutPlanExercise`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `exercise_body`
+-- Constraints for table `exerciseBody`
 --
-ALTER TABLE `exercise_body`
-  ADD CONSTRAINT `body_id` FOREIGN KEY (`body_id`) REFERENCES `body` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `exercise_id` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `exerciseBody`
+  ADD CONSTRAINT `bodyId` FOREIGN KEY (`bodyId`) REFERENCES `body` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `exerciseId` FOREIGN KEY (`exerciseId`) REFERENCES `exercise` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `exercise_equipment`
+-- Constraints for table `exerciseEquipment`
 --
-ALTER TABLE `exercise_equipment`
-  ADD CONSTRAINT `equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `exercise` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `exerciseEquipment`
+  ADD CONSTRAINT `equipmentId` FOREIGN KEY (`equipmentId`) REFERENCES `equipment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `exercise` FOREIGN KEY (`exerciseId`) REFERENCES `exercise` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `workout_history`
+-- Constraints for table `workoutHistory`
 --
-ALTER TABLE `workout_history`
-  ADD CONSTRAINT `workout_plan_id` FOREIGN KEY (`workout_plan_id`) REFERENCES `workout_plan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `workoutHistory`
+  ADD CONSTRAINT `workoutPlanId` FOREIGN KEY (`workoutPlanId`) REFERENCES `workoutPlan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
