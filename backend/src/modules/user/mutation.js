@@ -69,11 +69,23 @@ export const signup = async (
   return { user: userObject, token: token };
 };
 
-export const forgottenPassword = async (_, {email}, {dbConnection},) => {
-  const userByUserName = (await dbConnection.query(`SELECT * FROM user WHERE userName = ?`, [userName]))[0];
+export const forgottenPassword = async (_, {email}, {dbConnection, mailer}) => {
+  const userByUserName = (await dbConnection.query(`SELECT * FROM user WHERE email = ?`, [email]))[0];
 
-  return JSON.stringify(userByUserName);
-  if (userByUserName) {
-    throw new Error('Username already taken');
+  if (userByUserName === null) {
+    //user does not exist, no need to send email
+    throw new Error('user does not exist');
   }
+
+  let info = await mailer.sendMail({
+    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    to: "mico00@vse.cz.com", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
+  })
+
+  console.log("Message sent: %s", info.messageId);
+
+  throw new Error(JSON.stringify(userByUserName));
 };

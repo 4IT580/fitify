@@ -5,9 +5,9 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import { getConnection } from './libs/connection';
+import { getMailer } from "./libs/mailer";
 
 import rootResolver from './modules/rootResolver';
-import mockResolver from './__mocks__/mockResolver';
 
 dotenv.config();
 
@@ -102,7 +102,7 @@ const typeDefs = gql`
       name: String!
     ): AuthInfo!
 
-    forgottenPassword(email: String!): Boolean
+    forgottenPassword(email: String!): Boolean!
     
     addQuack(userId: Int!, text: String!): Quack!
   }
@@ -128,6 +128,7 @@ const main = async () => {
   app.use(cors());
 
   const dbConnection = await getConnection();
+  const mailer = await getMailer();
 
   const apolloServer = new ApolloServer({
     typeDefs,
@@ -139,6 +140,7 @@ const main = async () => {
         req,
         res,
         dbConnection,
+        mailer,
         auth,
       };
     },
