@@ -21,7 +21,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     role: UserRole!
-    active: Boolean!
+    active: Int
     height: Int!
     weight: Int!
     sex: UserSex!

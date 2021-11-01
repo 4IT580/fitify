@@ -3,12 +3,13 @@ import { createToken } from '../../libs/token';
 
 export const signin = async (_, { email, password }, { dbConnection }) => {
   const dbResponse = await dbConnection.query(
-    `SELECT * FROM user WHERE email = ?`,
+    `SELECT * FROM user WHERE email = ? AND active = 1`,
     [email],
   );
+
   const user = dbResponse[0];
 
-  if (await argon2.verify(user.password, password)) {
+  if(await argon2.verify(user.password, password)) {
     const token = createToken({ id: user.id });
     return {
       user: { ...user },
