@@ -67,3 +67,7 @@ export const signup = async (
 
   return { user: userObject, token: token };
 };
+
+export const forgottenPassword = async (_, {email}, {dbConnection},) => {
+  throw new Error('email given '+email)
+};
