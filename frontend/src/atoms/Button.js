@@ -7,7 +7,7 @@ const SECONDARY_COLOR_CLASSES = 'bg-dark green dim f2 f5-ns';
 const COLORS = {
   green: PRIMARY_COLOR_CLASSES,
   dark: SECONDARY_COLOR_CLASSES,
-  navbar: 'f6 black bg-transparent hover-bg-white hover-black mh3 b--red-20',
+  navbar: 'f4 black bg-transparent hover-bg-white hover-black mh3 b--red-20',
   red: 'white bg-red hover-bg-dark-red',
 };
 
