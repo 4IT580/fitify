@@ -29,6 +29,7 @@ const typeDefs = gql`
     lostPasswordHash: String!
     lastLoginAt: String!
     createdAt: String!
+    quacks: [Quack!]!
   }
 
   type WorkoutPlan {
@@ -46,8 +47,8 @@ const typeDefs = gql`
     id: Int!
     calories: Int!
     status: WorkoutHistoryStatus!
-    start_at: String!
-    end_at: String!
+    startAt: String!
+    endAt: String!
   }
 
   type Excercise {
@@ -78,9 +79,18 @@ const typeDefs = gql`
     token: String!
   }
 
+  type Quack {
+    id: Int!
+    createdAt: String!
+    user: User!
+    userId: Int!
+    text: String!
+  }
+
   type Query {
     users: [User!]!
     user(userName: String!): User
+    quacks: [Quack!]!
   }
 
   type Mutation {
@@ -90,9 +100,9 @@ const typeDefs = gql`
       email: String!
       password: String!
       name: String!
-      userName: String!
-      profileImageUrl: String
     ): AuthInfo!
+
+    addQuack(userId: Int!, text: String!): Quack!
   }
 
   enum UserRole{
@@ -100,8 +110,8 @@ const typeDefs = gql`
     user
   }
   enum UserSex{
-    M
-    F
+    male
+    female
   }
   enum WorkoutHistoryStatus{
     active
@@ -115,11 +125,11 @@ const main = async () => {
   app.disable('x-powered-by');
   app.use(cors());
 
-  const dbConnection = MOCKS ? null : await getConnection();
+  const dbConnection = await getConnection();
 
   const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: MOCKS ? mockResolver : rootResolver,
+    resolvers: rootResolver,
     context: async ({ req, res }) => {
       const auth = req.headers.Authorization || '';
 

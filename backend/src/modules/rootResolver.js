@@ -5,6 +5,8 @@ import { queries as UserQueries, mutations as UserMutations } from './user';
 import { queries as WorkoutHistoryQueries, mutations as WorkoutHistoryMutations } from './workout-history';
 import { queries as WorkoutPlanQueries, mutations as WorkoutPlanMutations } from './workout-plan';
 
+import { queries as QuackQueries, mutations as QuackMutations } from './quack';
+
 export default {
   Query: {
     ...BodyQueries,
@@ -13,6 +15,8 @@ export default {
     ...UserQueries,
     ...WorkoutHistoryQueries,
     ...WorkoutPlanQueries,
+
+    ...QuackQueries,
   },
   Mutation: {
     ...BodyMutations,
@@ -21,8 +25,23 @@ export default {
     ...UserMutations,
     ...WorkoutHistoryMutations,
     ...WorkoutPlanMutations,
+
+    ...QuackMutations,
   },
   User: {
-    //dodelat relationy
+    async quacks(parent, _, { dbConnection }) {
+      return await dbConnection.query(`SELECT * FROM quack WHERE userId = ?`, [
+        parent.id,
+      ]);
+    },
+  },
+  Quack: {
+    async user(parent, _, { dbConnection }) {
+      return (
+        await dbConnection.query(`SELECT * FROM user WHERE id = ?`, [
+          parent.userId,
+        ])
+      )[0];
+    },
   },
 };

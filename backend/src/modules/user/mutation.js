@@ -7,6 +7,8 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
     [email],
   );
   const user = dbResponse[0];
+  const token = createToken({ id: user.id });
+  
   if (await argon2.verify(user.password, password)) {
     const token = createToken({ id: user.id });
     return {

@@ -28,9 +28,8 @@ export function SignInForm({
 }) {
   return (
     <Formik
-      onSubmit={function (values, actions) {
-        alert(JSON.stringify(values, null, 2));
-        // onSubmit();
+      onSubmit={(values, actions) => {
+        onSubmit(values);
       }}
       initialValues={initialValues}
       validationSchema={schema}
