@@ -15,6 +15,7 @@ export function HomeTemplate({
 
         <h3>Zaregistrujte se a začněte s tréninkem.</h3>
       </HomePage>
+      <Footer />
     </>
   );
 }

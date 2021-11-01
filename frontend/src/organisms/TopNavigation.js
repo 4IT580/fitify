@@ -19,8 +19,8 @@ export function TopNavigation() {
       >
       <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
       </Link>
-      <div className="flex-grow flex items-center">
-        <NavLink exact to={route.home()} className="pa3">
+      <div className="flex-grow flex items-center mr4">
+        <NavLink exact to={route.home()} className="pa3 dn dib-ns">
           Home
         </NavLink>
         {user ? (
