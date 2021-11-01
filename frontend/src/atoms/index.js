@@ -18,3 +18,4 @@ export { RadioInput } from './RadioInput';
 export { TransparentButton } from './TransparentButton';
 export { UserName } from './UserName';
 export { UserUserName } from './UserUserName';
+export { HomePage } from './HomePage';

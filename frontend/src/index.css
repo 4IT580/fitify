@@ -27,13 +27,27 @@ code {
   src: url('assets/Montserrat-Regular.ttf') format('truetype');
 }
 
-.main-section {
+.home-page {
   background-image: url('assets/images/BackgroundFoto1920.png');
   background-color: #bffa29;
   background-repeat: no-repeat, repeat;
   background-size: cover;
   background-position: center top;
   width: 100%
+}
+
+.main-section {
+  background-color: #151824;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+
+  height: 100%;
+}
+
+.home-page > div.right-offset {
+  padding-top: 35vh;
+  padding-bottom: 10vh;
 }
 
 .main-section > div.right-offset {
@@ -59,4 +73,38 @@ code {
 
 .green {
   color: #bffa29;
+}
+
+.grid-container-left {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  background-color: #151824;
+  padding: 10px;
+  float: center;
+  width: 100%;
+}
+
+.grid-container-left > div {
+  background-color: #bffa29;
+  border: 3px solid #151824;
+  text-align: center;
+  font-size: 20px;
+}
+
+.grid-container-right {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  background-color:#151824;
+  padding: 10px;
+  float: center;
+  width: 100%;
+}
+
+.grid-container-right > div {
+  background-color: #bffa29;
+  border: 3px solid #151824;
+  text-align: center;
+  font-size: 20px;
 }
