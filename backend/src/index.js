@@ -102,6 +102,8 @@ const typeDefs = gql`
       name: String!
     ): AuthInfo!
 
+    forgottenPassword(email: String!): Boolean
+    
     addQuack(userId: Int!, text: String!): Quack!
   }
 

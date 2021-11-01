@@ -1,5 +1,6 @@
 import * as argon2 from 'argon2';
 import { createToken } from '../../libs/token';
+import { user } from "./query";
 
 export const signin = async (_, { email, password }, { dbConnection }) => {
   const dbResponse = await dbConnection.query(
@@ -69,5 +70,10 @@ export const signup = async (
 };
 
 export const forgottenPassword = async (_, {email}, {dbConnection},) => {
-  throw new Error('email given '+email)
+  const userByUserName = (await dbConnection.query(`SELECT * FROM user WHERE userName = ?`, [userName]))[0];
+
+  return JSON.stringify(userByUserName);
+  if (userByUserName) {
+    throw new Error('Username already taken');
+  }
 };
