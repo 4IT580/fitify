@@ -7,6 +7,7 @@ import { PageNotFound } from './PageNotFound';
 import { useAuth } from 'src/utils/auth';
 
 
+
 const USER_DETAIL_QUERY = gql`
   query UserDetail($userName: String!) {
     user(userName: $userName) {

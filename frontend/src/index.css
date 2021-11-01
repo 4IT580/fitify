@@ -41,16 +41,10 @@ code {
   background-repeat: no-repeat, repeat;
   background-size: cover;
   background-position: center top;
-
-  height: 100%;
+  width: 100%;
 }
 
 .home-page > div.right-offset {
-  padding-top: 35vh;
-  padding-bottom: 10vh;
-}
-
-.main-section > div.right-offset {
   padding-top: 35vh;
   padding-bottom: 10vh;
 }
