@@ -1,6 +1,6 @@
 import * as argon2 from 'argon2';
 import { createToken } from '../../libs/token';
-import { user } from "./query";
+import { sendMail } from '../../libs/mailer';
 
 export const signin = async (_, { email, password }, { dbConnection }) => {
   const dbResponse = await dbConnection.query(
@@ -9,7 +9,7 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
   );
   const user = dbResponse[0];
   const token = createToken({ id: user.id });
-  
+
   if (await argon2.verify(user.password, password)) {
     const token = createToken({ id: user.id });
     return {
@@ -69,23 +69,75 @@ export const signup = async (
   return { user: userObject, token: token };
 };
 
-export const forgottenPassword = async (_, {email}, {dbConnection, mailer}) => {
-  const userByUserName = (await dbConnection.query(`SELECT * FROM user WHERE email = ?`, [email]))[0];
+export const forgottenPassword = async (
+  _,
+  { email, appOrigin },
+  { dbConnection, mailer },
+) => {
+  const userByUserName = (
+    await dbConnection.query(`SELECT * FROM user WHERE email = ?`, [email])
+  )[0];
 
-  if (userByUserName === null) {
+  if (userByUserName === undefined) {
     //user does not exist, no need to send email
-    throw new Error('user does not exist');
+    throw Error('User does not exist');
   }
 
-  let info = await mailer.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "mico00@vse.cz.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  })
+  let argonResponse = await argon2.hash(Date.now().toString());
+  let lostPasswordHash = argonResponse.substr(argonResponse.length - 10);
+  let goToUrl = appOrigin + '/auth/reset-password/?__token=' + lostPasswordHash;
 
-  console.log("Message sent: %s", info.messageId);
+  await dbConnection.query(
+    `UPDATE user SET lostPasswordHash = ? WHERE id = ?`,
+    [lostPasswordHash, userByUserName.id],
+  );
 
-  throw new Error(JSON.stringify(userByUserName));
+  let info = await sendMail(
+    mailer,
+    userByUserName.email,
+    'Fitify reset hesla',
+    'For password reset go to ' + goToUrl,
+  );
+
+  console.log('Message sent: %s', info.messageId);
+
+  return true;
+};
+
+export const resetPassword = async (
+  _,
+  { token, newPassword },
+  { dbConnection, mailer },
+) => {
+  let user = (
+    await dbConnection.query(`SELECT * FROM user WHERE lostPasswordHash = ?`, [
+      token,
+    ])
+  )[0];
+
+  if (user === undefined) {
+    //user does not exist, no need to send email
+    throw Error('Invalid request');
+  }
+
+  let argonHash = await argon2.hash(newPassword);
+  await dbConnection.query(`UPDATE user SET password = ? WHERE id = ?`, [
+    argonHash,
+    user.id,
+  ]);
+  user = (
+    await dbConnection.query(`SELECT * FROM user WHERE lostPasswordHash = ?`, [
+      token,
+    ])
+  )[0];
+
+  if (await argon2.verify(user.password, newPassword)) {
+    const token = createToken({ id: user.id });
+    return {
+      user: { ...user },
+      token,
+    };
+  }
+
+  throw Error('something broke');
 };

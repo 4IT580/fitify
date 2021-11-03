@@ -24,10 +24,7 @@ export function ForgottenPasswordForm({
 }) {
   return (
     <Formik
-      onSubmit={function (values, actions){
-        alert(JSON.stringify(values, null, 2));
-        // onSubmit();
-      }}
+      onSubmit={onSubmit}
       initialValues={initialValues}
       validationSchema={schema}
       validateOnBlur={false}

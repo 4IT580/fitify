@@ -20,3 +20,13 @@ export const getMailer = async () => {
     throw err;
   }
 };
+
+export function sendMail(mailer, toEmail, subject, body) {
+  return mailer.sendMail({
+    from: process.env.SMTP_USER, // sender address
+    to: toEmail, // list of receivers
+    subject: subject, // Subject line
+    text: body, // plain text body
+    html: body, // html body
+  });
+}

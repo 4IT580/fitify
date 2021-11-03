@@ -27,7 +27,7 @@ export function SignInPage() {
       history.replace('/');
     },
     onError: () => {
-      console.log("login error");
+      console.log('login error');
     },
   });
 

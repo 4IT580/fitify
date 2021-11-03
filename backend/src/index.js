@@ -5,7 +5,7 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import { getConnection } from './libs/connection';
-import { getMailer } from "./libs/mailer";
+import { getMailer } from './libs/mailer';
 
 import rootResolver from './modules/rootResolver';
 
@@ -57,14 +57,14 @@ const typeDefs = gql`
     description: String!
   }
 
-  type BodyPart{
+  type BodyPart {
     id: Int!
     name: String!
   }
 
   type Equipment {
-  id: Int!
-  name: String!
+    id: Int!
+    name: String!
   }
 
   type AuthUser {
@@ -96,26 +96,23 @@ const typeDefs = gql`
   type Mutation {
     signin(email: String!, password: String!): AuthInfo!
 
-    signup(
-      email: String!
-      password: String!
-      name: String!
-    ): AuthInfo!
+    signup(email: String!, password: String!, name: String!): AuthInfo!
 
-    forgottenPassword(email: String!): Boolean!
-    
+    forgottenPassword(email: String!, appOrigin: String!): Boolean!
+    resetPassword(token: String!, newPassword: String!): AuthInfo!
+
     addQuack(userId: Int!, text: String!): Quack!
   }
 
-  enum UserRole{
+  enum UserRole {
     admin
     user
   }
-  enum UserSex{
+  enum UserSex {
     male
     female
   }
-  enum WorkoutHistoryStatus{
+  enum WorkoutHistoryStatus {
     active
     finished
   }
