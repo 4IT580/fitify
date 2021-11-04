@@ -35,6 +35,7 @@ export function ButtonReverse({
                 className,
             )}
             type="button"
+            style={{ cursor: 'pointer' }}
             disabled={disabled}
             {...rest}
         >
