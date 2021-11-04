@@ -26,9 +26,11 @@ export function DashboardTemplate({}) {
       <h1 style={{ textAlign: "left", color: 'greenyellow' }}>Dashboard</h1>
       <h2 style={{textAlign: "left", color: 'greenyellow' }}>Nové tréninky
 <NavLink to={route.newTraining('tt123')} className="pa3">
+            <div className="right-offset pt4">
       <ButtonReverse>
       Nový trénink
       </ButtonReverse>
+             </div>
 </NavLink>
       </h2>
     <main className="grid-container-left">

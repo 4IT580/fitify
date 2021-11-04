@@ -105,6 +105,12 @@ code {
   } 
 }
 
+@media only screen and (min-width: 500px) {
+  .main-section-dashboard {
+    height: 100vh;
+  } 
+}
+
 @media only screen and (max-width: 600px) {
   html {
     font-size: 7px;
@@ -112,17 +118,14 @@ code {
 
   .home-page {
     font-size: 13px;
+    height: 100vh;
   } 
 }
 
 @media only screen and (max-width: 400px) {
   html {
     font-size: 6px;
+    height: 100vh;
   } 
 }
 
-@media only screen and (min-width: 960px) {
-  .dashboard {
-    height: auto;
-  } 
-}

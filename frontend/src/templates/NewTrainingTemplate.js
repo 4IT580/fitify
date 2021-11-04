@@ -16,20 +16,18 @@ export function NewTrainingTemplate({}) {
     <>
       <TopNavigationLogged />
           <MainSectionDashboard>
-        <h1 style={{ color: 'greenyellow' }}>Nový trening</h1>
-        <p style={{padding: 10, marging: 10}}>
-       </p>
-    <main className="grid-container-left">
+        <h1 style={{ color: 'greenyellow' }}>Nový trénink</h1>
+        <main className="grid-container-left pt7">
     <ButtonReverse>
         <div>
-            <h2>Založení nového treningu</h2>
+            <h2>Založení nového tréninku</h2>
         </div>
         </ButtonReverse>
           <div>
             <h2></h2>
           </div>
     </main>
-        <p style={{ padding: 60, margin: 60 }}>
+        <p style={{ padding: 20, margin: 20 }}>
 
 
         </p>
