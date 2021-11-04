@@ -1,5 +1,6 @@
 export { AvatarPhoto } from './AvatarPhoto';
 export { Button } from './Button';
+export { ButtonReverse } from './ButtonReverse';
 export { ErrorBanner } from './ErrorBanner';
 export { ErrorMessage } from './ErrorMessage';
 export { Footer } from './Footer';
@@ -8,6 +9,7 @@ export { Label } from './Label';
 export { Link } from './Link';
 export { Loading } from './Loading';
 export { MainSection } from './MainSection';
+export { MainSectionDashboard } from './MainSectionDashboard';
 export { RightBlockSection } from './RightBlockSection';
 export { NavLink } from './NavLink';
 export { ScrollToTop } from './ScrollToTop';
