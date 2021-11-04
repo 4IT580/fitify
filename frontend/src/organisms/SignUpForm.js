@@ -20,7 +20,9 @@ const initialValues = {
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
   surname: yup.string().required().label('Surname'),
-  height: yup.number().required()
+  height: yup
+    .number()
+    .required()
     .test(
       'Is positive?',
       'ERROR: The number must be greater than 0 and whole!',
@@ -36,11 +38,7 @@ const schema = yup.object().shape({
       (value) => value > 0,
     )
     .label('Weight'),
-  gender: yup
-    .string()
-    .required()
-    .oneOf(['male', 'female'])
-    .label('Gender'),
+  gender: yup.string().required().oneOf(['male', 'female']).label('Gender'),
   birthdate: yup.date().required().label('Birth date'),
   email: yup.string().email().required().label('Email'),
   password: yup.string().required().label('Password'),

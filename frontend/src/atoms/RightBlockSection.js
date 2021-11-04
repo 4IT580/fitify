@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, Footer } from 'src/atoms/';
 
-export function RightBlockSection ({children}) {
+export function RightBlockSection({ children }) {
   return (
     <>
       <main className="home-page ">
@@ -14,7 +14,7 @@ export function RightBlockSection ({children}) {
           </section>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

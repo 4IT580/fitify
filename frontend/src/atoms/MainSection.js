@@ -11,7 +11,7 @@ export function MainSection({ children }) {
           </section>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

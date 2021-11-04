@@ -44,11 +44,7 @@ export function Routes() {
         exact
         component={UserDetailPage}
       />
-      <Route
-        path={route.dashboard(':userName')}
-        exact
-        component={Dashboard}
-      />
+      <Route path={route.dashboard(':userName')} exact component={Dashboard} />
       <Route
         path={route.newTraining(':userName')}
         exact

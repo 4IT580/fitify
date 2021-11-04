@@ -4,8 +4,7 @@ import { Heading, HomePage, Footer } from 'src/atoms/';
 import { QuackForm, ReloadButton } from 'src/molecules/';
 import { QuackList, TopNavigation } from 'src/organisms/';
 
-export function HomeTemplate({
-}) {
+export function HomeTemplate({}) {
   return (
     <>
       <TopNavigation />

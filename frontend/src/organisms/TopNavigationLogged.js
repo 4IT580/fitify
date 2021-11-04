@@ -9,7 +9,7 @@ import { route } from 'src/Routes';
 export function TopNavigationLogged() {
   const { user, signout } = useAuth();
   const history = useHistory();
-//todo:username je tam natvrdo, místo tt123 se tam musí dát "username"
+  //todo:username je tam natvrdo, místo tt123 se tam musí dát "username"
   return (
     <nav className="flex justify-between bb bg-dark">
       <Link
@@ -17,7 +17,7 @@ export function TopNavigationLogged() {
         noUnderline
         className="b flex items-center pv2 ph3 green"
       >
-      <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
+        <Logo style={{ height: 98, width: 110 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
         <NavLink exact to={route.home()} className="pa3 dn dib-ns">

@@ -34,7 +34,7 @@ export function Button({
         className,
       )}
       type="button"
-      style={{cursor:'pointer'}}
+      style={{ cursor: 'pointer' }}
       disabled={disabled}
       {...rest}
     >

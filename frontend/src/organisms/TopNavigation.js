@@ -17,7 +17,7 @@ export function TopNavigation() {
         noUnderline
         className="b flex items-center pv2 ph3 green"
       >
-      <Logo style={{ height:98, width: 110 }} className="mr1 f2"/>
+        <Logo style={{ height: 98, width: 110 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
         <NavLink exact to={route.home()} className="pa3 dn dib-ns">

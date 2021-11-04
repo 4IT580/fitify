@@ -58,7 +58,6 @@ code {
   padding-bottom: 10vh;
 }
 
-
 .bg-dark {
   background-color: #151824;
 }
@@ -79,8 +78,7 @@ code {
   color: #bffa29;
 }
 
-.dashboard
-.grid-container-left {
+.dashboard .grid-container-left {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 10px;
@@ -102,13 +100,13 @@ code {
 @media only screen and (min-width: 960px) {
   .home-page {
     height: auto;
-  } 
+  }
 }
 
 @media only screen and (min-width: 500px) {
   .main-section-dashboard {
     height: 100vh;
-  } 
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -119,13 +117,12 @@ code {
   .home-page {
     font-size: 13px;
     height: 100vh;
-  } 
+  }
 }
 
 @media only screen and (max-width: 400px) {
   html {
     font-size: 6px;
     height: 100vh;
-  } 
+  }
 }
-

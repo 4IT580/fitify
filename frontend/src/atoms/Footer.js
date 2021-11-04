@@ -7,5 +7,5 @@ export function Footer({}) {
         <p>©2021 Fitify</p>
       </div>
     </>
-  )
+  );
 }

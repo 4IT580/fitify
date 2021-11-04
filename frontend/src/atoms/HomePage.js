@@ -5,9 +5,7 @@ export function HomePage({ children }) {
     <>
       <main className="home-page">
         <div className="cf right-offset">
-          <div className="fl w-100 bg-white o-60 pa5 mt4 tl">
-            {children}
-          </div>
+          <div className="fl w-100 bg-white o-60 pa5 mt4 tl">{children}</div>
         </div>
       </main>
     </>
