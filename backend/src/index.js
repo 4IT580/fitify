@@ -5,9 +5,9 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import { getConnection } from './libs/connection';
+import { getMailer } from './libs/mailer';
 
 import rootResolver from './modules/rootResolver';
-import mockResolver from './__mocks__/mockResolver';
 
 dotenv.config();
 
@@ -29,6 +29,7 @@ const typeDefs = gql`
     lostPasswordHash: String!
     lastLoginAt: String!
     createdAt: String!
+    quacks: [Quack!]!
   }
 
   type WorkoutPlan {
@@ -46,8 +47,8 @@ const typeDefs = gql`
     id: Int!
     calories: Int!
     status: WorkoutHistoryStatus!
-    start_at: String!
-    end_at: String!
+    startAt: String!
+    endAt: String!
   }
 
   type Excercise {
@@ -56,14 +57,14 @@ const typeDefs = gql`
     description: String!
   }
 
-  type BodyPart{
+  type BodyPart {
     id: Int!
     name: String!
   }
 
   type Equipment {
-  id: Int!
-  name: String!
+    id: Int!
+    name: String!
   }
 
   type AuthUser {
@@ -78,32 +79,40 @@ const typeDefs = gql`
     token: String!
   }
 
+  type Quack {
+    id: Int!
+    createdAt: String!
+    user: User!
+    userId: Int!
+    text: String!
+  }
+
   type Query {
     users: [User!]!
     user(userName: String!): User
+    quacks: [Quack!]!
   }
 
   type Mutation {
     signin(email: String!, password: String!): AuthInfo!
 
-    signup(
-      email: String!
-      password: String!
-      name: String!
-      userName: String!
-      profileImageUrl: String
-    ): AuthInfo!
+    signup(email: String!, password: String!, name: String!): AuthInfo!
+
+    forgottenPassword(email: String!, appOrigin: String!): Boolean!
+    resetPassword(token: String!, newPassword: String!): AuthInfo!
+
+    addQuack(userId: Int!, text: String!): Quack!
   }
 
-  enum UserRole{
+  enum UserRole {
     admin
     user
   }
-  enum UserSex{
-    M
-    F
+  enum UserSex {
+    male
+    female
   }
-  enum WorkoutHistoryStatus{
+  enum WorkoutHistoryStatus {
     active
     finished
   }
@@ -115,11 +124,12 @@ const main = async () => {
   app.disable('x-powered-by');
   app.use(cors());
 
-  const dbConnection = MOCKS ? null : await getConnection();
+  const dbConnection = await getConnection();
+  const mailer = await getMailer();
 
   const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: MOCKS ? mockResolver : rootResolver,
+    resolvers: rootResolver,
     context: async ({ req, res }) => {
       const auth = req.headers.Authorization || '';
 
@@ -127,6 +137,7 @@ const main = async () => {
         req,
         res,
         dbConnection,
+        mailer,
         auth,
       };
     },

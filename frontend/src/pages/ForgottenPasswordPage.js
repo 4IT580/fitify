@@ -1,30 +1,35 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { gql, useMutation } from '@apollo/client';
 
 import { ForgottenPasswordTemplate } from 'src/templates/ForgottenPasswordTemplate';
 
 const FORGOTTEN_PASSWORD_MUTATION = gql`
-  mutation ForgottenPassword($email: String!) {
-    forgotten_password(email: $email)
+  mutation ForgottenPassword($email: String!, $appOrigin: String!) {
+    forgottenPassword(email: $email, appOrigin: $appOrigin)
   }
 `;
 
 export function ForgottenPasswordPage() {
-  const history = useHistory();
   const [forgottenPasswordRequest, forgottenPasswordRequestState] = useMutation(
     FORGOTTEN_PASSWORD_MUTATION,
     {
       onCompleted: () => {
-        history.replace('/');
+        console.log('Pro nastavení nového hesla klikněte na odkaz v emailu.');
       },
-      onError: () => {},
+      onError: (error) => {
+        console.error(error);
+      },
     },
   );
 
   const handleForgottenPasswordFormSubmit = useCallback(
-    (variables) => {
-      forgottenPasswordRequest({ variables });
+    (formVariables) => {
+      forgottenPasswordRequest({
+        variables: {
+          email: formVariables.email,
+          appOrigin: window.location.origin,
+        },
+      });
     },
     [forgottenPasswordRequest],
   );

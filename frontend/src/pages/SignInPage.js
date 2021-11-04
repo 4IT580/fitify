@@ -12,7 +12,6 @@ const SIGNIN_MUTATION = gql`
         id
         name
         userName
-        profileImageUrl
       }
       token
     }
@@ -27,7 +26,9 @@ export function SignInPage() {
       auth.signin({ token, user });
       history.replace('/');
     },
-    onError: () => {},
+    onError: () => {
+      console.log('login error');
+    },
   });
 
   const handleSignInFormSubmit = useCallback(
