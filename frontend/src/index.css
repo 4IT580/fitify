@@ -79,7 +79,7 @@ code {
 
 
 
-
+/* For Homepage - done - don't touch(size only) */
 @media only screen and (max-width: 400px) {
   html {
     font-size: 6px;
@@ -93,8 +93,7 @@ code {
  html {
     font-size: 10px;
   }
-  .home-page
-  .main-section-dashboard {
+  .home-page {
     font-size: 13px;
     height: 100vh;
   }
@@ -106,8 +105,7 @@ code {
    html {
     font-size: 16px;
   }
-  .home-page 
-  .main-section-dashboard {
+  .home-page {
     font-size: 20px;
     height: 100vh;
   }
@@ -118,8 +116,7 @@ code {
   html {
     font-size: 20px;
   }
-  .home-page
-  .main-section-dashboard {
+  .home-page {
     font-size: 22px;
     height: auto;
   }
@@ -132,6 +129,50 @@ code {
   }
 }
 
+
+/* For Dashboard */
+@media only screen and (max-width: 450px) {
+  html {
+    font-size: 6px;
+    height: auto;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+ html {
+    font-size: 10px;
+  }
+  .main-section-dashboard {
+    font-size: 13px;
+    height: 100vh;
+  }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   html {
+    font-size: 16px;
+  }
+  .main-section-dashboard {
+    font-size: 20px;
+    height: 100vh;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 20px;
+  }
+  .main-section-dashboard {
+    font-size: 22px;
+    height: auto;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1600px) {
   .main-section-dashboard {
     height: auto;

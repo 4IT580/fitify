@@ -26,14 +26,14 @@ export function DashboardTemplate({}) {
               <h2 className="f3 fw5 tracked">
                 New Training
               <NavLink to={route.newTraining('tt123')} className="pa3">
-                <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+                <a className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
                   href="#0">
                   <div>Add new </div>
                 </a>
               </NavLink>
               <div className="right-offset"></div>
               </h2>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>
@@ -42,7 +42,7 @@ export function DashboardTemplate({}) {
                 <p>30s exercise - 10s break</p>
               </div>
             </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>
@@ -51,7 +51,7 @@ export function DashboardTemplate({}) {
                 <p>1min exercise - 10s break</p>
               </div>
             </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>
@@ -69,7 +69,7 @@ export function DashboardTemplate({}) {
             <h2 className="f3 fw5 tracked">
               Training history
             </h2>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>
@@ -79,7 +79,7 @@ export function DashboardTemplate({}) {
                   <b>30.10.2021</b> 8:00-8:35</p>
               </div>
             </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>
@@ -89,7 +89,7 @@ export function DashboardTemplate({}) {
                   <b>22.10.2021</b> 13:24-14:10</p>
               </div>
             </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
               href="#0"
             >
               <div>

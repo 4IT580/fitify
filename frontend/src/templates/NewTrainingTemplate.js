@@ -13,7 +13,7 @@ export function NewTrainingTemplate({}) {
         <h1 className="f2 fw8 tracked">
           New Training
         </h1>
-           <a className="f3 tc link dim br-pill ph4 pv3 mb3 dib green bg-dark" href="#0">
+           <a className="f3 tc link dim br-pill ph4 pv3 mt4 dib green bg-dark" href="#0">
               <div>Add new training</div>
            </a>
           <div className="right-offset"></div>
