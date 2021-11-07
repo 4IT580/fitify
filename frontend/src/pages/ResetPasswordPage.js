@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
 import queryString from 'query-string';
+import { ResetPasswordTemplate } from 'src/templates/ResetPasswordTemplate';
 
 const RESET_PASSWORD_MUTATION = gql`
   mutation ResetPassword($token: String!, $newPassword: String!) {
@@ -34,6 +35,7 @@ export function ResetPasswordPage() {
     [resetPasswordRequest],
   );
 
+  /*
   return (
     <div>
       call this in graphql:
@@ -51,4 +53,13 @@ export function ResetPasswordPage() {
       </pre>
     </div>
   );
+  */
+  return (
+    <ResetPasswordTemplate
+      isLoading={resetPasswordRequestState.loading}
+      error={resetPasswordRequestState.error}
+      onSubmit={handleResetPasswordFormSubmit}
+    />
+  );
+
 }
