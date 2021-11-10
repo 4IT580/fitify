@@ -26,11 +26,8 @@ export function DashboardTemplate({}) {
             </h1>
               <h2 className="f3 fw5 tracked-tight">
                 New Training
-              <Link to={route.newTraining('tt123')} className="pa3">
-                <a className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
-                  href="#0">
+              <Link to={route.newTraining('tt123')} className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark ml3">
                   <div>Add new </div>
-                </a>
               </Link>
               <div className="right-offset"></div>
               </h2>

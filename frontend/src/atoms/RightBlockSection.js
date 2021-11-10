@@ -6,10 +6,10 @@ export function RightBlockSection({ children }) {
     <>
       <main className="home-page ">
         <div className="cf right-offset">
-          <section className="fl w-40-l w-100">
+          <section className="fl w-60-l w-20-m w-100">
             <span>&nbsp;</span>
           </section>
-          <section className="fl w-50-l w-100 bg-white br2 pa5">
+          <section className="fl w-30-l w-80-m w-100 bg-white br2 pa5">
             <div className="">{children}</div>
           </section>
         </div>
