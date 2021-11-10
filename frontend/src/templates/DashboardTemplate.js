@@ -3,9 +3,9 @@ import React from 'react';
 import {
   MainSectionDashboard,
   Button,
-  ButtonReverse,
   NavLink,
   Heading,
+  Link,
 } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
 import { TopNavigationLogged } from 'src/organisms/';
@@ -19,74 +19,86 @@ export function DashboardTemplate({}) {
     <>
       <TopNavigationLogged />
       <MainSectionDashboard>
-        <h1 style={{ textAlign: 'left', color: 'greenyellow' }}>Dashboard</h1>
-        <h2 style={{ textAlign: 'left', color: 'greenyellow' }}>
-          Nové tréninky
-          <NavLink to={route.newTraining('tt123')} className="pa3">
-            <div className="right-offset pt4">
-              <ButtonReverse>Nový trénink</ButtonReverse>
-            </div>
-          </NavLink>
-        </h2>
-        <main className="grid-container-left">
-          <div className="right-offset">
-            <ButtonReverse>
+        <div>
+          <div className="ph3">
+            <h1 className="f2 fw8 tracked">
+              Dashboard
+            </h1>
+              <h2 className="f3 fw5 tracked-tight">
+                New Training
+              <Link to={route.newTraining('tt123')} className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark ml3">
+                  <div>Add new </div>
+              </Link>
+              <div className="right-offset"></div>
+              </h2>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Ranní HIIT</h2>
-                <p>3 kola - 10 cviků - 30 minut</p>
-                <p>30s cvik - 10s pauza</p>
+                <h2>Morning HIIT</h2>
+                <p>3 rounds - 10 exercises - 30 minutes</p>
+                <p>30s exercise - 10s break</p>
               </div>
-            </ButtonReverse>
-            <ButtonReverse>
+            </a>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Úterní kruháč</h2>
-                <p>5 kol - 6 cviků - 45 minut</p>
-                <p>1min cvik - 10s pauza</p>
+                <h2>Circuit training</h2>
+                <p>5 rounds - 6 exercises - 45 minutes</p>
+                <p>1min exercise - 10s break</p>
               </div>
-            </ButtonReverse>
-            <ButtonReverse>
+            </a>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Večerní HIIT</h2>
-                <p>6 kol - 8 cviků - 40 minut</p>
-                <p>40s cvik - 10s pauza</p>
+                <h2>Evening HIIT</h2>
+                <p>6 rounds - 8 exercises - 40 minutes</p>
+                <p>40s exercise - 10s break</p>
               </div>
-            </ButtonReverse>
+            </a>
           </div>
-        </main>
-        <h2 style={{ textAlign: 'left', color: 'greenyellow' }}>
-          Histore tréninků
-        </h2>
-        <main className="grid-container-left">
-          <div className="right-offset">
-            <ButtonReverse>
+        </div>
+
+
+        <div>
+          <div className="ph3">
+            <h2 className="f3 fw5 tracked">
+              Training history
+            </h2>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Ranní HIIT</h2>
+                <h2>Morning HIIT</h2>
                 <p>638 Kcal</p>
                 <p>
-                  <b>30.10.2021</b> 8:00-8:35
-                </p>
+                  <b>30.10.2021</b> 8:00-8:35</p>
               </div>
-            </ButtonReverse>
-            <ButtonReverse>
+            </a>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Úterní kruháč</h2>
+                <h2>Circuit training</h2>
                 <p>876 Kcal</p>
                 <p>
-                  <b>22.10.2021</b> 13:24-14:10
-                </p>
+                  <b>22.10.2021</b> 13:24-14:10</p>
               </div>
-            </ButtonReverse>
-            <ButtonReverse>
+            </a>
+            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
+              href="#0"
+            >
               <div>
-                <h2>Večerní HIIT</h2>
+                <h2>Evening HIIT</h2>
                 <p>1001 Kcal</p>
                 <p>
-                  <b>11.10.2021</b> 21:13-22:01
-                </p>
+                  <b>11.10.2021</b> 21:13-22:01</p>
               </div>
-            </ButtonReverse>
+            </a>
           </div>
-        </main>
+        </div>
       </MainSectionDashboard>
     </>
   );

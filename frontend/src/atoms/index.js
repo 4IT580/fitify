@@ -1,9 +1,8 @@
 export { AvatarPhoto } from './AvatarPhoto';
 export { Button } from './Button';
-export { ButtonReverse } from './ButtonReverse';
 export { ErrorBanner } from './ErrorBanner';
 export { ErrorMessage } from './ErrorMessage';
-export { Footer } from './Footer';
+export { Footer } from '../molecules/Footer';
 export { Heading } from './Heading';
 export { Label } from './Label';
 export { Link } from './Link';
@@ -20,4 +19,4 @@ export { RadioInput } from './RadioInput';
 export { TransparentButton } from './TransparentButton';
 export { UserName } from './UserName';
 export { UserUserName } from './UserUserName';
-export { HomePage } from './HomePage';
+export { HomePage } from '../molecules/HomePage';

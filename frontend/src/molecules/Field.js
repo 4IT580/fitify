@@ -9,14 +9,14 @@ export function Field({ id, label, error, ...props }) {
       {(props.as === 'radio' && (
         <RadioInput
           id={id}
-          className="mb1 f5-ns f2"
+          className="mb1 f5-ns f3"
           error={!!error}
           {...props}
         />
       )) || (
         <TextInput
           id={id}
-          className="mb1 f5-ns f2"
+          className="mb1 f5-ns f3"
           error={!!error}
           {...props}
         />
