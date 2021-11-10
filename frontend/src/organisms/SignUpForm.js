@@ -41,7 +41,15 @@ const schema = yup.object().shape({
   gender: yup.string().required().oneOf(['male', 'female']).label('Gender'),
   birthdate: yup.date().required().label('Birth date'),
   email: yup.string().email().required().label('Email'),
-  password: yup.string().required().label('Password'),
+  password: yup
+    .string()
+    .required()
+    .label('Password')
+    .test(
+      'Has min lenght?',
+      'ERROR: Minimum password length is 8 characters!',
+      (value) => value.length >= 8
+    ),
   passwordConfirmation: yup
     .string()
     .required()
