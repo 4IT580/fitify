@@ -121,23 +121,15 @@ export const resetPassword = async (
   }
 
   let argonHash = await argon2.hash(newPassword);
-  await dbConnection.query(`UPDATE user SET password = ? WHERE id = ?`, [
+  await dbConnection.query(`UPDATE user SET password = ?,lostPasswordHash = ? WHERE id = ?`, [
     argonHash,
+    null,
     user.id,
   ]);
-  user = (
-    await dbConnection.query(`SELECT * FROM user WHERE lostPasswordHash = ?`, [
-      token,
-    ])
-  )[0];
 
-  if (await argon2.verify(user.password, newPassword)) {
-    const token = createToken({ id: user.id });
+  const token = createToken({ id: user.id });
     return {
       user: { ...user },
-      token,
+      argonHash,
     };
-  }
-
-  throw Error('something broke');
 };

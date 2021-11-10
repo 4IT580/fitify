@@ -1,8 +1,8 @@
-import React from 'react';
+import {React,useState} from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner } from 'src/atoms/';
+import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField, LoadingButton } from 'src/molecules/';
 
 const initialValues = {
@@ -22,6 +22,7 @@ const schema = yup.object().shape({
 export function ResetPasswordForm({
   isLoading,
   errorMessage,
+  successMessage,
   className,
   onSubmit,
   children,
@@ -29,9 +30,7 @@ export function ResetPasswordForm({
   return (
     <Formik
       onSubmit={function (values, actions) {
-        alert(JSON.stringify(values, null, 2));
-        //set default values
-        // onSubmit();
+        onSubmit(values);
       }}
 
       initialValues={initialValues}
@@ -40,6 +39,7 @@ export function ResetPasswordForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
+        {successMessage && <SuccessBanner title={successMessage} className="mb3" />}
         <FormikField
           id="password"
           name="password"
