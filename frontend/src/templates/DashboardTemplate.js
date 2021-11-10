@@ -5,6 +5,7 @@ import {
   Button,
   NavLink,
   Heading,
+  Link,
 } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
 import { TopNavigationLogged } from 'src/organisms/';
@@ -23,14 +24,14 @@ export function DashboardTemplate({}) {
             <h1 className="f2 fw8 tracked">
               Dashboard
             </h1>
-              <h2 className="f3 fw5 tracked">
+              <h2 className="f3 fw5 tracked-tight">
                 New Training
-              <NavLink to={route.newTraining('tt123')} className="pa3">
+              <Link to={route.newTraining('tt123')} className="pa3">
                 <a className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark"
                   href="#0">
                   <div>Add new </div>
                 </a>
-              </NavLink>
+              </Link>
               <div className="right-offset"></div>
               </h2>
             <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
