@@ -56,4 +56,111 @@ export default {
       )[0];
     },
   },
+  WorkoutPlan: {
+    async exercises(parent, _, {dbConnection}) {
+      return [
+        {
+          id: 1,
+          name: 'Zadní dřepy',
+          description: 'Dřep, nahoru a dolů, kolena se nerozjíždějí. Rovný záda',
+        },
+        {
+          id: 2,
+          name: 'Mrtvé tahy',
+          description: 'Jako na houpačce, táhnu osu podél těla',
+        },
+        {
+          id: 3,
+          name: 'Horolezec',
+          description: 'Klik u kterého vypadáš jako pavouk co se snaží dotknout kolenem loktu',
+        }
+      ];
+    },
+    async history(parent, _, {dbConnection}){
+      return [
+        {
+          id: 12,
+          calories: 666,
+          status: 'finished',
+          startAt: (new Date('2021-11-09 08:00:00')).toLocaleString(),
+          endAt: (new Date('2021-11-10 08:30:00')).toLocaleString(),
+        },
+        {
+          id: 13,
+          calories: null,
+          status: 'active',
+          startAt: (new Date('2021-11-10 08:00:00')).toLocaleString(),
+          endAt: null,
+        }
+      ];
+    }
+  },
+  Excercise: {
+    async bodyParts(parent, _, {dbConnection}) {
+      let legs = {
+        id: 1,
+        name: 'Nohy'
+      };
+      let ass = {
+        id: 2,
+        name: 'Zadek'
+      };
+      let abs = {
+        id: 3,
+        name: 'Břicho'
+      };
+      let shoulders = {
+        id: 4,
+        name: 'Ramena'
+      };
+
+      if (parent.id === 1) {
+        return [
+          legs,
+          ass,
+          abs,
+        ]
+      }
+
+      if (parent.id === 3) {
+        return [
+          shoulders,
+          abs,
+        ]
+      }
+
+      return [];
+    },
+    equipment(parent, _, {dbConnection}) {
+      let barbell = {
+        id: 10,
+        name: 'Osa'
+      }
+      let dumbbell = {
+        id: 11,
+        name: 'Jednoručky'
+      }
+      let kettlebell = {
+        id: 12,
+        name: 'Kettlebel'
+      }
+
+      if (parent.id === 1) {
+        return [
+          barbell,
+          dumbbell,
+          kettlebell
+        ]
+      }
+
+      if (parent.id === 2) {
+        return [
+          barbell,
+          kettlebell
+        ]
+      }
+
+      return [];
+    }
+  }
 };

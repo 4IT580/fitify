@@ -12,6 +12,7 @@ import { ResetPasswordPage } from 'src/pages/ResetPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
 import { Dashboard } from 'src/pages/Dashboard';
 import { NewTraining } from 'src/pages/NewTraining';
+import { WorkoutPage } from 'src/pages/WorkoutPage';
 
 export const route = {
   home: () => `/`,
@@ -25,6 +26,7 @@ export const route = {
   userDetail: (userName) => `/${userName}`,
   dashboard: (userName) => `/${userName}/dashboard`,
   newTraining: (userName) => `/${userName}/new-training`,
+  workout: (userName, workoutPlanId) => `/${userName}/workout/${workoutPlanId}`,
 };
 
 export function Routes() {
@@ -49,6 +51,11 @@ export function Routes() {
         path={route.newTraining(':userName')}
         exact
         component={NewTraining}
+      />
+      <Route
+        path={route.workout(':userName', ':workoutPlanId')}
+        exact
+        component={WorkoutPage}
       />
       <Route path="*" component={PageNotFound} />
     </Switch>
