@@ -20,11 +20,11 @@ const typeDefs = gql`
     surname: String!
     email: String!
     password: String!
-    role: UserRole!
+    role: String!
     active: Boolean!
     height: Int!
     weight: Int!
-    sex: UserSex!
+    sex: String!
     birthdate: String!
     lostPasswordHash: String!
     lastLoginAt: String!
@@ -46,7 +46,7 @@ const typeDefs = gql`
   type WorkoutHistory {
     id: Int!
     calories: Int!
-    status: WorkoutHistoryStatus!
+    status: String!
     startAt: String!
     endAt: String!
   }
@@ -96,25 +96,21 @@ const typeDefs = gql`
   type Mutation {
     signin(email: String!, password: String!): AuthInfo!
 
-    signup(email: String!, password: String!, name: String!): AuthInfo!
+    signup(
+      email: String!
+      password: String!
+      name: String!
+      surname: String!
+      height: Int!
+      weight: Int!
+      sex: String!
+      birthdate: String!
+    ): Boolean!
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(token: String!, newPassword: String!): AuthInfo!
 
     addQuack(userId: Int!, text: String!): Quack!
-  }
-
-  enum UserRole {
-    admin
-    user
-  }
-  enum UserSex {
-    male
-    female
-  }
-  enum WorkoutHistoryStatus {
-    active
-    finished
   }
 `;
 

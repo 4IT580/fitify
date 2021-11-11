@@ -5,9 +5,7 @@ export const users = async (_, __, { dbConnection }) => {
 
 export const user = async (_, { userName }, { dbConnection }) => {
   const user = (
-    await dbConnection.query(`SELECT * FROM user WHERE userName = ?`, [
-      userName,
-    ])
+    await dbConnection.query(`SELECT * FROM user WHERE name = ?`, [userName])
   )[0];
   if (!user) {
     return null;
