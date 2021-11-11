@@ -29,8 +29,9 @@ const SIGNUP_MUTATION = gql`
 
 export function SignUpPage() {
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
-    onCompleted: ({ signup }) => {
-      console.log(signup);
+    onCompleted: (data) => {
+      //Zde napojit na succesMessage, co dela Honza
+      alert("Registration completed succesfully1");
     },
     onError: () => {
       console.log('error');
