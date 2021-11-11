@@ -1,46 +1,58 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { gql, useMutation } from '@apollo/client';
 
 import { SignUpTemplate } from 'src/templates/SignUpTemplate';
-import { useAuth } from 'src/utils/auth';
 
 const SIGNUP_MUTATION = gql`
   mutation SignUp(
     $email: String!
-    $name: String!
     $password: String!
-    $userName: String!
+    $name: String!
+    $surname: String!
+    $height: Int!
+    $weight: Int!
+    $sex: String!
+    $birthdate: String!
   ) {
     signup(
       email: $email
-      name: $name
       password: $password
-      userName: $userName
-    ) {
-      user {
-        id
-        name
-        userName
-        profileImageUrl
-      }
-      token
-    }
+      name: $name
+      surname: $surname
+      height: $height
+      weight: $weight
+      sex: $sex
+      birthdate: $birthdate
+    )
   }
 `;
 
 export function SignUpPage() {
-  const auth = useAuth();
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
-    onCompleted: ({ signup: { user, token } }) => {
-      auth.signin({ token, user });
+    onCompleted: (data) => {
+      //Zde napojit na succesMessage, co dela Honza
+      alert("Registration completed succesfully1");
     },
-    onError: () => {},
+    onError: () => {
+      console.log('error');
+    },
   });
 
   const handleSignUpFormSubmit = useCallback(
-    (variables) => {
-      signupRequest({ variables });
+    (values) => {
+      console.log(values);
+      signupRequest({
+        variables: {
+          name: values.name,
+          surname: values.surname,
+          email: values.email,
+          password: values.password,
+          height: values.height,
+          weight: values.weight,
+          sex: values.sex,
+          birthdate: values.birthdate,
+        },
+      });
     },
     [signupRequest],
   );

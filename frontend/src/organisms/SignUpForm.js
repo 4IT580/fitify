@@ -38,7 +38,7 @@ const schema = yup.object().shape({
       (value) => value > 0,
     )
     .label('Weight'),
-  gender: yup.string().required().oneOf(['male', 'female']).label('Gender'),
+  sex: yup.string().required().oneOf(['male', 'female']).label('Gender'),
   birthdate: yup.date().required().label('Birth date'),
   email: yup.string().email().required().label('Email'),
   password: yup
@@ -48,7 +48,7 @@ const schema = yup.object().shape({
     .test(
       'Has min lenght?',
       'ERROR: Minimum password length is 8 characters!',
-      (value) => value.length >= 8
+      (value) => value && value.length >= 8
     ),
   passwordConfirmation: yup
     .string()
@@ -67,9 +67,7 @@ export function SignUpForm({
   return (
     <Formik
       onSubmit={function (values, actions) {
-        alert(JSON.stringify(values, null, 2));
-        //set default values
-        // onSubmit();
+        onSubmit(values);
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -118,8 +116,8 @@ export function SignUpForm({
           autoCapitalize="off"
         />
         <FormikField
-          id="gender"
-          name="gender"
+          id="sex"
+          name="sex"
           label="Gender"
           as="radio"
           radioOptions={['male', 'female']}
