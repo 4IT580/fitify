@@ -2,12 +2,13 @@ import React from 'react';
 
 import { Heading, HomePage, Footer } from 'src/atoms/';
 import { QuackForm, ReloadButton } from 'src/molecules/';
-import { QuackList, TopNavigation } from 'src/organisms/';
+import { MobileTopNavigation, QuackList, TopNavigation } from 'src/organisms/';
 
 export function HomeTemplate({}) {
   return (
     <>
       <TopNavigation />
+      <MobileTopNavigation />
       <HomePage>
         <h1>FITIFY</h1>
         <h3>Aplikace, která bude cvičit s vámi!</h3>
