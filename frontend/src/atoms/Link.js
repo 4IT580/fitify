@@ -13,7 +13,7 @@ export function Link({
     <Component
       className={classNames(
         'link',
-        'dark pv2 ph3 f5-ns',
+        'dark pv2 f5-ns',
         { 'underline-hover': !noUnderline },
         className,
       )}

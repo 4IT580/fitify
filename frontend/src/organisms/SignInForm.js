@@ -57,26 +57,22 @@ export function SignInForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <div className="cf">
-          <div className="tl-ns tc fl w-100 w-50-ns dib-ns">
-            <LoadingButton
-              type="submit"
-              className="mt2 mb3"
-              loading={isLoading}
-              color="green"
-            >
-              Login
-            </LoadingButton>
-          </div>
-          <div className="tl-ns tc fr-ns w-100 w-50-ns dib-ns mt6 mt3-ns">
-            <Link
-              to={route.forgottenPassword()}
-              color="dark"
-              noUnderline={false}
-            >
-              Did you forget password?
-            </Link>
-          </div>
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+          color="green"
+        >
+          Login
+        </LoadingButton>
+        <div className={'mv0 w-100 tc'}>
+          <Link
+            to={route.forgottenPassword()}
+            color="dark"
+            noUnderline={false}
+          >
+            Did you forget password?
+          </Link>
         </div>
 
         {children}
