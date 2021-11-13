@@ -17,7 +17,7 @@ export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
         <Heading className="green">
           Your workout
         </Heading>
-        <main className="grid-container-left pt7">
+        <main className="grid-container-left pt2">
           <WorkoutPlanView
             planData={data && data.workoutPlan}
             isLoading={loading}
