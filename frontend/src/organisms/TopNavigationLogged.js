@@ -20,8 +20,8 @@ export function TopNavigationLogged() {
         <Logo style={{ height: 98, width: 110 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
-        <NavLink exact to={route.home()} className="pa3 dib-ns">
-          Home
+        <NavLink to={route.dashboard('tt123')} className="pa3">
+          Dashboard
         </NavLink>
         {user ? (
           <>
@@ -53,12 +53,13 @@ export function TopNavigationLogged() {
           </>
         ) : (
           <>
+            <NavLink to={route.workout('tt123')} className="pa3">
+              Workout
+             </NavLink>
             <NavLink to={route.newTraining('tt123')} className="pa3">
               New training
             </NavLink>
-            <NavLink to={route.dashboard('tt123')} className="pa3">
-              Dashboard
-            </NavLink>
+            
           </>
         )}
       </div>
