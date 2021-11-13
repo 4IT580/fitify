@@ -52,6 +52,15 @@ code {
   width: 100%;
 }
 
+.main-section-workout {
+  background-image: url('assets/images/cover1920.png');
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+  color: #bffa29;
+  width: 100%;
+}
+
 .home-page > div.right-offset {
   padding-top: 35vh;
   padding-bottom: 10vh;
@@ -93,6 +102,12 @@ code {
 
 @media only screen and (min-width: 450px) and (max-width: 600px) {
   html {
-    font-size: 12px
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 2560px) {
+  .main-section-workout {
+    height: 100vh;
   }
 }
