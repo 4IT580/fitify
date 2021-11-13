@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: Monsteratt, serif;
+}
+#root {
+  height: 100%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.pre-line {
+  white-space: pre-line;
+}
+.break-word {
+  word-break: break-word;
+}
+@font-face {
+  font-family: 'Monsteratt';
+  src: url('assets/Montserrat-Regular.ttf') format('truetype');
+}
+.home-page {
+  background-image: url('assets/images/BackgroundFoto1920.png');
+  background-color: #bffa29;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+}
+.main-section {
+  background-color: #151824;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+  height: 100vh;
+}
+.main-section-dashboard {
+  background-image: url('assets/images/cover1920.png');
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center top;
+  color: #bffa29;
+  width: 100%;
+}
+.home-page > div.right-offset {
+  padding-top: 35vh;
+   padding-bottom: 10vh;
+ }
+
+ .mobile-top-navigation {
+   display: none;
+ }
+
+ .bg-dark {
+   background-color: #151824;
+ }
+
+
+ /* For different devices */
+ @media only screen and (min-width: 320px) and (max-width: 450px) {
+   html {
+     font-size: 10px;
+   }
+}  
+ 
+ @media only screen and (min-width: 450px) and (max-width: 600px) {
+   html {
+     font-size: 12px
+   }
+ }
+
+ @media only screen and (max-width: 600px) {
+   .top-navigation {
+     display: none;
+   }
+   .mobile-top-navigation {
+     display: flex;
+   }
+ } 
