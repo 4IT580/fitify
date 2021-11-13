@@ -11,7 +11,6 @@ export function TopNavigation() {
   const history = useHistory();
 
   return (
-    <main className="top-navigation">
     <nav className="flex justify-between bb bg-dark">
       <Link
         to={route.home()}
@@ -64,6 +63,5 @@ export function TopNavigation() {
         )}
       </div>
     </nav>
-    </main>
   );
 }
