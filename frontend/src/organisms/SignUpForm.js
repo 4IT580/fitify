@@ -160,7 +160,7 @@ export function SignUpForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <LoadingButton type="submit" className="mt2 mb3" loading={isLoading}>
+        <LoadingButton type="submit" className="mt2 mb3 tc w-100" loading={isLoading}>
           Sign Up
         </LoadingButton>
         {children}

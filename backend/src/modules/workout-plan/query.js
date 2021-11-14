@@ -9,7 +9,7 @@ export const workoutPlans = async (_, __, {dbConnection}) => {
       intervalPauseLength: 20,
       roundsPauseLength: 50,
       workoutLength: 30, //deprecated field, remove from DB
-      createdAt: (new Date('2021-10-10')).toLocaleString(),
+      createdAt: new Date('2021-10-10'),
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const workoutPlans = async (_, __, {dbConnection}) => {
       intervalPauseLength: 102,
       roundsPauseLength: 11,
       workoutLength: 22, //deprecated field, remove from DB
-      createdAt: (new Date('2021-10-12')).toLocaleString(),
+      createdAt: new Date('2021-10-12'),
     },
   ];
 };
@@ -36,7 +36,7 @@ export const workoutPlan = async (_, parameters, {dbConnection}) => {
       intervalPauseLength: 20,
       roundsPauseLength: 50,
       workoutLength: 30,
-      createdAt: (new Date('2021-10-10')).toLocaleString(),
+      createdAt: new Date('2021-10-10'),
     };
   }
 
@@ -49,7 +49,7 @@ export const workoutPlan = async (_, parameters, {dbConnection}) => {
       intervalPauseLength: 40,
       roundsPauseLength: 50,
       workoutLength: 30,
-      createdAt: (new Date('2021-10-11')).toLocaleString(),
+      createdAt: new Date('2021-10-11'),
     };
   }
 
@@ -62,7 +62,7 @@ export const workoutPlan = async (_, parameters, {dbConnection}) => {
       intervalPauseLength: 40,
       roundsPauseLength: 50,
       workoutLength: 30,
-      createdAt: (new Date('2021-10-12')).toLocaleString(),
+      createdAt: new Date('2021-10-12'),
     };
   }
 

@@ -7,9 +7,19 @@ import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
 import { Link, Button, Loading } from 'src/atoms/';
 import { Heading } from "../atoms";
+import { fromUnixTime, fromUnixTimeStamp } from "../utils/date";
+import { route } from "../Routes";
 
 
 export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
+
+  let latestActiveWorkout = planData && planData.history
+    .filter((historyItem) => (historyItem.status === 'active'))
+    .sort(function (first, second) {
+      return second.startAt - first.startAt
+    })
+    [0]
+
   return (
     <>
       {isLoading && !planData && <Loading/>}
@@ -24,8 +34,13 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
 
       {planData && (
         <div className="cf">
-          <div className={'tr'}>
-            <Heading size={'lg'} className={'green'}>
+          <div className={'tr cf'}>
+            <div>
+              <Link to={route.workoutTimer('tt123', planData.id, latestActiveWorkout.id)} className={'bg-green br-pill ph5 mr7'}>
+                Continue workout
+              </Link>
+            </div>
+            <Heading size={'lg'} className={'green mt-2 nt4'}>
               {planData.name}
             </Heading>
             <small className={'green'}>Created at: {planData.createdAt}</small>
@@ -101,10 +116,10 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
                     <p className={'f2 f5-ns green'}>{historyItem.calories && ' Burnt calories: ' + historyItem.calories}</p>
                     {historyItem.status === 'finished'
                     && (
-                      <Link className={'dib bg-animate pv2 br-pill bg-green dim'} noUnderline={true} to={'/'}>Repeat workout</Link>
+                      <Link className={'dib bg-animate pv2 br-pill bg-green dim ph5'} noUnderline={true} to={'/'}>Repeat workout</Link>
                     )
                     || (
-                      <Link className={'dib bg-animate pv2 br-pill bg-green dim'} noUnderline={true} to={'/'}>Start workout</Link>
+                      <Link className={'dib bg-animate pv2 br-pill bg-green dim ph5'} noUnderline={true} to={'/'}>Start workout</Link>
                     )}
                   </div>
                 ))}
