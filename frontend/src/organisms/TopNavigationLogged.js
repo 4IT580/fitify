@@ -53,9 +53,6 @@ export function TopNavigationLogged() {
           </>
         ) : (
           <>
-            <NavLink to={route.workout('tt123')} className="pa3">
-              Workout
-             </NavLink>
             <NavLink to={route.newTraining('tt123')} className="pa3">
               New training
             </NavLink>
