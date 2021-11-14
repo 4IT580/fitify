@@ -23,3 +23,4 @@ export { UserUserName } from './UserUserName';
 export { HomePage } from '../molecules/HomePage';
 export { SuccessBanner } from './SuccessBanner';
 export { SuccessMessage } from './SuccessMessage';
+export { SmallButton } from './SmallButton';
