@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Heading,
-  MainSectionDashboard
+  MainSectionWorkout
 } from 'src/atoms/';
 import {
   TopNavigationLogged,
@@ -13,11 +13,11 @@ export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
   return (
     <>
       <TopNavigationLogged/>
-      <MainSectionDashboard>
-        <Heading className="green">
+      <MainSectionWorkout>
+        <Heading className="green ma2">
           Your workout
         </Heading>
-        <main className="grid-container-left pt7">
+        <main className="grid-container-left pt4">
           <WorkoutPlanView
             planData={data && data.workoutPlan}
             isLoading={loading}
@@ -25,7 +25,7 @@ export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
             refetch={refetch}
           />
         </main>
-      </MainSectionDashboard>
+      </MainSectionWorkout>
     </>
   );
 }
