@@ -15,9 +15,9 @@ export function TopNavigation() {
       <Link
         to={route.home()}
         noUnderline
-        className="b flex items-center pv2 ph3 green"
+        className="b flex items-center green"
       >
-        <Logo style={{ height: 98, width: 110 }} className="mr1 f2" />
+        <Logo style={{ height: 90, width: 100 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
         <NavLink exact to={route.home()} className="pa3 dib-ns">
@@ -30,12 +30,6 @@ export function TopNavigation() {
               noUnderline
               className="ph3 pv1 h-100 flex items-center green"
             >
-              <AvatarPhoto
-                className="v-mid dib mr2"
-                src={user.profileImageUrl}
-                alt={user.userName}
-                size={2}
-              />{' '}
               {user.name}
             </NavLink>
             <Button

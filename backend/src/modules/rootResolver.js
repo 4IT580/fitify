@@ -82,14 +82,28 @@ export default {
           id: 12,
           calories: 666,
           status: 'finished',
-          startAt: (new Date('2021-11-09 08:00:00')).toLocaleString(),
-          endAt: (new Date('2021-11-10 08:30:00')).toLocaleString(),
+          startAt: new Date('2021-11-09 08:00:00'),
+          endAt: new Date('2021-11-09 08:30:00'),
+        },
+        {
+          id: 14,
+          calories: 1234,
+          status: 'finished',
+          startAt: new Date('2021-11-10 08:00:00'),
+          endAt: new Date('2021-11-10 08:30:00'),
         },
         {
           id: 13,
           calories: null,
           status: 'active',
-          startAt: (new Date('2021-11-10 08:00:00')).toLocaleString(),
+          startAt: new Date('2021-11-10 08:00:00'),
+          endAt: null,
+        },
+        {
+          id: 123,
+          calories: null,
+          status: 'active',
+          startAt: new Date('2021-11-20 08:00:00'),
           endAt: null,
         }
       ];

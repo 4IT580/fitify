@@ -27,6 +27,7 @@ export const route = {
   dashboard: (userName) => `/${userName}/dashboard`,
   newTraining: (userName) => `/${userName}/new-training`,
   workout: (userName, workoutPlanId) => `/${userName}/workout/${workoutPlanId}`,
+  workoutTimer: (userName, workoutPlanId, workoutHistoryItemId) => `/${userName}/workout/${workoutPlanId}/${workoutHistoryItemId}`,
 };
 
 export function Routes() {
