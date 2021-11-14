@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner } from 'src/atoms/';
+import { ErrorBanner,SuccessBanner } from 'src/atoms/';
 import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
 import { Link } from 'src/atoms/';
@@ -18,6 +18,7 @@ const schema = yup.object().shape({
 export function ForgottenPasswordForm({
   isLoading,
   errorMessage,
+  successMessage,
   className,
   onSubmit,
   children,
@@ -31,6 +32,7 @@ export function ForgottenPasswordForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
+        {successMessage && <SuccessBanner title={successMessage} className="mb3" />}
         <FormikField
           id="email"
           name="email"

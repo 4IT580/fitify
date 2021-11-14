@@ -21,3 +21,5 @@ export { TransparentButton } from './TransparentButton';
 export { UserName } from './UserName';
 export { UserUserName } from './UserUserName';
 export { HomePage } from '../molecules/HomePage';
+export { SuccessBanner } from './SuccessBanner';
+export { SuccessMessage } from './SuccessMessage';
