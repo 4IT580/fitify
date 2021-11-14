@@ -6,6 +6,7 @@ import { CgMenu } from 'react-icons/cg/index';
 import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
+import { greenBright } from 'chalk';
 
 export function TopNavigation() {
   const { user, signout } = useAuth();
@@ -20,6 +21,7 @@ export function TopNavigation() {
       >
         <Logo style={{ height: 98, width: 110 }} className="mr1 f2" />
       </Link>
+      <CgMenu style={{ height:120, color:"yellowgreen" }} className="mr1 f1" />
       <div className="flex-grow flex items-center mr4">
         <NavLink exact to={route.home()} className="pa3 dib-ns">
           Home
