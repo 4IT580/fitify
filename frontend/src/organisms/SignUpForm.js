@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner } from 'src/atoms/';
+import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField, LoadingButton } from 'src/molecules/';
 
 const initialValues = {
@@ -60,6 +60,7 @@ const schema = yup.object().shape({
 export function SignUpForm({
   isLoading,
   errorMessage,
+  successMessage,
   className,
   onSubmit,
   children,
@@ -75,6 +76,7 @@ export function SignUpForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
+        {successMessage && <SuccessBanner title={successMessage} className="mb3" />}
         <FormikField
           id="name"
           name="name"
