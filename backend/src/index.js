@@ -74,8 +74,7 @@ const typeDefs = gql`
   type AuthUser {
     id: Int!
     name: String!
-    userName: String!
-    profileImageUrl: String
+    email: String!
   }
 
   type AuthInfo {

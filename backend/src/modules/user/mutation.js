@@ -4,13 +4,13 @@ import { sendMail } from '../../libs/mailer';
 
 export const signin = async (_, { email, password }, { dbConnection }) => {
   const dbResponse = await dbConnection.query(
-    `SELECT * FROM user WHERE email = ?`,
+    `SELECT * FROM user WHERE email = ? AND active = 1`,
     [email],
   );
-  const user = dbResponse[0];
-  const token = createToken({ id: user.id });
 
-  if (await argon2.verify(user.password, password)) {
+  const user = dbResponse[0];
+
+  if(await argon2.verify(user.password, password)) {
     const token = createToken({ id: user.id });
     return {
       user: { ...user },
