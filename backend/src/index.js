@@ -47,7 +47,7 @@ const typeDefs = gql`
 
   type WorkoutHistory {
     id: Int!
-    calories: Int!
+    calories: Int
     status: String!
     startAt: String!
     endAt: String
