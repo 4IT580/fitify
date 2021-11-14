@@ -8,6 +8,12 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
     [email],
   );
   const user = dbResponse[0];
+
+  if (user === undefined) {
+    //user does not exist
+    throw Error('User not found');
+  }
+
   const token = createToken({ id: user.id });
 
   if (await argon2.verify(user.password, password)) {
