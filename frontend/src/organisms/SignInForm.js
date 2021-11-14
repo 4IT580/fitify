@@ -72,7 +72,7 @@ export function SignInForm({
             <Link
               to={route.forgottenPassword()}
               color="dark"
-              noUnderline={true}
+              noUnderline={false}
             >
               Did you forget password?
             </Link>

@@ -4,3 +4,4 @@ export { SignUpForm } from './SignUpForm';
 export { TopNavigation } from './TopNavigation';
 export { TopNavigationLogged } from './TopNavigationLogged';
 export { ForgottenPasswordForm } from './ForgottenPasswordForm';
+export { WorkoutPlanView } from './WorkoutPlanView';

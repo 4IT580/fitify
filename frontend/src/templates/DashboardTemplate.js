@@ -32,7 +32,7 @@ export function DashboardTemplate({}) {
               <div className="right-offset"></div>
               </h2>
             <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
+              href="/tt123/workout/1"
             >
               <div>
                 <h2>Morning HIIT</h2>
@@ -41,7 +41,7 @@ export function DashboardTemplate({}) {
               </div>
             </a>
             <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
+              href="/tt123/workout/2"
             >
               <div>
                 <h2>Circuit training</h2>
@@ -50,7 +50,7 @@ export function DashboardTemplate({}) {
               </div>
             </a>
             <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
+              href="/tt123/workout/3"
             >
               <div>
                 <h2>Evening HIIT</h2>

@@ -39,8 +39,10 @@ const typeDefs = gql`
     intervalLength: Int!
     intervalPauseLength: Int!
     roundsPauseLength: Int!
-    wourkoutLength: Int!
+    workoutLength: Int!
     createdAt: String!
+    exercises: [Excercise!]!
+    history: [WorkoutHistory!]!
   }
 
   type WorkoutHistory {
@@ -48,13 +50,15 @@ const typeDefs = gql`
     calories: Int!
     status: String!
     startAt: String!
-    endAt: String!
+    endAt: String
   }
 
   type Excercise {
     id: Int!
     name: String!
     description: String!
+    bodyParts: [BodyPart!]!
+    equipment: [Equipment!]!
   }
 
   type BodyPart {
@@ -91,6 +95,8 @@ const typeDefs = gql`
     users: [User!]!
     user(userName: String!): User
     quacks: [Quack!]!
+    workoutPlan(id: Int!): WorkoutPlan!
+    workoutPlans: [WorkoutPlan!]!
   }
 
   type Mutation {

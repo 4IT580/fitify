@@ -48,7 +48,7 @@ const schema = yup.object().shape({
     .test(
       'Has min lenght?',
       'ERROR: Minimum password length is 8 characters!',
-      (value) => value.length >= 8
+      (value) => value && value.length >= 8
     ),
   passwordConfirmation: yup
     .string()
