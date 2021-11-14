@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
+import { CgMenu } from 'react-icons/cg/index';
 
 import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
