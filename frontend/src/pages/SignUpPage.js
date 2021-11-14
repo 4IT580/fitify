@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
 import { SignUpTemplate } from 'src/templates/SignUpTemplate';
@@ -28,10 +28,10 @@ const SIGNUP_MUTATION = gql`
 `;
 
 export function SignUpPage() {
+  const [successMessage,setSuccessMessage]=useState(null);
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
     onCompleted: (data) => {
-      //Zde napojit na succesMessage, co dela Honza
-      alert("Registration completed succesfully1");
+      setSuccessMessage("Your account has been created successfully. An email with activation link has been sent to provided email address.");
     },
     onError: () => {
       console.log('error');
@@ -40,7 +40,6 @@ export function SignUpPage() {
 
   const handleSignUpFormSubmit = useCallback(
     (values) => {
-      console.log(values);
       signupRequest({
         variables: {
           name: values.name,
@@ -61,6 +60,7 @@ export function SignUpPage() {
     <SignUpTemplate
       isLoading={signupRequestState.loading}
       error={signupRequestState.error}
+      successMessage={successMessage}
       onSubmit={handleSignUpFormSubmit}
     />
   );
