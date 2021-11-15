@@ -4,7 +4,7 @@ import { Heading, Footer } from 'src/atoms/';
 export function RightBlockSection({ children }) {
   return (
     <>
-      <main className="home-page ">
+      <main className="home-page vh-100">
         <div className="cf right-offset">
           <section className="fl w-50-l w-20-m w-100">
             <span>&nbsp;</span>

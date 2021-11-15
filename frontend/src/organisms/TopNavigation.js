@@ -12,29 +12,26 @@ export function TopNavigation() {
 
   return (
     <nav className="flex justify-between bb bg-dark">
-      <Link
-        to={route.home()}
-        noUnderline
-        className="b flex items-center green"
-      >
+      <Link to={route.home()} noUnderline className="b flex items-center green">
         <Logo style={{ height: 90, width: 100 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
-        <NavLink exact to={route.home()} className="pa3 dib-ns">
-          Home
-        </NavLink>
         {user ? (
           <>
+            <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
+              Home
+            </NavLink>
             <NavLink
+              exact
               to={route.userDetail(user.userName)}
-              noUnderline
-              className="ph3 pv1 h-100 flex items-center green"
+              className="pa3 dib-ns"
             >
               {user.name}
             </NavLink>
             <Button
-              color="navbar"
-              border
+              color="dark"
+              className={'b--green ml3 pv2 f5'}
+              border={true}
               narrow
               onClick={() => {
                 signout();
@@ -47,6 +44,9 @@ export function TopNavigation() {
           </>
         ) : (
           <>
+            <NavLink exact to={route.home()} className="pa3 dib-ns">
+              Home
+            </NavLink>
             <NavLink to={route.signIn()} className="pa3">
               Sign In
             </NavLink>
