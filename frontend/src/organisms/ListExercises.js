@@ -22,21 +22,21 @@ export const List = ({ workoutItem, dispatch }) => {
         <div className="list__card-left"></div>
         <div className="list__card-right">
           <div className="list__card-right--name flex   ">
+            <SmallButton
+              className="pa2 mr3"
+              onClick={() =>
+                dispatch(
+                  deleteWorkoutItem(value.id),
+                  console.log(initialState.workoutItems),
+                  setListData(initialState.workoutItems),
+                )
+              }
+            >
+              X
+            </SmallButton>
             {value.name}
-            <div className=" ">
-              <SmallButton
-                className="pa2"
-                onClick={() =>
-                  dispatch(
-                    deleteWorkoutItem(value.id),
-                    console.log(initialState.workoutItems),
-                    setListData(initialState.workoutItems),
-                  )
-                }
-              >
-                X
-              </SmallButton>
-            </div>
+
+            <div className=" "></div>
           </div>
         </div>
       </div>
@@ -70,10 +70,10 @@ export const List = ({ workoutItem, dispatch }) => {
 
   const listTitle = (
     <div className="list__title">
-      <h2>List of workout<br/>  items</h2>
-
-
-      
+      <h2>
+        List of workout
+        <br /> items
+      </h2>
     </div>
   );
 
