@@ -14,9 +14,6 @@ export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
     <>
       <TopNavigationLogged/>
       <MainSectionWorkout>
-        <Heading className="green ma2">
-          Your workout
-        </Heading>
         <main className="grid-container-left pt4">
           <WorkoutPlanView
             planData={data && data.workoutPlan}
