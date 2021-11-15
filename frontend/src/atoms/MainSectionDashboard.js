@@ -6,7 +6,7 @@ export function MainSectionDashboard({ children }) {
     <>
       <main className="main-section-dashboard ">
         <div className="cf right-offset overflow-auto-ns pa3">
-          <section className="fl w-100 vh-100 mb6">
+          <section className="fl w-100 mb6">
             <div className="tl">{children}</div>
           </section>
         </div>

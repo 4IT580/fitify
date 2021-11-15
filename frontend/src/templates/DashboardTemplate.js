@@ -48,7 +48,7 @@ export function DashboardTemplate({
     <>
       <TopNavigation />
 
-      <MainSectionWorkout>
+      <MainSectionDashboard>
         <Heading size={'lg'}>Dashboard</Heading>
         {isLoading && !workoutData && <Loading />}
 
@@ -107,7 +107,7 @@ export function DashboardTemplate({
               <Card
                 headerValue={'Training history'}
                 className={'mt4 mb6'}
-                grid={'w-100 w-50-l center-l mw6-l'}
+                grid={'w-100 w-50-l ma2 mw6-l'}
               >
                 {workoutHistory
                   .sort(function (a, b) {
@@ -153,7 +153,7 @@ export function DashboardTemplate({
             </div>
           </>
         )}
-      </MainSectionWorkout>
+      </MainSectionDashboard>
     </>
   );
 }
