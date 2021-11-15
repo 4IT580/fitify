@@ -25,7 +25,7 @@ export function SmallButton({
 
   return (
     <Component
-      className={classNames(
+      className={ classNames(
         'dib bg-animate pv2 br-pill',
         narrow ? 'ph1' : 'ph1',
         border ? 'ba' : 'bn',

@@ -21,9 +21,9 @@ export const List = ({ workoutItem, dispatch }) => {
       <div className="center bg-dark green br2 pa2">
         <div className="list__card-left"></div>
         <div className="list__card-right">
-          <div className="list__card-right--name flex  ">
+          <div className="list__card-right--name flex   ">
             {value.name}
-            <div className=" fr">
+            <div className=" ">
               <SmallButton
                 className="pa2"
                 onClick={() =>
@@ -70,8 +70,10 @@ export const List = ({ workoutItem, dispatch }) => {
 
   const listTitle = (
     <div className="list__title">
-      <h2>Seznam cviků</h2>
-      <Button>klick</Button>
+      <h2>List of workout<br/>  items</h2>
+
+
+      
     </div>
   );
 
