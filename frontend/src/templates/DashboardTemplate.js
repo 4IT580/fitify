@@ -63,10 +63,10 @@ export function DashboardTemplate ({data, isLoading, error, refetch, currentUser
                   <Link key={'workoutPlan' + item.id} className="f7 green mv0 mw5" to={route.workout(item.id)} noUnderline={true}>
                     <div className={'dim tc workout-pill br-pill pv2 ph4 ma2 ba b--green'}>
                       <Heading size={'md'} className={'mt2 mb3'}>{item.name}</Heading>
-                      <p className={'f5 f7-ns green'}>{item.intervalLength}s heat - {item.intervalPauseLength}s break</p>
-                      <p className={'f5 f7-ns green'}>{item.exercises.length} exercises, {item.roundsPauseLength}s round break</p>
-                      <p className={'f5 f7-ns green'}>{item.rounds} rounds</p>
-                      <p className={'f5 f7-ns green'}>{secondsToTimeString(item.rounds * (item.exercises.length * (item.intervalLength + item.intervalPauseLength) + item.roundsPauseLength))} total</p>
+                      <p className={'f4 f5-ns green'}>{item.intervalLength}s heat - {item.intervalPauseLength}s break</p>
+                      <p className={'f4 f5-ns green'}>{item.exercises.length} exercises, {item.roundsPauseLength}s round break</p>
+                      <p className={'f4 f5-ns green'}>{item.rounds} rounds</p>
+                      <p className={'f4 f5-ns green'}>{secondsToTimeString(item.rounds * (item.exercises.length * (item.intervalLength + item.intervalPauseLength) + item.roundsPauseLength))} total</p>
                     </div>
                   </Link>
                 </div>
@@ -83,12 +83,12 @@ export function DashboardTemplate ({data, isLoading, error, refetch, currentUser
                     .map((historyItem) => (
                       <CardBody key={'plan'  +historyItem.parentId+ 'historyItem' + historyItem.id}>
                         <Heading size={'sm'} className={'mt3'}>{historyItem.parentName}</Heading>
-                        <p className={'f5 f7-ns green'}>From: {fromUnixTimeStamp(historyItem.startAt)}</p>
-                        <p className={'f5 f7-ns green'}>Until: {fromUnixTimeStamp(historyItem.endAt)}</p>
-                        <p className={'f5 f7-ns green'}>{historyItem.calories && ' Burnt calories: ' + historyItem.calories}</p>
+                        <p className={'f4 f5-ns green'}>From: {fromUnixTimeStamp(historyItem.startAt)}</p>
+                        <p className={'f4 f5-ns green'}>Until: {fromUnixTimeStamp(historyItem.endAt)}</p>
+                        <p className={'f4 f5-ns green'}>{historyItem.calories && ' Burnt calories: ' + historyItem.calories}</p>
 
                         <div className={'tc'}>
-                          <Link className={'dit bg-animate mb3 br-pill bg-green ph5 tc tr-ns f3 f7-ns'} noUnderline={true} to={'/'}>Repeat
+                          <Link className={'dit bg-animate mb3 br-pill bg-green ph5 tc tr-ns f3 f5-ns'} noUnderline={true} to={'/'}>Repeat
                             workout</Link>
                         </div>
                       </CardBody>

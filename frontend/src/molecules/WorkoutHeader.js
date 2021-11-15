@@ -24,7 +24,7 @@ export function WorkoutHeader ({planData, className}) {
         <div className={'w-100'}>
           {latestActiveWorkout
           &&
-          <Link className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f7-ns '}
+          <Link className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns '}
                 to={route.workoutTimer('tt123', planData.id, latestActiveWorkout.id)}>
             Continue workout
           </Link>
@@ -33,7 +33,7 @@ export function WorkoutHeader ({planData, className}) {
           }
         </div>
         <div className={'w-100 mt4'}>
-          <Link className={'bg-animate dim bg-green br-pill ph3 f3 f7-ns'} noUnderline={true} to={'/'}>
+          <Link className={'bg-animate dim bg-green br-pill ph3 f3 f5-ns'} noUnderline={true} to={'/'}>
             Edit
           </Link>
         </div>

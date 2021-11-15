@@ -3,7 +3,7 @@ import { Heading } from "./Heading";
 
 export function ListItem ({children}) {
   return (
-    <li className="f5 f7-ns lh-copy measure mv0 green">
+    <li className="f4 f5-ns lh-copy measure mv0 green">
       {children}
     </li>
   )

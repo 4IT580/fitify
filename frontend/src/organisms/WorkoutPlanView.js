@@ -34,10 +34,10 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
           <div className={'cf'}>
             <Card headerValue={'Train'} grid={'fl w-100 w-50-l'}>
               <CardBody>
-                <p className={'f5 f7-ns green'}>Interval length: {planData.intervalLength}s</p>
-                <p className={'f5 f7-ns green'}>Interval pause length: {planData.intervalPauseLength}s</p>
-                <p className={'f5 f7-ns green'}>rounds: {planData.rounds}</p>
-                <p className={'f5 f7-ns green'}>rounds pause length: {planData.roundsPauseLength}s</p>
+                <p className={'f4 f5-ns green'}>Interval length: {planData.intervalLength}s</p>
+                <p className={'f4 f5-ns green'}>Interval pause length: {planData.intervalPauseLength}s</p>
+                <p className={'f4 f5-ns green'}>rounds: {planData.rounds}</p>
+                <p className={'f4 f5-ns green'}>rounds pause length: {planData.roundsPauseLength}s</p>
               </CardBody>
             </Card>
 
@@ -47,7 +47,7 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
                   <Heading size={'md'} className={'green mt3'}>
                     {exerciseItem.name}
                   </Heading>
-                  <Heading size={'xs'} className={'green f7-ns mt3 bg-dark pa3 br3 lh-copy'}>
+                  <Heading size={'sm'} className={'green mt3 bg-dark pa3 br3 lh-copy'}>
                     {exerciseItem.description}
                   </Heading>
 
@@ -63,11 +63,11 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
             <Card headerValue={'Workout history'} grid={'fl w-100 w-50-l'}>
               {planData.history.filter((historyItem) => (historyItem.status === 'finished')).map((historyItem) => (
                 <CardBody key={'historyItem' + historyItem.id}>
-                  <p className={'f5 f7-ns green'}>From: {fromUnixTimeStamp(historyItem.startAt)}</p>
-                  <p className={'f5 f7-ns green'}>Until: {fromUnixTimeStamp(historyItem.endAt)}</p>
-                  <p className={'f5 f7-ns green'}>{historyItem.calories && ' Burnt calories: ' + historyItem.calories}</p>
+                  <p className={'f4 f5-ns green'}>From: {fromUnixTimeStamp(historyItem.startAt)}</p>
+                  <p className={'f4 f5-ns green'}>Until: {fromUnixTimeStamp(historyItem.endAt)}</p>
+                  <p className={'f4 f5-ns green'}>{historyItem.calories && ' Burnt calories: ' + historyItem.calories}</p>
 
-                  <Link className={'dit bg-animate mb3 br-pill bg-green dim ph5 tr-ns f3 f7-ns'} noUnderline={true} to={'/'}>Repeat workout</Link>
+                  <Link className={'dit bg-animate mb3 br-pill bg-green dim ph5 tr-ns f3 f5-ns'} noUnderline={true} to={'/'}>Repeat workout</Link>
                 </CardBody>
 
               ))
