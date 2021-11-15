@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MainSectionDashboard, Button, Heading } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
-import { TopNavigationLogged } from 'src/organisms/';
+import { TopNavigation } from 'src/organisms/';
 
 
 //import {  TopNavigation } from 'src/organisms/';
@@ -10,7 +10,7 @@ import { TopNavigationLogged } from 'src/organisms/';
 export function NewTrainingTemplate({}) {
   return (
     <>
-      <TopNavigationLogged />
+      <TopNavigation />
       <MainSectionDashboard>
         <Heading>
           New Training

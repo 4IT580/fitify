@@ -10,24 +10,23 @@ import { SignUpPage } from 'src/pages/SignUpPage';
 import { ForgottenPasswordPage } from 'src/pages/ForgottenPasswordPage';
 import { ResetPasswordPage } from 'src/pages/ResetPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
-import { Dashboard } from 'src/pages/Dashboard';
+import { DashboardPage } from 'src/pages/DashboardPage';
 import { NewTraining } from 'src/pages/NewTraining';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
 
 export const route = {
   home: () => `/`,
   foo: () => `/foo`,
-  practical: (id) => `/practical/${id}`,
   about: () => `/about`,
   signIn: () => `/auth/signin`,
   signUp: () => `/auth/signup`,
   forgottenPassword: () => `/auth/forgotten-password`,
   resetPassword: () => `/auth/reset-password`,
-  userDetail: (userName) => `/${userName}`,
-  dashboard: (userName) => `/${userName}/dashboard`,
-  newTraining: (userName) => `/${userName}/new-training`,
-  workout: (userName, workoutPlanId) => `/${userName}/workout/${workoutPlanId}`,
-  workoutTimer: (userName, workoutPlanId, workoutHistoryItemId) => `/${userName}/workout/${workoutPlanId}/${workoutHistoryItemId}`,
+  userDetail: (userId) => `/${userId}`,
+  dashboard: () => `/dashboard`,
+  newTraining: () => `/new-training`,
+  workout: (workoutPlanId) => `/workout/${workoutPlanId}`,
+  workoutTimer: (workoutPlanId, workoutHistoryItemId) => `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
 };
 
 export function Routes() {
@@ -37,27 +36,11 @@ export function Routes() {
       <Route path={route.signIn()} exact component={SignInPage} />
       <Route path={route.signUp()} exact component={SignUpPage} />
       <Route path={route.resetPassword()} exact component={ResetPasswordPage} />
-      <Route
-        path={route.forgottenPassword()}
-        exact
-        component={ForgottenPasswordPage}
-      />
-      <Route
-        path={route.userDetail(':userName')}
-        exact
-        component={UserDetailPage}
-      />
-      <Route path={route.dashboard(':userName')} exact component={Dashboard} />
-      <Route
-        path={route.newTraining(':userName')}
-        exact
-        component={NewTraining}
-      />
-      <Route
-        path={route.workout(':userName', ':workoutPlanId')}
-        exact
-        component={WorkoutPage}
-      />
+      <Route path={route.forgottenPassword()} exact component={ForgottenPasswordPage}/>
+      <Route path={route.dashboard()} exact component={DashboardPage} />
+      <Route path={route.userDetail(':userId')} exact component={UserDetailPage}/>
+      <Route path={route.newTraining(':userId')} exact component={NewTraining}/>
+      <Route path={route.workout(':workoutPlanId')} exact component={WorkoutPage}/>
       <Route path="*" component={PageNotFound} />
     </Switch>
   );

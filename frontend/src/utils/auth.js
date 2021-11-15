@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 
-const LOCAL_STORAGE_AUTH_KEY = 'quacker-auth';
+const LOCAL_STORAGE_AUTH_KEY = 'fitify-auth';
 
 const initialState = {
   token: null,

@@ -7,22 +7,11 @@ import { PageNotFound } from './PageNotFound';
 import { useAuth } from 'src/utils/auth';
 
 const USER_DETAIL_QUERY = gql`
-  query UserDetail($userName: String!) {
-    user(userName: $userName) {
+  query UserDetail($id: Int!) {
+    user(id: $id) {
       id
-      name
-      userName
-      profileImageUrl
       quacks {
         id
-        createdAt
-        text
-        user {
-          id
-          name
-          userName
-          profileImageUrl
-        }
       }
     }
   }
@@ -38,10 +27,9 @@ const QUACK_MUTATION = gql`
 
 export function UserDetailPage() {
   const { user } = useAuth();
-  const { userName } = useParams();
-
+  console.log('in');
   const userFetcher = useQuery(USER_DETAIL_QUERY, {
-    variables: { userName },
+    variables: { id:123 },
   });
 
   const [quackFormText, setQuackFormText] = useState('');
@@ -62,7 +50,7 @@ export function UserDetailPage() {
     text: quackFormText,
     setText: setQuackFormText,
     onSubmit: ({ text }) => {
-      quackMutationRequest({ variables: { text, userId: user.id } });
+      quackMutationRequest({ variables: { text, id: parseInt(user.id) } });
     },
   };
 
@@ -78,7 +66,7 @@ export function UserDetailPage() {
       onReload={() => userFetcher.refetch()}
       quackFormState={quackFormState}
       currentUser={user}
-      userName={userName}
+      userName={''}
     />
   );
 }
