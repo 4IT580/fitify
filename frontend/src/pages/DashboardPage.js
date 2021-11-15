@@ -40,9 +40,6 @@ export function DashboardPage () {
     userId = user.id;
   }
 
-  console.log(user);
-  console.log(userId);
-
   const userFetcher = useQuery(USER_WORKOUTS_QUERY, {
     // variables: {id: userId},
     variables: {id: 4},

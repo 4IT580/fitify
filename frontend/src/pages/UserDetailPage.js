@@ -27,7 +27,7 @@ const QUACK_MUTATION = gql`
 
 export function UserDetailPage() {
   const { user } = useAuth();
-  console.log('in');
+
   const userFetcher = useQuery(USER_DETAIL_QUERY, {
     variables: { id:123 },
   });
