@@ -23,6 +23,8 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
       token,
     };
   }
+
+  throw Error('Incorrect password');
 };
 
 export const signup = async (

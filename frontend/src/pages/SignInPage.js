@@ -4,6 +4,7 @@ import { gql, useMutation } from '@apollo/client';
 
 import { SignInTemplate } from 'src/templates/SignInTemplate';
 import { useAuth } from 'src/utils/auth';
+import { route } from "../Routes";
 
 const SIGNIN_MUTATION = gql`
   mutation SignIn($email: String!, $password: String!) {
@@ -24,7 +25,7 @@ export function SignInPage() {
   const [signinRequest, signinRequestState] = useMutation(SIGNIN_MUTATION, {
     onCompleted: ({ signin: { user, token } }) => {
       auth.signin({ token, user });
-      history.replace('/');
+      history.replace(route.dashboard());
     },
     onError: () => {
       console.log('login error');

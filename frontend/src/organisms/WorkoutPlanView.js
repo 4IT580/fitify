@@ -32,7 +32,7 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
           <WorkoutHeader planData={planData}/>
 
           <div className={'cf'}>
-            <Card headerValue={'Train'} className={''}>
+            <Card headerValue={'Train'} grid={'fl w-100 w-50-l'}>
               <CardBody>
                 <p className={'f5 f7-ns green'}>Interval length: {planData.intervalLength}s</p>
                 <p className={'f5 f7-ns green'}>Interval pause length: {planData.intervalPauseLength}s</p>
@@ -41,9 +41,9 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
               </CardBody>
             </Card>
 
-            <Card headerValue={'Exercises'} float={'fr'}>
+            <Card headerValue={'Exercises'} grid={'fr w-100 w-50-l'}>
               {planData.exercises.map((exerciseItem) => (
-                <CardBody key={'exerciseItem'+ exerciseItem.id}>
+                <CardBody key={'exerciseItem' + exerciseItem.id}>
                   <Heading size={'md'} className={'green mt3'}>
                     {exerciseItem.name}
                   </Heading>
@@ -60,7 +60,7 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
               }
             </Card>
 
-            <Card headerValue={'Workout history'}>
+            <Card headerValue={'Workout history'} grid={'fl w-100 w-50-l'}>
               {planData.history.filter((historyItem) => (historyItem.status === 'finished')).map((historyItem) => (
                 <CardBody key={'historyItem' + historyItem.id}>
                   <p className={'f5 f7-ns green'}>From: {fromUnixTimeStamp(historyItem.startAt)}</p>

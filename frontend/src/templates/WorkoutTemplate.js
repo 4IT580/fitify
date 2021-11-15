@@ -5,14 +5,14 @@ import {
   MainSectionWorkout
 } from 'src/atoms/';
 import {
-  TopNavigationLogged,
+  TopNavigation,
   WorkoutPlanView
 } from 'src/organisms/';
 
 export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
   return (
     <>
-      <TopNavigationLogged/>
+      <TopNavigation/>
       <MainSectionWorkout>
         <main className="grid-container-left pt4">
           <WorkoutPlanView

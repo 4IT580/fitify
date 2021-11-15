@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 import { DashboardTemplate } from 'src/templates/DashboardTemplate';
@@ -7,83 +7,58 @@ import { PageNotFound } from './PageNotFound';
 import { useAuth } from 'src/utils/auth';
 
 const USER_WORKOUTS_QUERY = gql`
-  query UserDetail($userName: String!) {
-    user(userName: $userName) {
+  query UserDetail($id: Int!) {
+    user(id: $id) {
       id
-      name
-      surname
-      profileImageUrl
-      quacks {
+      workouts {
         id
-        createdAt
-        text
-        user {
+        name
+        intervalLength
+        intervalPauseLength
+        rounds
+        roundsPauseLength
+        exercises{
           id
-          name
-          surname
-          profileImageUrl
+        }
+        history {
+          id
+          status
+          startAt
+          endAt
+          calories
         }
       }
     }
   }
 `;
 
-const QUACK_MUTATION = gql`
-  mutation Quack($userId: Int!, $text: String!) {
-    addQuack(userId: $userId, text: $text) {
-      id
-    }
-  }
-`;
+export function DashboardPage () {
+  const {user} = useAuth();
 
-export function DashboardPage() {
-  const { user } = useAuth();
-  const { userName } = useParams();
+  let userId = null
+  if (user !== null) {
+    userId = user.id;
+  }
 
   console.log(user);
-  console.log(123);
+  console.log(userId);
 
-  return(<div>das</div>)
+  const userFetcher = useQuery(USER_WORKOUTS_QUERY, {
+    // variables: {id: userId},
+    variables: {id: 4},
+  });
 
-  // const userFetcher = useQuery(USER_DETAIL_QUERY, {
-  //   variables: { userName },
-  // });
-  //
-  // const [quackFormText, setQuackFormText] = useState('');
-  // const [quackMutationRequest, quackMutationRequestState] = useMutation(
-  //   QUACK_MUTATION,
-  //   {
-  //     onCompleted: () => {
-  //       setQuackFormText('');
-  //       userFetcher.refetch();
-  //     },
-  //     onError: () => {},
-  //   },
-  // );
-  //
-  // const quackFormState = {
-  //   loading: quackMutationRequestState.loading,
-  //   error: quackMutationRequestState.error,
-  //   text: quackFormText,
-  //   setText: setQuackFormText,
-  //   onSubmit: ({ text }) => {
-  //     quackMutationRequest({ variables: { text, userId: user.id } });
-  //   },
-  // };
-  //
-  // if (userFetcher.data && userFetcher.data.user === null) {
-  //   return <PageNotFound />;
-  // }
-  //
-  // return (
-  //   <DashboardTemplate
-  //     data={userFetcher.data}
-  //     loading={userFetcher.loading}
-  //     error={userFetcher.error}
-  //     onReload={() => userFetcher.refetch()}
-  //     quackFormState={quackFormState}
-  //     currentUser={user}
-  //     userName={userName}
-  //   />
-  // );
+  if (userFetcher.data && userFetcher.data.user === null) {
+    return <PageNotFound/>;
+  }
+
+  return (
+    <DashboardTemplate
+      data={userFetcher.data}
+      error={userFetcher.error}
+      isLoading={userFetcher.loading}
+      refetch={() => userFetcher.refetch()}
+      currentUser={user}
+    />
+  );
 }

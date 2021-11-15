@@ -86,26 +86,14 @@ code {
   color: #bffa29;
 }
 
-
-/*!* For different devices *!*/
-/*@media only screen and (max-width: 320px) {*/
-/*  html {*/
-/*    font-size: 8px;*/
-/*  }*/
-/*}*/
-
-/*@media only screen and (min-width: 320px) and (max-width: 450px) {*/
-/*  html {*/
-/*    font-size: 10px;*/
-/*  }*/
-/*}*/
-
-/*@media only screen and (min-width: 450px) and (max-width: 600px) {*/
-/*  html {*/
-/*    font-size: 12px;*/
-/*  }*/
-/*}*/
+.b--green{
+  border-color: #bffa29;
+}
 
 article {
+  background-color: rgba(21, 24, 36, 0.7);
+}
+
+.workout-pill {
   background-color: rgba(21, 24, 36, 0.7);
 }
