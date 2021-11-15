@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
+import { FaUserCircle } from 'react-icons/fa/index'
 
 import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
@@ -56,7 +57,7 @@ export function TopNavigationLogged() {
             <NavLink to={route.newTraining('tt123')} className="pa3">
               New training
             </NavLink>
-            
+              <FaUserCircle style={{ height: 40, width: 50, color: "yellowgreen" }} className="mr1 f2" />
           </>
         )}
       </div>

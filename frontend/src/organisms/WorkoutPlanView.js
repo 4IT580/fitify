@@ -62,8 +62,8 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
             </div>
 
             <div className={'w-100 w-50-l  fr'}>
-              <article className="hidden ba ma4 br4">
-                <h1 className="f1 bg-dark green br4 mv0 pv2 ph3">Exercises</h1>
+              <article className="hidden ba ma4 br2">
+                <h1 className="f1 bg-dark green br2 mv0 pv2 ph3">Exercises</h1>
                 {planData.exercises.map((exerciseItem) => (
                   <div key={'exerciseItem'+exerciseItem.id} className="pa3 bt bg-dark o-70 tl">
                     <Heading size={'md'} className={'green'}>
@@ -106,8 +106,8 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
 
 
             <div className={'w-100 w-50-l  fl'}>
-              <article className="hidden ba ma4 br4">
-                <h1 className="f1 bg-dark green br4 mv0 pv2 ph3">Workout history</h1>
+              <article className="hidden ba ma4 br2">
+                <h1 className="f1 bg-dark green br2 mv0 pv2 ph3">Workout history</h1>
                 {planData.history.map((historyItem) => (
                   <div key={'historyItem'+historyItem.id} className="pa3 bt bg-dark o-70 tl">
                     <p className={'f2 f5-ns green'}>Status: {historyItem.status}</p>
@@ -126,8 +126,6 @@ export function WorkoutPlanView ({planData, isLoading, error, refetch}) {
               </article>
             </div>
           </div>
-
-
         </div>
       )
       }
