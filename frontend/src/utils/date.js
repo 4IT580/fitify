@@ -8,6 +8,13 @@ export function formatDate (date) {
 }
 
 export function fromUnixTimeStamp (time) {
-  let date = fromUnixTime(time/1000);
+  let date = fromUnixTime(time / 1000);
   return format(date, 'd. M. Y HH:mm');
+}
+
+export function secondsToTimeString (allSeconds) {
+  const minutes = Math.floor(allSeconds / 60)
+  const seconds = allSeconds % 60;
+
+  return minutes + ':' + seconds;
 }

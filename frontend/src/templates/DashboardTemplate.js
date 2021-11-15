@@ -15,7 +15,7 @@ import { TopNavigation } from 'src/organisms/';
 import { DashboardPage } from 'src/pages/DashboardPage';
 import { route } from 'src/Routes';
 import { CardBody } from "../atoms";
-import { fromUnixTimeStamp } from "../utils/date";
+import { fromUnixTimeStamp, secondsToTimeString } from "../utils/date";
 import { Card } from "../molecules";
 
 export function DashboardTemplate ({data, isLoading, error, refetch, currentUser}) {
@@ -66,7 +66,7 @@ export function DashboardTemplate ({data, isLoading, error, refetch, currentUser
                       <p className={'f5 f7-ns green'}>{item.intervalLength}s heat - {item.intervalPauseLength}s break</p>
                       <p className={'f5 f7-ns green'}>{item.exercises.length} exercises, {item.roundsPauseLength}s round break</p>
                       <p className={'f5 f7-ns green'}>{item.rounds} rounds</p>
-                      <p className={'f5 f7-ns green'}>{item.rounds * (item.exercises.length * (item.intervalLength + item.intervalPauseLength) + item.roundsPauseLength)}s total</p>
+                      <p className={'f5 f7-ns green'}>{secondsToTimeString(item.rounds * (item.exercises.length * (item.intervalLength + item.intervalPauseLength) + item.roundsPauseLength))} total</p>
                     </div>
                   </Link>
                 </div>
