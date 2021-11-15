@@ -5,7 +5,7 @@ export function MainSection({ children }) {
   return (
     <>
       <main className="main-section ">
-        <div className="cf right-offset">
+        <div className="cf right-offset bg-white">
           <section className="fl w-100 pa5 ">
             <div className="tl">{children}</div>
           </section>

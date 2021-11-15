@@ -4,10 +4,16 @@ import { sendMail } from '../../libs/mailer';
 
 export const signin = async (_, { email, password }, { dbConnection }) => {
   const dbResponse = await dbConnection.query(
-    `SELECT * FROM user WHERE email = ?`,
+    `SELECT * FROM user WHERE email = ? AND active = 1`,
     [email],
   );
   const user = dbResponse[0];
+
+  if (user === undefined) {
+    //user does not exist
+    throw Error('User not found');
+  }
+
   const token = createToken({ id: user.id });
 
   if (await argon2.verify(user.password, password)) {
@@ -17,6 +23,8 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
       token,
     };
   }
+
+  throw Error('Incorrect password');
 };
 
 export const signup = async (
@@ -81,12 +89,12 @@ export const forgottenPassword = async (
 
 export const resetPassword = async (
   _,
-  { token, newPassword },
+  { newPassword, passwordToken },
   { dbConnection, mailer },
 ) => {
   let user = (
     await dbConnection.query(`SELECT * FROM user WHERE lostPasswordHash = ?`, [
-      token,
+      passwordToken,
     ])
   )[0];
 
@@ -95,24 +103,16 @@ export const resetPassword = async (
     throw Error('Invalid request');
   }
 
+  const token = createToken({ id: user.id });
+
   let argonHash = await argon2.hash(newPassword);
-  await dbConnection.query(`UPDATE user SET password = ? WHERE id = ?`, [
-    argonHash,
-    user.id,
-  ]);
-  user = (
-    await dbConnection.query(`SELECT * FROM user WHERE lostPasswordHash = ?`, [
-      token,
-    ])
-  )[0];
-
-  if (await argon2.verify(user.password, newPassword)) {
-    const token = createToken({ id: user.id });
-    return {
-      user: { ...user },
-      token,
-    };
-  }
-
-  throw Error('something broke');
+  await dbConnection.query(
+    `UPDATE user SET password = ?,lostPasswordHash = ? WHERE id = ?`,
+    [argonHash, null, user.id],
+  );
+  console.log(user);
+  return {
+    user: { ...user },
+    token,
+  };
 };

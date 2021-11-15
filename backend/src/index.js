@@ -30,6 +30,7 @@ const typeDefs = gql`
     lastLoginAt: String!
     createdAt: String!
     quacks: [Quack!]!
+    workouts: [WorkoutPlan!]
   }
 
   type WorkoutPlan {
@@ -74,8 +75,7 @@ const typeDefs = gql`
   type AuthUser {
     id: Int!
     name: String!
-    userName: String!
-    profileImageUrl: String
+    email: String!
   }
 
   type AuthInfo {
@@ -93,7 +93,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User!]!
-    user(userName: String!): User
+    user(id: Int!): User
     quacks: [Quack!]!
     workoutPlan(id: Int!): WorkoutPlan!
     workoutPlans: [WorkoutPlan!]!
@@ -114,7 +114,7 @@ const typeDefs = gql`
     ): Boolean!
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
-    resetPassword(token: String!, newPassword: String!): AuthInfo!
+    resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
 
     addQuack(userId: Int!, text: String!): Quack!
   }

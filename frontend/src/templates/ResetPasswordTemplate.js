@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Heading, Link, RightBlockSection } from 'src/atoms/';
-import { TopNavigation, ForgottenPasswordForm } from 'src/organisms/';
+import { ResetPasswordForm, TopNavigation } from 'src/organisms/';
 
-export function ForgottenPasswordTemplate({
+export function ResetPasswordTemplate({
   isLoading,
   error,
   onSubmit,
@@ -13,17 +13,14 @@ export function ForgottenPasswordTemplate({
     <>
       <TopNavigation />
       <RightBlockSection>
-        <Heading>Forgotten password</Heading>
-        <div className="mv2 f3 f5-ns">
-          Please insert your email in the form below and we will send you link
-          for password reset.
-        </div>
-        <ForgottenPasswordForm
+        <Heading>Reset Password</Heading>
+
+        <ResetPasswordForm
           isLoading={isLoading}
           errorMessage={error && error.message}
           successMessage={successMessage}
           onSubmit={onSubmit}
-          className="pt3"
+          className="mt3"
         />
       </RightBlockSection>
     </>
