@@ -6,18 +6,14 @@ import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
 
-export function TopNavigation () {
-  const {user, signout} = useAuth();
+export function TopNavigation() {
+  const { user, signout } = useAuth();
   const history = useHistory();
 
   return (
     <nav className="flex justify-between bb bg-dark">
-      <Link
-        to={route.home()}
-        noUnderline
-        className="b flex items-center green"
-      >
-        <Logo style={{height: 90, width: 100}} className="mr1 f2"/>
+      <Link to={route.home()} noUnderline className="b flex items-center green">
+        <Logo style={{ height: 90, width: 100 }} className="mr1 f2" />
       </Link>
       <div className="flex-grow flex items-center mr4">
         {user ? (
@@ -25,7 +21,11 @@ export function TopNavigation () {
             <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
               Home
             </NavLink>
-            <NavLink exact to={route.userDetail(user.userName)} className="pa3 dib-ns">
+            <NavLink
+              exact
+              to={route.userDetail(user.userName)}
+              className="pa3 dib-ns"
+            >
               {user.name}
             </NavLink>
             <Button

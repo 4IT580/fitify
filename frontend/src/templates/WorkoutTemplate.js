@@ -1,18 +1,18 @@
 import React from 'react';
 
-import {
-  Heading,
-  MainSectionWorkout
-} from 'src/atoms/';
-import {
-  TopNavigation,
-  WorkoutPlanView
-} from 'src/organisms/';
+import { Heading, MainSectionWorkout } from 'src/atoms/';
+import { TopNavigation, WorkoutPlanView } from 'src/organisms/';
 
-export function WorkoutTemplate ({data, loading, error, refetch, currentUser}) {
+export function WorkoutTemplate({
+  data,
+  loading,
+  error,
+  refetch,
+  currentUser,
+}) {
   return (
     <>
-      <TopNavigation/>
+      <TopNavigation />
       <MainSectionWorkout>
         <main className="grid-container-left pt4">
           <WorkoutPlanView

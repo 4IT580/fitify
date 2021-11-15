@@ -26,7 +26,8 @@ export const route = {
   dashboard: () => `/dashboard`,
   newTraining: () => `/new-training`,
   workout: (workoutPlanId) => `/workout/${workoutPlanId}`,
-  workoutTimer: (workoutPlanId, workoutHistoryItemId) => `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
+  workoutTimer: (workoutPlanId, workoutHistoryItemId) =>
+    `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
 };
 
 export function Routes() {
@@ -36,11 +37,27 @@ export function Routes() {
       <Route path={route.signIn()} exact component={SignInPage} />
       <Route path={route.signUp()} exact component={SignUpPage} />
       <Route path={route.resetPassword()} exact component={ResetPasswordPage} />
-      <Route path={route.forgottenPassword()} exact component={ForgottenPasswordPage}/>
+      <Route
+        path={route.forgottenPassword()}
+        exact
+        component={ForgottenPasswordPage}
+      />
       <Route path={route.dashboard()} exact component={DashboardPage} />
-      <Route path={route.userDetail(':userId')} exact component={UserDetailPage}/>
-      <Route path={route.newTraining(':userId')} exact component={NewTraining}/>
-      <Route path={route.workout(':workoutPlanId')} exact component={WorkoutPage}/>
+      <Route
+        path={route.userDetail(':userId')}
+        exact
+        component={UserDetailPage}
+      />
+      <Route
+        path={route.newTraining(':userId')}
+        exact
+        component={NewTraining}
+      />
+      <Route
+        path={route.workout(':workoutPlanId')}
+        exact
+        component={WorkoutPage}
+      />
       <Route path="*" component={PageNotFound} />
     </Switch>
   );

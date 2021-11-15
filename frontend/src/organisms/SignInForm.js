@@ -66,11 +66,7 @@ export function SignInForm({
           Login
         </LoadingButton>
         <div className={'mv0 w-100 tc'}>
-          <Link
-            to={route.forgottenPassword()}
-            color="dark"
-            noUnderline={false}
-          >
+          <Link to={route.forgottenPassword()} color="dark" noUnderline={false}>
             Did you forget password?
           </Link>
         </div>

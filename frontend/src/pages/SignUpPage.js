@@ -28,10 +28,12 @@ const SIGNUP_MUTATION = gql`
 `;
 
 export function SignUpPage() {
-  const [successMessage,setSuccessMessage]=useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
     onCompleted: (data) => {
-      setSuccessMessage("Your account has been created successfully. An email with activation link has been sent to provided email address.");
+      setSuccessMessage(
+        'Your account has been created successfully. An email with activation link has been sent to provided email address.',
+      );
     },
     onError: () => {
       console.log('error');

@@ -1,5 +1,4 @@
-export function getMockedWorkoutPlans (userId) {
-
+export function getMockedWorkoutPlans(userId) {
   return {
     1: {
       id: 1,
@@ -30,11 +29,11 @@ export function getMockedWorkoutPlans (userId) {
       roundsPauseLength: 50,
       workoutLength: 30, //deprecated
       createdAt: new Date('2021-10-12'),
-    }
+    },
   };
 }
 
-export function getMockedExercises () {
+export function getMockedExercises() {
   return {
     1: {
       id: 1,
@@ -49,12 +48,13 @@ export function getMockedExercises () {
     3: {
       id: 3,
       name: 'Horolezec',
-      description: 'Klik u kterého vypadáš jako pavouk co se snaží dotknout kolenem loktu',
-    }
-  }
+      description:
+        'Klik u kterého vypadáš jako pavouk co se snaží dotknout kolenem loktu',
+    },
+  };
 }
 
-export function getMockedHistory () {
+export function getMockedHistory() {
   return {
     12: {
       id: 12,
@@ -83,73 +83,59 @@ export function getMockedHistory () {
       status: 'active',
       startAt: new Date('2021-11-20 08:00:00'),
       endAt: null,
-    }
-  }
+    },
+  };
 }
 
-export function getMockedEquipment (exerciseId) {
+export function getMockedEquipment(exerciseId) {
   let barbell = {
     id: 10,
-    name: 'Osa'
-  }
+    name: 'Osa',
+  };
   let dumbbell = {
     id: 11,
-    name: 'Jednoručky'
-  }
+    name: 'Jednoručky',
+  };
   let kettlebell = {
     id: 12,
-    name: 'Kettlebel'
-  }
+    name: 'Kettlebel',
+  };
 
   if (exerciseId === 1) {
-    return [
-      barbell,
-      dumbbell,
-      kettlebell
-    ]
+    return [barbell, dumbbell, kettlebell];
   }
 
   if (exerciseId === 2) {
-    return [
-      barbell,
-      kettlebell
-    ]
+    return [barbell, kettlebell];
   }
 
   return [];
 }
 
-export function getMockedBodyParts (exerciseId) {
+export function getMockedBodyParts(exerciseId) {
   let legs = {
     id: 1,
-    name: 'Nohy'
+    name: 'Nohy',
   };
   let ass = {
     id: 2,
-    name: 'Zadek'
+    name: 'Zadek',
   };
   let abs = {
     id: 3,
-    name: 'Břicho'
+    name: 'Břicho',
   };
   let shoulders = {
     id: 4,
-    name: 'Ramena'
+    name: 'Ramena',
   };
 
   if (exerciseId === 1) {
-    return [
-      legs,
-      ass,
-      abs,
-    ]
+    return [legs, ass, abs];
   }
 
   if (exerciseId === 3) {
-    return [
-      shoulders,
-      abs,
-    ]
+    return [shoulders, abs];
   }
 
   return [];

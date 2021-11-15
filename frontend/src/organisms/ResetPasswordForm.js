@@ -1,4 +1,4 @@
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as yup from 'yup';
 
@@ -32,14 +32,15 @@ export function ResetPasswordForm({
       onSubmit={function (values, actions) {
         onSubmit(values);
       }}
-
       initialValues={initialValues}
       validationSchema={schema}
       validateOnBlur={false}
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
-        {successMessage && <SuccessBanner title={successMessage} className="mb3" />}
+        {successMessage && (
+          <SuccessBanner title={successMessage} className="mb3" />
+        )}
         <FormikField
           id="password"
           name="password"

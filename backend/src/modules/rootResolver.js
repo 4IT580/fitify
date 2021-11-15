@@ -18,7 +18,13 @@ import {
 } from './workout-plan';
 
 import { queries as QuackQueries, mutations as QuackMutations } from './quack';
-import { getMockedBodyParts, getMockedEquipment, getMockedExercises, getMockedHistory, getMockedWorkoutPlans } from "../__mocks__/workoutMocks";
+import {
+  getMockedBodyParts,
+  getMockedEquipment,
+  getMockedExercises,
+  getMockedHistory,
+  getMockedWorkoutPlans,
+} from '../__mocks__/workoutMocks';
 
 export default {
   Query: {
@@ -42,42 +48,44 @@ export default {
     ...QuackMutations,
   },
   User: {
-    async quacks (parent, _, {dbConnection}) {
-      return await dbConnection.query(`SELECT *
+    async quacks(parent, _, { dbConnection }) {
+      return await dbConnection.query(
+        `SELECT *
                                        FROM quack
-                                       WHERE userId = ?`, [
-        parent.id,
-      ]);
+                                       WHERE userId = ?`,
+        [parent.id],
+      );
     },
-    async workouts (parent, _, {dbConnection}) {
-      return Object.values(getMockedWorkoutPlans(parent.id))
-    }
+    async workouts(parent, _, { dbConnection }) {
+      return Object.values(getMockedWorkoutPlans(parent.id));
+    },
   },
   Quack: {
-    async user (parent, _, {dbConnection}) {
+    async user(parent, _, { dbConnection }) {
       return (
-        await dbConnection.query(`SELECT *
+        await dbConnection.query(
+          `SELECT *
                                   FROM user
-                                  WHERE id = ?`, [
-          parent.userId,
-        ])
+                                  WHERE id = ?`,
+          [parent.userId],
+        )
       )[0];
     },
   },
   WorkoutPlan: {
-    async exercises (parent, _, {dbConnection}) {
+    async exercises(parent, _, { dbConnection }) {
       return Object.values(getMockedExercises());
     },
-    async history (parent, _, {dbConnection}) {
+    async history(parent, _, { dbConnection }) {
       return Object.values(getMockedHistory());
-    }
+    },
   },
   Excercise: {
-    async bodyParts (parent, _, {dbConnection}) {
-      return getMockedBodyParts(parent.id)
+    async bodyParts(parent, _, { dbConnection }) {
+      return getMockedBodyParts(parent.id);
     },
-    equipment (parent, _, {dbConnection}) {
-      return getMockedEquipment(parent.id)
-    }
-  }
+    equipment(parent, _, { dbConnection }) {
+      return getMockedEquipment(parent.id);
+    },
+  },
 };

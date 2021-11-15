@@ -48,7 +48,7 @@ const schema = yup.object().shape({
     .test(
       'Has min lenght?',
       'ERROR: Minimum password length is 8 characters!',
-      (value) => value && value.length >= 8
+      (value) => value && value.length >= 8,
     ),
   passwordConfirmation: yup
     .string()
@@ -76,7 +76,9 @@ export function SignUpForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
-        {successMessage && <SuccessBanner title={successMessage} className="mb3" />}
+        {successMessage && (
+          <SuccessBanner title={successMessage} className="mb3" />
+        )}
         <FormikField
           id="name"
           name="name"
@@ -162,7 +164,11 @@ export function SignUpForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <LoadingButton type="submit" className="mt2 mb3 tc w-100" loading={isLoading}>
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+        >
           Sign Up
         </LoadingButton>
         {children}

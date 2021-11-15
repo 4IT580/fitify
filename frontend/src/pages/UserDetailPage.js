@@ -29,7 +29,7 @@ export function UserDetailPage() {
   const { user } = useAuth();
 
   const userFetcher = useQuery(USER_DETAIL_QUERY, {
-    variables: { id:123 },
+    variables: { id: 123 },
   });
 
   const [quackFormText, setQuackFormText] = useState('');

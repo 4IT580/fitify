@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Heading } from "../atoms";
-import { fromUnixTimeStamp } from "../utils/date";
-import { Link } from "../organisms/WorkoutPlanView";
-import classNames from "classnames";
+import { Heading } from '../atoms';
+import { fromUnixTimeStamp } from '../utils/date';
+import { Link } from '../organisms/WorkoutPlanView';
+import classNames from 'classnames';
 
-export function Card ({headerValue, children, className, grid}) {
+export function Card({ headerValue, children, className, grid }) {
   return (
     <div className={grid}>
       <article className={classNames('ba mb4 br4 ma2', className)}>
@@ -15,5 +15,5 @@ export function Card ({headerValue, children, className, grid}) {
         {children}
       </article>
     </div>
-  )
+  );
 }

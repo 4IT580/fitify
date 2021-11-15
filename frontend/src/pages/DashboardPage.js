@@ -17,7 +17,7 @@ const USER_WORKOUTS_QUERY = gql`
         intervalPauseLength
         rounds
         roundsPauseLength
-        exercises{
+        exercises {
           id
         }
         history {
@@ -32,21 +32,21 @@ const USER_WORKOUTS_QUERY = gql`
   }
 `;
 
-export function DashboardPage () {
-  const {user} = useAuth();
+export function DashboardPage() {
+  const { user } = useAuth();
 
-  let userId = null
+  let userId = null;
   if (user !== null) {
     userId = user.id;
   }
 
   const userFetcher = useQuery(USER_WORKOUTS_QUERY, {
     // variables: {id: userId},
-    variables: {id: 4},
+    variables: { id: 4 },
   });
 
   if (userFetcher.data && userFetcher.data.user === null) {
-    return <PageNotFound/>;
+    return <PageNotFound />;
   }
 
   return (

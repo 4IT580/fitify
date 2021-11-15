@@ -98,22 +98,18 @@ export const resetPassword = async (
     ])
   )[0];
 
-
   if (user === undefined) {
     //user does not exist, no need to send email
     throw Error('Invalid request');
   }
 
-  const token = createToken({ id:
-    user.id
-     });
+  const token = createToken({ id: user.id });
 
   let argonHash = await argon2.hash(newPassword);
-  await dbConnection.query(`UPDATE user SET password = ?,lostPasswordHash = ? WHERE id = ?`, [
-    argonHash,
-    null,
-    user.id,
-  ]);
+  await dbConnection.query(
+    `UPDATE user SET password = ?,lostPasswordHash = ? WHERE id = ?`,
+    [argonHash, null, user.id],
+  );
   console.log(user);
   return {
     user: { ...user },
