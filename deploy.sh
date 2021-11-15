@@ -11,8 +11,12 @@ git reset --hard
 git checkout $BRANCH
 yarn install
 yarn --cwd frontend/ install
+ln -s ~/code/.env-frontend frontend/.env.local
 yarn --cwd frontend/ build
 
+
 yarn --cwd backend/ install
+ln -s ~/code/.env-backend backend/.env.local
+
 yarn --cwd backend/ build
 
