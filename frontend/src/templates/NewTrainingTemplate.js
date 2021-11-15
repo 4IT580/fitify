@@ -1,6 +1,6 @@
 //import React from 'react';
 import React, { Fragment, useEffect, useState } from 'react';
-import { MainSectionDashboard, Button } from 'src/atoms/';
+import { MainSectionDashboard, Button, Heading } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
 import { TopNavigationLogged, NewWorkoutForm } from 'src/organisms/';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
@@ -14,22 +14,24 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
     <>
       <TopNavigationLogged />
       <MainSectionDashboard>
-        <h1 style={{ color: 'greenyellow' }}>New training</h1>
-        <main className="flex grid-container-left br2 pa2">
-          <Button>
-            <div>
-              <h2>Create new training</h2>
-            </div>
-          </Button>
+        <Heading>New Training</Heading>
+        <main className="flex grid-container-left br2 ml3 pa2 ">
+          <a
+            className="f3 tc link dim br-pill ph4 pv3 mt4 dib green bg-dark"
+            href="#0"
+          >
+            <div>Add new training</div>
+          </a>
+          <div className="right-offset"></div>
           <div>
             <h2></h2>
           </div>
         </main>
 
-        <form className=" flex grid-container-left mt flb w-35-l w-50 br2 pa2 ">
+        <form className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
           <p style={{ padding: 0, margin: 0 }}>
             <NewWorkoutForm />
-            <div className="mw 8 left bg-dark">
+            <div className="mb6  left bg-dark">
               <List workoutItem={workoutItems} dispatch={dispatch} />
             </div>
           </p>
