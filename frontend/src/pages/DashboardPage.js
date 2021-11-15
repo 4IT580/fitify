@@ -45,6 +45,7 @@ export function DashboardPage() {
     variables: { id: 4 },
   });
 
+  console.log(userFetcher)
   if (userFetcher.data && userFetcher.data.user === null) {
     return <PageNotFound />;
   }
