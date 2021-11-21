@@ -11,7 +11,7 @@ import { ForgottenPasswordPage } from 'src/pages/ForgottenPasswordPage';
 import { ResetPasswordPage } from 'src/pages/ResetPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
 import { DashboardPage } from 'src/pages/DashboardPage';
-import { NewTraining } from 'src/pages/NewTraining';
+import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
 
 export const route = {
@@ -43,16 +43,13 @@ export function Routes() {
         component={ForgottenPasswordPage}
       />
       <Route path={route.dashboard()} exact component={DashboardPage} />
+      <Route path={route.newTraining()} exact component={NewTrainingPage} />
       <Route
         path={route.userDetail(':userId')}
         exact
         component={UserDetailPage}
       />
-      <Route
-        path={route.newTraining(':userId')}
-        exact
-        component={NewTraining}
-      />
+
       <Route
         path={route.workout(':workoutPlanId')}
         exact

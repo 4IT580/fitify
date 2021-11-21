@@ -6,7 +6,7 @@ import {
   listExerciseReducer,
 } from 'src/reducers/listExerciseReducer';
 
-export function NewTraining() {
+export function NewTrainingPage() {
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
 
   return (
