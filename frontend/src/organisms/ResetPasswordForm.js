@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
-import { Form, Formik, Field } from 'formik';
+import { React } from 'react';
+import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';

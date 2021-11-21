@@ -1,14 +1,9 @@
 import React from 'react';
-import { Form, Formik } from 'formik';
-import * as yup from 'yup';
 
 import { ErrorBanner } from 'src/atoms/';
-import { LoadingButton } from 'src/molecules/';
-import { FormikField } from 'src/molecules/';
 import { Link, Button, Loading } from 'src/atoms/';
-import { CardBody, Heading, List, ListItem } from '../atoms';
-import { fromUnixTime, fromUnixTimeStamp } from '../utils/date';
-import { route } from '../Routes';
+import { CardBody, Heading, List } from '../atoms';
+import { fromUnixTimeStamp } from '../utils/date';
 import { Card, WorkoutHeader } from '../molecules';
 
 export function WorkoutPlanView({ planData, isLoading, error, refetch }) {

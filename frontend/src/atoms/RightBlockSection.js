@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Footer } from 'src/atoms/';
+import { Footer } from 'src/atoms/';
 
 export function RightBlockSection({ children }) {
   return (

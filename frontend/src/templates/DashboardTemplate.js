@@ -1,22 +1,25 @@
 import React from 'react';
 
 import {
-  MainSectionDashboard,
   Button,
-  NavLink,
   Heading,
   Link,
   ErrorBanner,
   Loading,
   MainSectionWorkout,
+  CardBody
 } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { TopNavigation } from 'src/organisms/';
-import { DashboardPage } from 'src/pages/DashboardPage';
+
+import {
+  TopNavigation
+} from 'src/organisms/';
+
+import {
+  Card
+} from 'src/molecules';
+
 import { route } from 'src/Routes';
-import { CardBody } from '../atoms';
 import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
-import { Card } from '../molecules';
 
 export function DashboardTemplate({
   data,
@@ -64,9 +67,8 @@ export function DashboardTemplate({
           <>
             <div className={'dit w-100 mt3'}>
               {workoutData.map((item) => (
-                <div className={'fl w-100 w-50-ns w-25-l'}>
+                <div className={'fl w-100 w-50-ns w-25-l'} key={'workoutPlan' + item.id}>
                   <Link
-                    key={'workoutPlan' + item.id}
                     className="f7 green mv0 mw5"
                     to={route.workout(item.id)}
                     noUnderline={true}

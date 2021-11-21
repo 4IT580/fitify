@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { PageWrapper } from 'src/templates/PageWrapper';
-
 import { HomePage } from 'src/pages/HomePage';
 import { PageNotFound } from 'src/pages/PageNotFound';
 import { SignInPage } from 'src/pages/SignInPage';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Link, RightBlockSection } from 'src/atoms/';
+import { Heading, RightBlockSection } from 'src/atoms/';
 import { TopNavigation, ForgottenPasswordForm } from 'src/organisms/';
 
 export function ForgottenPasswordTemplate({

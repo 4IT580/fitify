@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 import { DashboardTemplate } from 'src/templates/DashboardTemplate';
 import { PageNotFound } from './PageNotFound';

@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { Heading } from '../atoms';
-import { fromUnixTimeStamp } from '../utils/date';
-import { Link } from '../organisms/WorkoutPlanView';
 import classNames from 'classnames';
 
 export function Card({ headerValue, children, className, grid }) {

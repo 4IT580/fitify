@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMutation, useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 
 import { WorkoutTemplate } from '../templates/WorkoutTemplate';
 import { useParams } from 'react-router-dom';
@@ -42,7 +42,7 @@ const WORKOUT_PLAN_QUERY = gql`
 
 export function WorkoutPage() {
   const { user } = useAuth();
-  const { userName, workoutPlanId } = useParams();
+  const { workoutPlanId } = useParams();
 
   const workoutPlanState = useQuery(WORKOUT_PLAN_QUERY, {
     variables: { id: parseInt(workoutPlanId) },

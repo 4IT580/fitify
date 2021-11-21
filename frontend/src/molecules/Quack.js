@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { AvatarPhoto, Link, UserName, UserUserName } from 'src/atoms/';
+import { Link, UserName, UserUserName } from 'src/atoms/';
 import { formatDate } from 'src/utils/date';
 import { route } from 'src/Routes';
 
 export function Quack({ quack }) {
   const {
-    user: { name, userName, profileImageUrl },
+    user: { name, userName },
     text,
     createdAt,
   } = quack;
@@ -17,7 +17,7 @@ export function Quack({ quack }) {
     <article className="flex w-100 bb b--black-10 pb2 mt2">
       <div className="w3">
         <Link to={linkToUser}>
-          <AvatarPhoto src={profileImageUrl} alt={name} />
+          {name}
         </Link>
       </div>
       <div className="pl3 flex-auto">

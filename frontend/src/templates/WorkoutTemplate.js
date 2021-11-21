@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, MainSectionWorkout } from 'src/atoms/';
+import { MainSectionWorkout } from 'src/atoms/';
 import { TopNavigation, WorkoutPlanView } from 'src/organisms/';
 
 export function WorkoutTemplate({

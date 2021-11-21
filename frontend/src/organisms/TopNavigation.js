@@ -1,10 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { AvatarPhoto, Link, NavLink, Button } from 'src/atoms/';
+import { Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export function TopNavigation() {
   const { user, signout } = useAuth();
@@ -26,6 +28,7 @@ export function TopNavigation() {
               to={route.userDetail(user.userName)}
               className="pa3 dib-ns"
             >
+              <FontAwesomeIcon icon={faUser} className={'green mr1'} />
               {user.name}
             </NavLink>
             <Button

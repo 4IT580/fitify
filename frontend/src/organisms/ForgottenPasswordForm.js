@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
-import { Link } from 'src/atoms/';
 
 const initialValues = {
   email: '',

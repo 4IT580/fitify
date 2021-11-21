@@ -5,4 +5,4 @@ export { TopNavigation } from './TopNavigation';
 export { ForgottenPasswordForm } from './ForgottenPasswordForm';
 export { WorkoutPlanView } from './WorkoutPlanView';
 export { ResetPasswordForm } from './ResetPasswordForm';
-export {NewWorkoutForm} from './NewWorkoutForm';
+export { NewWorkoutForm } from './NewWorkoutForm';

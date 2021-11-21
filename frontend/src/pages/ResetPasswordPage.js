@@ -53,7 +53,7 @@ export function ResetPasswordPage() {
         variables: { newPassword: values.password, passwordToken: token },
       });
     },
-    [resetPasswordRequest],
+    [resetPasswordRequest, token],
   );
 
   return (

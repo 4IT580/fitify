@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  AvatarPhoto,
   Button,
   ErrorBanner,
   Heading,
@@ -40,12 +39,6 @@ export function UserDetailTemplate({
         {data && (
           <>
             <header>
-              <AvatarPhoto
-                src={data.user.profileImageUrl}
-                alt={data.user.name}
-                size="4"
-                className="mb2"
-              />
               <Heading size="lg">{data.user.name}</Heading>
               <Heading size="sm" className="fw4 gray">
                 @{data.user.userName}

@@ -1,22 +1,14 @@
-//import React from 'react';
-import React, { Fragment, useEffect, useState } from 'react';
-import { MainSectionDashboard, Button, Heading } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { TopNavigation,NewWorkoutForm } from 'src/organisms/';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import { arrayMove } from 'react-sortable-hoc';
+import React  from 'react';
+import { MainSectionDashboard, Heading } from 'src/atoms/';
+import { TopNavigation, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
 
-
-
 export function NewTrainingTemplate({ workoutItems, dispatch }) {
-  //const [counter, setCounter] = useState(0);
-  console.log('action');
   return (
     <>
       <TopNavigation />
       <MainSectionDashboard>
-        <Heading>New Training</Heading>
+        <Heading size={'lg'}>New Training</Heading>
 
         <main className="flex grid-container-left br2 ml3 pa2 ">
           <a
@@ -39,7 +31,6 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
             </div>
           </p>
         </form>
-
       </MainSectionDashboard>
     </>
   );

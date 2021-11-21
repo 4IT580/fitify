@@ -7,7 +7,6 @@ import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
 import { route } from '../Routes';
 import { Link } from 'src/atoms/';
-import { Button } from '../atoms';
 
 const initialValues = {
   email: '',

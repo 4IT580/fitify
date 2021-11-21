@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 import { UserDetailTemplate } from 'src/templates/UserDetailTemplate';
