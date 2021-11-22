@@ -11,7 +11,7 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
 
   if (user === undefined) {
     //user does not exist
-    throw Error('Invalid credentials provided!');
+    throw Error('User not found');
   }
 
   const token = createToken({ id: user.id });
@@ -24,7 +24,7 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
     };
   }
 
-  throw Error('Invalid credentials provided!');
+  throw Error('Incorrect password');
 };
 
 export const signup = async (

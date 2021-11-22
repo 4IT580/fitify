@@ -1,4 +1,3 @@
-import { concatPagination } from '@apollo/client/utilities';
 import React, {
   createContext,
   useCallback,
@@ -34,8 +33,6 @@ export function AuthProvider({ children }) {
     const { token, user } = state;
     return createContextValue({ token, user, setState });
   }, [state, setState]);
-
-  console.log("context", contextValue);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
