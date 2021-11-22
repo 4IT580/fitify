@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { PageWrapper } from 'src/templates/PageWrapper';
-
 import { HomePage } from 'src/pages/HomePage';
 import { PageNotFound } from 'src/pages/PageNotFound';
 import { SignInPage } from 'src/pages/SignInPage';
@@ -10,24 +8,24 @@ import { SignUpPage } from 'src/pages/SignUpPage';
 import { ForgottenPasswordPage } from 'src/pages/ForgottenPasswordPage';
 import { ResetPasswordPage } from 'src/pages/ResetPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
-import { Dashboard } from 'src/pages/Dashboard';
-import { NewTraining } from 'src/pages/NewTraining';
+import { DashboardPage } from 'src/pages/DashboardPage';
+import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
 
 export const route = {
   home: () => `/`,
   foo: () => `/foo`,
-  practical: (id) => `/practical/${id}`,
   about: () => `/about`,
   signIn: () => `/auth/signin`,
   signUp: () => `/auth/signup`,
   forgottenPassword: () => `/auth/forgotten-password`,
   resetPassword: () => `/auth/reset-password`,
-  userDetail: (userName) => `/${userName}`,
-  dashboard: (userName) => `/${userName}/dashboard`,
-  newTraining: (userName) => `/${userName}/new-training`,
-  workout: (userName, workoutPlanId) => `/${userName}/workout/${workoutPlanId}`,
-  workoutTimer: (userName, workoutPlanId, workoutHistoryItemId) => `/${userName}/workout/${workoutPlanId}/${workoutHistoryItemId}`,
+  userDetail: (userId) => `/${userId}`,
+  dashboard: () => `/dashboard`,
+  newTraining: () => `/new-training`,
+  workout: (workoutPlanId) => `/workout/${workoutPlanId}`,
+  workoutTimer: (workoutPlanId, workoutHistoryItemId) =>
+    `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
 };
 
 export function Routes() {
@@ -42,19 +40,16 @@ export function Routes() {
         exact
         component={ForgottenPasswordPage}
       />
+      <Route path={route.dashboard()} exact component={DashboardPage} />
+      <Route path={route.newTraining()} exact component={NewTrainingPage} />
       <Route
-        path={route.userDetail(':userName')}
+        path={route.userDetail(':userId')}
         exact
         component={UserDetailPage}
       />
-      <Route path={route.dashboard(':userName')} exact component={Dashboard} />
+
       <Route
-        path={route.newTraining(':userName')}
-        exact
-        component={NewTraining}
-      />
-      <Route
-        path={route.workout(':userName', ':workoutPlanId')}
+        path={route.workout(':workoutPlanId')}
         exact
         component={WorkoutPage}
       />

@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Heading, Link, RightBlockSection } from 'src/atoms/';
+import { Heading, RightBlockSection } from 'src/atoms/';
 import { ResetPasswordForm, TopNavigation } from 'src/organisms/';
 
-export function ResetPasswordTemplate({ isLoading, error, onSubmit, successMessage }) {
+export function ResetPasswordTemplate({
+  isLoading,
+  error,
+  onSubmit,
+  successMessage,
+}) {
   return (
     <>
       <TopNavigation />

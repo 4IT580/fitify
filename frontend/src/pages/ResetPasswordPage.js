@@ -9,19 +9,20 @@ import { ResetPasswordTemplate } from 'src/templates/ResetPasswordTemplate';
 import { route } from 'src/Routes';
 
 const RESET_PASSWORD_MUTATION = gql`
-  mutation ResetPassword( $newPassword: String!, $passwordToken: String!){
-    resetPassword( newPassword: $newPassword, passwordToken: $passwordToken){
+  mutation ResetPassword($newPassword: String!, $passwordToken: String!) {
+    resetPassword(newPassword: $newPassword, passwordToken: $passwordToken) {
       token
-      user{
+      user {
         id
         name
       }
     }
-  }`;
+  }
+`;
 
 export function ResetPasswordPage() {
   const queryParams = queryString.parse(window.location.search);
-  const [successMessage,setSuccessMessage]=useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
   const token = queryParams.__token;
   const history = useHistory();
 
@@ -29,9 +30,15 @@ export function ResetPasswordPage() {
     RESET_PASSWORD_MUTATION,
     {
       onCompleted: () => {
-        setSuccessMessage("Your password is reset.\nNow You are being redirected to the Sign In page.");
-        setTimeout(function(){ window.location.href = route.signIn();}, 5000);
-        setTimeout(function(){ history.replace('/');}, 6000);
+        setSuccessMessage(
+          'Your password is reset.\nNow You are being redirected to the Sign In page.',
+        );
+        setTimeout(function () {
+          window.location.href = route.signIn();
+        }, 5000);
+        setTimeout(function () {
+          history.replace('/');
+        }, 6000);
       },
       onError: (error) => {
         console.error(error);
@@ -46,7 +53,7 @@ export function ResetPasswordPage() {
         variables: { newPassword: values.password, passwordToken: token },
       });
     },
-    [resetPasswordRequest],
+    [resetPasswordRequest, token],
   );
 
   return (
@@ -57,5 +64,4 @@ export function ResetPasswordPage() {
       onSubmit={handleResetPasswordFormSubmit}
     />
   );
-
 }

@@ -1,4 +1,3 @@
-export { AvatarPhoto } from './AvatarPhoto';
 export { Button } from './Button';
 export { ErrorBanner } from './ErrorBanner';
 export { ErrorMessage } from './ErrorMessage';
@@ -23,3 +22,7 @@ export { UserUserName } from './UserUserName';
 export { HomePage } from '../molecules/HomePage';
 export { SuccessBanner } from './SuccessBanner';
 export { SuccessMessage } from './SuccessMessage';
+export { SmallButton } from './SmallButton';
+export { CardBody } from './CardBody';
+export { List } from './List';
+export { ListItem } from './ListItem';

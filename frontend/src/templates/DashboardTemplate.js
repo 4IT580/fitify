@@ -1,105 +1,161 @@
 import React from 'react';
 
 import {
-  MainSectionDashboard,
   Button,
-  NavLink,
   Heading,
   Link,
+  ErrorBanner,
+  Loading,
+  MainSectionWorkout,
+  CardBody
 } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { TopNavigationLogged } from 'src/organisms/';
-import { Dashboard } from 'src/pages/Dashboard';
+
+import {
+  TopNavigation
+} from 'src/organisms/';
+
+import {
+  Card
+} from 'src/molecules';
+
 import { route } from 'src/Routes';
+import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
 
-//import {  TopNavigation } from 'src/organisms/';
+export function DashboardTemplate({
+  data,
+  isLoading,
+  error,
+  refetch,
+  currentUser,
+}) {
+  let workoutData = undefined;
+  let workoutHistory = [];
 
-export function DashboardTemplate({}) {
+  if (data !== undefined && data.user !== null && data.user !== undefined) {
+    workoutData = data.user.workouts;
+
+    workoutData.forEach((item) =>
+      item.history
+        .filter((item) => item.status === 'finished')
+        .forEach((activeItem) =>
+          workoutHistory.push({
+            ...activeItem,
+            parentId: item.id,
+            parentName: item.name,
+          }),
+        ),
+    );
+  }
+
   return (
     <>
-      <TopNavigationLogged />
-      <MainSectionDashboard>
-        <div>
-          <div className="ph3">
-            <h1 className="f2 fw8 tracked">
-              Dashboard
-            </h1>
-              <h2 className="f3 fw5 tracked-tight">
-                New Training
-              <Link to={route.newTraining('tt123')} className="f4 tc link dim br-pill ph4 pv2 mb2 dib green bg-dark ml3">
-                  <div>Add new </div>
-              </Link>
-              <div className="right-offset"></div>
-              </h2>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="/tt123/workout/1"
-            >
-              <div>
-                <h2>Morning HIIT</h2>
-                <p>3 rounds - 10 exercises - 30 minutes</p>
-                <p>30s exercise - 10s break</p>
-              </div>
-            </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="/tt123/workout/2"
-            >
-              <div>
-                <h2>Circuit training</h2>
-                <p>5 rounds - 6 exercises - 45 minutes</p>
-                <p>1min exercise - 10s break</p>
-              </div>
-            </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="/tt123/workout/3"
-            >
-              <div>
-                <h2>Evening HIIT</h2>
-                <p>6 rounds - 8 exercises - 40 minutes</p>
-                <p>40s exercise - 10s break</p>
-              </div>
-            </a>
-          </div>
-        </div>
+      <TopNavigation />
 
+      <MainSectionWorkout>
+        <Heading size={'lg'}>Dashboard</Heading>
+        {isLoading && !workoutData && <Loading />}
 
-        <div>
-          <div className="ph3">
-            <h2 className="f3 fw5 tracked">
-              Training history
-            </h2>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
-            >
-              <div>
-                <h2>Morning HIIT</h2>
-                <p>638 Kcal</p>
-                <p>
-                  <b>30.10.2021</b> 8:00-8:35</p>
-              </div>
-            </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
-            >
-              <div>
-                <h2>Circuit training</h2>
-                <p>876 Kcal</p>
-                <p>
-                  <b>22.10.2021</b> 13:24-14:10</p>
-              </div>
-            </a>
-            <a className="f7 tc link dim br-pill ph4 pv2 mb2 ma2 dib green bg-dark"
-              href="#0"
-            >
-              <div>
-                <h2>Evening HIIT</h2>
-                <p>1001 Kcal</p>
-                <p>
-                  <b>11.10.2021</b> 21:13-22:01</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </MainSectionDashboard>
+        {error && (
+          <ErrorBanner title={error.message}>
+            <Button color="red" onClick={() => refetch()}>
+              Reload
+            </Button>
+          </ErrorBanner>
+        )}
+
+        {workoutData && (
+          <>
+            <div className={'dit w-100 mt3'}>
+              {workoutData.map((item) => (
+                <div className={'fl w-100 w-50-ns w-25-l'} key={'workoutPlan' + item.id}>
+                  <Link
+                    className="f7 green mv0 mw5"
+                    to={route.workout(item.id)}
+                    noUnderline={true}
+                  >
+                    <div
+                      className={
+                        'dim tc workout-pill br-pill pv2 ph4 ma2 ba b--green'
+                      }
+                    >
+                      <Heading size={'md'} className={'mt2 mb3'}>
+                        {item.name}
+                      </Heading>
+                      <p className={'f4 f5-ns green'}>
+                        {item.intervalLength}s heat - {item.intervalPauseLength}
+                        s break
+                      </p>
+                      <p className={'f4 f5-ns green'}>
+                        {item.exercises.length} exercises,{' '}
+                        {item.roundsPauseLength}s round break
+                      </p>
+                      <p className={'f4 f5-ns green'}>{item.rounds} rounds</p>
+                      <p className={'f4 f5-ns green'}>
+                        {secondsToTimeString(
+                          item.rounds *
+                            (item.exercises.length *
+                              (item.intervalLength + item.intervalPauseLength) +
+                              item.roundsPauseLength),
+                        )}{' '}
+                        total
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <Card
+                headerValue={'Training history'}
+                className={'mt4 mb6'}
+                grid={'w-100 w-50-l center-l mw6-l'}
+              >
+                {workoutHistory
+                  .sort(function (a, b) {
+                    return a.startAt - b.startAt;
+                  })
+                  .map((historyItem) => (
+                    <CardBody
+                      key={
+                        'plan' +
+                        historyItem.parentId +
+                        'historyItem' +
+                        historyItem.id
+                      }
+                    >
+                      <Heading size={'sm'} className={'mt3'}>
+                        {historyItem.parentName}
+                      </Heading>
+                      <p className={'f4 f5-ns green'}>
+                        From: {fromUnixTimeStamp(historyItem.startAt)}
+                      </p>
+                      <p className={'f4 f5-ns green'}>
+                        Until: {fromUnixTimeStamp(historyItem.endAt)}
+                      </p>
+                      <p className={'f4 f5-ns green'}>
+                        {historyItem.calories &&
+                          ' Burnt calories: ' + historyItem.calories}
+                      </p>
+
+                      <div className={'tc'}>
+                        <Link
+                          className={
+                            'dit bg-animate mb3 br-pill bg-green ph5 tc tr-ns f3 f5-ns'
+                          }
+                          noUnderline={true}
+                          to={'/'}
+                        >
+                          Repeat workout
+                        </Link>
+                      </div>
+                    </CardBody>
+                  ))}
+              </Card>
+            </div>
+          </>
+        )}
+      </MainSectionWorkout>
     </>
   );
 }

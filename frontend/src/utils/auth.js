@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-const LOCAL_STORAGE_AUTH_KEY = 'quacker-auth';
+const LOCAL_STORAGE_AUTH_KEY = 'fitify-auth';
 
 const initialState = {
   token: null,
@@ -74,8 +74,7 @@ function getStorageState(defaultState) {
 
   try {
     const { user, token } = JSON.parse(rawData);
-
-    if (token && user && user.name && user.id && user.email) {
+    if (token && user && user.email && user.id && user.name) {
       return { token, user };
     }
   } catch {}

@@ -7,7 +7,6 @@ import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
 import { route } from '../Routes';
 import { Link } from 'src/atoms/';
-import { Button } from '../atoms';
 
 const initialValues = {
   email: '',
@@ -66,11 +65,7 @@ export function SignInForm({
           Login
         </LoadingButton>
         <div className={'mv0 w-100 tc'}>
-          <Link
-            to={route.forgottenPassword()}
-            color="dark"
-            noUnderline={false}
-          >
+          <Link to={route.forgottenPassword()} color="dark" noUnderline={false}>
             Did you forget password?
           </Link>
         </div>

@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { Heading, Link, RightBlockSection } from 'src/atoms/';
+import { Heading, RightBlockSection } from 'src/atoms/';
 import { SignUpForm, TopNavigation } from 'src/organisms/';
-import { route } from 'src/Routes';
 
-export function SignUpTemplate({ isLoading, error, onSubmit }) {
+export function SignUpTemplate({ isLoading, error, onSubmit, successMessage }) {
   return (
     <>
       <TopNavigation />
@@ -14,6 +13,7 @@ export function SignUpTemplate({ isLoading, error, onSubmit }) {
         <SignUpForm
           isLoading={isLoading}
           errorMessage={error && error.message}
+          successMessage={successMessage}
           onSubmit={onSubmit}
           className="mt3"
         />

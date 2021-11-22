@@ -1,4 +1,4 @@
-import React, { useCallback,useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
 import { ForgottenPasswordTemplate } from 'src/templates/ForgottenPasswordTemplate';
@@ -10,13 +10,15 @@ const FORGOTTEN_PASSWORD_MUTATION = gql`
 `;
 
 export function ForgottenPasswordPage() {
-  const [successMessage,setSuccessMessage]=useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const [forgottenPasswordRequest, forgottenPasswordRequestState] = useMutation(
     FORGOTTEN_PASSWORD_MUTATION,
     {
       onCompleted: () => {
-        setSuccessMessage("A link to change your password has been sent to your email.");
+        setSuccessMessage(
+          'A link to change your password has been sent to your email.',
+        );
       },
       onError: (error) => {
         console.error(error);

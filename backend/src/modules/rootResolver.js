@@ -18,6 +18,13 @@ import {
 } from './workout-plan';
 
 import { queries as QuackQueries, mutations as QuackMutations } from './quack';
+import {
+  getMockedBodyParts,
+  getMockedEquipment,
+  getMockedExercises,
+  getMockedHistory,
+  getMockedWorkoutPlans,
+} from '../__mocks__/workoutMocks';
 
 export default {
   Query: {
@@ -42,139 +49,43 @@ export default {
   },
   User: {
     async quacks(parent, _, { dbConnection }) {
-      return await dbConnection.query(`SELECT * FROM quack WHERE userId = ?`, [
-        parent.id,
-      ]);
+      return await dbConnection.query(
+        `SELECT *
+                                       FROM quack
+                                       WHERE userId = ?`,
+        [parent.id],
+      );
+    },
+    async workouts(parent, _, { dbConnection }) {
+      return Object.values(getMockedWorkoutPlans(parent.id));
     },
   },
   Quack: {
     async user(parent, _, { dbConnection }) {
       return (
-        await dbConnection.query(`SELECT * FROM user WHERE id = ?`, [
-          parent.userId,
-        ])
+        await dbConnection.query(
+          `SELECT *
+                                  FROM user
+                                  WHERE id = ?`,
+          [parent.userId],
+        )
       )[0];
     },
   },
   WorkoutPlan: {
-    async exercises(parent, _, {dbConnection}) {
-      return [
-        {
-          id: 1,
-          name: 'Zadní dřepy',
-          description: 'Dřep, nahoru a dolů, kolena se nerozjíždějí. Rovný záda',
-        },
-        {
-          id: 2,
-          name: 'Mrtvé tahy',
-          description: 'Jako na houpačce, táhnu osu podél těla',
-        },
-        {
-          id: 3,
-          name: 'Horolezec',
-          description: 'Klik u kterého vypadáš jako pavouk co se snaží dotknout kolenem loktu',
-        }
-      ];
+    async exercises(parent, _, { dbConnection }) {
+      return Object.values(getMockedExercises());
     },
-    async history(parent, _, {dbConnection}){
-      return [
-        {
-          id: 12,
-          calories: 666,
-          status: 'finished',
-          startAt: new Date('2021-11-09 08:00:00'),
-          endAt: new Date('2021-11-09 08:30:00'),
-        },
-        {
-          id: 14,
-          calories: 1234,
-          status: 'finished',
-          startAt: new Date('2021-11-10 08:00:00'),
-          endAt: new Date('2021-11-10 08:30:00'),
-        },
-        {
-          id: 13,
-          calories: null,
-          status: 'active',
-          startAt: new Date('2021-11-10 08:00:00'),
-          endAt: null,
-        },
-        {
-          id: 123,
-          calories: null,
-          status: 'active',
-          startAt: new Date('2021-11-20 08:00:00'),
-          endAt: null,
-        }
-      ];
-    }
+    async history(parent, _, { dbConnection }) {
+      return Object.values(getMockedHistory());
+    },
   },
   Excercise: {
-    async bodyParts(parent, _, {dbConnection}) {
-      let legs = {
-        id: 1,
-        name: 'Nohy'
-      };
-      let ass = {
-        id: 2,
-        name: 'Zadek'
-      };
-      let abs = {
-        id: 3,
-        name: 'Břicho'
-      };
-      let shoulders = {
-        id: 4,
-        name: 'Ramena'
-      };
-
-      if (parent.id === 1) {
-        return [
-          legs,
-          ass,
-          abs,
-        ]
-      }
-
-      if (parent.id === 3) {
-        return [
-          shoulders,
-          abs,
-        ]
-      }
-
-      return [];
+    async bodyParts(parent, _, { dbConnection }) {
+      return getMockedBodyParts(parent.id);
     },
-    equipment(parent, _, {dbConnection}) {
-      let barbell = {
-        id: 10,
-        name: 'Osa'
-      }
-      let dumbbell = {
-        id: 11,
-        name: 'Jednoručky'
-      }
-      let kettlebell = {
-        id: 12,
-        name: 'Kettlebel'
-      }
-
-      if (parent.id === 1) {
-        return [
-          barbell,
-          dumbbell,
-          kettlebell
-        ]
-      }
-
-      if (parent.id === 2) {
-        return [
-          barbell,
-          kettlebell
-        ]
-      }
-
-      return [];
-    }
-  }
+    equipment(parent, _, { dbConnection }) {
+      return getMockedEquipment(parent.id);
+    },
+  },
 };
