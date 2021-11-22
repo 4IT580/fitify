@@ -1,3 +1,4 @@
+import { concatPagination } from '@apollo/client/utilities';
 import React, {
   createContext,
   useCallback,
@@ -33,6 +34,8 @@ export function AuthProvider({ children }) {
     const { token, user } = state;
     return createContextValue({ token, user, setState });
   }, [state, setState]);
+
+  console.log("context", contextValue);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
@@ -72,7 +75,7 @@ function getStorageState(defaultState) {
   try {
     const { user, token } = JSON.parse(rawData);
 
-    if (token && user && user.userName && user.id && user.name) {
+    if (token && user && user.name && user.id && user.email) {
       return { token, user };
     }
   } catch {}
