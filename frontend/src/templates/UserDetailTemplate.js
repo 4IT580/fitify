@@ -7,8 +7,8 @@ import {
   Loading,
   MainSection,
 } from 'src/atoms/';
-import { QuackForm, ReloadButton } from 'src/molecules/';
-import { QuackList, TopNavigation } from 'src/organisms/';
+import { ReloadButton } from 'src/molecules/';
+import { TopNavigation } from 'src/organisms/';
 
 export function UserDetailTemplate({
   userName,
@@ -16,11 +16,8 @@ export function UserDetailTemplate({
   loading,
   error,
   onReload,
-  quackFormState,
   currentUser,
 }) {
-  const showQuackForm =
-    quackFormState && currentUser && currentUser.userName === userName;
 
   return (
     <>
@@ -45,15 +42,11 @@ export function UserDetailTemplate({
               </Heading>
             </header>
 
-            {showQuackForm && <QuackForm {...quackFormState} />}
-
             <ReloadButton
               onClick={onReload}
               isLoading={loading}
               className="fr"
             />
-
-            <QuackList quacks={data.user.quacks} />
           </>
         )}
       </MainSection>

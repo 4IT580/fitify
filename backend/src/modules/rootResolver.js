@@ -17,7 +17,6 @@ import {
   mutations as WorkoutPlanMutations,
 } from './workout-plan';
 
-import { queries as QuackQueries, mutations as QuackMutations } from './quack';
 import {
   getMockedBodyParts,
   getMockedEquipment,
@@ -34,8 +33,6 @@ export default {
     ...UserQueries,
     ...WorkoutHistoryQueries,
     ...WorkoutPlanQueries,
-
-    ...QuackQueries,
   },
   Mutation: {
     ...BodyMutations,
@@ -44,32 +41,10 @@ export default {
     ...UserMutations,
     ...WorkoutHistoryMutations,
     ...WorkoutPlanMutations,
-
-    ...QuackMutations,
   },
   User: {
-    async quacks(parent, _, { dbConnection }) {
-      return await dbConnection.query(
-        `SELECT *
-                                       FROM quack
-                                       WHERE userId = ?`,
-        [parent.id],
-      );
-    },
     async workouts(parent, _, { dbConnection }) {
       return Object.values(getMockedWorkoutPlans(parent.id));
-    },
-  },
-  Quack: {
-    async user(parent, _, { dbConnection }) {
-      return (
-        await dbConnection.query(
-          `SELECT *
-                                  FROM user
-                                  WHERE id = ?`,
-          [parent.userId],
-        )
-      )[0];
     },
   },
   WorkoutPlan: {
@@ -80,7 +55,7 @@ export default {
       return Object.values(getMockedHistory());
     },
   },
-  Excercise: {
+  Exercise: {
     async bodyParts(parent, _, { dbConnection }) {
       return getMockedBodyParts(parent.id);
     },

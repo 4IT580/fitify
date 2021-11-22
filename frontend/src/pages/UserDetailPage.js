@@ -9,17 +9,6 @@ const USER_DETAIL_QUERY = gql`
   query UserDetail($id: Int!) {
     user(id: $id) {
       id
-      quacks {
-        id
-      }
-    }
-  }
-`;
-
-const QUACK_MUTATION = gql`
-  mutation Quack($userId: Int!, $text: String!) {
-    addQuack(userId: $userId, text: $text) {
-      id
     }
   }
 `;
@@ -31,28 +20,6 @@ export function UserDetailPage() {
     variables: { id: 123 },
   });
 
-  const [quackFormText, setQuackFormText] = useState('');
-  const [quackMutationRequest, quackMutationRequestState] = useMutation(
-    QUACK_MUTATION,
-    {
-      onCompleted: () => {
-        setQuackFormText('');
-        userFetcher.refetch();
-      },
-      onError: () => {},
-    },
-  );
-
-  const quackFormState = {
-    loading: quackMutationRequestState.loading,
-    error: quackMutationRequestState.error,
-    text: quackFormText,
-    setText: setQuackFormText,
-    onSubmit: ({ text }) => {
-      quackMutationRequest({ variables: { text, id: parseInt(user.id) } });
-    },
-  };
-
   if (userFetcher.data && userFetcher.data.user === null) {
     return <PageNotFound />;
   }
@@ -63,7 +30,6 @@ export function UserDetailPage() {
       loading={userFetcher.loading}
       error={userFetcher.error}
       onReload={() => userFetcher.refetch()}
-      quackFormState={quackFormState}
       currentUser={user}
       userName={''}
     />

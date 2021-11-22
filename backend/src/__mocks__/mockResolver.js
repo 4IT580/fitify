@@ -1,10 +1,8 @@
 import { createToken } from '../libs/token';
-import { users, quacks } from './mocks';
+import { users } from './mocks';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const MOCK_DATA_DELAY = 300;
-const QUACKS_LIMIT = 20;
-const QUACK_TEXT_LIMIT = 250;
 
 function getAuthUser(dbUser) {
   return {
@@ -26,11 +24,6 @@ export default {
       await sleep(MOCK_DATA_DELAY);
 
       return users.find((user) => user.userName === userName);
-    },
-    async quacks() {
-      await sleep(MOCK_DATA_DELAY);
-
-      return quacks.slice(0, QUACKS_LIMIT);
     },
   },
   Mutation: {
@@ -84,44 +77,7 @@ export default {
 
       return { user, token };
     },
-    async addQuack(_, { userId, text }) {
-      await sleep(MOCK_DATA_DELAY);
-
-      if (!(text || '').trim()) {
-        throw Error('No text provided');
-      }
-
-      if (text.trim().length > QUACK_TEXT_LIMIT) {
-        throw Error('Text is too long');
-      }
-
-      const user = users.find((user) => user.id === userId);
-      if (!user) {
-        throw Error('User not found');
-      }
-
-      const quack = {
-        id: quacks.length + 1,
-        createdAt: new Date().toISOString(),
-        userId,
-        text,
-      };
-
-      quacks.splice(0, 0, quack);
-
-      return quack;
-    },
   },
   User: {
-    quacks({ id }) {
-      return quacks
-        .filter((quack) => quack.userId === id)
-        .slice(0, QUACKS_LIMIT);
-    },
-  },
-  Quack: {
-    user({ userId }) {
-      return users.find((user) => user.id === userId);
-    },
   },
 };

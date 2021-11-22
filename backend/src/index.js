@@ -7,6 +7,8 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-co
 import { getConnection } from './libs/connection';
 import { getMailer } from './libs/mailer';
 
+import { queries as BodyQueris } from './modules/body';
+
 import rootResolver from './modules/rootResolver';
 
 dotenv.config();
@@ -29,7 +31,6 @@ const typeDefs = gql`
     lostPasswordHash: String!
     lastLoginAt: String!
     createdAt: String!
-    quacks: [Quack!]!
     workouts: [WorkoutPlan!]
   }
 
@@ -42,7 +43,7 @@ const typeDefs = gql`
     roundsPauseLength: Int!
     workoutLength: Int!
     createdAt: String!
-    exercises: [Excercise!]!
+    exercises: [Exercise!]!
     history: [WorkoutHistory!]!
   }
 
@@ -54,7 +55,7 @@ const typeDefs = gql`
     endAt: String
   }
 
-  type Excercise {
+  type Exercise {
     id: Int!
     name: String!
     description: String!
@@ -83,20 +84,15 @@ const typeDefs = gql`
     token: String!
   }
 
-  type Quack {
-    id: Int!
-    createdAt: String!
-    user: User!
-    userId: Int!
-    text: String!
-  }
-
   type Query {
     users: [User!]!
     user(id: Int!): User
-    quacks: [Quack!]!
+    bodies: [BodyPart!]
     workoutPlan(id: Int!): WorkoutPlan!
     workoutPlans: [WorkoutPlan!]!
+    allEquipment: [Equipment!]
+    exercises: [Exercise!]
+    workoutHistory: [WorkoutHistory!]
   }
 
   type Mutation {
@@ -115,8 +111,6 @@ const typeDefs = gql`
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
-
-    addQuack(userId: Int!, text: String!): Quack!
   }
 `;
 
