@@ -10,7 +10,7 @@ export function RightBlockSection({ children }) {
             <span>&nbsp;</span>
           </section>
           <section className="fl w-40-l w-80-m w-100 bg-white br2 pa5">
-            <div className="">{children}</div>
+            <div>{children}</div>
           </section>
         </div>
       </main>

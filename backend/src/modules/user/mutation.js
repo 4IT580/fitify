@@ -14,8 +14,6 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
     throw Error('User not found');
   }
 
-  const token = createToken({ id: user.id });
-
   if (await argon2.verify(user.password, password)) {
     const token = createToken({ id: user.id });
     return {
@@ -43,7 +41,7 @@ export const signup = async (
 
   const passwordHash = await argon2.hash(password);
 
-  const dbResponse = await dbConnection.query(
+  await dbConnection.query(
     `INSERT INTO user (name, surname, email, password, role, active, height, weight, sex, birthdate)
     VALUES (?, ?, ?, ?, 'user', 1, ?, ?, ? ,?);`,
     [name, surname, email, passwordHash, height, weight, sex, birthdate],
@@ -66,16 +64,16 @@ export const forgottenPassword = async (
     throw Error('User does not exist');
   }
 
-  let argonResponse = await argon2.hash(Date.now().toString());
-  let lostPasswordHash = argonResponse.substr(argonResponse.length - 10);
-  let goToUrl = appOrigin + '/auth/reset-password/?__token=' + lostPasswordHash;
+  const argonResponse = await argon2.hash(Date.now().toString());
+  const lostPasswordHash = argonResponse.substr(argonResponse.length - 10);
+  const goToUrl = appOrigin + '/auth/reset-password/?__token=' + lostPasswordHash;
 
   await dbConnection.query(
     `UPDATE user SET lostPasswordHash = ? WHERE id = ?`,
     [lostPasswordHash, userByUserName.id],
   );
 
-  let info = await sendMail(
+  const info = await sendMail(
     mailer,
     userByUserName.email,
     'Fitify reset hesla',

@@ -44,10 +44,6 @@ export function DashboardPage() {
     variables: { id: 4 },
   });
 
-  if (userFetcher.data && userFetcher.data.user === null) {
-    return <PageNotFound />;
-  }
-
   return (
     <DashboardTemplate
       data={userFetcher.data}
