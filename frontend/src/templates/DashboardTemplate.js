@@ -53,6 +53,14 @@ export function DashboardTemplate({
 
       <MainSectionWorkout>
         <Heading size={'lg'}>Dashboard</Heading>
+
+        <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
+          <Link to={route.newTraining()} className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns fr-ns w-100 fl tc'}>
+            New training
+          </Link>
+        </div>
+
+
         {isLoading && !workoutData && <Loading />}
 
         {error && (
@@ -67,7 +75,7 @@ export function DashboardTemplate({
           <>
             <div className={'dit w-100 mt3'}>
               {workoutData.map((item) => (
-                <div className={'fl w-100 w-50-ns w-25-l'} key={'workoutPlan' + item.id}>
+                <div className={'fl w-100 w-third-l'} key={'workoutPlan' + item.id}>
                   <Link
                     className="f7 green mv0 mw5"
                     to={route.workout(item.id)}
@@ -113,7 +121,7 @@ export function DashboardTemplate({
               >
                 {workoutHistory
                   .sort(function (a, b) {
-                    return a.startAt - b.startAt;
+                    return b.startAt - a.startAt;
                   })
                   .map((historyItem) => (
                     <CardBody
