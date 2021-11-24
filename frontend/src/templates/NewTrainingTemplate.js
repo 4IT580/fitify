@@ -24,7 +24,7 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
         </main>
 
         <form className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
-          <p style={{ padding: 0, margin: 0 }}>
+          <p className={'pa0 ma0'}>
             <NewWorkoutForm />
             <div className="mb6  left bg-dark">
               <List workoutItem={workoutItems} dispatch={dispatch} />

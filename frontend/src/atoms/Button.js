@@ -26,7 +26,7 @@ export function Button({
   return (
     <Component
       className={classNames(
-        'dib bg-animate pv2 br-pill',
+        'dib bg-animate pv2 br-pill pointer',
         narrow ? 'ph3' : 'ph4',
         border ? 'ba' : 'bn',
         { 'o-50': disabled },
@@ -34,7 +34,6 @@ export function Button({
         className,
       )}
       type="button"
-      style={{ cursor: 'pointer' }}
       disabled={disabled}
       {...rest}
     >

@@ -15,7 +15,7 @@ export function TopNavigation() {
   return (
     <nav className="flex justify-between bb bg-dark">
       <Link to={route.home()} noUnderline className="b flex items-center green">
-        <Logo style={{ height: 90, width: 100 }} className="mr1 f2" />
+        <Logo className="mr1 f2 fitify-logo" />
       </Link>
       <div className="flex-grow flex items-center mr4">
         {user ? (

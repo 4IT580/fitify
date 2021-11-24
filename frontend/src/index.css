@@ -97,3 +97,8 @@ article {
 .workout-pill {
   background-color: rgba(21, 24, 36, 0.7);
 }
+
+.fitify-logo{
+  height: 90px;
+  width: 100px;
+}
