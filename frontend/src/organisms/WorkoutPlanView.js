@@ -40,10 +40,10 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
             </Card>
 
             <Card headerValue={'Exercises'} grid={'fr w-100 w-50-l'}>
-              {planData.exercises.map((exerciseItem) => (
+              {planData.exercises.map((exerciseItem, index) => (
                 <CardBody key={'exerciseItem' + exerciseItem.id}>
                   <Heading size={'md'} className={'green mt3'}>
-                    {exerciseItem.name}
+                    {index+1} : {exerciseItem.name}
                   </Heading>
                   <Heading
                     size={'sm'}
