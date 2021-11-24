@@ -11,7 +11,15 @@ const initialValues = {
 };
 
 const schema = yup.object().shape({
-  password: yup.string().required().label('Password'),
+  password: yup
+    .string()
+    .required()
+    .label('Password')
+    .test(
+      'Has min lenght?',
+      'ERROR: Minimum password length is 8 characters!',
+      (value) => value && value.length >= 8,
+    ),
   passwordConfirmation: yup
     .string()
     .required()

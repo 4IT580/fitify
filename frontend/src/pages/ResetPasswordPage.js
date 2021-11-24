@@ -58,7 +58,7 @@ export function ResetPasswordPage() {
 
   return (
     <ResetPasswordTemplate
-      isLoading={resetPasswordRequestState.loading}
+      isLoading={resetPasswordRequestState.loading || successMessage !== null}
       error={resetPasswordRequestState.error}
       successMessage={successMessage}
       onSubmit={handleResetPasswordFormSubmit}

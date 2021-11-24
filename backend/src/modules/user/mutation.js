@@ -11,7 +11,7 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
 
   if (user === undefined) {
     //user does not exist
-    throw Error('User not found');
+    throw Error('Incorrect credentials');
   }
 
   if (await argon2.verify(user.password, password)) {
@@ -22,7 +22,7 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
     };
   }
 
-  throw Error('Incorrect password');
+  throw Error('Incorrect credentials');
 };
 
 export const signup = async (
