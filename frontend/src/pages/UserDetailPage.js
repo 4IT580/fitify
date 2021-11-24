@@ -8,7 +8,8 @@ import { useAuth } from 'src/utils/auth';
 const USER_DETAIL_QUERY = gql`
   query UserDetail($id: Int!) {
     user(id: $id) {
-      id
+      name
+      email
     }
   }
 `;
@@ -17,7 +18,7 @@ export function UserDetailPage() {
   const { user } = useAuth();
 
   const userFetcher = useQuery(USER_DETAIL_QUERY, {
-    variables: { id: 123 },
+    variables: { id: user.id },
   });
 
   if (userFetcher.data && userFetcher.data.user === null) {

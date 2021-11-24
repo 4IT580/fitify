@@ -38,7 +38,7 @@ export function UserDetailTemplate({
             <header>
               <Heading size="lg">{data.user.name}</Heading>
               <Heading size="sm" className="fw4 gray">
-                @{data.user.userName}
+                {data.user.email}
               </Heading>
             </header>
 

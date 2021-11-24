@@ -20,7 +20,7 @@ export const route = {
   signUp: () => `/auth/signup`,
   forgottenPassword: () => `/auth/forgotten-password`,
   resetPassword: () => `/auth/reset-password`,
-  userDetail: (userId) => `/${userId}`,
+  settings: () => `/settings`,
   dashboard: () => `/dashboard`,
   newTraining: () => `/new-training`,
   workout: (workoutPlanId) => `/workout/${workoutPlanId}`,
@@ -42,11 +42,7 @@ export function Routes() {
       />
       <Route path={route.dashboard()} exact component={DashboardPage} />
       <Route path={route.newTraining()} exact component={NewTrainingPage} />
-      <Route
-        path={route.userDetail(':userId')}
-        exact
-        component={UserDetailPage}
-      />
+      <Route path={route.settings()} exact component={UserDetailPage}/>
 
       <Route
         path={route.workout(':workoutPlanId')}

@@ -25,10 +25,10 @@ export function TopNavigation() {
             </NavLink>
             <NavLink
               exact
-              to={route.userDetail(user.userName)}
+              to={route.settings(user.userName)}
               className="pa3 dib-ns"
             >
-              <FontAwesomeIcon icon={faUser} className={'green mr1'} />
+              <FontAwesomeIcon icon={faUser} className={'mr1'} />
               {user.name}
             </NavLink>
             <Button
