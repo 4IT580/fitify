@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 import { UserDetailTemplate } from 'src/templates/UserDetailTemplate';
 import { PageNotFound } from './PageNotFound';

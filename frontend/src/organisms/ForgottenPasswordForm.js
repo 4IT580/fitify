@@ -45,18 +45,14 @@ export function ForgottenPasswordForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <div>
-          <span>
-            <LoadingButton
-              type="submit"
-              className="mt2 mb3"
-              loading={isLoading}
-              color="green"
-            >
-              Reset password
-            </LoadingButton>
-          </span>
-        </div>
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+          color="green"
+        >
+          Reset password
+        </LoadingButton>
 
         {children}
       </Form>

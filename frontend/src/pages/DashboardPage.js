@@ -2,7 +2,6 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
 import { DashboardTemplate } from 'src/templates/DashboardTemplate';
-import { PageNotFound } from './PageNotFound';
 import { useAuth } from 'src/utils/auth';
 
 const USER_WORKOUTS_QUERY = gql`
@@ -34,10 +33,10 @@ const USER_WORKOUTS_QUERY = gql`
 export function DashboardPage() {
   const { user } = useAuth();
 
-  let userId = null;
-  if (user !== null) {
-    userId = user.id;
-  }
+  // let userId = null;
+  // if (user !== null) {
+  //   userId = user.id;
+  // }
 
   const userFetcher = useQuery(USER_WORKOUTS_QUERY, {
     // variables: {id: userId},
