@@ -5,3 +5,5 @@ export { ForgottenPasswordForm } from './ForgottenPasswordForm';
 export { WorkoutPlanView } from './WorkoutPlanView';
 export { ResetPasswordForm } from './ResetPasswordForm';
 export { NewWorkoutForm } from './NewWorkoutForm';
+export { RightNavigation } from './RightNavigation';
+

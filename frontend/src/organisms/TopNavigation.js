@@ -1,4 +1,5 @@
 import React from 'react';
+import Burger from './Burger';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
