@@ -6,6 +6,6 @@ export { WorkoutPlanView } from './WorkoutPlanView';
 export { ResetPasswordForm } from './ResetPasswordForm';
 export { NewWorkoutForm } from './NewWorkoutForm';
 export { RightNavigation } from './RightNavigation';
-export { Burger } from './Burger';
 export { MobileNavigation } from './MobileNavigation';
 export { Navigation } from './Navigation';
+export { RightNavigationIcon } from './RightNavigationIcon';

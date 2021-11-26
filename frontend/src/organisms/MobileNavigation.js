@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Burger } from './Burger';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,40 +25,17 @@ export function MobileNavigation() {
             <div className="flex-grow flex items-center mr4">
                 {user ? (
                     <>
-                        <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
-                            Dashboard
-                        </NavLink>
-                        <NavLink exact to={route.newTraining()} className="pa3 dib-ns">
-                            New Training
-                        </NavLink>
-                        <NavLink
-                            exact
-                            to={route.settings(user.userName)}
-                            className="pa3 dib-ns"
-                        >
-                                <FontAwesomeIcon icon={faUserCircle} className={'mr1 f2 pointer'} 
+                      
+                            <FontAwesomeIcon icon={faUserCircle} className={'mr1 f2 green pointer'}
                                 onClick={() => setOpen(!open)} />
-
-                        </NavLink>
-                            <Button
-                                color="dark"
-                                className={'b--green ml3 pv2 f5'}
-                                border={true}
-                                narrow
-                                onClick={() => {
-                                    signout();
-                                    history.push(route.home());
-                                    window.location.reload();
-                                }}
-                            >
-                                Sign Out
-                            </Button>
+                            {open && <RightNavigation />}
+                            
                     </>
                 ) : (
                     <>
                             <FontAwesomeIcon icon={faBars} className={'ma1 f2 green pointer'}
-                                    onClick={() =>  setOpen (!open)} /> 
-                         { open && <Burger />}
+                                onClick={() =>  setOpen (!open)} /> 
+                            {open && <RightNavigation />}
                     </>
                 )}
             </div>
