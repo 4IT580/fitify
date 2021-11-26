@@ -1,5 +1,5 @@
 export const initialState = {
-  lastId: 5,
+  lastId: 4,
   workoutItems: [
     {
       name: 'Klik',
@@ -60,7 +60,7 @@ export function listExerciseReducer(state, action) {
     }
     case 'SWAP': {
       console.log('SWAP');
-      const { oldIndex, newIndex } = action;
+      const { oldIndex, newIndex, oldWorkoutItems } = action;
       const workoutItems = [...state.workoutItems];
       const oldItem = workoutItems[oldIndex];
       const newItem = workoutItems[newIndex];
@@ -68,9 +68,13 @@ export function listExerciseReducer(state, action) {
       workoutItems[newIndex] = oldItem;
       console.log('A', JSON.stringify(workoutItems, null, '  '));
       console.log('B', JSON.stringify(state.workoutItems, null, '  '));
+      state.workoutItems = workoutItems;
+      console.log('C', JSON.stringify(state.workoutItems, null, '  '));
+      console.log('D', JSON.stringify(workoutItems, null, '  '));
 
+      // console.log('E', JSON.stringify(workoutItems, null, '  '));
       return {
-        ...state,
+        state,
         workoutItems,
       };
     }
@@ -86,6 +90,6 @@ export function deleteWorkoutItem(id) {
   return { type: 'DELETE', id };
 }
 
-export function swapItems(oldIndex, newIndex) {
-  return { type: 'SWAP', oldIndex, newIndex };
+export function swapItems(oldIndex, newIndex, oldWorkoutItems) {
+  return { type: 'SWAP', oldIndex, newIndex, oldWorkoutItems };
 }

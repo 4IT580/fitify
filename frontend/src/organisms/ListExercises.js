@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { SmallButton, MainSectionDashboard, button, Button } from 'src/atoms/';
+import React, { Fragment } from 'react';
+import { SmallButton, MainSectionDashboard, Button } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
 import { TopNavigationLogged } from 'src/organisms/';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import { arrayMove } from 'react-sortable-hoc';
+
 import {
   initialState,
   listExerciseReducer,
@@ -16,11 +16,10 @@ export const List = ({ workoutItems, dispatch }) => {
   // const [listData, setListData] = useState(initialState.workoutItems);
 
   /*  console.log(listData);*/
-
+  const oldWorkoutItems = workoutItems;
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
       <div className="center bg-dark green br2 pa2">
-        <div className="list__card-left"></div>
         <div className="list__card-right">
           <div className="list__card-right--name flex   ">
             <SmallButton
@@ -58,12 +57,16 @@ export const List = ({ workoutItems, dispatch }) => {
   });
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    dispatch(swapItems(oldIndex, newIndex));
+    dispatch(swapItems(oldIndex, newIndex, oldWorkoutItems));
     // let arr = arrayMove(listData, oldIndex, newIndex);
     // for (let i = 0; i < arr.length; i++) {
     //   arr[i].position = i;
     // }
-    console.log('A', JSON.stringify(workoutItems, null, '  '));
+
+    console.log(
+      'inside of listExercises',
+      JSON.stringify(workoutItems, null, '  '),
+    );
   };
 
   const listTitle = (
@@ -79,7 +82,6 @@ export const List = ({ workoutItems, dispatch }) => {
     <Fragment>
       {listTitle}
       <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
-      <div className="list ">{SortableList}</div>}
     </Fragment>
   );
 };
