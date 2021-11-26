@@ -1,54 +1,32 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { SmallButton, MainSectionDashboard, button, Button } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { TopNavigationLogged } from 'src/organisms/';
+import React, { Fragment } from 'react';
+import { SmallButton } from 'src/atoms/';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import { arrayMove } from 'react-sortable-hoc';
-import {
-  initialState,
-  listExerciseReducer,
-  addWorkoutItem,
-  deleteWorkoutItem,
-} from 'src/reducers/listExerciseReducer';
+import { deleteWorkoutItem, swapItems } from 'src/reducers/listExerciseReducer';
 
-export const List = ({ workoutItem, dispatch }) => {
-  const [listData, setListData] = useState(initialState.workoutItems);
-
-  /*  console.log(listData);*/
-
+export const List = ({ workoutItems, dispatch }) => {
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
-      <div className="center bg-dark green br2 pa2">
-        <div className="list__card-left"></div>
-        <div className="list__card-right">
-          <div className="list__card-right--name flex   ">
-            <SmallButton
-              className="pa2 mr3"
-              onClick={() =>
-                dispatch(
-                  deleteWorkoutItem(value.id),
-                  console.log(initialState.workoutItems),
-                  setListData(initialState.workoutItems),
-                )
-              }
-            >
-              X
-            </SmallButton>
-            {value.name}
+      <div className="list__card-right--name flex   ">
+        <SmallButton
+          className="pa2 mr3"
+          onClick={() => dispatch(deleteWorkoutItem(value.id))}
+        >
+          X
+        </SmallButton>
+        {value.name}
 
-            <div className=" "></div>
-          </div>
-        </div>
+        <div className=" "></div>
       </div>
     </div>
   ));
 
   const SortableList = SortableContainer(({ items }) => {
-    return (
-      <div className="list">
-        {items
-          .sort((a, b) => a.position - b.position)
-          .map((value, index) => (
+    if (items == null) {
+      return '';
+    } else
+      return (
+        <div className="list">
+          {items.map((value, index) => (
             <SortableItem
               value={value}
               index={index}
@@ -56,33 +34,26 @@ export const List = ({ workoutItem, dispatch }) => {
               dispatch={dispatch}
             />
           ))}
-      </div>
-    );
+        </div>
+      );
   });
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    let arr = arrayMove(listData, oldIndex, newIndex);
-    for (let i = 0; i < arr.length; i++) {
-      arr[i].position = i;
-    }
-    setListData(arr);
+    dispatch(swapItems(oldIndex, newIndex));
   };
 
   const listTitle = (
     <div className="list__title">
-      <h2>
-        List of workout
-        <br /> items
-      </h2>
+      <h2>List of workout items:</h2>
     </div>
   );
 
   return (
     <Fragment>
       {listTitle}
-      <SortableList items={listData} onSortEnd={onSortEnd} axis="y" />
-      <div className="list ">{SortableList}</div>}
+      <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
     </Fragment>
   );
 };
+
 export default List;

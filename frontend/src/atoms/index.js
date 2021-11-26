@@ -1,4 +1,5 @@
 export { Button } from './Button';
+export { Checkbox } from './Checkbox';
 export { ErrorBanner } from './ErrorBanner';
 export { ErrorMessage } from './ErrorMessage';
 export { Footer } from '../molecules/Footer';

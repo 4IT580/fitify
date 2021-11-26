@@ -2,48 +2,67 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { LoadingButton } from 'src/molecules/';
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { useAuth } from 'src/utils/auth';
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField } from 'src/molecules/';
-
-const initialValues = {
-  name: '',
-  rounds: '',
-  intLength: '',
-  intPauseLength: '',
-  roundsPauseLength: '',
-  exercises: [],
-};
+const WORKOUT_PLAN = gql`
+  query WorkoutPlan($id: Int!) {
+    workoutPlan(id: $id) {
+      id
+      name
+      rounds
+      roundsPauseLength
+      intervalLength
+      intervalPauseLength
+      workoutLength
+      createdAt
+      exercises {
+        id
+        name
+      }
+    }
+  }
+`;
 
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
-  rounds: yup.string(),
-  intLength: yup.number().min(5).required().integer(),
-  intPauseLength: yup.number().min(5).required().integer(),
-  roundsPauseLength: yup.number().min(5).required().integer(),
+  rounds: yup.number().required().positive().integer(),
+  intLength: yup.number().required().positive().integer(),
+  intPauseLength: yup.number().required().positive().integer(),
+  roundsPauseLength: yup.number().required().positive().integer(),
 });
 
-export function NewWorkoutForm({
+export function EditWorkoutForm({
   isLoading,
   errorMessage,
   successMessage,
   className,
   onSubmit,
   children,
-  workout,
 }) {
-  initialValues.exercises = [];
-  let currentList = workout.map((value) => {
-    let list = {
-      id: value.id,
-      sequence: value.position,
-    };
-    return list;
+  const auth = useAuth();
+  const { user } = useAuth();
+  const { workoutPlanId } = useParams();
+
+  const workoutPlan = useQuery(WORKOUT_PLAN, {
+    variables: { id: parseInt(workoutPlanId) },
   });
+  //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
+
+  const initialValues = {
+    name: '',
+    rounds: '',
+    intLength: '',
+    intPauseLength: '',
+    roundsPauseLength: '',
+  };
 
   return (
     <Formik
       onSubmit={function (values, actions) {
-        onSubmit({ ...values, exercises: currentList });
+        onSubmit(values);
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -91,8 +110,9 @@ export function NewWorkoutForm({
           loading={isLoading}
           color="green"
         >
-          Create New Training
+          Save Training
         </LoadingButton>
+
         {children}
       </Form>
     </Formik>

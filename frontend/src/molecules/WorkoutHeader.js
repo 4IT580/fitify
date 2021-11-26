@@ -36,7 +36,7 @@ export function WorkoutHeader({ planData, className }) {
           <Link
             className={'bg-animate dim bg-green br-pill ph3 f3 f5-ns'}
             noUnderline={true}
-            to={'/'}
+            to={route.editWorkout(planData.id)}
           >
             Edit
           </Link>
