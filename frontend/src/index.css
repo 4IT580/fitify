@@ -102,3 +102,31 @@ article {
   height: 90px;
   width: 100px;
 }
+
+
+@media (max-width: 768px){
+  .navigation {
+  display: none; 
+}
+}
+
+@media (min-width: 769px){
+  .mobile-navigation{
+    display: none;
+  }
+
+}
+
+.right-navigation ul{
+    display: flex;
+    flex-direction: column;
+    background-color: #151824;
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    width: 200px;
+    padding-top: 2.5rem;
+    opacity: 90%;
+}
+
+

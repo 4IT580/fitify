@@ -6,6 +6,7 @@ export function Burger () {
     const bool = true;
 
     return (
+        <main className="burger">
         <>
             {bool ? (
                 <>
@@ -27,6 +28,7 @@ export function Burger () {
             </div>
             <RightNavigation open={open} />
         </>
+    </main>
     )
 };
 
