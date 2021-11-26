@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import { NewTrainingTemplate } from 'src/templates/NewTrainingTemplate';
 import {
@@ -7,7 +7,16 @@ import {
 } from 'src/reducers/listExerciseReducer';
 
 export function NewTrainingPage() {
+  console.log('NewTrainingPage');
+
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
+
+  useEffect(() => {
+    console.log(
+      'inside new training page',
+      JSON.stringify(state.workoutItems, null, ' '),
+    );
+  }, [state]);
 
   return (
     <NewTrainingTemplate

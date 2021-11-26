@@ -1,6 +1,8 @@
 import React from 'react';
 import { MainSection, Heading } from 'src/atoms/';
 import { PageLayout, NewWorkoutForm } from 'src/organisms/';
+import { MainSectionDashboard } from 'src/atoms/';
+import { TopNavigation } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
 
 export function NewTrainingTemplate({ workoutItems, dispatch }) {
@@ -19,18 +21,17 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
             </a>
             <div className="right-offset"></div>
             <div>
+              <h2></h2>
             </div>
           </main>
 
           <form className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
-            <p className={'pa0 ma0'}>
+            <div className="mb6  left bg-dark">
               <NewWorkoutForm />
-              <div className="mb6  left bg-dark">
-                <List workoutItem={workoutItems} dispatch={dispatch} />
-              </div>
-            </p>
+              <List workoutItem={workoutItems} dispatch={dispatch} />
+            </div>
           </form>
-        </MainSection>
+      </MainSection>
       </PageLayout>
     </>
   );
