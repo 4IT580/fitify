@@ -1,5 +1,5 @@
 import React from 'react';
-import Burger from './Burger';
+import { Burger } from './Burger';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,10 +8,12 @@ import { Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 export function TopNavigation() {
   const { user, signout } = useAuth();
   const history = useHistory();
+  
 
   return (
     <nav className="flex justify-between bb bg-dark">
@@ -22,15 +24,16 @@ export function TopNavigation() {
         {user ? (
           <>
             <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
-              Home
+              Dshboard
             </NavLink>
-            <NavLink
+            <NavLink> 
               exact
               to={route.settings(user.userName)}
               className="pa3 dib-ns"
             >
               <FontAwesomeIcon icon={faUser} className={'mr1'} />
               {user.name}
+              <FontAwesomeIcon icon={faUserCircle} className= {'mr3'} />
             </NavLink>
             <Button
               color="dark"
@@ -57,6 +60,7 @@ export function TopNavigation() {
             <NavLink to={route.signUp()} className="pa3">
               Sign up
             </NavLink>
+            <Burger></Burger>
           </>
         )}
       </div>
