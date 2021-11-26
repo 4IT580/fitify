@@ -9,10 +9,11 @@ import {
   listExerciseReducer,
   addWorkoutItem,
   deleteWorkoutItem,
+  swapItems,
 } from 'src/reducers/listExerciseReducer';
 
-export const List = ({ workoutItem, dispatch }) => {
-  const [listData, setListData] = useState(initialState.workoutItems);
+export const List = ({ workoutItems, dispatch }) => {
+  // const [listData, setListData] = useState(initialState.workoutItems);
 
   /*  console.log(listData);*/
 
@@ -24,17 +25,13 @@ export const List = ({ workoutItem, dispatch }) => {
           <div className="list__card-right--name flex   ">
             <SmallButton
               className="pa2 mr3"
-              onClick={() =>
-                dispatch(
-                  deleteWorkoutItem(value.id),
-                  console.log(initialState.workoutItems),
-                  setListData(initialState.workoutItems),
-                )
-              }
+              onClick={() => dispatch(deleteWorkoutItem(value.id))}
             >
               X
             </SmallButton>
             {value.name}
+            {value.id}
+            {value.position}
 
             <div className=" "></div>
           </div>
@@ -61,11 +58,12 @@ export const List = ({ workoutItem, dispatch }) => {
   });
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    let arr = arrayMove(listData, oldIndex, newIndex);
-    for (let i = 0; i < arr.length; i++) {
-      arr[i].position = i;
-    }
-    setListData(arr);
+    dispatch(swapItems(oldIndex, newIndex));
+    // let arr = arrayMove(listData, oldIndex, newIndex);
+    // for (let i = 0; i < arr.length; i++) {
+    //   arr[i].position = i;
+    // }
+    console.log('A', JSON.stringify(workoutItems, null, '  '));
   };
 
   const listTitle = (
@@ -80,7 +78,7 @@ export const List = ({ workoutItem, dispatch }) => {
   return (
     <Fragment>
       {listTitle}
-      <SortableList items={listData} onSortEnd={onSortEnd} axis="y" />
+      <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
       <div className="list ">{SortableList}</div>}
     </Fragment>
   );

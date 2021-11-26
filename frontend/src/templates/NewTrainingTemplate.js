@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { MainSectionDashboard, Heading } from 'src/atoms/';
 import { TopNavigation, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
@@ -24,12 +24,10 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
         </main>
 
         <form className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
-          <p style={{ padding: 0, margin: 0 }}>
+          <div className="mb6  left bg-dark">
             <NewWorkoutForm />
-            <div className="mb6  left bg-dark">
-              <List workoutItem={workoutItems} dispatch={dispatch} />
-            </div>
-          </p>
+            <List workoutItem={workoutItems} dispatch={dispatch} />
+          </div>
         </form>
       </MainSectionDashboard>
     </>

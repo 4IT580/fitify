@@ -14,12 +14,15 @@ const initialValues = {
 };
 
 const schema = yup.object().shape({
-  email: yup.string().email().required().label('Email'),
-  password: yup.string().required().label('Password'),
+  name: yup.string().required().label('Name'),
+  numberLaps: yup.number().required().positive().integer(),
+  lengthOfWorkoutItem: yup.number().required().positive().integer(),
+  pauseBetweenLap: yup.number().required().positive().integer(),
+  pauseBetweenWorkoutItem: yup.number().required().positive().integer(),
 });
 
 export function NewWorkoutForm({
-  isLoading,
+  //  isLoading,
   errorMessage,
   className,
   onSubmit,
