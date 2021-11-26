@@ -23,12 +23,12 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
           </div>
         </main>
 
-        <form className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
-          <div className="mb6  left bg-dark">
+        <div className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
+          <div className="mb6    left bg-dark">
             <NewWorkoutForm />
-            <List workoutItem={workoutItems} dispatch={dispatch} />
+            <List workoutItems={workoutItems} dispatch={dispatch} />
           </div>
-        </form>
+        </div>
       </MainSectionDashboard>
     </>
   );
