@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import RightNavigation from './RightNavigation';
+import { RightNavigation } from './RightNavigation';
 
-const Burger = () => {
+export function Burger () {
     const [open, setOpen] = useState(false)
+    const bool = true;
 
     return (
-        <React.Fragment>
+        <>
+            {bool ? (
+                <>
+                    <div>
+
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div>
+                        
+                    </div>
+                </>
+            )}
             <div>
                 <div />
                 <div />
                 <div />
             </div>
             <RightNavigation open={open} />
-        </React.Fragment>
+        </>
     )
 };
 
-export default Burger;
