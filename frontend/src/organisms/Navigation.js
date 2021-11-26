@@ -1,8 +1,8 @@
-import React from 'react';
-import { Burger } from './Burger';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { RightNavigationIcon } from './RightNavigationIcon';
 
 import { Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
@@ -12,7 +12,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 export function Navigation() {
     const { user, signout } = useAuth();
     const history = useHistory();
-
+    const [open, setOpen] = useState(false);
 
     return (
         <main className="navigation">
@@ -29,27 +29,11 @@ export function Navigation() {
                             <NavLink exact to={route.newTraining()} className="pa3 dib-ns">
                                 New Training
                             </NavLink>
-                            <NavLink
-                                exact
-                                to={route.settings(user.userName)}
-                                className="pa3 dib-ns"
-                            >
 
-                                <FontAwesomeIcon icon={faUserCircle} className={'ma2 f2'} />
-                            </NavLink>
-                            <Button
-                                color="dark"
-                                className={'b--green ml3 pv2 f5'}
-                                border={true}
-                                narrow
-                                onClick={() => {
-                                    signout();
-                                    history.push(route.home());
-                                    window.location.reload();
-                                }}
-                            >
-                                Sign Out
-                            </Button>
+                                <FontAwesomeIcon icon={faUserCircle} className={'ma2 green f2'}
+                            onClick={() => setOpen(!open)} />
+                            {open && <RightNavigationIcon />}  
+
                         </>
                     ) : (
                         <>
