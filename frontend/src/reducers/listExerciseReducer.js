@@ -51,30 +51,33 @@ export function listExerciseReducer(state, action) {
     case 'DELETE': {
       const { id } = action;
       console.log(id);
+      const workoutItems = state.workoutItems.filter(
+        (workoutItem) => workoutItem.id !== id,
+      );
       return {
         ...state,
-        workoutItems: state.workoutItems.filter(
-          (workoutItem) => workoutItem.id !== id,
-        ),
+        workoutItems,
       };
     }
     case 'SWAP': {
       console.log('SWAP');
       const { oldIndex, newIndex, oldWorkoutItems } = action;
-      const workoutItems = [...state.workoutItems];
-      const oldItem = workoutItems[oldIndex];
-      const newItem = workoutItems[newIndex];
-      workoutItems[oldIndex] = newItem;
-      workoutItems[newIndex] = oldItem;
-      console.log('A', JSON.stringify(workoutItems, null, '  '));
-      console.log('B', JSON.stringify(state.workoutItems, null, '  '));
-      state.workoutItems = workoutItems;
-      console.log('C', JSON.stringify(state.workoutItems, null, '  '));
-      console.log('D', JSON.stringify(workoutItems, null, '  '));
+      const workoutItems2 = [...state.workoutItems];
+      const oldItem = workoutItems2[oldIndex];
+      const newItem = workoutItems2[newIndex];
+      workoutItems2[oldIndex] = newItem;
+      workoutItems2[newIndex] = oldItem;
+      console.log('A', JSON.stringify(workoutItems2, null, '  '));
+      // console.log('B', JSON.stringify(state.workoutItems, null, '  '));
+      // state.workoutItems = workoutItems;
+      // console.log('C', JSON.stringify(state.workoutItems, null, '  '));
 
-      // console.log('E', JSON.stringify(workoutItems, null, '  '));
+      let workoutItems = workoutItems2.filter(
+        (workoutItem) => workoutItem.id !== 0,
+      );
+      console.log('D', JSON.stringify(workoutItems, null, '  '));
       return {
-        state,
+        ...state,
         workoutItems,
       };
     }
