@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -7,16 +7,13 @@ import {
   ErrorBanner,
   Loading,
   MainSectionWorkout,
-  CardBody
+  CardBody,
+  TextInput,
 } from 'src/atoms/';
 
-import {
-  TopNavigation
-} from 'src/organisms/';
+import { TopNavigation } from 'src/organisms/';
 
-import {
-  Card
-} from 'src/molecules';
+import { Card } from 'src/molecules';
 
 import { route } from 'src/Routes';
 import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
@@ -28,24 +25,56 @@ export function DashboardTemplate({
   refetch,
   currentUser,
 }) {
-  let workoutData = undefined;
-  let workoutHistory = [];
+  const [workoutData, setWorkoutData] = useState([]);
+  const [workoutHistory, setWorkoutHistory] = useState([]);
 
-  if (data !== undefined && data.user !== null && data.user !== undefined) {
-    workoutData = data.user.workouts;
+  function normalizeString(string) {
+    return string
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  }
 
+  function filterWorkoutDataBasedOnValue(searchedValue) {
+    if (isLoading === true) {
+      setWorkoutData([]);
+    } else {
+      setWorkoutData(
+        data.user.workouts.filter((item) => {
+          if (searchedValue === undefined) {
+            return true;
+          }
+
+          return normalizeString(item.name).includes(
+            normalizeString(searchedValue),
+          );
+        }),
+      );
+    }
+  }
+
+  useEffect(() => {
+    filterWorkoutDataBasedOnValue();
+  }, [isLoading, data]);
+
+  useEffect(() => {
+    let workoutHistoryItems = [];
+
+    //better do this by custom request to BE when mocked data are not used
     workoutData.forEach((item) =>
       item.history
         .filter((item) => item.status === 'finished')
         .forEach((activeItem) =>
-          workoutHistory.push({
+          workoutHistoryItems.push({
             ...activeItem,
             parentId: item.id,
             parentName: item.name,
           }),
         ),
     );
-  }
+
+    setWorkoutHistory(workoutHistoryItems);
+  }, [workoutData]);
 
   return (
     <>
@@ -55,11 +84,25 @@ export function DashboardTemplate({
         <Heading size={'lg'}>Dashboard</Heading>
 
         <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
-          <Link to={route.newTraining()} className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns fr-ns w-100 fl tc'}>
+          <Link
+            to={route.newTraining()}
+            className={
+              'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns fr-ns w-100 fl tc'
+            }
+          >
             New training
           </Link>
         </div>
 
+        <div className={'dit w-100 mt3 w-auto-ns fl-ns'}>
+          <TextInput
+            placeholder={'Filter trainings'}
+            id={'filterInput'}
+            onChange={(e) => {
+              filterWorkoutDataBasedOnValue(e.target.value);
+            }}
+          />
+        </div>
 
         {isLoading && !workoutData && <Loading />}
 
@@ -75,7 +118,10 @@ export function DashboardTemplate({
           <>
             <div className={'dit w-100 mt3'}>
               {workoutData.map((item) => (
-                <div className={'fl w-100 w-third-l'} key={'workoutPlan' + item.id}>
+                <div
+                  className={'fl w-100 w-third-l'}
+                  key={'workoutPlan' + item.id}
+                >
                   <Link
                     className="f7 green mv0 mw5"
                     to={route.workout(item.id)}
