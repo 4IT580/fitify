@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner } from 'src/atoms/';
+import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField } from 'src/molecules/';
 
 const initialValues = {
@@ -30,7 +30,7 @@ export function NewWorkoutForm({
 }) {
   return (
     <Formik
-      onSubmit={(values, actions) => {
+      onSubmit={function (values, actions) {
         onSubmit(values);
       }}
       initialValues={initialValues}
