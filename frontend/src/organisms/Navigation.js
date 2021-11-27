@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { RightNavigationIcon } from './RightNavigationIcon';
+import { BurgerUser } from './BurgerUser';
 
-import { Link, NavLink, Button } from 'src/atoms/';
+import { Link, NavLink } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 export function Navigation() {
-    const { user, signout } = useAuth();
-    const history = useHistory();
+    const { user } = useAuth();
     const [open, setOpen] = useState(false);
 
     return (
@@ -30,9 +28,9 @@ export function Navigation() {
                                 New Training
                             </NavLink>
 
-                                <FontAwesomeIcon icon={faUserCircle} className={'ma2 green f2'}
-                            onClick={() => setOpen(!open)} />
-                            {open && <RightNavigationIcon />}  
+                            <FontAwesomeIcon icon={faUserCircle} className={'ma2 green f2'}
+                                onClick={() => setOpen(!open)} />
+                                {open && <BurgerUser />}  
 
                         </>
                     ) : (
