@@ -117,7 +117,7 @@ article {
 
 }
 
-.right-navigation ul{
+.burger ul{
     display: flex;
     flex-direction: column;
     background-color: #151824;
@@ -129,7 +129,7 @@ article {
     opacity: 96%;
 }
 
-.right-navigation-icon ul{
+.burger-user ul{
     display: flex;
     flex-direction: column;
     background-color: #151824;

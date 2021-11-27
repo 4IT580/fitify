@@ -1,17 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { route } from 'src/Routes';
-import { Link, NavLink, Button } from 'src/atoms/';
+import { NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-export function RightNavigation () {
+export function Burger () {
     const { user, signout } = useAuth();
     const history = useHistory();
 
     return (
-        <main className="right-navigation">
+        <main className="burger">
             {user ? (
                 <>
             <ul>

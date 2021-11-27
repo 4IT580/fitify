@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Link, NavLink, Button } from 'src/atoms/';
+import { Link } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
 import { route } from 'src/Routes';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { RightNavigation } from './RightNavigation';
+import { faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Burger } from './Burger';
 
 export function MobileNavigation() {
-    const { user, signout } = useAuth();
-    const history = useHistory();
+    const { user } = useAuth();
     const  [open, setOpen] = useState (false);
 
 
@@ -28,14 +25,14 @@ export function MobileNavigation() {
                       
                             <FontAwesomeIcon icon={faUserCircle} className={'mr1 f2 green pointer'}
                                 onClick={() => setOpen(!open)} />
-                            {open && <RightNavigation />}
+                            {open && <Burger />}
                             
                     </>
                 ) : (
                     <>
                             <FontAwesomeIcon icon={faBars} className={'ma1 f2 green pointer'}
                                 onClick={() =>  setOpen (!open)} /> 
-                            {open && <RightNavigation />}
+                            {open && <Burger />}
                     </>
                 )}
             </div>
