@@ -110,12 +110,6 @@ article {
 }
 }
 
-@media (min-width: 769px){
-  .mobile-navigation{
-    display: none;
-  }
-
-}
 
 .burger ul{
     display: flex;
