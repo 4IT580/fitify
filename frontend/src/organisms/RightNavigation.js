@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { route } from 'src/Routes';
 import { Link, NavLink, Button } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 export function RightNavigation () {
     const { user, signout } = useAuth();
@@ -13,14 +15,15 @@ export function RightNavigation () {
             {user ? (
                 <>
             <ul>
+                    <NavLink exact to={route.settings()} className="pa3 dib-ns" >
+                            <FontAwesomeIcon icon={faUser} className={'mr3'} />
+                            {user.name}
+                    </NavLink>
                     <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
                         Dashboard
                     </NavLink>
                     <NavLink exact to={route.newTraining()} className="pa3 dib-ns">
                         New Training
-                    </NavLink>
-                    <NavLink exact to={route.settings()} className="pa3 dib-ns">
-                        Settings
                     </NavLink>
                     <Button
                         color="dark"
