@@ -1,5 +1,4 @@
 import React from 'react';
-import { Footer } from 'src/atoms/';
 
 export function MainSection({ children }) {
   return (

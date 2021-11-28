@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Footer } from 'src/atoms/';
 import { HomePage } from 'src/molecules/';
-import { TopNavigation, PageLayout } from 'src/organisms/';
+import { PageLayout } from 'src/organisms/';
 
 export function HomeTemplate() {
   return (

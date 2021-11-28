@@ -54,6 +54,7 @@ export function DashboardTemplate({
 
   useEffect(() => {
     filterWorkoutDataBasedOnValue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, data]);
 
   useEffect(() => {

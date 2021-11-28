@@ -19,7 +19,6 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
             </a>
             <div className="right-offset"></div>
             <div>
-              <h2></h2>
             </div>
           </main>
 
