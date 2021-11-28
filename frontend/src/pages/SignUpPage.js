@@ -13,6 +13,7 @@ const SIGNUP_MUTATION = gql`
     $weight: Int!
     $sex: String!
     $birthdate: String!
+    $appOrigin: String!
   ) {
     signup(
       email: $email
@@ -23,6 +24,7 @@ const SIGNUP_MUTATION = gql`
       weight: $weight
       sex: $sex
       birthdate: $birthdate
+      appOrigin: $appOrigin
     )
   }
 `;
@@ -52,6 +54,7 @@ export function SignUpPage() {
           weight: values.weight,
           sex: values.sex,
           birthdate: values.birthdate,
+          appOrigin: window.location.origin,
         },
       });
     },
