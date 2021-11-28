@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { MainSection, Heading } from 'src/atoms/';
 import { PageLayout, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';

@@ -23,7 +23,6 @@ export function ResetPasswordTemplate({
             className="mt3"
           />
         </RightBlockSection>
-
       </PageLayout>
     </>
   );

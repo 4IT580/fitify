@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  Button,
-  ErrorBanner,
-  Heading,
-  Loading,
-  MainSection,
-} from 'src/atoms/';
+import { Button, ErrorBanner, Heading, Loading, MainSection } from 'src/atoms/';
 import { ReloadButton } from 'src/molecules/';
 import { PageLayout } from 'src/organisms/';
 
@@ -18,7 +12,6 @@ export function UserDetailTemplate({
   onReload,
   currentUser,
 }) {
-
   return (
     <>
       <PageLayout bgClass={'background bg-white'}>

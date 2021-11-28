@@ -16,7 +16,7 @@ dotenv.config();
 const MOCKS = process.env.MOCKS === 'false';
 
 const typeDefs = gql`
-  input ExerciseInput{
+  input ExerciseInput {
     id: Int!
     sequence: Int!
   }

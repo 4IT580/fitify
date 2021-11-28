@@ -48,7 +48,17 @@ export const signup = async (
   await dbConnection.query(
     `INSERT INTO user (name, surname, email, password, role, active, activationHash, height, weight, sex, birthdate)
     VALUES (?, ?, ?, ?, 'user', 0, ?, ?, ?, ? ,?);`,
-    [name, surname, email, passwordHash, userActivateHash, height, weight, sex, birthdate],
+    [
+      name,
+      surname,
+      email,
+      passwordHash,
+      userActivateHash,
+      height,
+      weight,
+      sex,
+      birthdate,
+    ],
   );
 
   const info = await sendMail(
@@ -79,7 +89,8 @@ export const forgottenPassword = async (
 
   const argonResponse = await argon2.hash(Date.now().toString());
   const lostPasswordHash = argonResponse.substr(argonResponse.length - 10);
-  const goToUrl = appOrigin + '/auth/reset-password/?__token=' + lostPasswordHash;
+  const goToUrl =
+    appOrigin + '/auth/reset-password/?__token=' + lostPasswordHash;
 
   await dbConnection.query(
     `UPDATE user SET lostPasswordHash = ? WHERE id = ?`,
@@ -134,9 +145,10 @@ export const activateUser = async (
   { dbConnection, mailer },
 ) => {
   let user = (
-    await dbConnection.query(`SELECT * FROM user WHERE activationHash = ? AND active = ?`, [
-      activateToken, false,
-    ])
+    await dbConnection.query(
+      `SELECT * FROM user WHERE activationHash = ? AND active = ?`,
+      [activateToken, false],
+    )
   )[0];
 
   if (user === undefined) {

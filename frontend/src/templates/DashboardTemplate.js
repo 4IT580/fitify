@@ -79,7 +79,9 @@ export function DashboardTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
-          <Heading size={'xl'} className={'green'}>Dashboard</Heading>
+          <Heading size={'xl'} className={'green'}>
+            Dashboard
+          </Heading>
 
           <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
             <Link
@@ -134,8 +136,8 @@ export function DashboardTemplate({
                           {item.name}
                         </Heading>
                         <p className={'f4 f5-ns green'}>
-                          {item.intervalLength}s heat - {item.intervalPauseLength}
-                          s break
+                          {item.intervalLength}s heat -{' '}
+                          {item.intervalPauseLength}s break
                         </p>
                         <p className={'f4 f5-ns green'}>
                           {item.exercises.length} exercises,{' '}
@@ -145,9 +147,10 @@ export function DashboardTemplate({
                         <p className={'f4 f5-ns green'}>
                           {secondsToTimeString(
                             item.rounds *
-                            (item.exercises.length *
-                              (item.intervalLength + item.intervalPauseLength) +
-                              item.roundsPauseLength),
+                              (item.exercises.length *
+                                (item.intervalLength +
+                                  item.intervalPauseLength) +
+                                item.roundsPauseLength),
                           )}{' '}
                           total
                         </p>
@@ -187,7 +190,7 @@ export function DashboardTemplate({
                         </p>
                         <p className={'f4 f5-ns green'}>
                           {historyItem.calories &&
-                          ' Burnt calories: ' + historyItem.calories}
+                            ' Burnt calories: ' + historyItem.calories}
                         </p>
 
                         <div className={'tc'}>

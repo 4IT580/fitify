@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Heading, RightBlockSection } from 'src/atoms/';
 import { SignInForm, TopNavigation } from 'src/organisms/';
-import { PageLayout } from "../organisms";
+import { PageLayout } from '../organisms';
 
 export function SignInTemplate({ isLoading, error, onSubmit }) {
   return (

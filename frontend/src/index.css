@@ -13,7 +13,7 @@ code {
   src: url('assets/Montserrat-Regular.ttf') format('truetype');
 }
 
-.background{
+.background {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -68,34 +68,33 @@ article {
   background-color: rgba(21, 24, 36, 0.7);
 }
 
-.fitify-logo{
+.fitify-logo {
   height: 90px;
   width: 100px;
 }
 
-.burger ul{
-    display: flex;
-    flex-direction: column;
-    background-color: #151824;
-    position: fixed;
-    right: 0;
-    width: 100%;
-    padding: 2rem;
-    margin-top: 50px;
-    border-top: #bffa29;
-    border-top-style: solid;
+.burger ul {
+  display: flex;
+  flex-direction: column;
+  background-color: #151824;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  padding: 2rem;
+  margin-top: 50px;
+  border-top: #bffa29;
+  border-top-style: solid;
 }
 
-.burger-desktop ul{
-    display: flex;
-    flex-direction: column;
-    background-color: #151824;
-    position: fixed;
-    right: 0;
-    width: 350px;
-    padding: 2rem;
-    margin-top: 40px;
-    border-top: #bffa29;
-    border-top-style: solid;
+.burger-desktop ul {
+  display: flex;
+  flex-direction: column;
+  background-color: #151824;
+  position: fixed;
+  right: 0;
+  width: 350px;
+  padding: 2rem;
+  margin-top: 40px;
+  border-top: #bffa29;
+  border-top-style: solid;
 }
-

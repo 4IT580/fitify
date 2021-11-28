@@ -37,11 +37,15 @@ export function Routes() {
       <Route path={route.signIn()} exact component={SignInPage} />
       <Route path={route.signUp()} exact component={SignUpPage} />
       <Route path={route.resetPassword()} exact component={ResetPasswordPage} />
-      <Route path={route.forgottenPassword()} exact component={ForgottenPasswordPage}/>
-      <Route path={route.activateUser()} exact component={ActivateUserPage}/>
+      <Route
+        path={route.forgottenPassword()}
+        exact
+        component={ForgottenPasswordPage}
+      />
+      <Route path={route.activateUser()} exact component={ActivateUserPage} />
       <Route path={route.dashboard()} exact component={DashboardPage} />
       <Route path={route.newTraining()} exact component={NewTrainingPage} />
-      <Route path={route.settings()} exact component={UserDetailPage}/>
+      <Route path={route.settings()} exact component={UserDetailPage} />
 
       <Route
         path={route.workout(':workoutPlanId')}
