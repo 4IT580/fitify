@@ -1,7 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { SmallButton, MainSectionDashboard, Button } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { TopNavigationLogged } from 'src/organisms/';
+import React, { Fragment } from 'react';
+import { SmallButton } from 'src/atoms/';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 import {
@@ -14,9 +12,9 @@ import {
 
 export const List = ({ workoutItems, dispatch }) => {
   // const [listData, setListData] = useState(initialState.workoutItems);
-  const [setup, setSetup] = useState(true);
+
   /*  console.log(listData);*/
-  const oldWorkoutItems = workoutItems;
+
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
       <div className="center bg-dark green br2 pa2">
@@ -40,61 +38,29 @@ export const List = ({ workoutItems, dispatch }) => {
   ));
 
   const SortableList = SortableContainer(({ items }) => {
-    if (setup) {
-      console.log(setup);
-      setSetup(false);
-      console.log(setup);
-      return (
-        console.log('jsem uvnitř sortabe listu poprvý'),
-        (
-          <div className="list">
-            {items
-              .sort((a, b) => a.position - b.position)
-              .map((value, index) => (
-                <SortableItem
-                  value={value}
-                  index={index}
-                  key={value.id}
-                  dispatch={dispatch}
-                />
-              ))}
-          </div>
-        )
-      );
-    } else {
-      return (
-        console.log('jsem uvnitř sortabe listu podruhý'),
-        (
-          <div className="list">
-            {items.map((value, index) => (
-              <SortableItem
-                value={value}
-                index={index}
-                key={value.id}
-                dispatch={dispatch}
-              />
-            ))}
-          </div>
-        )
-      );
-    }
+    return (
+      console.log('jsem uvnitř sortabe listu '),
+      (
+        <div className="list">
+          {items.map((value, index) => (
+            <SortableItem
+              value={value}
+              index={index}
+              key={value.id}
+              dispatch={dispatch}
+            />
+          ))}
+        </div>
+      )
+    );
   });
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    dispatch(swapItems(oldIndex, newIndex, oldWorkoutItems));
+    dispatch(swapItems(oldIndex, newIndex));
     // let arr = arrayMove(listData, oldIndex, newIndex);
     // for (let i = 0; i < arr.length; i++) {
     //   arr[i].position = i;
     // }
-
-    console.log(
-      'inside of listExercises',
-      JSON.stringify(workoutItems, null, '  '),
-    );
-    console.log(
-      'inside of listExercisesssss',
-      JSON.stringify(oldWorkoutItems, null, '  '),
-    );
   };
 
   const listTitle = (

@@ -8,7 +8,7 @@ export function List({ headerValue, items, className }) {
     <div className={classNames('', className)}>
       {(items.length > 0 && (
         <>
-          <Heading size={'md'} className={'fw1 mt2 mt3'}>
+          <Heading size={'md'} className={'fw5 mt2 mt3'}>
             {headerValue}
           </Heading>
           {items.map((item) => (
