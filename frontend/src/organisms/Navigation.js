@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReactComponent as Logo } from '../assets/images/fitify.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BurgerUser } from './BurgerUser';
+import { BurgerDesktop } from './BurgerDesktop';
 
 import { Link, NavLink } from 'src/atoms/';
 import { useAuth } from 'src/utils/auth';
@@ -30,7 +30,7 @@ export function Navigation() {
 
                             <FontAwesomeIcon icon={faUserCircle} className={'ma2 green f2'}
                                 onClick={() => setOpen(!open)} />
-                                {open && <BurgerUser />}  
+                                {open && <BurgerDesktop />}  
 
                         </>
                     ) : (

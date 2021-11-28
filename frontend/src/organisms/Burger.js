@@ -15,19 +15,19 @@ export function Burger () {
             {user ? (
                 <>
             <ul>
-                    <NavLink exact to={route.settings()} className="pa3 dib-ns" >
+                    <NavLink exact to={route.settings()} className="pa3 dib-ns ma3" >
                             <FontAwesomeIcon icon={faUser} className={'mr3'} />
                             {user.name}
                     </NavLink>
-                    <NavLink exact to={route.dashboard()} className="pa3 dib-ns">
+                    <NavLink exact to={route.dashboard()} className="pa3 dib-ns ma3">
                         Dashboard
                     </NavLink>
-                    <NavLink exact to={route.newTraining()} className="pa3 dib-ns">
+                    <NavLink exact to={route.newTraining()} className="pa3 dib-ns ma3">
                         New Training
                     </NavLink>
                     <Button
                         color="dark"
-                        className={'tl pv2 f5'}
+                        className={'tl pv2 ma3'}
                         narrow
                         onClick={() => {
                             signout();
@@ -42,13 +42,13 @@ export function Burger () {
             ) : (
                 <>
         <ul>
-                    <NavLink exact to={route.home()} className="pa3 dib-ns">
+                    <NavLink exact to={route.home()} className="pa3 dib-ns ma3">
                         Home
                     </NavLink>
-                    <NavLink to={route.signIn()} className="pa3">
+                    <NavLink to={route.signIn()} className="pa3 ma3">
                         Sign In
                     </NavLink>
-                    <NavLink to={route.signUp()} className="pa3">
+                    <NavLink to={route.signUp()} className="pa3 ma3">
                         Sign up
                     </NavLink>
         </ul>

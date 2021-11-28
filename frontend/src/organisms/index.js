@@ -8,4 +8,4 @@ export { NewWorkoutForm } from './NewWorkoutForm';
 export { Burger } from './Burger';
 export { MobileNavigation } from './MobileNavigation';
 export { Navigation } from './Navigation';
-export { BurgerUser } from './BurgerUser';
+export { BurgerDesktop } from './BurgerDesktop';

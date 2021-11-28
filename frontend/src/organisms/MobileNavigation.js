@@ -14,7 +14,7 @@ export function MobileNavigation() {
 
 
     return (
-        <main className="db dn-ns">
+        <main className="db dn-ns f3">
         <nav className="flex justify-between bb bg-dark">
             <Link to={route.home()} noUnderline className="b flex items-center green">
                 <Logo className="mr1 f2 fitify-logo" />

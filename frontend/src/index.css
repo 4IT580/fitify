@@ -109,21 +109,23 @@ article {
     background-color: #151824;
     position: fixed;
     right: 0;
-    height: 100vh;
-    width: 200px;
-    padding-top: 2.5rem;
-    opacity: 96%;
+    width: 100%;
+    padding: 2rem;
+    margin-top: 50px;
+    border-top: #bffa29;
+    border-top-style: solid;
 }
 
-.burger-user ul{
+.burger-desktop ul{
     display: flex;
     flex-direction: column;
     background-color: #151824;
     position: fixed;
     right: 0;
-    height: 100vh;
     width: 350px;
-    padding-top: 2.5rem;
-    opacity: 96%;
+    padding: 2rem;
+    margin-top: 40px;
+    border-top: #bffa29;
+    border-top-style: solid;
 }
 
