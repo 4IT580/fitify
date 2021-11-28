@@ -1,3 +1,14 @@
+import { gql, useMutation, useQuery } from '@apollo/client';
+
+const EXERCISES_QUERY = gql`
+  query Exercises {
+    exercises {
+      id
+      name
+    }
+  }
+`;
+
 export const initialState = {
   lastId: 4,
   workoutItems: [
@@ -61,21 +72,20 @@ export function listExerciseReducer(state, action) {
     }
     case 'SWAP': {
       console.log('SWAP');
-      const { oldIndex, newIndex, oldWorkoutItems } = action;
-      const workoutItems2 = [...state.workoutItems];
-      const oldItem = workoutItems2[oldIndex];
-      const newItem = workoutItems2[newIndex];
-      workoutItems2[oldIndex] = newItem;
-      workoutItems2[newIndex] = oldItem;
-      console.log('A', JSON.stringify(workoutItems2, null, '  '));
-      // console.log('B', JSON.stringify(state.workoutItems, null, '  '));
-      // state.workoutItems = workoutItems;
-      // console.log('C', JSON.stringify(state.workoutItems, null, '  '));
+      const { oldIndex, newIndex } = action;
+      const workoutItems = [...state.workoutItems];
+      const oldItem = workoutItems[oldIndex];
+      const newItem = workoutItems[newIndex];
+      workoutItems[oldIndex] = newItem;
+      workoutItems[newIndex] = oldItem;
+      console.log('oldindex position', workoutItems[oldIndex].position);
+      console.log('newindex position', workoutItems[newIndex].position);
+      console.log('olditem position', oldItem.position);
+      console.log('newinitem position', newItem.position);
+      workoutItems[oldIndex].position = oldIndex;
+      workoutItems[newIndex].position = newIndex;
+      console.log('A', JSON.stringify(workoutItems, null, '  '));
 
-      let workoutItems = workoutItems2.filter(
-        (workoutItem) => workoutItem.id !== 0,
-      );
-      console.log('D', JSON.stringify(workoutItems, null, '  '));
       return {
         ...state,
         workoutItems,
@@ -93,6 +103,6 @@ export function deleteWorkoutItem(id) {
   return { type: 'DELETE', id };
 }
 
-export function swapItems(oldIndex, newIndex, oldWorkoutItems) {
-  return { type: 'SWAP', oldIndex, newIndex, oldWorkoutItems };
+export function swapItems(oldIndex, newIndex) {
+  return { type: 'SWAP', oldIndex, newIndex };
 }

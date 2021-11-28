@@ -2,7 +2,7 @@ import React from 'react';
 import { MainSectionDashboard, Heading } from 'src/atoms/';
 import { TopNavigation, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
-
+import ListAllWorkoutItems from 'src/organisms/ListAllWorkoutItems';
 export function NewTrainingTemplate({ workoutItems, dispatch }) {
   return (
     <>
@@ -23,10 +23,16 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
           </div>
         </main>
 
-        <div className=" flex grid-container-left ml3 mt mb5 flb w-35-l w-50 br2 pa2 ">
+        <div className=" flex grid-container-left ml3 mt mb5 flb w-50-l w-50 br2 pa2 ">
           <div className="mb6    left bg-dark">
             <NewWorkoutForm />
+
             <List workoutItems={workoutItems} dispatch={dispatch} />
+
+            <ListAllWorkoutItems
+              workoutItems={workoutItems}
+              dispatch={dispatch}
+            />
           </div>
         </div>
       </MainSectionDashboard>
