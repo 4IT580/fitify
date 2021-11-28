@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { MainSectionWorkout } from 'src/atoms/';
-import { TopNavigation, WorkoutPlanView } from 'src/organisms/';
+import { MainSection } from 'src/atoms/';
+import { PageLayout, WorkoutPlanView } from 'src/organisms/';
 
 export function WorkoutTemplate({
   data,
@@ -12,17 +12,18 @@ export function WorkoutTemplate({
 }) {
   return (
     <>
-      <TopNavigation />
-      <MainSectionWorkout>
-        <main className="grid-container-left pt4">
-          <WorkoutPlanView
-            planData={data && data.workoutPlan}
-            isLoading={loading}
-            error={error}
-            refetch={refetch}
-          />
-        </main>
-      </MainSectionWorkout>
+      <PageLayout bgClass={'background background-gym-dumbbell'}>
+        <MainSection>
+          <main className="grid-container-left pt4">
+            <WorkoutPlanView
+              planData={data && data.workoutPlan}
+              isLoading={loading}
+              error={error}
+              refetch={refetch}
+            />
+          </main>
+        </MainSection>
+      </PageLayout>
     </>
   );
 }

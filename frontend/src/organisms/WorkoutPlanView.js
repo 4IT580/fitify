@@ -43,7 +43,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
               {planData.exercises.map((exerciseItem, index) => (
                 <CardBody key={'exerciseItem' + exerciseItem.id}>
                   <Heading size={'md'} className={'green mt3'}>
-                    {index+1} : {exerciseItem.name}
+                    {index + 1} : {exerciseItem.name}
                   </Heading>
                   <Heading
                     size={'sm'}
@@ -54,12 +54,12 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
 
                   <div className={'cf mb3'}>
                     <List
-                      className={'fl w-100 w-50-ns'}
+                      className={'fl w-100 w-50-ns green'}
                       headerValue={'Body parts'}
                       items={exerciseItem.bodyParts}
                     />
                     <List
-                      className={'fl w-100 w-50-ns'}
+                      className={'fl w-100 w-50-ns green'}
                       headerValue={'Equipment you can use'}
                       items={exerciseItem.equipment}
                     />

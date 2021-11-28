@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Heading, RightBlockSection } from 'src/atoms/';
-import { ResetPasswordForm, TopNavigation } from 'src/organisms/';
+import { ResetPasswordForm, PageLayout } from 'src/organisms/';
 
 export function ResetPasswordTemplate({
   isLoading,
@@ -11,18 +11,19 @@ export function ResetPasswordTemplate({
 }) {
   return (
     <>
-      <TopNavigation />
-      <RightBlockSection>
-        <Heading>Reset Password</Heading>
+      <PageLayout bgClass={'background background-gym-clap'}>
+        <RightBlockSection>
+          <Heading>Reset Password</Heading>
 
-        <ResetPasswordForm
-          isLoading={isLoading}
-          errorMessage={error && error.message}
-          successMessage={successMessage}
-          onSubmit={onSubmit}
-          className="mt3"
-        />
-      </RightBlockSection>
+          <ResetPasswordForm
+            isLoading={isLoading}
+            errorMessage={error && error.message}
+            successMessage={successMessage}
+            onSubmit={onSubmit}
+            className="mt3"
+          />
+        </RightBlockSection>
+      </PageLayout>
     </>
   );
 }

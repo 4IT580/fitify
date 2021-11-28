@@ -78,6 +78,5 @@ export default {
       return { user, token };
     },
   },
-  User: {
-  },
+  User: {},
 };

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 
 import { route } from 'src/Routes';
-import { ActivateUserTemplate } from "../templates/ActivateUserTemplate";
+import { ActivateUserTemplate } from '../templates/ActivateUserTemplate';
 
 const RESET_PASSWORD_MUTATION = gql`
   mutation ActivateUser($activateToken: String!) {
@@ -33,14 +33,11 @@ export function ActivateUserPage() {
     },
   );
 
-  const handleResetPasswordFormSubmit = useCallback(
-    () => {
-      activateUserRequest({
-        variables: { activateToken: token },
-      });
-    },
-    [activateUserRequest, token],
-  );
+  const handleResetPasswordFormSubmit = useCallback(() => {
+    activateUserRequest({
+      variables: { activateToken: token },
+    });
+  }, [activateUserRequest, token]);
 
   return (
     <ActivateUserTemplate

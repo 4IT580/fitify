@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const HEADING_SIZES = {
-  xl: ['h1', 'f2-ns f-headline'],
+  xl: ['h1', 'f2-ns f1'],
   lg: ['h2', 'f3-ns f2'],
   md: ['h3', 'f4-ns f3'],
   sm: ['h4', 'f5-ns f4'],
