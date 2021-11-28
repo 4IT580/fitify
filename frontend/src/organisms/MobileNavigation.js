@@ -14,27 +14,14 @@ export function MobileNavigation() {
 
 
     return (
-        <main className="mobile-navigation">
+        <main className="db dn-ns">
         <nav className="flex justify-between bb bg-dark">
             <Link to={route.home()} noUnderline className="b flex items-center green">
                 <Logo className="mr1 f2 fitify-logo" />
             </Link>
             <div className="flex-grow flex items-center mr4">
-                {user ? (
-                    <>
-                      
-                            <FontAwesomeIcon icon={faUserCircle} className={'mr1 f2 green pointer'}
-                                onClick={() => setOpen(!open)} />
-                            {open && <Burger />}
-                            
-                    </>
-                ) : (
-                    <>
-                            <FontAwesomeIcon icon={faBars} className={'ma1 f2 green pointer'}
-                                onClick={() =>  setOpen (!open)} /> 
-                            {open && <Burger />}
-                    </>
-                )}
+              <FontAwesomeIcon icon={user ? faUserCircle : faBars} className={'mr1 f2 green pointer'} onClick={() => setOpen(!open)} />
+              {open && <Burger />}
             </div>
         </nav>
      </main>

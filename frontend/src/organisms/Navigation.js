@@ -13,7 +13,7 @@ export function Navigation() {
     const [open, setOpen] = useState(false);
 
     return (
-        <main className="navigation">
+        <main className="dn db-ns">
             <nav className="flex justify-between bb bg-dark">
                 <Link to={route.home()} noUnderline className="b flex items-center green">
                     <Logo className="mr1 f2 fitify-logo" />

@@ -103,20 +103,6 @@ article {
   width: 100px;
 }
 
-
-@media (max-width: 768px){
-  .navigation {
-  display: none; 
-}
-}
-
-@media (min-width: 769px){
-  .mobile-navigation{
-    display: none;
-  }
-
-}
-
 .burger ul{
     display: flex;
     flex-direction: column;
