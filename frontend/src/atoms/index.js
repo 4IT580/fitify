@@ -7,8 +7,6 @@ export { Label } from './Label';
 export { Link } from './Link';
 export { Loading } from './Loading';
 export { MainSection } from './MainSection';
-export { MainSectionDashboard } from './MainSectionDashboard';
-export { MainSectionWorkout } from './MainSectionWorkout';
 export { RightBlockSection } from './RightBlockSection';
 export { NavLink } from './NavLink';
 export { ScrollToTop } from './ScrollToTop';

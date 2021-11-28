@@ -11,7 +11,7 @@ export function ResetPasswordTemplate({
 }) {
   return (
     <>
-      <PageLayout>
+      <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
           <Heading>Reset Password</Heading>
 

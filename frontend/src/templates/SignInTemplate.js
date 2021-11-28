@@ -7,7 +7,7 @@ import { PageLayout } from "../organisms";
 export function SignInTemplate({ isLoading, error, onSubmit }) {
   return (
     <>
-      <PageLayout>
+      <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
           <Heading>Sign In</Heading>
           <SignInForm

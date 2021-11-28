@@ -1,13 +1,13 @@
 import React  from 'react';
-import { MainSectionDashboard, Heading } from 'src/atoms/';
+import { MainSection, Heading } from 'src/atoms/';
 import { PageLayout, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
 
 export function NewTrainingTemplate({ workoutItems, dispatch }) {
   return (
     <>
-      <PageLayout>
-        <MainSectionDashboard>
+      <PageLayout bgClass={'background background-gym-dumbbell'}>
+        <MainSection>
           <Heading size={'lg'}>New Training</Heading>
 
           <main className="flex grid-container-left br2 ml3 pa2 ">
@@ -31,7 +31,7 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
               </div>
             </p>
           </form>
-        </MainSectionDashboard>
+        </MainSection>
       </PageLayout>
     </>
   );

@@ -6,7 +6,7 @@ import {
   Link,
   ErrorBanner,
   Loading,
-  MainSectionWorkout,
+  MainSection,
   CardBody,
   TextInput,
 } from 'src/atoms/';
@@ -77,9 +77,9 @@ export function DashboardTemplate({
 
   return (
     <>
-      <PageLayout>
-        <MainSectionWorkout>
-          <Heading size={'lg'}>Dashboard</Heading>
+      <PageLayout bgClass={'background background-gym-dumbbell'}>
+        <MainSection>
+          <Heading size={'xl'} className={'green'}>Dashboard</Heading>
 
           <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
             <Link
@@ -176,7 +176,7 @@ export function DashboardTemplate({
                           historyItem.id
                         }
                       >
-                        <Heading size={'sm'} className={'mt3'}>
+                        <Heading size={'sm'} className={'mt3 green'}>
                           {historyItem.parentName}
                         </Heading>
                         <p className={'f4 f5-ns green'}>
@@ -207,7 +207,7 @@ export function DashboardTemplate({
               </div>
             </>
           )}
-        </MainSectionWorkout>
+        </MainSection>
       </PageLayout>
     </>
   );

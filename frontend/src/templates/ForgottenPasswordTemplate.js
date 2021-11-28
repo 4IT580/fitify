@@ -11,7 +11,7 @@ export function ForgottenPasswordTemplate({
 }) {
   return (
     <>
-      <PageLayout>
+      <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
           <Heading>Forgotten password</Heading>
           <div className="mv2 f3 f5-ns">

@@ -7,7 +7,7 @@ import { TopNavigation, PageLayout } from 'src/organisms/';
 export function HomeTemplate() {
   return (
     <>
-      <PageLayout>
+      <PageLayout bgClass={'background background-gym-clap'}>
         <HomePage>
           <h1>FITIFY</h1>
           <h3>Aplikace, která bude cvičit s vámi!</h3>

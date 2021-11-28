@@ -21,7 +21,7 @@ export function UserDetailTemplate({
 
   return (
     <>
-      <PageLayout>
+      <PageLayout bgClass={'background bg-white'}>
         <MainSection>
           {loading && !data && <Loading />}
 

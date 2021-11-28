@@ -19,7 +19,7 @@ export function ActivateUserTemplate({
 
   return (
     <div>
-      <PageLayout>
+      <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
           <Heading className={'pb2'}>Activate User</Heading>
 
