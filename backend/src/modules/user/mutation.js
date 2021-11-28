@@ -27,8 +27,8 @@ export const signin = async (_, { email, password }, { dbConnection }) => {
 
 export const signup = async (
   _,
-  { name, surname, email, password, height, weight, sex, birthdate },
-  { dbConnection },
+  { name, surname, email, password, height, weight, sex, birthdate, appOrigin },
+  { dbConnection, mailer },
 ) => {
   console.log(name);
   const userByEmail = (
@@ -41,11 +41,24 @@ export const signup = async (
 
   const passwordHash = await argon2.hash(password);
 
+  const argonResponse = await argon2.hash(Date.now().toString());
+  const userActivateHash = argonResponse.substr(argonResponse.length - 10);
+  const goToUrl = appOrigin + '/auth/activate/?__token=' + userActivateHash;
+
   await dbConnection.query(
-    `INSERT INTO user (name, surname, email, password, role, active, height, weight, sex, birthdate)
-    VALUES (?, ?, ?, ?, 'user', 1, ?, ?, ? ,?);`,
-    [name, surname, email, passwordHash, height, weight, sex, birthdate],
+    `INSERT INTO user (name, surname, email, password, role, active, activationHash, height, weight, sex, birthdate)
+    VALUES (?, ?, ?, ?, 'user', 0, ?, ?, ?, ? ,?);`,
+    [name, surname, email, passwordHash, userActivateHash, height, weight, sex, birthdate],
   );
+
+  const info = await sendMail(
+    mailer,
+    email,
+    'Fitify aktivace účtu',
+    'For account activation go to ' + goToUrl,
+  );
+
+  console.log('Message sent: %s', info.messageId);
 
   return true;
 };
@@ -113,4 +126,27 @@ export const resetPassword = async (
     user: { ...user },
     token,
   };
+};
+
+export const activateUser = async (
+  _,
+  { activateToken },
+  { dbConnection, mailer },
+) => {
+  let user = (
+    await dbConnection.query(`SELECT * FROM user WHERE activationHash = ? AND active = ?`, [
+      activateToken, false,
+    ])
+  )[0];
+
+  if (user === undefined) {
+    return false;
+  }
+
+  await dbConnection.query(
+    `UPDATE user SET active = ?, activationHash = ? WHERE id = ?`,
+    [true, null, user.id],
+  );
+
+  return true;
 };

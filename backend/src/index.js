@@ -107,10 +107,12 @@ const typeDefs = gql`
       weight: Int!
       sex: String!
       birthdate: String!
+      appOrigin: String!
     ): Boolean!
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
+    activateUser(activateToken: String!): Boolean!
   }
 `;
 

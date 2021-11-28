@@ -6,6 +6,7 @@ import { PageNotFound } from 'src/pages/PageNotFound';
 import { SignInPage } from 'src/pages/SignInPage';
 import { SignUpPage } from 'src/pages/SignUpPage';
 import { ForgottenPasswordPage } from 'src/pages/ForgottenPasswordPage';
+import { ActivateUserPage } from 'src/pages/ActivateUserPage';
 import { ResetPasswordPage } from 'src/pages/ResetPasswordPage';
 import { UserDetailPage } from 'src/pages/UserDetailPage';
 import { DashboardPage } from 'src/pages/DashboardPage';
@@ -19,6 +20,7 @@ export const route = {
   signIn: () => `/auth/signin`,
   signUp: () => `/auth/signup`,
   forgottenPassword: () => `/auth/forgotten-password`,
+  activateUser: () => `/auth/activate`,
   resetPassword: () => `/auth/reset-password`,
   settings: () => `/settings`,
   dashboard: () => `/dashboard`,
@@ -35,11 +37,8 @@ export function Routes() {
       <Route path={route.signIn()} exact component={SignInPage} />
       <Route path={route.signUp()} exact component={SignUpPage} />
       <Route path={route.resetPassword()} exact component={ResetPasswordPage} />
-      <Route
-        path={route.forgottenPassword()}
-        exact
-        component={ForgottenPasswordPage}
-      />
+      <Route path={route.forgottenPassword()} exact component={ForgottenPasswordPage}/>
+      <Route path={route.activateUser()} exact component={ActivateUserPage}/>
       <Route path={route.dashboard()} exact component={DashboardPage} />
       <Route path={route.newTraining()} exact component={NewTrainingPage} />
       <Route path={route.settings()} exact component={UserDetailPage}/>
