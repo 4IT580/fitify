@@ -14,31 +14,26 @@ export const initialState = {
   workoutItems: [
     {
       name: 'Klik',
-      description: '',
       position: 0,
       id: 0,
     },
     {
       name: 'Dřep',
-      description: '',
       position: 1,
       id: 1,
     },
     {
       name: 'Bicák',
-      description: '',
       position: 2,
       id: 2,
     },
     {
       name: 'Výskok',
-      description: '',
       position: 3,
       id: 3,
     },
     {
       name: 'Mlácení hlavou o zeď',
-      description: '',
       position: 4,
       id: 4,
     },
@@ -51,7 +46,7 @@ export function listExerciseReducer(state, action) {
       const { name } = action;
       const id = state.lastId + 1;
 
-      const newWorkItem = { name, description: '', id, id };
+      const newWorkItem = { name, id, id };
 
       return {
         ...state,
@@ -78,12 +73,9 @@ export function listExerciseReducer(state, action) {
       const newItem = workoutItems[newIndex];
       workoutItems[oldIndex] = newItem;
       workoutItems[newIndex] = oldItem;
-      console.log('oldindex position', workoutItems[oldIndex].position);
-      console.log('newindex position', workoutItems[newIndex].position);
-      console.log('olditem position', oldItem.position);
-      console.log('newinitem position', newItem.position);
-      workoutItems[oldIndex].position = oldIndex;
-      workoutItems[newIndex].position = newIndex;
+
+      // workoutItems[oldIndex].position = oldIndex;
+      // workoutItems[newIndex].position = newIndex;
       console.log('A', JSON.stringify(workoutItems, null, '  '));
 
       return {
