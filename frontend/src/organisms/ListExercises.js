@@ -24,29 +24,26 @@ export const List = ({ workoutItems, dispatch }) => {
   const exercises = useQuery(EXERCISES_QUERY);
   console.log('exercises', exercises);
   console.log('exercises.data konina', exercises.data);
-  workoutItems.keys();
-  //exercises.keys();
-  let poleKolen;
-  const map = { a: 1, b: 2, c: 3 };
-  const result = Object.keys(map).map((key) => map[key]);
-  console.log(result);
-  const result2 = Object.keys(workoutItems).map((key) => workoutItems[key]);
-  if (exercises.data != null) {
-    const result3 = Object.keys(exercises).map((key) => exercises[key]);
-    console.log('result 3 ', result3);
+  //  workoutItems.keys();
 
-    if (exercises.data != null) {
-      const result4 = Object.keys(exercises.data).map(
-        (key) => exercises.data[key],
-      );
-      console.log('result 4', result4[0]);
-      poleKolen = result4[0];
-      poleKolen.slice().sort();
-    }
-  }
-  //  exercises.keys(exercises.data).sort();
-  /*  console.log(listData);*/
-  console.log(result2);
+  // let poleKolen;
+  // const map = { a: 1, b: 2, c: 3 };
+  // const result = Object.keys(map).map((key) => map[key]);
+  // console.log(result);
+  // const result2 = Object.keys(workoutItems).map((key) => workoutItems[key]);
+  // if (exercises.data != null) {
+  //   const result3 = Object.keys(exercises).map((key) => exercises[key]);
+  //   console.log('result 3 ', result3);
+  //
+  //   if (exercises.data != null) {
+  //     const result4 = Object.keys(exercises.data).map(
+  //       (key) => exercises.data[key],
+  //     );
+  //     console.log('result 4', result4[0]);
+  //     poleKolen = result4[0];
+  //     poleKolen.slice().sort();
+  //   }
+  // }
 
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
@@ -60,9 +57,10 @@ export const List = ({ workoutItems, dispatch }) => {
               X
             </SmallButton>
             {value.name}
-            {value.id}
-            {value.position}
-
+            {
+              // {value.id}
+              //{value.position}
+            }
             <div className=" "></div>
           </div>
         </div>
@@ -100,20 +98,20 @@ export const List = ({ workoutItems, dispatch }) => {
       </h2>
     </div>
   );
-  if (poleKolen != null) {
-    return (
-      <Fragment>
-        {listTitle}
-        <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
-      </Fragment>
-    );
-  } else
-    return (
-      <Fragment>
-        {listTitle}
-        <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
-      </Fragment>
-    );
+  // if (poleKolen != null) {
+  //   return (
+  //     <Fragment>
+  //       {listTitle}
+  //       <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
+  //     </Fragment>
+  //   );
+  // } else
+  return (
+    <Fragment>
+      {listTitle}
+      <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
+    </Fragment>
+  );
 };
 
 export default List;
