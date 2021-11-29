@@ -164,7 +164,7 @@ export function DashboardTemplate({
               <div>
                 <Card
                   headerValue={'Training history'}
-                  className={'mt4 mb6'}
+                  className={'mt4 mb6 green'}
                   grid={'w-100 w-50-l center-l mw6-l'}
                 >
                   {workoutHistory
