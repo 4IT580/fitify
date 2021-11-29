@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { SmallButton } from 'src/atoms/';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { useAuth } from 'src/utils/auth';
 import {
   initialState,
   listExerciseReducer,
@@ -11,9 +12,41 @@ import {
 } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
-  // const [listData, setListData] = useState(initialState.workoutItems);
+  const EXERCISES_QUERY = gql`
+    query Exercises {
+      exercises {
+        id
+        name
+      }
+    }
+  `;
 
+  const exercises = useQuery(EXERCISES_QUERY);
+  console.log('exercises', exercises);
+  console.log('exercises.data konina', exercises.data);
+  workoutItems.keys();
+  //exercises.keys();
+  let poleKolen;
+  const map = { a: 1, b: 2, c: 3 };
+  const result = Object.keys(map).map((key) => map[key]);
+  console.log(result);
+  const result2 = Object.keys(workoutItems).map((key) => workoutItems[key]);
+  if (exercises.data != null) {
+    const result3 = Object.keys(exercises).map((key) => exercises[key]);
+    console.log('result 3 ', result3);
+
+    if (exercises.data != null) {
+      const result4 = Object.keys(exercises.data).map(
+        (key) => exercises.data[key],
+      );
+      console.log('result 4', result4[0]);
+      poleKolen = result4[0];
+      poleKolen.slice().sort();
+    }
+  }
+  //  exercises.keys(exercises.data).sort();
   /*  console.log(listData);*/
+  console.log(result2);
 
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
@@ -39,7 +72,7 @@ export const List = ({ workoutItems, dispatch }) => {
 
   const SortableList = SortableContainer(({ items }) => {
     return (
-      console.log('jsem uvnitř sortabe listu '),
+      console.log('jsem uvnitř sortabe listu ', items),
       (
         <div className="list">
           {items.map((value, index) => (
@@ -57,10 +90,6 @@ export const List = ({ workoutItems, dispatch }) => {
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     dispatch(swapItems(oldIndex, newIndex));
-    // let arr = arrayMove(listData, oldIndex, newIndex);
-    // for (let i = 0; i < arr.length; i++) {
-    //   arr[i].position = i;
-    // }
   };
 
   const listTitle = (
@@ -71,12 +100,20 @@ export const List = ({ workoutItems, dispatch }) => {
       </h2>
     </div>
   );
-
-  return (
-    <Fragment>
-      {listTitle}
-      <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
-    </Fragment>
-  );
+  if (poleKolen != null) {
+    return (
+      <Fragment>
+        {listTitle}
+        <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
+      </Fragment>
+    );
+  } else
+    return (
+      <Fragment>
+        {listTitle}
+        <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
+      </Fragment>
+    );
 };
+
 export default List;

@@ -16,6 +16,11 @@ dotenv.config();
 const MOCKS = process.env.MOCKS === 'false';
 
 const typeDefs = gql`
+  input ExerciseInput {
+    id: Int!
+    sequence: Int!
+  }
+
   type User {
     id: Int!
     name: String!
@@ -58,7 +63,7 @@ const typeDefs = gql`
   type Exercise {
     id: Int!
     name: String!
-    description: String!
+    description: String
     bodyParts: [BodyPart!]!
     equipment: [Equipment!]!
   }
@@ -107,10 +112,35 @@ const typeDefs = gql`
       weight: Int!
       sex: String!
       birthdate: String!
+      appOrigin: String!
     ): Boolean!
+
+    createWorkout(
+      userId: Int!
+      name: String!
+      rounds: Int!
+      intLength: Int!
+      intPauseLength: Int!
+      roundsPauseLength: Int!
+      workoutLength: Int!
+      exercises: [ExerciseInput]!
+    ): Boolean!
+
+    editWorkout(
+      workoutPlanId: Int!
+      name: String!
+      rounds: Int!
+      intLength: Int!
+      intPauseLength: Int!
+      roundsPauseLength: Int!
+      workoutLength: Int!
+      exercises: [ExerciseInput]!
+    ): Boolean!
+    deleteWorkout(workoutPlanId: Int!): Boolean!
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
+    activateUser(activateToken: String!): Boolean!
   }
 `;
 
