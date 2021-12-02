@@ -3,7 +3,14 @@ import { MainSectionDashboard, Heading } from 'src/atoms/';
 import { TopNavigation, NewWorkoutForm } from 'src/organisms/';
 import List from 'src/organisms/ListExercises';
 import ListAllWorkoutItems from 'src/organisms/ListAllWorkoutItems';
-export function NewTrainingTemplate({ workoutItems, dispatch }) {
+export function NewTrainingTemplate({
+  workoutItems,
+  dispatch,
+  isLoading,
+  successMessage,
+  error,
+  onSubmit,
+}) {
   return (
     <>
       <TopNavigation />
@@ -25,7 +32,13 @@ export function NewTrainingTemplate({ workoutItems, dispatch }) {
 
         <div className=" flex grid-container-left ml3 mt mb5 flb w-50-l w-50 br2 pa2 ">
           <div className="mb6    left bg-dark">
-            <NewWorkoutForm />
+            <NewWorkoutForm
+              isLoading={isLoading}
+              errorMessage={error && error.message}
+              successMessage={successMessage}
+              onSubmit={onSubmit}
+              className="mt3"
+            />
             <List workoutItems={workoutItems} dispatch={dispatch} />
             {
               // <ListAllWorkoutItems

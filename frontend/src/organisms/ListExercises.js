@@ -69,9 +69,11 @@ export const List = ({ workoutItems, dispatch }) => {
   ));
 
   const SortableList = SortableContainer(({ items }) => {
-    return (
-      console.log('jsem uvnitř sortabe listu ', items),
-      (
+    if (items == null) {
+      return '';
+    } else
+      return (
+        //      console.log('jsem uvnitř sortabe listu ', items),
         <div className="list">
           {items.map((value, index) => (
             <SortableItem
@@ -82,8 +84,7 @@ export const List = ({ workoutItems, dispatch }) => {
             />
           ))}
         </div>
-      )
-    );
+      );
   });
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
