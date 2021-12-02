@@ -12,36 +12,48 @@ const EXERCISES_QUERY = gql`
 export const initialState = {
   lastId: 4,
   workoutItems: [
-    {
-      name: 'Klik',
-      position: 0,
-      id: 0,
-    },
-    {
-      name: 'Dřep',
-      position: 1,
-      id: 1,
-    },
-    {
-      name: 'Bicák',
-      position: 2,
-      id: 2,
-    },
-    {
-      name: 'Výskok',
-      position: 3,
-      id: 3,
-    },
-    {
-      name: 'Mlácení hlavou o zeď',
-      position: 4,
-      id: 4,
-    },
+    // {
+    //   id: 0,
+    //   name: 'Klik',
+    //   position: 0,
+    // },
+    // {
+    //   id: 1,
+    //   name: 'Dřep',
+    //   position: 1,
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Bicák',
+    //   position: 2,
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Výskok',
+    //   position: 3,
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Výrazy',
+    //   position: 4,
+    // },
   ],
 };
 
 export function listExerciseReducer(state, action) {
   switch (action.type) {
+    case 'SETLIST': {
+      const { name } = action;
+      const id = state.lastId + 1;
+
+      const newWorkItem = { name, id, id };
+
+      return {
+        ...state,
+        lastId: newWorkItem.id,
+        workoutItems: [newWorkItem, ...state.workoutItems],
+      };
+    }
     case 'ADD': {
       const { name } = action;
       const id = state.lastId + 1;
@@ -97,4 +109,7 @@ export function deleteWorkoutItem(id) {
 
 export function swapItems(oldIndex, newIndex) {
   return { type: 'SWAP', oldIndex, newIndex };
+}
+export function setList(list) {
+  return { type: 'SWAP', list };
 }

@@ -1,29 +1,31 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
+import { LoadingButton } from 'src/molecules/';
 
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField } from 'src/molecules/';
 
 const initialValues = {
   name: '',
-  numberLaps: '',
-  lengthOfWorkoutItem: '',
-  pauseBetweenLap: '',
-  pauseBetweenWorkoutItem: '',
+  rounds: '',
+  intLength: '',
+  intPauseLength: '',
+  roundsPauseLength: '',
 };
 
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
-  numberLaps: yup.number().required().positive().integer(),
-  lengthOfWorkoutItem: yup.number().required().positive().integer(),
-  pauseBetweenLap: yup.number().required().positive().integer(),
-  pauseBetweenWorkoutItem: yup.number().required().positive().integer(),
+  rounds: yup.number().required().positive().integer(),
+  intLength: yup.number().required().positive().integer(),
+  intPauseLength: yup.number().required().positive().integer(),
+  roundsPauseLength: yup.number().required().positive().integer(),
 });
 
 export function NewWorkoutForm({
-  //  isLoading,
+  isLoading,
   errorMessage,
+  successMessage,
   className,
   onSubmit,
   children,
@@ -39,6 +41,9 @@ export function NewWorkoutForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
+        {successMessage && (
+          <SuccessBanner title={successMessage} className="mb3" />
+        )}
         <FormikField
           id="name"
           name="name"
@@ -47,29 +52,37 @@ export function NewWorkoutForm({
           autoFocus="autofocus"
         />
         <FormikField
-          id="numberLaps"
-          name="numberLaps"
+          id="rounds"
+          name="rounds"
           label="number of laps"
           type="number"
         />
         <FormikField
-          id="lengthOfWorkoutItem"
-          name="lengthOfWorkoutItem"
+          id="intLength"
+          name="intLength"
           label="length of workout item in seconds"
           type="number"
         />
         <FormikField
-          id="pauseBetweenWorkoutItem"
-          name="pauseBetweenWorkoutItem"
+          id="roundsPauseLength"
+          name="roundsPauseLength"
           label="pause between workout item in seconds"
           type="number"
         />
         <FormikField
-          id="pauseBetweenLap"
-          name="pauseBetweenLap"
+          id="intPauseLength"
+          name="intPauseLength"
           label="pause between laps in seconds"
           type="number"
         />
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+          color="green"
+        >
+          Create New Training
+        </LoadingButton>
 
         {children}
       </Form>
