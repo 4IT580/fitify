@@ -12,6 +12,7 @@ import { UserDetailPage } from 'src/pages/UserDetailPage';
 import { DashboardPage } from 'src/pages/DashboardPage';
 import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
+import  ActiveWorkoutPage  from 'src/pages/ActiveWorkoutPage';
 
 export const route = {
   home: () => `/`,
@@ -28,6 +29,7 @@ export const route = {
   workout: (workoutPlanId) => `/workout/${workoutPlanId}`,
   workoutTimer: (workoutPlanId, workoutHistoryItemId) =>
     `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
+  activeWorkout: (workoutPlanId) => `/active-workout/${workoutPlanId}`,
 };
 
 export function Routes() {
@@ -52,6 +54,13 @@ export function Routes() {
         exact
         component={WorkoutPage}
       />
+
+      <Route
+        path={route.activeWorkout(':workoutPlanId')}
+        exact
+        component={ActiveWorkoutPage}
+      />
+      
       <Route path="*" component={PageNotFound} />
     </Switch>
   );
