@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner } from 'src/atoms/';
+import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField, LoadingButton } from 'src/molecules/';
 
 const initialValues = {
@@ -20,7 +20,9 @@ const initialValues = {
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
   surname: yup.string().required().label('Surname'),
-  height: yup.number().required()
+  height: yup
+    .number()
+    .required()
     .test(
       'Is positive?',
       'ERROR: The number must be greater than 0 and whole!',
@@ -36,14 +38,18 @@ const schema = yup.object().shape({
       (value) => value > 0,
     )
     .label('Weight'),
-  gender: yup
-    .string()
-    .required()
-    .oneOf(['male', 'female'])
-    .label('Gender'),
+  sex: yup.string().required().oneOf(['male', 'female']).label('Gender'),
   birthdate: yup.date().required().label('Birth date'),
   email: yup.string().email().required().label('Email'),
-  password: yup.string().required().label('Password'),
+  password: yup
+    .string()
+    .required()
+    .label('Password')
+    .test(
+      'Has min lenght?',
+      'ERROR: Minimum password length is 8 characters!',
+      (value) => value && value.length >= 8,
+    ),
   passwordConfirmation: yup
     .string()
     .required()
@@ -54,6 +60,7 @@ const schema = yup.object().shape({
 export function SignUpForm({
   isLoading,
   errorMessage,
+  successMessage,
   className,
   onSubmit,
   children,
@@ -61,9 +68,7 @@ export function SignUpForm({
   return (
     <Formik
       onSubmit={function (values, actions) {
-        alert(JSON.stringify(values, null, 2));
-        //set default values
-        // onSubmit();
+        onSubmit(values);
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -71,6 +76,9 @@ export function SignUpForm({
     >
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
+        {successMessage && (
+          <SuccessBanner title={successMessage} className="mb3" />
+        )}
         <FormikField
           id="name"
           name="name"
@@ -112,8 +120,8 @@ export function SignUpForm({
           autoCapitalize="off"
         />
         <FormikField
-          id="gender"
-          name="gender"
+          id="sex"
+          name="sex"
           label="Gender"
           as="radio"
           radioOptions={['male', 'female']}
@@ -156,7 +164,11 @@ export function SignUpForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <LoadingButton type="submit" className="mt2 mb3" loading={isLoading}>
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+        >
           Sign Up
         </LoadingButton>
         {children}

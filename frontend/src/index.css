@@ -1,12 +1,6 @@
 body {
   margin: 0;
-  min-width: 700px;
   font-family: Monsteratt, serif;
-  height: 100vh;
-}
-
-#root {
-  height: 100%;
 }
 
 code {
@@ -14,30 +8,30 @@ code {
     monospace;
 }
 
-.pre-line {
-  white-space: pre-line;
-}
-
-.break-word {
-  word-break: break-word;
-}
-
 @font-face {
   font-family: 'Monsteratt';
   src: url('assets/Montserrat-Regular.ttf') format('truetype');
 }
 
-.main-section {
-  background-image: url('assets/images/BackgroundFoto1920.png');
-  background-color: #bffa29;
-  background-repeat: no-repeat, repeat;
+.background {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: center top;
-
-  height: 100%;
 }
 
-.main-section > div.right-offset {
+.background-gym-clap {
+  background-image: url('assets/images/BackgroundFoto1920.png');
+}
+
+.background-gym-dumbbell {
+  background-image: url('assets/images/cover1920.png');
+}
+
+main > div.right-offset {
   padding-top: 35vh;
   padding-bottom: 10vh;
 }
@@ -60,4 +54,47 @@ code {
 
 .green {
   color: #bffa29;
+}
+
+.b--green {
+  border-color: #bffa29;
+}
+
+article {
+  background-color: rgba(21, 24, 36, 0.7);
+}
+
+.workout-pill {
+  background-color: rgba(21, 24, 36, 0.7);
+}
+
+.fitify-logo {
+  height: 90px;
+  width: 100px;
+}
+
+.burger ul {
+  display: flex;
+  flex-direction: column;
+  background-color: #151824;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  padding: 2rem;
+  margin-top: 50px;
+  border-top: #bffa29;
+  border-top-style: solid;
+}
+
+.burger-desktop ul {
+  display: flex;
+  flex-direction: column;
+  background-color: #151824;
+  position: fixed;
+  right: 0;
+  width: 350px;
+  padding: 2rem;
+  margin-top: 40px;
+  border-top: #bffa29;
+  border-top-style: solid;
 }

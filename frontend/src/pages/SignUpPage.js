@@ -1,46 +1,62 @@
-import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
 import { SignUpTemplate } from 'src/templates/SignUpTemplate';
-import { useAuth } from 'src/utils/auth';
 
 const SIGNUP_MUTATION = gql`
   mutation SignUp(
     $email: String!
-    $name: String!
     $password: String!
-    $userName: String!
+    $name: String!
+    $surname: String!
+    $height: Int!
+    $weight: Int!
+    $sex: String!
+    $birthdate: String!
+    $appOrigin: String!
   ) {
     signup(
       email: $email
-      name: $name
       password: $password
-      userName: $userName
-    ) {
-      user {
-        id
-        name
-        userName
-        profileImageUrl
-      }
-      token
-    }
+      name: $name
+      surname: $surname
+      height: $height
+      weight: $weight
+      sex: $sex
+      birthdate: $birthdate
+      appOrigin: $appOrigin
+    )
   }
 `;
 
 export function SignUpPage() {
-  const auth = useAuth();
+  const [successMessage, setSuccessMessage] = useState(null);
   const [signupRequest, signupRequestState] = useMutation(SIGNUP_MUTATION, {
-    onCompleted: ({ signup: { user, token } }) => {
-      auth.signin({ token, user });
+    onCompleted: (data) => {
+      setSuccessMessage(
+        'Your account has been created successfully. An email with activation link has been sent to provided email address.',
+      );
     },
-    onError: () => {},
+    onError: () => {
+      console.log('error');
+    },
   });
 
   const handleSignUpFormSubmit = useCallback(
-    (variables) => {
-      signupRequest({ variables });
+    (values) => {
+      signupRequest({
+        variables: {
+          name: values.name,
+          surname: values.surname,
+          email: values.email,
+          password: values.password,
+          height: values.height,
+          weight: values.weight,
+          sex: values.sex,
+          birthdate: values.birthdate,
+          appOrigin: window.location.origin,
+        },
+      });
     },
     [signupRequest],
   );
@@ -49,6 +65,7 @@ export function SignUpPage() {
     <SignUpTemplate
       isLoading={signupRequestState.loading}
       error={signupRequestState.error}
+      successMessage={successMessage}
       onSubmit={handleSignUpFormSubmit}
     />
   );

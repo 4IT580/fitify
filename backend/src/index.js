@@ -5,36 +5,83 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import { getConnection } from './libs/connection';
+import { getMailer } from './libs/mailer';
+
+import { queries as BodyQueris } from './modules/body';
 
 import rootResolver from './modules/rootResolver';
-import mockResolver from './__mocks__/mockResolver';
 
 dotenv.config();
 
-const MOCKS = process.env.MOCKS === 'true';
+const MOCKS = process.env.MOCKS === 'false';
 
 const typeDefs = gql`
+  input ExerciseInput {
+    id: Int!
+    sequence: Int!
+  }
+
   type User {
     id: Int!
     name: String!
-    userName: String!
-    profileImageUrl: String
-    quacks: [Quack!]!
+    surname: String!
+    email: String!
+    password: String!
+    role: String!
+    active: Boolean!
+    height: Int!
+    weight: Int!
+    sex: String!
+    birthdate: String!
+    lostPasswordHash: String!
+    lastLoginAt: String!
+    createdAt: String!
+    workouts: [WorkoutPlan!]
   }
 
-  type Quack {
+  type WorkoutPlan {
     id: Int!
+    name: String!
+    rounds: Int!
+    intervalLength: Int!
+    intervalPauseLength: Int!
+    roundsPauseLength: Int!
+    workoutLength: Int!
     createdAt: String!
-    user: User!
-    userId: Int!
-    text: String!
+    exercises: [Exercise!]!
+    history: [WorkoutHistory!]!
+  }
+
+  type WorkoutHistory {
+    id: Int!
+    calories: Int
+    status: String!
+    startAt: String!
+    endAt: String
+  }
+
+  type Exercise {
+    id: Int!
+    name: String!
+    description: String
+    bodyParts: [BodyPart!]!
+    equipment: [Equipment!]!
+  }
+
+  type BodyPart {
+    id: Int!
+    name: String!
+  }
+
+  type Equipment {
+    id: Int!
+    name: String!
   }
 
   type AuthUser {
     id: Int!
     name: String!
-    userName: String!
-    profileImageUrl: String
+    email: String!
   }
 
   type AuthInfo {
@@ -44,8 +91,13 @@ const typeDefs = gql`
 
   type Query {
     users: [User!]!
-    user(userName: String!): User
-    quacks: [Quack!]!
+    user(id: Int!): User
+    bodies: [BodyPart!]
+    workoutPlan(id: Int!): WorkoutPlan!
+    workoutPlans: [WorkoutPlan!]!
+    allEquipment: [Equipment!]
+    exercises: [Exercise!]
+    workoutHistory: [WorkoutHistory!]
   }
 
   type Mutation {
@@ -55,11 +107,40 @@ const typeDefs = gql`
       email: String!
       password: String!
       name: String!
-      userName: String!
-      profileImageUrl: String
-    ): AuthInfo!
+      surname: String!
+      height: Int!
+      weight: Int!
+      sex: String!
+      birthdate: String!
+      appOrigin: String!
+    ): Boolean!
 
-    addQuack(userId: Int!, text: String!): Quack!
+    createWorkout(
+      userId: Int!
+      name: String!
+      rounds: Int!
+      intLength: Int!
+      intPauseLength: Int!
+      roundsPauseLength: Int!
+      workoutLength: Int!
+      exercises: [ExerciseInput]!
+    ): Boolean!
+
+    editWorkout(
+      workoutPlanId: Int!
+      name: String!
+      rounds: Int!
+      intLength: Int!
+      intPauseLength: Int!
+      roundsPauseLength: Int!
+      workoutLength: Int!
+      exercises: [ExerciseInput]!
+    ): Boolean!
+    deleteWorkout(workoutPlanId: Int!): Boolean!
+
+    forgottenPassword(email: String!, appOrigin: String!): Boolean!
+    resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
+    activateUser(activateToken: String!): Boolean!
   }
 `;
 
@@ -69,11 +150,12 @@ const main = async () => {
   app.disable('x-powered-by');
   app.use(cors());
 
-  const dbConnection = MOCKS ? null : await getConnection();
+  const dbConnection = await getConnection();
+  const mailer = await getMailer();
 
   const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: MOCKS ? mockResolver : rootResolver,
+    resolvers: rootResolver,
     context: async ({ req, res }) => {
       const auth = req.headers.Authorization || '';
 
@@ -81,6 +163,7 @@ const main = async () => {
         req,
         res,
         dbConnection,
+        mailer,
         auth,
       };
     },

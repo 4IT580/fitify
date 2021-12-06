@@ -7,7 +7,6 @@ import { LoadingButton } from 'src/molecules/';
 import { FormikField } from 'src/molecules/';
 import { route } from '../Routes';
 import { Link } from 'src/atoms/';
-import { Button } from '../atoms';
 
 const initialValues = {
   email: '',
@@ -28,9 +27,8 @@ export function SignInForm({
 }) {
   return (
     <Formik
-      onSubmit={function (values, actions) {
-        alert(JSON.stringify(values, null, 2));
-        // onSubmit();
+      onSubmit={(values, actions) => {
+        onSubmit(values);
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -58,26 +56,18 @@ export function SignInForm({
           autoCorrect="off"
           autoCapitalize="off"
         />
-        <div className="cf">
-          <div className="tl-ns tc fl w-100 w-50-ns dib-ns">
-            <LoadingButton
-              type="submit"
-              className="mt2 mb3"
-              loading={isLoading}
-              color="green"
-            >
-              Login
-            </LoadingButton>
-          </div>
-          <div className="tl-ns tc fr-ns w-100 w-50-ns dib-ns mt6 mt3-ns">
-            <Link
-              to={route.forgottenPassword()}
-              color="dark"
-              noUnderline={true}
-            >
-              Did you forget password?
-            </Link>
-          </div>
+        <LoadingButton
+          type="submit"
+          className="mt2 mb3 tc w-100"
+          loading={isLoading}
+          color="green"
+        >
+          Login
+        </LoadingButton>
+        <div className={'mv0 w-100 tc'}>
+          <Link to={route.forgottenPassword()} color="dark" noUnderline={false}>
+            Did you forget password?
+          </Link>
         </div>
 
         {children}
