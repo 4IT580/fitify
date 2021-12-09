@@ -98,3 +98,73 @@ article {
   border-top: #bffa29;
   border-top-style: solid;
 }
+
+
+/* Pro Timer */
+.countdown-page {
+  text-align: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: calc(10px + 3vmin);
+  color: white;
+}
+
+.countdown-interactionBar {
+  width: 75vw;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
+}
+
+.countdown-title {
+  font-size: 9vh;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  line-height: 1em;
+}
+
+.countdown-timer {
+  font-family: "Dosis";
+  font-size: calc(100px + 15vmin);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-upNext {
+  height: 2em;
+  line-height: 1em;
+  width: 75vw;
+}
+
+/* ProgressBar */
+.progressbar-tracker {
+  fill: transparent;
+  stroke-width: 1.5vh;
+}
+
+.progressbar-innerTracker {
+  fill: transparent;
+  stroke-width: 2vh;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.progressbar-secondsLeft {
+  font-family: 'roboto';
+  position: relative;
+  font-size: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
