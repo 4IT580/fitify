@@ -20,7 +20,7 @@ export function Navigation() {
           noUnderline
           className="b flex items-center green"
         >
-          <Logo className="mr1 f2 fitify-logo" />
+          <Logo className="mr1 ml3 f2 fitify-logo" />
         </Link>
         <div className="flex-grow flex items-center mr4">
           {user ? (

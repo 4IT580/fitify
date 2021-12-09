@@ -130,7 +130,7 @@ export function DashboardTemplate({
                     >
                       <div
                         className={
-                          'dim tc workout-pill br-pill pv2 ph4 ma2 ba b--green'
+                          'dim tc workout-pill br4 ba pv2 ph4 ma2 ba b--green'
                         }
                       >
                         <Heading size={'md'} className={'mt2 mb3'}>

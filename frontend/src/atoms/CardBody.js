@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export function CardBody({ children, className }) {
   return (
-    <div className={classNames('ph3 pv1 bt br--top br4 tl', className)}>
+    <div className={classNames('ph3 pv1 bt br--top br6 tl', className)}>
       {children}
     </div>
   );
