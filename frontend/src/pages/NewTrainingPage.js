@@ -84,23 +84,6 @@ export function NewTrainingPage() {
     },
   );
 
-  const handleCreateWorkoutFormSubmit = useCallback(
-    (values) => {
-      createWorkoutRequest({
-        variables: {
-          userId: user.id,
-          name: values.name,
-          rounds: values.rounds,
-          intLength: values.intLength,
-          intPauseLength: values.intPauseLength,
-          roundsPauseLength: values.roundsPauseLength,
-          workoutLength: 60,
-          workoutitems: work.list,
-        },
-      });
-    },
-    [createWorkoutRequest],
-  );
   //  console.log('zkousimc pripojeni do db exercises', work.list, 'work', work);
   console.log('NewTrainingPage');
   const exercises = useQuery(EXERCISES_QUERY);
@@ -148,16 +131,42 @@ export function NewTrainingPage() {
   });
   console.log('test list persons predtim', people);
   console.log('test list persons', firstNames);
-  const adqList = arrayOfItems.map((value) => {
+  const currentList = state.workoutItems.map((value) => {
     const list = {
-      name: value.name,
       id: value.id,
+      sequence: value.id,
     };
     return list;
   });
   console.log('initialList after =', initialList);
-  console.log('adqList =', adqList);
+  console.log('currentList =', currentList);
+  let workoutitems = [
+    { id: 0, sequence: 0 },
+    { id: 1, sequence: 1 },
+  ];
 
+  console.log('workout items šablona =', workoutitems);
+
+  const handleCreateWorkoutFormSubmit = useCallback(
+    (values) => {
+      createWorkoutRequest({
+        variables: {
+          userId: user.id,
+          name: values.name,
+          rounds: values.rounds,
+          intLength: values.intLength,
+          intPauseLength: values.intPauseLength,
+          roundsPauseLength: values.roundsPauseLength,
+          workoutLength: 60,
+          workoutItems: [
+            { id: 0, sequence: 0 },
+            { id: 1, sequence: 1 },
+          ],
+        },
+      });
+    },
+    [createWorkoutRequest],
+  );
   // useEffect(() => {
   //   console.log(
   //     'inside new training page',
