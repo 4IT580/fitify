@@ -10,13 +10,12 @@ const EXERCISES_QUERY = gql`
 `;
 
 export const initialState = {
-  lastId: 4,
   workoutItems: [
-    // {
-    //   id: 0,
-    //   name: 'Klik',
-    //   position: 0,
-    // },
+    {
+      id: 0,
+      name: 'Klik',
+      position: 0,
+    },
     // {
     //   id: 1,
     //   name: 'Dřep',
@@ -42,6 +41,10 @@ export const initialState = {
 
 export function listExerciseReducer(state, action) {
   switch (action.type) {
+    case 'REPLACE': {
+      console.log('WATAFAK', action.state);
+      return action.state;
+    }
     case 'SETLIST': {
       const { name } = action;
       const id = state.lastId + 1;
@@ -112,4 +115,7 @@ export function swapItems(oldIndex, newIndex) {
 }
 export function setList(list) {
   return { type: 'SWAP', list };
+}
+export function replace(state) {
+  return { type: 'REPLACE', state };
 }
