@@ -50,10 +50,10 @@ export function NewTrainingPage() {
   const auth = useAuth();
   const history = useHistory();
   const { user } = useAuth();
-  let arrayOfItems;
+  let arrayOfItems = [];
   let initialList = true;
   let isSetListFromDatabase = false;
-  const [initial, isInitial] = useState(false);
+  const [initial, isInitial] = useState(true);
 
   const work = {
     list: [
@@ -113,69 +113,71 @@ export function NewTrainingPage() {
   //  console.log('exercises.variables', exercises.variables);
   console.log('data v state.workoutitems', state.workoutItems);
 
-  if (exercises.data != null && initialList == true) {
+  if (exercises.data != null && initial == true) {
     const result4 = Object.keys(exercises.data).map(
       (key) => exercises.data[key],
     );
     console.log('result 4', result4[0]);
-    console.log('initialList', initialList);
+    console.log('initialList brambora s kokosem', initial);
     arrayOfItems = result4[0];
     //    arrayOfItems.slice().sort();
     state.workoutItems = arrayOfItems;
 
-    initialList = false;
-    const people = [
-      {
-        firstName: 'Adam',
-        lastName: 'Jedlička',
-      },
-      {
-        firstName: 'Franta',
-        lastName: 'Sádlo',
-      },
-    ];
-
-    const firstNames = people.map((person) => {
-      //    const iddqd=person[person.firstName, person.lastName];
-      const iddqd = {
-        firstname: person.firstName,
-        lastName: person.lastName,
-      };
-      return iddqd;
-    });
-    console.log('test list persons predtim', people);
-    console.log('test list persons', firstNames);
-
-    const adqList = arrayOfItems.map((value) => {
-      const list = {
-        name: value.name,
-        id: value.id,
-      };
-      return list;
-    });
-    console.log('initialList after =', initialList);
-    console.log('adqList =', adqList);
-
-    // useEffect(() => {
-    //   console.log(
-    //     'inside new training page',
-    //     JSON.stringify(arrayOfItems, null, ' '),
-    //   );
-    // }, [state]);
-
-    // if (arrayOfItems !== null) {
-    //   // state.workoutItems = arrayOfItems;
-    //   // if (isSetListFromDatabase == false) {
-    //   //   dispatch(replace(arrayOfItems));
-    //   //   isSetListFromDatabase = true;
-    //   //   console.log('fsfs', isSetListFromDatabase);
-    //   // }
-    // }
+    isInitial(false);
+    console.log('initialList brambora bez kokosu', initial);
   }
+
+  const people = [
+    {
+      firstName: 'Adam',
+      lastName: 'Jedlička',
+    },
+    {
+      firstName: 'Franta',
+      lastName: 'Sádlo',
+    },
+  ];
+
+  const firstNames = people.map((person) => {
+    //    const iddqd=person[person.firstName, person.lastName];
+    const iddqd = {
+      firstname: person.firstName,
+      lastName: person.lastName,
+    };
+    return iddqd;
+  });
+  console.log('test list persons predtim', people);
+  console.log('test list persons', firstNames);
+  const adqList = arrayOfItems.map((value) => {
+    const list = {
+      name: value.name,
+      id: value.id,
+    };
+    return list;
+  });
+  console.log('initialList after =', initialList);
+  console.log('adqList =', adqList);
+
+  // useEffect(() => {
+  //   console.log(
+  //     'inside new training page',
+  //     JSON.stringify(arrayOfItems, null, ' '),
+  //   );
+  // }, [state]);
+
+  // if (arrayOfItems !== null) {
+  //   // state.workoutItems = arrayOfItems;
+  //   // if (isSetListFromDatabase == false) {
+  //   //   dispatch(replace(arrayOfItems));
+  //   //   isSetListFromDatabase = true;
+  //   //   console.log('fsfs', isSetListFromDatabase);
+  //   // }
+  // }
+
   console.log('data v state.workoutitems po importu', state.workoutItems);
   return (
     <NewTrainingTemplate
-      workoutItems={arrayOfItems}
+      workoutItems={state.workoutItems}
       dispatch={dispatch}
       isLoading={createWorkoutRequestState.loading}
       error={createWorkoutRequestState.error}
