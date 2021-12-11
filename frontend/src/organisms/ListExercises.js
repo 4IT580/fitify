@@ -9,6 +9,7 @@ import {
   addWorkoutItem,
   deleteWorkoutItem,
   swapItems,
+  replace,
 } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
@@ -105,7 +106,7 @@ export const List = ({ workoutItems, dispatch }) => {
   //       {listTitle}
   //       <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
   //     </Fragment>
-  //   );
+  //   );    console.log('initialList after =', initialList);
   // } else
   return (
     <Fragment>
