@@ -46,15 +46,10 @@ export function listExerciseReducer(state, action) {
       return action.state;
     }
     case 'SETLIST': {
-      const { name } = action;
-      const id = state.lastId + 1;
-
-      const newWorkItem = { name, id, id };
-
+      const { list } = action;
       return {
         ...state,
-        lastId: newWorkItem.id,
-        workoutItems: [newWorkItem, ...state.workoutItems],
+        list,
       };
     }
     case 'ADD': {
@@ -114,7 +109,7 @@ export function swapItems(oldIndex, newIndex) {
   return { type: 'SWAP', oldIndex, newIndex };
 }
 export function setList(list) {
-  return { type: 'SWAP', list };
+  return { type: 'SETLIST', list };
 }
 export function replace(state) {
   return { type: 'REPLACE', state };
