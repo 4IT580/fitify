@@ -158,10 +158,7 @@ export function NewTrainingPage() {
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 60,
-          workoutItems: [
-            { id: 0, sequence: 0 },
-            { id: 1, sequence: 1 },
-          ],
+          exercises: currentList,
         },
       });
     },
