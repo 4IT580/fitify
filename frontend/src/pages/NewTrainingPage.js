@@ -7,10 +7,12 @@ import { useHistory } from 'react-router-dom';
 import {
   initialState,
   listExerciseReducer,
+  replace,
 } from 'src/reducers/listExerciseReducer';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { useAuth } from 'src/utils/auth';
 import { route } from '../Routes';
+
 const EXERCISES_QUERY = gql`
   query Exercises {
     exercises {
@@ -49,15 +51,32 @@ export function NewTrainingPage() {
   const history = useHistory();
   const { user } = useAuth();
   let arrayOfItems;
+  let initialList = true;
+  let isSetListFromDatabase = false;
+  const [initial, isInitial] = useState(false);
 
+  const work = {
+    list: [
+      {
+        id: 0,
+        sequence: 0,
+      },
+      {
+        id: 1,
+        sequence: 1,
+      },
+    ],
+  };
+  // workoutitems: [
+  //    { id: 0, sequence: 0 },
+  //    { id: 1, sequence: 1 },
+  //  ];
   const [successMessage, setSuccessMessage] = useState(null);
   const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
     CREATEWORKOUT_MUTATION,
     {
       onCompleted: (date) => {
-        setSuccessMessage(
-          'Your account has been created successfully. An email with activation link has been sent to provided email address.',
-        );
+        setSuccessMessage('Training was successfully created.');
       },
       onError: () => {
         console.log('login error');
@@ -76,42 +95,82 @@ export function NewTrainingPage() {
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 60,
-          exercises: state.workoutItems,
+          workoutitems: work.list,
         },
       });
     },
     [createWorkoutRequest],
   );
-
+  //  console.log('zkousimc pripojeni do db exercises', work.list, 'work', work);
   console.log('NewTrainingPage');
   const exercises = useQuery(EXERCISES_QUERY);
-
   const { id, name, data } = exercises;
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
+
   console.log('user of page', user.id);
   //  console.log('exercises', exercises);
   //  console.log('exercises.data', exercises.data);
   //  console.log('exercises.variables', exercises.variables);
   console.log('data v state.workoutitems', state.workoutItems);
 
-  if (exercises.data != null) {
+  if (exercises.data != null && initialList == true) {
     const result4 = Object.keys(exercises.data).map(
       (key) => exercises.data[key],
     );
     console.log('result 4', result4[0]);
+    console.log('initialList', initialList);
     arrayOfItems = result4[0];
     //    arrayOfItems.slice().sort();
-  }
+    state.workoutItems = arrayOfItems;
 
-  // useEffect(() => {
-  //   console.log(
-  //     'inside new training page',
-  //     JSON.stringify(arrayOfItems, null, ' '),
-  //   );
-  // }, [state]);
+    initialList = false;
+    const people = [
+      {
+        firstName: 'Adam',
+        lastName: 'Jedlička',
+      },
+      {
+        firstName: 'Franta',
+        lastName: 'Sádlo',
+      },
+    ];
 
-  if (arrayOfItems !== null) {
-    state.workoutitems = arrayOfItems;
+    const firstNames = people.map((person) => {
+      //    const iddqd=person[person.firstName, person.lastName];
+      const iddqd = {
+        firstname: person.firstName,
+        lastName: person.lastName,
+      };
+      return iddqd;
+    });
+    console.log('test list persons predtim', people);
+    console.log('test list persons', firstNames);
+
+    const adqList = arrayOfItems.map((value) => {
+      const list = {
+        name: value.name,
+        id: value.id,
+      };
+      return list;
+    });
+    console.log('initialList after =', initialList);
+    console.log('adqList =', adqList);
+
+    // useEffect(() => {
+    //   console.log(
+    //     'inside new training page',
+    //     JSON.stringify(arrayOfItems, null, ' '),
+    //   );
+    // }, [state]);
+
+    // if (arrayOfItems !== null) {
+    //   // state.workoutItems = arrayOfItems;
+    //   // if (isSetListFromDatabase == false) {
+    //   //   dispatch(replace(arrayOfItems));
+    //   //   isSetListFromDatabase = true;
+    //   //   console.log('fsfs', isSetListFromDatabase);
+    //   // }
+    // }
   }
   console.log('data v state.workoutitems po importu', state.workoutItems);
   return (
