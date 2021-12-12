@@ -1,54 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import { ActiveWorkoutTemplate } from '../templates/ActiveWorkoutTemplate';
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../utils/auth';
-
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import  Countdown  from '../organisms/Countdown';
 import shortBeep from '../assets/shortAlert.mp3';
 import longBeep from '../assets/longAlert.mp3';
 import { withRedux } from '../utils/WithRedux';
 
+import { addExercise, updateSets, updateTime, loadData } from "../utils/Actions";
+import actionTypes from "../utils/types";
+
 import { MainSection } from 'src/atoms/';
 import { PageLayout, WorkoutPlanView } from 'src/organisms/';
+import { Heading } from "../atoms";
 
-
-const WORKOUT_PLAN_QUERY = gql`
-  query WorkoutPlanDetail($id: Int!) {
-    workoutPlan(id: $id) {
-      id
-      name
-      rounds
-      roundsPauseLength
-      intervalLength
-      intervalPauseLength
-      workoutLength
-      createdAt
-      exercises {
-        id
-        name
-        description
-        bodyParts {
-          id
-          name
-        }
-        equipment {
-          id
-          name
-        }
-      }
-      history {
-        id
-        calories
-        status
-        startAt
-        endAt
-      }
-    }
-  }
-`;
 
 class ActiveWorkoutPage extends Component {
   constructor(props) {
@@ -140,7 +105,7 @@ class ActiveWorkoutPage extends Component {
             <MainSection>
               {finished
                   ? <Redirect to='/done' />
-                  : <Countdown 
+                  : <Countdown
                       resting={resting}
                       currentExercise={this.props.exercises[exerciseNumber]}
                       nextExercise={this.props.exercises[exerciseNumber+1]}

@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ProgressBar = ({ percentageLeft, secondsLeft, resting, totalTime, isRadialCounterOn }) => {
-    const appliedRadius = 100;
-    const appliedStroke = 5;
+    const appliedRadius = 200;
+    const appliedStroke = 15;
     const normalizedRadius = appliedRadius - appliedStroke * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (percentageLeft / 100) * circumference;

@@ -3,7 +3,7 @@ export function getMockedWorkoutPlans(userId) {
     1: {
       id: 1,
       name: 'Ranní HIIT',
-      rounds: userId,
+      rounds: 3,
       intervalLength: 100,
       intervalPauseLength: 20,
       roundsPauseLength: 50,
@@ -13,7 +13,7 @@ export function getMockedWorkoutPlans(userId) {
     2: {
       id: 2,
       name: 'Úterní kruháč',
-      rounds: userId,
+      rounds: 3,
       intervalLength: 50,
       intervalPauseLength: 40,
       roundsPauseLength: 50,
@@ -23,9 +23,9 @@ export function getMockedWorkoutPlans(userId) {
     3: {
       id: 3,
       name: 'Večerní HIIT',
-      rounds: userId,
-      intervalLength: 50,
-      intervalPauseLength: 40,
+      rounds: 3,
+      intervalLength: 2,
+      intervalPauseLength: 1,
       roundsPauseLength: 50,
       workoutLength: 30, //deprecated
       createdAt: new Date('2021-10-12'),

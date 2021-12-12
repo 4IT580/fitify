@@ -2,10 +2,10 @@ import { DARK_THEME } from '../utils/Themes';
 
 export const INITIAL_STATE = {
     config: {
-        exercises: ["Kliky", "Dřepy", "Plank"],
-        workTime: 10,
-        restTime: 10,
-        sets: 2
+        exercises: [],
+        workTime: 1,
+        restTime: 2,
+        sets: 3
     },
     isConfigValid: false,
     isExerciseInputValid: false,
