@@ -12,7 +12,7 @@ import { UserDetailPage } from 'src/pages/UserDetailPage';
 import { DashboardPage } from 'src/pages/DashboardPage';
 import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
-import  ActiveWorkoutPage  from 'src/pages/ActiveWorkoutPage';
+import { TimerWrapperPage } from 'src/pages/TimerWrapperPage';
 
 export const route = {
   home: () => `/`,
@@ -58,7 +58,7 @@ export function Routes() {
       <Route
         path={route.activeWorkout(':workoutPlanId')}
         exact
-        component={ActiveWorkoutPage}
+        component={TimerWrapperPage}
       />
       
       <Route path="*" component={PageNotFound} />

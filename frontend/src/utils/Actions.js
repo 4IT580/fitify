@@ -42,7 +42,7 @@ export const toggleRadialCounter = currRadialCounterOn => dispatch => {
 export const updateSets = (actionType, sets) => (dispatch, getState) => {
     const filteredConfig = filterState(getState().config, 'sets');
     const isConfigValid = validateConfig(filteredConfig);
-    const isInputValid = validateInput(sets); 
+    const isInputValid = validateInput(sets);
     dispatch(updatingValidState(types.IS_CONFIG_VALID, isConfigValid && isInputValid))
     dispatch(updatingSets(sets))
 }
@@ -62,7 +62,7 @@ export const editExercise = (prevExercise, newExercise) => (dispatch, getState) 
     exercises[indexOfEditedExercise] = newExercise;
     dispatch(updatingExercises(exercises))
 }
-    
+
 export const removeExercise = numberInList => (dispatch, getState) => {
     const indexInExercises = numberInList - 1;
     const newExercises = getState().config.exercises.filter((_, i) => indexInExercises !== i);

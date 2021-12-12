@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProgressBar from './ProgressBar';
-import { Button } from 'src/atoms';
+import { Button, Heading } from 'src/atoms';
 
 export default class Countdown extends Component {
     render = () => {
@@ -10,7 +10,9 @@ export default class Countdown extends Component {
         const percentLeft = ((secondsLeft) / totalTime) * 100;
         return (
             <div className="countdown-page" >
-                <div>
+              <Heading size={'xl'} className={'green fl'}>Foo</Heading>
+
+              <div>
                     <header className="countdown-title">
                         {resting 
                             ? "Rest"

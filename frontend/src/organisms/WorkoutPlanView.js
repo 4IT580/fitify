@@ -83,16 +83,6 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                       {historyItem.calories &&
                         ' Burnt calories: ' + historyItem.calories}
                     </p>
-
-                    <Link
-                      className={
-                        'dit bg-animate mb3 br-pill bg-green dim ph5 tr-ns f3 f5-ns'
-                      }
-                      noUnderline={true}
-                      to={'/'}
-                    >
-                      Repeat workout
-                    </Link>
                   </CardBody>
                 ))}
             </Card>

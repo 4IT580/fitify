@@ -193,18 +193,6 @@ export function DashboardTemplate({
                           {historyItem.calories &&
                             ' Burnt calories: ' + historyItem.calories}
                         </p>
-
-                        <div className={'tc'}>
-                          <Link
-                            className={
-                              'dit bg-animate mb3 br-pill bg-green ph5 tc tr-ns f3 f5-ns'
-                            }
-                            noUnderline={true}
-                            to={'/'}
-                          >
-                            Repeat workout
-                          </Link>
-                        </div>
                       </CardBody>
                     ))}
                 </Card>

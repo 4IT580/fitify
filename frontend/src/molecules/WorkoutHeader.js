@@ -28,13 +28,9 @@ export function WorkoutHeader({ planData, className }) {
           {(latestActiveWorkout && (
             <Link
               className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns '}
-              to={route.workoutTimer(
-                'tt123',
-                planData.id,
-                latestActiveWorkout.id,
-              )}
+              to={route.activeWorkout(planData.id)}
             >
-              Continue workout
+              Start workout
             </Link>
           )) ||
             '&nbsp;'}
