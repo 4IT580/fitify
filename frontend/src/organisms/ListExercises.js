@@ -100,14 +100,7 @@ export const List = ({ workoutItems, dispatch }) => {
       </h2>
     </div>
   );
-  // if (poleKolen != null) {
-  //   return (
-  //     <Fragment>
-  //       {listTitle}
-  //       <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
-  //     </Fragment>
-  //   );    console.log('initialList after =', initialList);
-  // } else
+
   return (
     <Fragment>
       {listTitle}
