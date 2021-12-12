@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -65,10 +65,13 @@ export function SignUpForm({
   onSubmit,
   children,
 }) {
+  const successMessageRef = useRef();
   return (
     <Formik
-      onSubmit={function (values, actions) {
+      onSubmit={(values, {resetForm}) => {
         onSubmit(values);
+        resetForm();
+        // successMessageRef.current.scrollIntoView();
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -77,7 +80,7 @@ export function SignUpForm({
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
         {successMessage && (
-          <SuccessBanner title={successMessage} className="mb3" />
+          <span ref={successMessageRef}><SuccessBanner title={successMessage} className="mb3" /></span>
         )}
         <FormikField
           id="name"
@@ -94,7 +97,6 @@ export function SignUpForm({
           name="surname"
           label="Surname"
           type="text"
-          autoFocus="autofocus"
           autoComplete="on"
           autoCorrect="off"
           autoCapitalize="off"
@@ -104,7 +106,6 @@ export function SignUpForm({
           name="height"
           label="Height (cm)"
           type="number"
-          autoFocus="autofocus"
           autoComplete="on"
           autoCorrect="off"
           autoCapitalize="off"
@@ -114,7 +115,6 @@ export function SignUpForm({
           name="weight"
           label="Weight (kg)"
           type="number"
-          autoFocus="autofocus"
           autoComplete="on"
           autoCorrect="off"
           autoCapitalize="off"
