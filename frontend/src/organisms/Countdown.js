@@ -6,11 +6,11 @@ import { Button, Heading } from 'src/atoms';
 
 export default class Countdown extends Component {
     render = () => {
-        const { resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, stopTimer, sets, currentSet, theme, isRadialCounterOn } = this.props;
+        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, stopTimer, sets, currentSet, theme, isRadialCounterOn } = this.props;
         const percentLeft = ((secondsLeft) / totalTime) * 100;
         return (
             <div className="countdown-page" >
-              <Heading size={'xl'} className={'green fl'}>Foo</Heading>
+              <Heading size={'xl'} className={'green fl'}>{workoutName}</Heading>
 
               <div>
                     <header className="countdown-title">
@@ -47,6 +47,9 @@ export default class Countdown extends Component {
                         theme={theme}
                     >Stop</Button>
                 </div>
+                <Heading size={'sm'} className={'bg-dark pa4 br3'}>
+                  When training is finished, you will be able to close training with button, and input number of calories you've burned.
+                </Heading>
             </div>
         )
     }
