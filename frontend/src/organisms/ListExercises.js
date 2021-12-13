@@ -24,7 +24,7 @@ export const List = ({ workoutItems, dispatch }) => {
 
   const exercises = useQuery(EXERCISES_QUERY);
   console.log('exercises', exercises);
-  console.log('exercises.data konina', exercises.data);
+  console.log('exercises.data z exercises.data', exercises.data);
   //  workoutItems.keys();
 
   // let poleKolen;
@@ -48,7 +48,7 @@ export const List = ({ workoutItems, dispatch }) => {
 
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
-      <div className="center bg-dark green br2 pa2">
+      <div className="center bg-dark green br1 pa1">
         <div className="list__card-right">
           <div className="list__card-right--name flex   ">
             <SmallButton
@@ -95,8 +95,7 @@ export const List = ({ workoutItems, dispatch }) => {
   const listTitle = (
     <div className="list__title">
       <h2>
-        List of workout
-        <br /> items
+        List of workout items:
       </h2>
     </div>
   );
