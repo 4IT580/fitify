@@ -112,8 +112,8 @@ export function NewTrainingPage() {
 
   const people = [
     {
-      firstName: 'Adam',
-      lastName: 'Jedlička',
+      firstName: 'Jan',
+      lastName: 'Krocan',
     },
     {
       firstName: 'Franta',
