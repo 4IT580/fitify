@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ErrorBanner } from 'src/atoms/';
-import { Link, Button, Loading } from 'src/atoms/';
+import { Button, Loading } from 'src/atoms/';
 import { CardBody, Heading, List } from '../atoms';
 import { fromUnixTimeStamp } from '../utils/date';
 import { Card, WorkoutHeader } from '../molecules';
@@ -24,7 +24,11 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
           <WorkoutHeader planData={planData} />
 
           <div className={'cf'}>
-            <Card headerValue={'Train'} grid={'fl w-100 w-50-l'} className={'green'}>
+            <Card
+              headerValue={'Train'}
+              grid={'fl w-100 w-50-l'}
+              className={'green'}
+            >
               <CardBody>
                 <p className={'f4 f5-ns green'}>
                   Interval length: {planData.intervalLength}s
@@ -39,7 +43,11 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
               </CardBody>
             </Card>
 
-            <Card headerValue={'Exercises'} grid={'fr w-100 w-50-l'} className={'green'}>
+            <Card
+              headerValue={'Exercises'}
+              grid={'fr w-100 w-50-l'}
+              className={'green'}
+            >
               {planData.exercises.map((exerciseItem, index) => (
                 <CardBody key={'exerciseItem' + exerciseItem.id}>
                   <Heading size={'md'} className={'green mt3'}>
@@ -68,7 +76,11 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
               ))}
             </Card>
 
-            <Card headerValue={'Workout history'} grid={'fl w-100 w-50-l'} className={'green'}>
+            <Card
+              headerValue={'Workout history'}
+              grid={'fl w-100 w-50-l'}
+              className={'green'}
+            >
               {planData.history
                 .filter((historyItem) => historyItem.status === 'finished')
                 .reverse()

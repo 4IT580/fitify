@@ -1,14 +1,3 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
-
-const EXERCISES_QUERY = gql`
-  query Exercises {
-    exercises {
-      id
-      name
-    }
-  }
-`;
-
 export const initialState = {
   workoutItems: [
     {
@@ -56,7 +45,7 @@ export function listExerciseReducer(state, action) {
       const { name } = action;
       const id = state.lastId + 1;
 
-      const newWorkItem = { name, id, id };
+      const newWorkItem = { name, id };
 
       return {
         ...state,
@@ -66,7 +55,7 @@ export function listExerciseReducer(state, action) {
     }
     case 'DELETE': {
       const { id } = action;
-      console.log(id);
+
       const workoutItems = state.workoutItems.filter(
         (workoutItem) => workoutItem.id !== id,
       );
@@ -76,18 +65,12 @@ export function listExerciseReducer(state, action) {
       };
     }
     case 'SWAP': {
-      console.log('SWAP');
       const { oldIndex, newIndex } = action;
       const workoutItems = [...state.workoutItems];
       const oldItem = workoutItems[oldIndex];
       const newItem = workoutItems[newIndex];
       workoutItems[oldIndex] = newItem;
       workoutItems[newIndex] = oldItem;
-
-      // workoutItems[oldIndex].position = oldIndex;
-      // workoutItems[newIndex].position = newIndex;
-      console.log('A', JSON.stringify(workoutItems, null, '  '));
-
       return {
         ...state,
         workoutItems,
