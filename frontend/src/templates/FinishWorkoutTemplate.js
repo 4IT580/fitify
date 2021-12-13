@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { Heading, RightBlockSection } from 'src/atoms/';
-import { ResetPasswordForm, PageLayout } from 'src/organisms/';
-import { FinishWorkoutForm } from "../organisms/FinishWorkoutForm";
+import { PageLayout } from 'src/organisms/';
+import { FinishWorkoutForm } from '../organisms/FinishWorkoutForm';
 
 export function FinishWorkoutTemplate({
   isLoading,
   error,
   onSubmit,
   successMessage,
-  workoutName
+  workoutName,
 }) {
   return (
     <>

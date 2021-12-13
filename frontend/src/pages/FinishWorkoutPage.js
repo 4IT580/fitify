@@ -1,19 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
-
 import { useHistory, useParams } from 'react-router-dom';
-
-import queryString from 'query-string';
-import { ResetPasswordTemplate } from 'src/templates/ResetPasswordTemplate';
-
 import { route } from 'src/Routes';
-import { FinishWorkoutTemplate } from "../templates/FinishWorkoutTemplate";
-import store from "../utils/store";
-import { addExercise, updateSets, updateTime } from "../utils/Actions";
-import types from "../utils/types";
-import { Spinner } from "../atoms";
-import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FinishWorkoutTemplate } from '../templates/FinishWorkoutTemplate';
+import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const FINISH_WORKOUT_MUTATION = gql`
   mutation FinishWorkout($workoutPlanId: Int!) {
@@ -23,7 +14,10 @@ const FINISH_WORKOUT_MUTATION = gql`
 
 const SET_FINISHED_WORKOUT_CALORIES = gql`
   mutation SetFinishedWorkoutCalories($workoutPlanId: Int!, $calories: Int!) {
-    setCaloriesFinishedWorkout(workoutPlanId: $workoutPlanId, calories: $calories)
+    setCaloriesFinishedWorkout(
+      workoutPlanId: $workoutPlanId
+      calories: $calories
+    )
   }
 `;
 
@@ -35,29 +29,28 @@ const WORKOUT_PLAN_QUERY = gql`
   }
 `;
 
-export function FinishWorkoutPage () {
-  const {workoutPlanId} = useParams();
+export function FinishWorkoutPage() {
+  const { workoutPlanId } = useParams();
 
-  const [successMessage, setSuccessMessage] = useState(<FontAwesomeIcon icon={faDumbbell} spin />);
+  const [successMessage, setSuccessMessage] = useState(
+    <FontAwesomeIcon icon={faDumbbell} spin />,
+  );
   const [isWaiting, setIsWaiting] = useState(false);
   const history = useHistory();
 
   const workoutPlanState = useQuery(WORKOUT_PLAN_QUERY, {
-    variables: {id: parseInt(workoutPlanId)},
+    variables: { id: parseInt(workoutPlanId) },
   });
   const [workoutName, setWorkoutName] = useState('');
 
   useEffect(() => {
-      if (workoutPlanState.loading === false) {
-        setWorkoutName(workoutPlanState.data.workoutPlan.name)
-      }
+    if (workoutPlanState.loading === false) {
+      setWorkoutName(workoutPlanState.data.workoutPlan.name);
     }
-    , [workoutPlanState]
-  )
+  }, [workoutPlanState]);
 
-  const [setFinishedWorkoutCalories, setFinishedWorkoutCaloriesState] = useMutation(
-    SET_FINISHED_WORKOUT_CALORIES,
-    {
+  const [setFinishedWorkoutCalories, setFinishedWorkoutCaloriesState] =
+    useMutation(SET_FINISHED_WORKOUT_CALORIES, {
       onCompleted: () => {
         setSuccessMessage(
           'Your calories are saved. You are now being redirected to dashboard',
@@ -70,8 +63,7 @@ export function FinishWorkoutPage () {
       onError: (error) => {
         console.error(error);
       },
-    },
-  );
+    });
 
   const [setFinishedWorkout, setFinishedWorkoutState] = useMutation(
     FINISH_WORKOUT_MUTATION,
@@ -80,7 +72,7 @@ export function FinishWorkoutPage () {
         setSuccessMessage(
           'Your thaining has been finished. If you wish to, you can set your calories',
         );
-        console.log('done')
+        console.log('done');
       },
       onError: (error) => {
         console.error(error);
@@ -91,17 +83,19 @@ export function FinishWorkoutPage () {
   const handleSetFinishedWorkoutCaloriesFormSubmit = useCallback(
     (values) => {
       setFinishedWorkoutCalories({
-        variables: {workoutPlanId: parseInt(workoutPlanId), calories: values.calories},
+        variables: {
+          workoutPlanId: parseInt(workoutPlanId),
+          calories: values.calories,
+        },
       });
     },
     [setFinishedWorkoutCalories],
   );
 
-
   useEffect(() => {
     setTimeout(function () {
       setFinishedWorkout({
-        variables: {workoutPlanId: parseInt(workoutPlanId)},
+        variables: { workoutPlanId: parseInt(workoutPlanId) },
       });
     }, 5000);
   }, []);
