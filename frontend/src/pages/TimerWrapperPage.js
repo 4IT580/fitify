@@ -2,7 +2,7 @@ import ActiveWorkoutPage from 'src/pages/ActiveWorkoutPage';
 import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import store from "../utils/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addExercise, updateSets, updateTime } from "../utils/Actions";
 import types from "../utils/types";
 
@@ -48,6 +48,8 @@ export function TimerWrapperPage () {
     variables: { id: parseInt(workoutPlanId) },
   });
 
+  const [workoutName, setWorkoutName] = useState('');
+
   useEffect(() => {
     if(workoutPlanState.loading === false){
       console.log( 'ready', workoutPlanState.data)
@@ -59,10 +61,13 @@ export function TimerWrapperPage () {
       store.dispatch(updateSets('', workoutPlanState.data.workoutPlan.rounds))
       store.dispatch(updateTime(types.UPDATE_WORK_TIME, workoutPlanState.data.workoutPlan.intervalLength))
       store.dispatch(updateTime(types.UPDATE_REST_TIME, workoutPlanState.data.workoutPlan.intervalPauseLength))
+
+      setWorkoutName(workoutPlanState.data.workoutPlan.name)
     }
     }
     , [workoutPlanState]
   )
 
-  return <ActiveWorkoutPage/>;
+  console.log(workoutName);
+  return <ActiveWorkoutPage workoutName={workoutName} workoutPlanId={workoutPlanId}/>;
 }

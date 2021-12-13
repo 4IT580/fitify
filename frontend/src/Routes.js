@@ -13,6 +13,7 @@ import { DashboardPage } from 'src/pages/DashboardPage';
 import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
 import { TimerWrapperPage } from 'src/pages/TimerWrapperPage';
+import { FinishWorkoutPage } from 'src/pages/FinishWorkoutPage';
 
 export const route = {
   home: () => `/`,
@@ -30,6 +31,7 @@ export const route = {
   workoutTimer: (workoutPlanId, workoutHistoryItemId) =>
     `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
   activeWorkout: (workoutPlanId) => `/active-workout/${workoutPlanId}`,
+  finishWorkout: (workoutPlanId) => `/finisned-workout/${workoutPlanId}`,
 };
 
 export function Routes() {
@@ -61,6 +63,12 @@ export function Routes() {
         component={TimerWrapperPage}
       />
       
+      <Route
+        path={route.finishWorkout(':workoutPlanId')}
+        exact
+        component={FinishWorkoutPage}
+      />
+
       <Route path="*" component={PageNotFound} />
     </Switch>
   );

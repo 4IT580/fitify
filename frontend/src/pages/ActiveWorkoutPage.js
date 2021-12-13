@@ -13,6 +13,7 @@ import actionTypes from "../utils/types";
 import { MainSection } from 'src/atoms/';
 import { PageLayout, WorkoutPlanView } from 'src/organisms/';
 import { Heading } from "../atoms";
+import { route } from "../Routes";
 
 
 class ActiveWorkoutPage extends Component {
@@ -98,14 +99,15 @@ class ActiveWorkoutPage extends Component {
 
   render = () => {
       const { exerciseNumber, resting, secondsLeft, startPauseIcon, finished, currentSet } = this.state;
-      const { theme, workTime, restTime, isRadialCounterOn } = this.props;
+      const { theme, workTime, restTime, isRadialCounterOn, workoutName, workoutPlanId } = this.props;
       return (
           <div>
             <PageLayout bgClass={'background background-gym-dumbbell'}>
             <MainSection>
               {finished
-                  ? <Redirect to='/done' />
+                  ? <Redirect to={route.finishWorkout(workoutPlanId)} />
                   : <Countdown
+                      workoutName={workoutName}
                       resting={resting}
                       currentExercise={this.props.exercises[exerciseNumber]}
                       nextExercise={this.props.exercises[exerciseNumber+1]}
