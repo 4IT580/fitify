@@ -22,4 +22,6 @@ export { SuccessMessage } from './SuccessMessage';
 export { SmallButton } from './SmallButton';
 export { CardBody } from './CardBody';
 export { List } from './List';
+export { PositiveButton } from './PositiveButton';
+export { NegativeButton } from './NegativeButton';
 export { ListItem } from './ListItem';

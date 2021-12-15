@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { route } from 'src/Routes';
 
 import ProgressBar from './ProgressBar';
-import { Button, Heading } from 'src/atoms';
+import { PositiveButton, NegativeButton, Heading } from 'src/atoms';
 
 export default class Countdown extends Component {
     render = () => {
-        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, stopTimer, sets, currentSet, theme, isRadialCounterOn } = this.props;
+        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, theme, isRadialCounterOn } = this.props;
         const percentLeft = ((secondsLeft) / totalTime) * 100;
 
         const displayNumber = secondsLeft < 10
@@ -42,18 +42,14 @@ export default class Countdown extends Component {
               Set: {currentSet} / {sets}
             </div>
             <div className="countdown-interactionBar nt6">
-              <Button
+              <PositiveButton
                 icon={startPauseIcon}
                 onClick={startOrPause}
-                size='big'
-                theme={theme}
-              >Start</Button>
-              <Button
+              />
+              <NegativeButton
                 icon={'stop'}
-                onClick={stopTimer}
-                size='big'
-                theme={theme}
-              >Stop</Button>
+                onClick={cancelWorkout}
+              />
             </div>
             <Heading size={'sm'} className={'bg-dark pa4 br3'}>
               When training is finished, you will be able to close training with button, and input number of calories you've burned.
