@@ -14,6 +14,7 @@ import { NewTrainingPage } from 'src/pages/NewTrainingPage';
 import { WorkoutPage } from 'src/pages/WorkoutPage';
 import { TimerWrapperPage } from 'src/pages/TimerWrapperPage';
 import { FinishWorkoutPage } from 'src/pages/FinishWorkoutPage';
+import { EditWorkoutPage } from 'src/pages/EditWorkoutPage';
 
 export const route = {
   home: () => `/`,
@@ -68,6 +69,12 @@ export function Routes() {
         path={route.finishWorkout(':workoutPlanId', ':startTime')}
         exact
         component={FinishWorkoutPage}
+      />
+
+      <Route
+        path={route.editWorkout(':workoutPlanId')}
+        exact
+        component={EditWorkoutPage}
       />
 
       <Route path="*" component={PageNotFound} />
