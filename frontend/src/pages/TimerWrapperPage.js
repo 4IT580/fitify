@@ -52,7 +52,6 @@ export function TimerWrapperPage () {
 
   useEffect(() => {
     if(workoutPlanState.loading === false){
-      console.log( 'ready', workoutPlanState.data)
 
       workoutPlanState.data.workoutPlan.exercises.forEach((item) => {
         store.dispatch(addExercise(item.name))
@@ -68,6 +67,5 @@ export function TimerWrapperPage () {
     , [workoutPlanState]
   )
 
-  console.log(workoutName);
   return <ActiveWorkoutPage workoutName={workoutName} workoutPlanId={workoutPlanId}/>;
 }

@@ -32,24 +32,31 @@ class ActiveWorkoutPage extends Component {
       this.tick = this.tick.bind(this)
       this.stopTimer = this.stopTimer.bind(this)
       this.startTimer = this.startTimer.bind(this)
+      this.cancelWorkout = this.cancelWorkout.bind(this)
 
       this.shortBeep = new Audio(shortBeep);
       this.longBeep = new Audio(longBeep);
   }
 
   startOrPause = () => {
-      const { isRunning } = this.state;
-      if (isRunning) {
-          this.stopTimer();
-          this.setState({isRunning: !isRunning, startPauseIcon: 'play'});
-      } else {
-          this.startTimer();
-          this.setState({isRunning: !isRunning, startPauseIcon: 'pause'});
-      }
-  }
+    const { isRunning } = this.state;
+    if (isRunning) {
+        this.stopTimer();
+        this.setState({isRunning: !isRunning, startPauseIcon: 'play'});
+    } else {
+        this.startTimer();
+        this.setState({isRunning: !isRunning, startPauseIcon: 'pause'});
+    }
+}
 
   stopTimer = () => {
       clearInterval(this.timer)
+  }
+
+  cancelWorkout = () => {
+    if (window.confirm("Cancel the workout?")) {
+        window.location=route.dashboard()
+      }
   }
 
   startTimer = () => {
@@ -115,7 +122,7 @@ class ActiveWorkoutPage extends Component {
                       secondsLeft={secondsLeft}
                       startPauseIcon={startPauseIcon}
                       startOrPause={this.startOrPause}
-                      stopTimer={this.stopTimer}
+                      cancelWorkout={this.cancelWorkout}
                       sets={this.props.sets}
                       currentSet={currentSet}
                       theme={theme}
