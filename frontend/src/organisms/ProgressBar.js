@@ -35,9 +35,6 @@ const ProgressBar = ({ percentageLeft, secondsLeft, resting, totalTime, isRadial
                     />  
                 </g>
             </svg>}
-            <div className="progressbar-secondsLeft">
-                {displayNumber}
-            </div>
         </div>
     );
 };

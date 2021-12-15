@@ -132,7 +132,6 @@ article {
 }
 
 .countdown-timer {
-  font-family: "Dosis";
   font-size: calc(100px + 15vmin);
   display: flex;
   flex-direction: column;
@@ -159,12 +158,12 @@ article {
   transform-origin: 50% 50%;
 }
 
-.progressbar-secondsLeft {
-  font-family: 'roboto';
-  position: relative;
-  font-size: 8vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/*.progressbar-secondsLeft {*/
+/*  font-family: 'roboto';*/
+/*  position: relative;*/
+/*  font-size: 8vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
