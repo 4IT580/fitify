@@ -1,29 +1,9 @@
-import { queries as BodyQueries, mutations as BodyMutations } from './body';
-import {
-  queries as EquipmentQueries,
-  mutations as EquipmentMutations,
-} from './equipment';
-import {
-  queries as ExerciseQueries,
-  mutations as ExerciseMutations,
-} from './exercise';
-import { queries as UserQueries, mutations as UserMutations } from './user';
-import {
-  queries as WorkoutHistoryQueries,
-  mutations as WorkoutHistoryMutations,
-} from './workout-history';
-import {
-  queries as WorkoutPlanQueries,
-  mutations as WorkoutPlanMutations,
-} from './workout-plan';
-
-import {
-  getMockedBodyParts,
-  getMockedEquipment,
-  getMockedExercises,
-  getMockedHistory,
-  getMockedWorkoutPlans,
-} from '../__mocks__/workoutMocks';
+import { mutations as BodyMutations, queries as BodyQueries } from './body';
+import { mutations as EquipmentMutations, queries as EquipmentQueries, } from './equipment';
+import { mutations as ExerciseMutations, queries as ExerciseQueries, } from './exercise';
+import { mutations as UserMutations, queries as UserQueries } from './user';
+import { mutations as WorkoutHistoryMutations, queries as WorkoutHistoryQueries, } from './workout-history';
+import { mutations as WorkoutPlanMutations, queries as WorkoutPlanQueries, } from './workout-plan';
 
 export default {
   Query: {
@@ -44,23 +24,23 @@ export default {
   },
   User: {
     async workouts(parent, _, { dbConnection }) {
-      return Object.values(getMockedWorkoutPlans(parent.id));
+      return await dbConnection.query('SELECT wP.* FROM userWorkoutPlan JOIN workoutPlan wP ON userWorkoutPlan.workoutPlanId = wP.id WHERE userId = ?', [parent.id]);
     },
   },
   WorkoutPlan: {
     async exercises(parent, _, { dbConnection }) {
-      return Object.values(getMockedExercises());
+      return await dbConnection.query('SELECT exercise.* FROM workoutPlanExercise JOIN exercise ON workoutPlanExercise.exerciseId = exercise.id WHERE workoutPlanId = ?;', [parent.id]);
     },
     async history(parent, _, { dbConnection }) {
-      return Object.values(getMockedHistory());
+      return await dbConnection.query('SELECT * FROM workoutHistory wHere workoutPlanId = 14;', [parent.id]);
     },
   },
   Exercise: {
     async bodyParts(parent, _, { dbConnection }) {
-      return getMockedBodyParts(parent.id);
+      return await dbConnection.query('SELECT body.* FROM body JOIN exerciseBody eB ON body.id = eB.bodyId and exerciseId = ?;', [parent.id]);
     },
-    equipment(parent, _, { dbConnection }) {
-      return getMockedEquipment(parent.id);
+    async equipment(parent, _, { dbConnection }) {
+      return await dbConnection.query('SELECT equipment.* FROM equipment JOIN exerciseEquipment eB ON equipment.id = eB.equipmentId and exerciseId = ?;', [parent.id]);
     },
   },
 };

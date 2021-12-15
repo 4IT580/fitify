@@ -1,14 +1,13 @@
-import { getMockedWorkoutPlans } from '../../__mocks__/workoutMocks';
 
 export const workoutPlans = async (_, __, { dbConnection }) => {
-  // const workoutPlans = await dbConnection.query('SELECT * FROM workoutPlan');
-  return getMockedWorkoutPlans(43);
+  return await dbConnection.query('SELECT workoutPlan.* FROM workoutPlan JOIN userWorkoutPlan uWP ON workoutPlan.id = uWP.workoutPlanId');
 };
 
 export const workoutPlan = async (parent, parameters, { dbConnection }) => {
-  // const workoutPlans = await dbConnection.query('SELECT * FROM workoutPlan');
-  if (getMockedWorkoutPlans(1)[parameters.id] !== undefined) {
-    return getMockedWorkoutPlans(1)[parameters.id];
+  let result =  await dbConnection.query('SELECT workoutPlan.* FROM workoutPlan WHERE id = ?', [parameters.id]);
+
+  if(result.length > 0){
+    return result[0];
   }
 
   return null;
