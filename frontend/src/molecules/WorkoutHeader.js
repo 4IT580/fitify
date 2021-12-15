@@ -25,15 +25,12 @@ export function WorkoutHeader({ planData, className }) {
       </div>
       <div className={'fr-ns ml0 tc items-center tr-ns mb4 mb0-ns'}>
         <div className={'w-100'}>
-          {(latestActiveWorkout && (
-            <Link
-              className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns '}
-              to={route.activeWorkout(planData.id)}
-            >
-              Start workout
-            </Link>
-          )) ||
-            '&nbsp;'}
+          <Link
+            className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns '}
+            to={route.activeWorkout(planData.id)}
+          >
+            Start workout
+          </Link>
         </div>
         <div className={'w-100 mt4'}>
           <Link
