@@ -141,7 +141,7 @@ const typeDefs = gql`
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
     activateUser(activateToken: String!): Boolean!
-    finishWorkout(workoutPlanId: Int!): Boolean!
+    finishWorkout(workoutPlanId: Int!, startTime: Float!): Boolean!
     setCaloriesFinishedWorkout(workoutPlanId: Int!, calories: Int!): Boolean!
   }
 `;

@@ -10,6 +10,11 @@ const updatingTime = (key, time) => ({
     time
 })
 
+const updatingStartTime = (startTime) => ({
+    type: types.SET_START_TIME,
+    startTime
+})
+
 const updatingValidState = (setting, isValid) => ({
         type: setting,
         isValid
@@ -37,6 +42,14 @@ const updateRadialCounterMode = isRadialCounterOn => ({
 
 export const toggleRadialCounter = currRadialCounterOn => dispatch => {
     dispatch(updateRadialCounterMode(!currRadialCounterOn))
+}
+
+export const setStartTime = (date) => (dispatch, getState) => {
+  const filteredConfig = filterState(getState().config, types.IS_CONFIG_VALID)
+  const isConfigValid = validateConfig(filteredConfig);
+  const isInputValid = validateInput(date);
+  dispatch(updatingValidState(types.IS_CONFIG_VALID, isConfigValid && isInputValid))
+  dispatch(updatingStartTime(date))
 }
 
 export const updateSets = (actionType, sets) => (dispatch, getState) => {
@@ -72,6 +85,7 @@ export const removeExercise = numberInList => (dispatch, getState) => {
 }
 
 export const updateTime = (actionType, time) => (dispatch, getState) => {
+  console.log(actionType, time)
     const key = actionType === types.UPDATE_WORK_TIME
         ? 'workTime'
         : 'restTime'

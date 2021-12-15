@@ -71,6 +71,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
             <Card headerValue={'Workout history'} grid={'fl w-100 w-50-l'} className={'green'}>
               {planData.history
                 .filter((historyItem) => historyItem.status === 'finished')
+                .reverse()
                 .map((historyItem) => (
                   <CardBody key={'historyItem' + historyItem.id}>
                     <p className={'f4 f5-ns green'}>

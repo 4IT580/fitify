@@ -21,6 +21,12 @@ export default (state = INITIAL_STATE, action) => {
                 }
             };
 
+        case types.SET_START_TIME:
+            return {
+                ...state,
+                startTime: action.startTime
+            };
+
         case types.UPDATE_WORK_TIME:
             return {
                 ...state,

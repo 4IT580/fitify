@@ -3,9 +3,9 @@ import { DARK_THEME } from '../utils/Themes';
 export const INITIAL_STATE = {
     config: {
         exercises: [],
-        workTime: 1,
-        restTime: 2,
-        sets: 3
+        workTime: 0,
+        restTime: 0,
+        sets: 0
     },
     isConfigValid: false,
     isExerciseInputValid: false,

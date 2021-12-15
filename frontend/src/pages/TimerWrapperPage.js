@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import store from "../utils/store";
 import { useEffect, useState } from "react";
-import { addExercise, updateSets, updateTime } from "../utils/Actions";
+import { addExercise, setStartTime, updateSets, updateTime } from "../utils/Actions";
 import types from "../utils/types";
 
 const WORKOUT_PLAN_QUERY = gql`
@@ -56,6 +56,8 @@ export function TimerWrapperPage () {
       workoutPlanState.data.workoutPlan.exercises.forEach((item) => {
         store.dispatch(addExercise(item.name))
       })
+
+      store.dispatch(setStartTime(new Date()))
 
       store.dispatch(updateSets('', workoutPlanState.data.workoutPlan.rounds))
       store.dispatch(updateTime(types.UPDATE_WORK_TIME, workoutPlanState.data.workoutPlan.intervalLength))

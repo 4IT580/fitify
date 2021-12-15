@@ -32,7 +32,7 @@ export default {
       return await dbConnection.query('SELECT exercise.* FROM workoutPlanExercise JOIN exercise ON workoutPlanExercise.exerciseId = exercise.id WHERE workoutPlanId = ?;', [parent.id]);
     },
     async history(parent, _, { dbConnection }) {
-      return await dbConnection.query('SELECT * FROM workoutHistory wHere workoutPlanId = 14;', [parent.id]);
+      return await dbConnection.query('SELECT * FROM workoutHistory wHere workoutPlanId = ?;', [parent.id]);
     },
   },
   Exercise: {

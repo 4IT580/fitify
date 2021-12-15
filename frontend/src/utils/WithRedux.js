@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
     isExerciseInputValid: state.isExerciseInputValid,
     theme: state.theme,
     soundOn: state.soundOn,
-    isRadialCounterOn: state.isRadialCounterOn
+    isRadialCounterOn: state.isRadialCounterOn,
+    startTime: state.startTime
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

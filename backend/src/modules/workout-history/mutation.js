@@ -1,23 +1,15 @@
 export const finishWorkout = async (
   _,
-  { workoutPlanId },
+  { workoutPlanId, startTime },
   { dbConnection },
 ) => {
-  console.log(workoutPlanId);
-  // const workoutPlanResponse = await dbConnection.query(
-  //   `INSERT INTO workoutPlan(name, rounds, 	intervalLength, intervalPauseLength, roundsPauseLength, workoutLength) VALUES(?, ?, ?, ?, ?, ?)`,
-  //   [name, rounds, intLength, intPauseLength, roundsPauseLength, workoutLength],
-  // );
-  // let workoutPlanId = workoutPlanResponse.insertId;
-  //
-  // await dbConnection.query(
-  //   `INSERT INTO userWorkoutPlan(userId, workoutPlanId) VALUES(?, ?)`,
-  //   [userId, workoutPlanId],
-  // );
-  //
-  // exercises.map((exercise) =>
-  //   insertExercises(workoutPlanId, exercise, dbConnection),
-  // );
+
+  await dbConnection.query(
+    `INSERT INTO workoutHistory
+       (status, startAt, endAt, workoutPlanId)
+     VALUES ('finished', ?, ?, ?)`,
+    [new Date(startTime), new Date(), workoutPlanId],
+  );
 
   return true;
 };
@@ -28,20 +20,10 @@ export const setCaloriesFinishedWorkout = async (
   { dbConnection },
 ) => {
   console.log(workoutPlanId, calories);
-  // const workoutPlanResponse = await dbConnection.query(
-  //   `INSERT INTO workoutPlan(name, rounds, 	intervalLength, intervalPauseLength, roundsPauseLength, workoutLength) VALUES(?, ?, ?, ?, ?, ?)`,
-  //   [name, rounds, intLength, intPauseLength, roundsPauseLength, workoutLength],
-  // );
-  // let workoutPlanId = workoutPlanResponse.insertId;
-  //
-  // await dbConnection.query(
-  //   `INSERT INTO userWorkoutPlan(userId, workoutPlanId) VALUES(?, ?)`,
-  //   [userId, workoutPlanId],
-  // );
-  //
-  // exercises.map((exercise) =>
-  //   insertExercises(workoutPlanId, exercise, dbConnection),
-  // );
+
+  const lastIdRequest = await dbConnection.query(`SELECT wh.id FROM workoutHistory wh WHERE wh.workoutPlanId = ? ORDER BY wh.endAt DESC LIMIT 1`, [workoutPlanId]);
+
+  await dbConnection.query(`UPDATE workoutHistory SET calories = ? WHERE id = ?;`, [calories, lastIdRequest[0].id]);
 
   return true;
 };

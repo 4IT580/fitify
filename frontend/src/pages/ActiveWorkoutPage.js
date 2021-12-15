@@ -1,18 +1,13 @@
-import React, { Component, useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React, { Component } from 'react';
 
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import  Countdown  from '../organisms/Countdown';
 import shortBeep from '../assets/shortAlert.mp3';
 import longBeep from '../assets/longAlert.mp3';
 import { withRedux } from '../utils/WithRedux';
 
-import { addExercise, updateSets, updateTime, loadData } from "../utils/Actions";
-import actionTypes from "../utils/types";
-
 import { MainSection } from 'src/atoms/';
 import { PageLayout, WorkoutPlanView } from 'src/organisms/';
-import { Heading } from "../atoms";
 import { route } from "../Routes";
 
 
@@ -106,20 +101,21 @@ class ActiveWorkoutPage extends Component {
 
   render = () => {
       const { exerciseNumber, resting, secondsLeft, startPauseIcon, finished, currentSet } = this.state;
-      const { theme, workTime, restTime, isRadialCounterOn, workoutName, workoutPlanId } = this.props;
+      const { theme, workTime, restTime, isRadialCounterOn, workoutName, workoutPlanId, startTime } = this.props;
+
       return (
           <div>
             <PageLayout bgClass={'background background-gym-dumbbell'}>
             <MainSection>
               {finished
-                  ? <Redirect to={route.finishWorkout(workoutPlanId)} />
+                  ? <Redirect to={route.finishWorkout(workoutPlanId, startTime.valueOf())} />
                   : <Countdown
                       workoutName={workoutName}
                       resting={resting}
                       currentExercise={this.props.exercises[exerciseNumber]}
                       nextExercise={this.props.exercises[exerciseNumber+1]}
                       totalTime={resting ? restTime : workTime}
-                      secondsLeft={secondsLeft}
+                      secondsLeft={secondsLeft === 0 ? workTime: secondsLeft}
                       startPauseIcon={startPauseIcon}
                       startOrPause={this.startOrPause}
                       cancelWorkout={this.cancelWorkout}
