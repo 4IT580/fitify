@@ -26,6 +26,13 @@ export const initialState = {
     //   position: 4,
     // },
   ],
+  // workout: [
+  //   {
+  //     id: 0,
+  //     name: 'Klik',
+  //     position: 0,
+  //   },
+  // ],
 };
 
 export function listExerciseReducer(state, action) {

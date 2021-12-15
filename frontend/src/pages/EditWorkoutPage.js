@@ -1,5 +1,5 @@
 import React, { useReducer, useCallback, useState } from 'react';
-import { NewTrainingTemplate } from 'src/templates/NewTrainingTemplate';
+import { EditWorkoutTemplate } from 'src/templates/EditWorkoutTemplate';
 import { useHistory } from 'react-router-dom';
 import {
   initialState,
@@ -18,8 +18,8 @@ const EXERCISES_QUERY = gql`
   }
 `;
 
-const CREATEWORKOUT_MUTATION = gql`
-  mutation CreateWorkout(
+const EDITWORKOUT_MUTATION = gql`
+  mutation EditWorkout(
     $userId: Int!
     $name: String!
     $rounds: Int!
@@ -29,7 +29,7 @@ const CREATEWORKOUT_MUTATION = gql`
     $workoutLength: Int!
     $exercises: [ExerciseInput]!
   ) {
-    createWorkout(
+    editWorkout(
       userId: $userId
       name: $name
       rounds: $rounds
@@ -42,19 +42,18 @@ const CREATEWORKOUT_MUTATION = gql`
   }
 `;
 
-export function NewTrainingPage() {
+export function EditWorkoutPage() {
   const auth = useAuth();
   const history = useHistory();
   const { user } = useAuth();
   let arrayOfItems = [];
   const [initial, isInitial] = useState(true);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
-    CREATEWORKOUT_MUTATION,
+  const [editWorkoutRequest, editWorkoutRequestState] = useMutation(
+    EDITWORKOUT_MUTATION,
     {
       onCompleted: (date) => {
         setSuccessMessage('Training was successfully created.');
-        history.replace(route.dashboard());
       },
       onError: () => {
         console.log('login error');
@@ -84,9 +83,9 @@ export function NewTrainingPage() {
     return list;
   });
 
-  const handleCreateWorkoutFormSubmit = useCallback(
+  const handleEditWorkoutFormSubmit = useCallback(
     (values) => {
-      createWorkoutRequest({
+      editWorkoutRequest({
         variables: {
           userId: user.id,
           name: values.name,
@@ -99,16 +98,16 @@ export function NewTrainingPage() {
         },
       });
     },
-    [createWorkoutRequest],
+    [editWorkoutRequest],
   );
 
   return (
-    <NewTrainingTemplate
+    <EditWorkoutTemplate
       workoutItems={state.workoutItems}
       dispatch={dispatch}
-      isLoading={createWorkoutRequestState.loading}
-      error={createWorkoutRequestState.error}
-      onSubmit={handleCreateWorkoutFormSubmit}
+      isLoading={editWorkoutRequestState.loading}
+      error={editWorkoutRequestState.error}
+      onSubmit={handleEditWorkoutFormSubmit}
     />
   );
 }
