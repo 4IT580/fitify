@@ -93,7 +93,7 @@ export function EditWorkoutPage() {
           intLength: values.intLength,
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
-          workoutLength: 60,
+          workoutLength: 0,
           exercises: currentList,
         },
       });

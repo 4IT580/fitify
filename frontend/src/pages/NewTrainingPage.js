@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import {
   initialState,
   listExerciseReducer,
+  loadedData,
 } from 'src/reducers/listExerciseReducer';
+
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { useAuth } from 'src/utils/auth';
 import { route } from '../Routes';
@@ -62,27 +64,35 @@ export function NewTrainingPage() {
     },
   );
 
-  const exercises = useQuery(EXERCISES_QUERY);
+  //  const exercises = useQuery(EXERCISES_QUERY);
+  const exercises = useQuery(EXERCISES_QUERY, {
+    onCompleted(data) {
+      //  console.log('data s querry jsou', data);
+      dispatch(loadedData(data));
+      //  console.log('data po ', state.workoutItems);
+    },
+  });
   const { id, name, data } = exercises;
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
 
-  if (exercises.data != null && initial === true) {
-    const result4 = Object.keys(exercises.data).map(
-      (key) => exercises.data[key],
-    );
+  // if (exercises.data != null && initial === true) {
+  //   const result4 = Object.keys(exercises.data).map(
+  //     (key) => exercises.data[key],
+  //   );
+  //
+  //   arrayOfItems = result4[0];
+  //   state.workoutItems = arrayOfItems;
+  //   isInitial(false);
+  // }
 
-    arrayOfItems = result4[0];
-    state.workoutItems = arrayOfItems;
-    isInitial(false);
-  }
-
-  const currentList = state.workoutItems.map((value) => {
+  const currentList = state.workout.map((value) => {
     const list = {
       id: value.id,
       sequence: value.id,
     };
     return list;
   });
+  console.log('current list je', currentList);
 
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
@@ -94,7 +104,7 @@ export function NewTrainingPage() {
           intLength: values.intLength,
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
-          workoutLength: 60,
+          workoutLength: 0,
           exercises: currentList,
         },
       });
@@ -104,6 +114,7 @@ export function NewTrainingPage() {
 
   return (
     <NewTrainingTemplate
+      workout={state.workout}
       workoutItems={state.workoutItems}
       dispatch={dispatch}
       isLoading={createWorkoutRequestState.loading}
