@@ -67,12 +67,12 @@ export function NewTrainingPage() {
   //  const exercises = useQuery(EXERCISES_QUERY);
   const exercises = useQuery(EXERCISES_QUERY, {
     onCompleted(data) {
-      //  console.log('data s querry jsou', data);
+      console.log('data z querry jsou', data);
       dispatch(loadedData(data));
-      //  console.log('data po ', state.workoutItems);
+      console.log('data po ', state.workoutItems);
     },
   });
-  const { id, name, data } = exercises;
+  //const { id, name, data } = exercises;
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
 
   // if (exercises.data != null && initial === true) {
@@ -85,15 +85,15 @@ export function NewTrainingPage() {
   //   isInitial(false);
   // }
 
-  const currentList = state.workout.map((value) => {
-    const list = {
+  let currentList = state.workout.map((value) => {
+    let list = {
       id: value.id,
-      sequence: value.id,
+      sequence: value.position,
     };
     return list;
   });
   console.log('current list je', currentList);
-
+  console.log('workout list je', state.workout);
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
       createWorkoutRequest({
@@ -105,7 +105,7 @@ export function NewTrainingPage() {
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 0,
-          exercises: currentList,
+          exercises: values.exercises,
         },
       });
     },

@@ -12,6 +12,20 @@ const initialValues = {
   intLength: '',
   intPauseLength: '',
   roundsPauseLength: '',
+  exercises: [
+    {
+      id: 0,
+      sequence: 3,
+    },
+    {
+      id: 1,
+      sequence: 2,
+    },
+    {
+      id: 6,
+      sequence: 6,
+    },
+  ],
 };
 
 const schema = yup.object().shape({
@@ -29,7 +43,29 @@ export function NewWorkoutForm({
   className,
   onSubmit,
   children,
+  workout,
 }) {
+  // initialValues.exercises = [
+  //   {
+  //     id: 0,
+  //     sequence: 3,
+  //   },
+  //   {
+  //     id: 1,
+  //     sequence: 2,
+  //   },
+  // ];
+  let currentList = workout.map((value) => {
+    let list = {
+      id: value.id,
+      sequence: value.position,
+    };
+    return list;
+  });
+  initialValues.exercises = currentList;
+  console.log('666666666666666', initialValues.exercises);
+  console.log('666666666666666 workout je', workout);
+  console.log('99999999 workout je', currentList);
   return (
     <Formik
       onSubmit={function (values, actions) {

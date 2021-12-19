@@ -30,12 +30,10 @@ export function NewTrainingTemplate({
                 successMessage={successMessage}
                 onSubmit={onSubmit}
                 className="mt3"
+                workout={workout}
               />
               <List workoutItems={workout} dispatch={dispatch} />
-              <Button
-                colorScheme="red"
-                onClick={() => dispatch(transferData())}
-              >
+              <Button onClick={() => dispatch(transferData())}>
                 set workout list
               </Button>
               <ListAllWorkoutItems

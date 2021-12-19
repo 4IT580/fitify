@@ -6,35 +6,51 @@ export const initialState = {
       name: 'Klik',
       position: 0,
       selected: false,
+      index: 0,
     },
+  ],
+  exercise: [
+    {
+      id: 0,
+      sequence: 3,
+    },
+    {
+      id: 1,
+      sequence: 2,
+    },
+  ],
+  //workout = items from workoutItems after adding
+  workout: [
+    // {
+    //   id: 0,
+    //   name: 'Dřep',
+    //   position: 0,
+    //   index: 0,
+    // },
     // {
     //   id: 1,
     //   name: 'Dřep',
     //   position: 1,
+    //   index: 1,
     // },
     // {
     //   id: 2,
     //   name: 'Bicák',
     //   position: 2,
+    //   index: 2,
     // },
     // {
     //   id: 3,
     //   name: 'Výskok',
     //   position: 3,
+    //   index: 3,
     // },
     // {
     //   id: 4,
     //   name: 'Výrazy',
     //   position: 4,
+    //   index: 4,
     // },
-  ],
-  //workout = items from workoutItems after adding
-  workout: [
-    {
-      id: 0,
-      name: 'Dřep',
-      position: 0,
-    },
   ],
 };
 
@@ -52,29 +68,9 @@ export function listExerciseReducer(state, action) {
         })),
       };
     }
-    case 'SETLIST': {
-      const { list } = action;
-      return {
-        ...state,
-        list,
-      };
-    }
+
     case 'TRANSFER_DATA': {
       const workoutItems = [...state.workoutItems];
-
-      // console.log(workoutItems, ' je workoutItems v transfer data');
-      //
-      // const workout = workoutItems.map((item, index) => {
-      //   if (item.selected === true) {
-      //     return item;
-      //   }
-      //   return {
-      //     ...item,
-      //     position: index,
-      //   };
-      // });
-      // console.log(workout, ' je work v transfer data');
-
       return {
         ...state,
         workout: workoutItems.filter((item) => item.selected),
@@ -83,7 +79,6 @@ export function listExerciseReducer(state, action) {
     case 'SET_SELECTED': {
       const { id, selected } = action;
       //console.log('sem tady', id, selected);
-
       return {
         ...state,
         workoutItems: state.workoutItems.map((item) => {
@@ -92,17 +87,7 @@ export function listExerciseReducer(state, action) {
         }),
       };
     }
-    case 'ADD': {
-      const { name } = action;
-      const id = state.lastId + 1;
-      const newWorkItem = { name, id };
 
-      return {
-        ...state,
-        lastId: newWorkItem.id,
-        workoutItems: [newWorkItem, ...state.workoutItems],
-      };
-    }
     case 'DELETE': {
       const { id } = action;
       const workout = state.workout.filter(
@@ -115,11 +100,14 @@ export function listExerciseReducer(state, action) {
     }
     case 'SWAP': {
       const { oldIndex, newIndex } = action;
+      console.log('před swapem je oldIndex', oldIndex, 'a newindex', newIndex);
       const workout = [...state.workout];
       const oldItem = workout[oldIndex];
       const newItem = workout[newIndex];
       workout[oldIndex] = newItem;
       workout[newIndex] = oldItem;
+      console.log('po swapu je oldIndex', oldIndex, 'a newindex', newIndex);
+      console.log('pole po swapu je', workout);
       return {
         ...state,
         workout,

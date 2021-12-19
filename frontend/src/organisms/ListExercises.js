@@ -4,32 +4,31 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { deleteWorkoutItem, swapItems } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
+  console.log('666', workoutItems);
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
-      <div className="center bg-dark green br1 pa1">
-        <div className="list__card-right">
-          <div className="list__card-right--name flex   ">
-            <SmallButton
-              className="pa2 mr3"
-              onClick={() => dispatch(deleteWorkoutItem(value.id))}
-            >
-              X
-            </SmallButton>
-            {value.name}
-            <div className=" "></div>
-          </div>
-        </div>
+      <div className="list__card-right--name flex   ">
+        <SmallButton
+          className="pa2 mr3"
+          onClick={() => dispatch(deleteWorkoutItem(value.id))}
+        >
+          X
+        </SmallButton>
+        {value.name}
+        <div className=" "></div>
       </div>
     </div>
   ));
 
   const SortableList = SortableContainer(({ items }) => {
+    // console.log('999', items);
     if (items == null) {
       return '';
     } else
       return (
         <div className="list">
           {items.map((value, index) => (
+            // console.log('index idčka je', value.id, index),
             <SortableItem
               value={value}
               index={index}

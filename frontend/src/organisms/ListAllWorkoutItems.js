@@ -16,21 +16,6 @@ export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
     </div>
   );
 
-  // const listItem({item,dispatch}){
-  //
-  //
-  // }
-  // const workoutTtems = {
-  //   lastId: 2,
-  //   workoutItems: [
-  //     { id: 2, title: 'Eat Taco 🥵 🌮', done: false },
-  //     { id: 1, title: 'Buy Taco 🛒 🌮', done: true },
-  //   ],
-  // };
-
-  // className={'fl w-100 w-50-ns'}
-  // headerValue={'all Items'}
-  // items=""
   return (
     <div>
       {workoutItems.map((item) => (
