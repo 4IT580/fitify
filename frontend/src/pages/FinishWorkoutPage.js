@@ -53,11 +53,11 @@ export function FinishWorkoutPage() {
     useMutation(SET_FINISHED_WORKOUT_CALORIES, {
       onCompleted: () => {
         setSuccessMessage(
-          'Your calories are saved. You are now being redirected to workout detail',
+          'Your calories are saved. You are now being redirected to dashboard page',
         );
         setIsWaiting(true);
         setTimeout(function () {
-          history.replace(route.workout(workoutPlanId));
+          history.replace(route.dashboard());
         }, 5000);
       },
       onError: (error) => {
