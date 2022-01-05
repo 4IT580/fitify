@@ -34,7 +34,7 @@ export function Navigation() {
 
               <FontAwesomeIcon
                 icon={faUserCircle}
-                className={'ma2 green f2'}
+                className={'ma2 green f2 pointer'}
                 onClick={() => setOpen(!open)}
               />
               {open && <BurgerDesktop />}
