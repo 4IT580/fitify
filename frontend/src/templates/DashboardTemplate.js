@@ -137,15 +137,14 @@ export function DashboardTemplate({
                           {item.name}
                         </Heading>
                         <p className={'f4 f5-ns green'}>
-                          {item.intervalLength}s heat -{' '}
-                          {item.intervalPauseLength}s break
+                          {item.exercises.length} exercises -{' '}
+                          {item.rounds}rounds
                         </p>
                         <p className={'f4 f5-ns green'}>
-                          {item.exercises.length} exercises,{' '}
-                          {item.roundsPauseLength}s round break
+                          {item.intervalLength}s interval -{' '}
+                          {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
                         </p>
-                        <p className={'f4 f5-ns green'}>{item.rounds} rounds</p>
-                        <p className={'f4 f5-ns green'}>
+                        <p className={'f4 f5-ns green'}>total time:{' '}
                           {secondsToTimeString(
                             item.rounds *
                               (item.exercises.length *
@@ -153,7 +152,7 @@ export function DashboardTemplate({
                                   item.intervalPauseLength) +
                                 item.roundsPauseLength),
                           )}{' '}
-                          total
+                          s
                         </p>
                       </div>
                     </Link>
