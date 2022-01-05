@@ -128,23 +128,17 @@ export function DashboardTemplate({
                       to={route.workout(item.id)}
                       noUnderline={true}
                     >
-                      <div
-                        className={
-                          'dim tc workout-pill br4 ba pv2 ph4 ma2 ba b--green'
-                        }
-                      >
-                        <Heading size={'md'} className={'mt2 mb3'}>
-                          {item.name}
-                        </Heading>
-                        <p className={'f4 f5-ns green'}>
+                     <Card headerValue={item.name} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>  
+                        <CardBody>
+                        <p className={'f4 f5-ns green tc'}>
                           {item.exercises.length} exercises -{' '}
                           {item.rounds}rounds
                         </p>
-                        <p className={'f4 f5-ns green'}>
+                        <p className={'f4 f5-ns green tc'}>
                           {item.intervalLength}s interval -{' '}
                           {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
                         </p>
-                        <p className={'f4 f5-ns green'}>total time:{' '}
+                        <p className={'f4 f5-ns green tc'}>total time:{' '}
                           {secondsToTimeString(
                             item.rounds *
                               (item.exercises.length *
@@ -154,7 +148,8 @@ export function DashboardTemplate({
                           )}{' '}
                           s
                         </p>
-                      </div>
+                      </CardBody>
+                      </Card>
                     </Link>
                   </div>
                 ))}
