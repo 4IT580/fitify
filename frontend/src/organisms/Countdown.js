@@ -9,7 +9,7 @@ export default class Countdown extends Component {
         const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, theme, isRadialCounterOn } = this.props;
         const percentLeft = ((secondsLeft) / totalTime) * 100;
 
-        const displayNumber = secondsLeft < 10
+        const displayNumber = secondsLeft <= 0
           ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
           : parseFloat(secondsLeft).toFixed(1)
 

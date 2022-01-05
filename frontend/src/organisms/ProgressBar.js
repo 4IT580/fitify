@@ -9,7 +9,7 @@ const ProgressBar = ({ percentageLeft, secondsLeft, resting, totalTime, isRadial
     const outerStroke = resting ? '#bffa29' : '#282c34';
     const innerStroke = resting ? '#282c34' : '#bffa29';
     const transition = parseInt(secondsLeft) === totalTime ? 'none' : 'stroke-dashoffset 0.1s linear'
-    const displayNumber = secondsLeft < 10 
+    const displayNumber = secondsLeft <= 0 
         ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
         : parseFloat(secondsLeft).toFixed(1)
     return (
