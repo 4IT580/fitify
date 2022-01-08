@@ -123,34 +123,33 @@ export function DashboardTemplate({
                     className={'fl w-100 w-third-l'}
                     key={'workoutPlan' + item.id}
                   >
-                    <Link
-                      className="f7 green mv0 mw5"
-                      to={route.workout(item.id)}
-                      noUnderline={true}
-                    >
-                     <Card headerValue={item.name} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>  
+                    <Card headerValue={item.name} grid={'tc'} className={'green'}>
+                      <Link
+                        className="f7 green mv0 "
+                        to={route.workout(item.id)}
+                        noUnderline={true}
+                      >
                         <CardBody>
-                        <p className={'f4 f5-ns green tc'}>
-                          {item.exercises.length} exercises -{' '}
-                          {item.rounds}rounds
-                        </p>
-                        <p className={'f4 f5-ns green tc'}>
-                          {item.intervalLength}s interval -{' '}
-                          {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
-                        </p>
-                        <p className={'f4 f5-ns green tc'}>total time:{' '}
-                          {secondsToTimeString(
-                            item.rounds *
+                          <p className={'f4 f5-ns green tc'}>
+                            {item.exercises.length} exercises -{' '}
+                            {item.rounds}rounds
+                          </p>
+                          <p className={'f4 f5-ns green tc'}>
+                            {item.intervalLength}s interval -{' '}
+                            {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
+                          </p>
+                          <p className={'f4 f5-ns green tc'}>total time:{' '}
+                            {secondsToTimeString(
+                              item.rounds *
                               (item.exercises.length *
                                 (item.intervalLength +
-                                  item.intervalPauseLength) +
-                                item.roundsPauseLength),
-                          )}{' '}
-                          s
-                        </p>
-                      </CardBody>
-                      </Card>
-                    </Link>
+                                  item.intervalPauseLength)),
+                            )}{' '}
+                            s
+                          </p>
+                        </CardBody>
+                      </Link>
+                    </Card>
                   </div>
                 ))}
               </div>

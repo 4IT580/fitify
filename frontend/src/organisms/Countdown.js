@@ -8,16 +8,16 @@ import { secondsToTimeString } from '../utils/date';
 
 export default class Countdown extends Component {
     render = () => {
-        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, isRadialCounterOn, restTotalTime } = this.props;
+        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, isRadialCounterOn, workoutTotalTime } = this.props;
         const percentLeft = ((secondsLeft) / totalTime) * 100;
 
         const displayNumber = secondsLeft <= 0
           ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
           : parseFloat(secondsLeft).toFixed(1)
 
-        const eta = restTotalTime <= 0           
-        ? parseFloat(restTotalTime).toFixed(0).toString().padStart(4, 0)
-        : parseFloat(restTotalTime).toFixed(0)
+        const eta = workoutTotalTime <= 0
+        ? parseFloat(workoutTotalTime).toFixed(0).toString().padStart(4, 0)
+        : parseFloat(workoutTotalTime).toFixed(0)
 
         return (
           <div className="countdown-page">

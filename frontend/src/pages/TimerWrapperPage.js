@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import store from "../utils/store";
 import { useEffect, useState } from "react";
-import { addExercise, setStartTime, updateSets, updateTime } from "../utils/Actions";
+import { addExercise, initialState, setStartTime, updateSets, updateTime, updateTotalWorkoutTime } from "../utils/Actions";
 import types from "../utils/types";
 
 const WORKOUT_PLAN_QUERY = gql`
@@ -49,13 +49,21 @@ export function TimerWrapperPage () {
   });
 
   const [workoutName, setWorkoutName] = useState('');
+  const [totalTime, setTotalWorkoutTime] = useState(0);
 
   useEffect(() => {
     if(workoutPlanState.loading === false){
 
+      store.dispatch(initialState());
+
       workoutPlanState.data.workoutPlan.exercises.forEach((item) => {
         store.dispatch(addExercise(item.name))
       })
+
+      let totalTime = workoutPlanState.data.workoutPlan.rounds *
+        (workoutPlanState.data.workoutPlan.exercises.length *
+          (workoutPlanState.data.workoutPlan.intervalLength +
+            workoutPlanState.data.workoutPlan.intervalPauseLength))
 
       store.dispatch(setStartTime(new Date()))
 
@@ -64,10 +72,11 @@ export function TimerWrapperPage () {
       store.dispatch(updateTime(types.UPDATE_REST_TIME, workoutPlanState.data.workoutPlan.intervalPauseLength))
 
       setWorkoutName(workoutPlanState.data.workoutPlan.name)
+      setTotalWorkoutTime(totalTime)
     }
     }
     , [workoutPlanState]
   )
 
-  return <ActiveWorkoutPage workoutName={workoutName} workoutPlanId={workoutPlanId}/>;
+  return <ActiveWorkoutPage workoutName={workoutName} workoutPlanId={workoutPlanId} workoutTotalTime={totalTime}/>;
 }

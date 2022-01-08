@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ProgressBar = ({ percentageLeft, secondsLeft, resting, totalTime, isRadialCounterOn }) => {
+    if(!percentageLeft){
+      percentageLeft = 100
+    }
     const appliedRadius = 200;
     const appliedStroke = 15;
     const normalizedRadius = appliedRadius - appliedStroke * 2;
@@ -9,9 +12,6 @@ const ProgressBar = ({ percentageLeft, secondsLeft, resting, totalTime, isRadial
     const outerStroke = resting ? '#bffa29' : '#282c34';
     const innerStroke = resting ? '#282c34' : '#bffa29';
     const transition = parseInt(secondsLeft) === totalTime ? 'none' : 'stroke-dashoffset 0.1s linear'
-    const displayNumber = secondsLeft <= 0 
-        ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
-        : parseFloat(secondsLeft).toFixed(1)
     return (
         <div id="react-progress-circle">
             {isRadialCounterOn && <svg height={appliedRadius * 2} width={appliedRadius * 2}>

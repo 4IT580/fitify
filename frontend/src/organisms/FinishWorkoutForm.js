@@ -12,6 +12,7 @@ const initialValues = {
 const schema = yup.object().shape({
   calories: yup
     .number()
+    .required()
     .test(
       'Has min lenght?',
       'ERROR: must be positive integer',
@@ -51,7 +52,7 @@ export function FinishWorkoutForm({
           autoCapitalize="off"
         />
         <LoadingButton type="submit" className="mt2 mb3" loading={isLoading}>
-          Close training
+          Save calories
         </LoadingButton>
         {children}
       </Form>

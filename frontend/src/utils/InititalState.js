@@ -11,5 +11,6 @@ export const INITIAL_STATE = {
     isExerciseInputValid: false,
     theme: DARK_THEME,
     soundOn: true,
-    isRadialCounterOn: true
+    isRadialCounterOn: true,
+    workoutTotalTime: 12
 }

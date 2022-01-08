@@ -41,8 +41,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                             planData.rounds *
                               (planData.exercises.length *
                                 (planData.intervalLength +
-                                  planData.intervalPauseLength) +
-                                  planData.roundsPauseLength),
+                                  planData.intervalPauseLength)),
                           )}{' '}
                           s
                         </p>

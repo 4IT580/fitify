@@ -3,6 +3,8 @@ import { INITIAL_STATE } from '../utils/InititalState';
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
+        case types.INITIAL_STATE:
+          return INITIAL_STATE
         case types.ADD_EXERCISE:
             return {
                 ...state,

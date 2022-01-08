@@ -10,5 +10,6 @@ export default {
     UPDATE_SOUND_MODE: "update_sound_mode",
     IS_CONFIG_VALID: "is_config_valid",
     IS_EXERCISE_INPUT_VALID: "is_exercise_input_valid",
-    IS_RADIAL_COUNTER_ON: "is_radial_counter_on"
+    IS_RADIAL_COUNTER_ON: "is_radial_counter_on",
+    INITIAL_STATE: "initial"
 };
