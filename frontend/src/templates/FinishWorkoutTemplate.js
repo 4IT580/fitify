@@ -33,7 +33,7 @@ export function FinishWorkoutTemplate({
                 noUnderline={true}
                 to={route.dashboard()}
               >
-                Continue to dashboard, no need for calories
+                Go to dashboard
               </Link>
             }
           </FinishWorkoutForm>
