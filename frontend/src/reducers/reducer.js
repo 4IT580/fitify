@@ -54,13 +54,6 @@ export default (state = INITIAL_STATE, action) => {
                 }
             };
 
-        case types.UPDATE_THEME:
-            return {
-                ...state,
-                theme: action.theme
-            }
-
-
         case types.UPDATE_SOUND_MODE: 
             return {
                 ...state,
