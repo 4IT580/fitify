@@ -3,7 +3,7 @@ import React from 'react';
 import { ErrorBanner } from 'src/atoms/';
 import { Link, Button, Loading } from 'src/atoms/';
 import { CardBody, Heading, List } from '../atoms';
-import { fromUnixTimeStamp } from '../utils/date';
+import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
 import { Card, WorkoutHeader } from '../molecules';
 
 export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
@@ -24,7 +24,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
           <WorkoutHeader planData={planData} />
 
           <div className={'cf'}>
-            <Card headerValue={'Train'} grid={'fl w-100 w-50-l'} className={'green'}>
+            <Card headerValue={'Training summary'} grid={'fl w-100 w-50-l'} className={'green'}>
               <CardBody>
                 <p className={'f4 f5-ns green'}>
                   Interval length: {planData.intervalLength}s
@@ -32,10 +32,19 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                 <p className={'f4 f5-ns green'}>
                   Interval pause length: {planData.intervalPauseLength}s
                 </p>
-                <p className={'f4 f5-ns green'}>rounds: {planData.rounds}</p>
+                <p className={'f4 f5-ns green'}>Rounds: {planData.rounds}</p>
                 <p className={'f4 f5-ns green'}>
-                  rounds pause length: {planData.roundsPauseLength}s
+                  Rounds pause length: {planData.roundsPauseLength}s
                 </p>
+                <p className={'f4 f5-ns green'}>Total time:{' '}
+                          {secondsToTimeString(
+                            planData.rounds *
+                              (planData.exercises.length *
+                                (planData.intervalLength +
+                                  planData.intervalPauseLength)),
+                          )}{' '}
+                          s
+                        </p>
               </CardBody>
             </Card>
 

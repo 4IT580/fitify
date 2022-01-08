@@ -4,14 +4,20 @@ import { route } from 'src/Routes';
 import ProgressBar from './ProgressBar';
 import { PositiveButton, NegativeButton, Heading } from 'src/atoms';
 
+import { secondsToTimeString } from '../utils/date';
+
 export default class Countdown extends Component {
     render = () => {
-        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, theme, isRadialCounterOn } = this.props;
+        const { workoutName, resting, currentExercise, nextExercise, secondsLeft, totalTime, startPauseIcon, startOrPause, cancelWorkout, sets, currentSet, isRadialCounterOn, workoutTotalTime } = this.props;
         const percentLeft = ((secondsLeft) / totalTime) * 100;
 
-        const displayNumber = secondsLeft < 10
+        const displayNumber = secondsLeft <= 0
           ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
           : parseFloat(secondsLeft).toFixed(1)
+
+        const eta = workoutTotalTime <= 0
+        ? parseFloat(workoutTotalTime).toFixed(0).toString().padStart(4, 0)
+        : parseFloat(workoutTotalTime).toFixed(0)
 
         return (
           <div className="countdown-page">
@@ -40,6 +46,9 @@ export default class Countdown extends Component {
             </div>
             <div className={'f2'} style={{transform: 'translate(0%, -245px)'}}>
               Set: {currentSet} / {sets}
+            </div>
+            <div className={'f3 green'} style={{transform: 'translate(0%, -245px)'}}>
+              Time: {secondsToTimeString(eta)}
             </div>
             <div className="countdown-interactionBar nt6">
               <PositiveButton

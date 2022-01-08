@@ -84,8 +84,13 @@ export const removeExercise = numberInList => (dispatch, getState) => {
     dispatch(updatingExercises(newExercises))
 }
 
+export const initialState = foo => (dispatch) => {
+    dispatch({
+      type: types.INITIAL_STATE
+    })
+}
+
 export const updateTime = (actionType, time) => (dispatch, getState) => {
-  console.log(actionType, time)
     const key = actionType === types.UPDATE_WORK_TIME
         ? 'workTime'
         : 'restTime'

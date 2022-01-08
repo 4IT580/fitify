@@ -16,5 +16,7 @@ export function secondsToTimeString(allSeconds) {
   const minutes = Math.floor(allSeconds / 60);
   const seconds = allSeconds % 60;
 
-  return minutes + ':' + seconds;
+  return ( seconds < 10 ? (minutes + ':0' + seconds) : (minutes + ':' + seconds))
+  
+  //minutes + ':' + seconds;
 }
