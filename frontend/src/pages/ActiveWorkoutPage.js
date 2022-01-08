@@ -9,6 +9,7 @@ import { withRedux } from '../utils/WithRedux';
 import { MainSection } from 'src/atoms/';
 import { PageLayout, WorkoutPlanView } from 'src/organisms/';
 import { route } from "../Routes";
+import { Heading, Link } from "../atoms";
 
 
 class ActiveWorkoutPage extends Component {
@@ -22,7 +23,8 @@ class ActiveWorkoutPage extends Component {
           resting: false,
           secondsLeft: this.props.workTime,
           currentSet: 1,
-          workoutTotalTime: 0
+          workoutTotalTime: 0,
+          showCancel: false
       }
       this.startOrPause = this.startOrPause.bind(this)
       this.tick = this.tick.bind(this)
@@ -50,9 +52,10 @@ class ActiveWorkoutPage extends Component {
   }
 
   cancelWorkout = () => {
-    if (window.confirm("Cancel the workout?")) {
-        window.location=route.dashboard()
-      }
+    if(this.state.isRunning){
+      this.startOrPause();
+    }
+    this.setState({showCancel: !this.state.showCancel})
   }
 
   startTimer = () => {
@@ -132,6 +135,22 @@ class ActiveWorkoutPage extends Component {
                       currentSet={currentSet}
                       isRadialCounterOn={isRadialCounterOn}
                   />
+              }
+
+              {this.state.showCancel &&
+                <div className={'modal absolute absolute--fill flex  justify-center'}>
+                  <div className="bg-dark br3 pa5 tc fa-border w-30 self-start mt6">
+                    <Heading size={'xl'} className={'white'}>Cancel the workout?</Heading>
+                    <div className={'mt4'}>
+                      <Link className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'} noUnderline={true} to={route.dashboard()}>Yes</Link>
+                      <Link className={'w-40 link dim br-pill ph4 pv3 dib dark bg-green ml1'} noUnderline={true} to={'#'} onClick={() => {
+                        this.setState({showCancel: false})
+                      }}>
+                        No
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               }
               </MainSection>
               </PageLayout>
