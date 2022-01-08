@@ -84,6 +84,7 @@ article {
   margin-top: 50px;
   border-top: #bffa29;
   border-top-style: solid;
+  z-index: 1;
 }
 
 .burger-desktop ul {
