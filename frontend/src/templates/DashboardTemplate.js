@@ -82,20 +82,20 @@ export function DashboardTemplate({
         <MainSection>
           <Heading size={'xxl'} className={'green'}>
             Dashboard
-          </Heading>
-
-          <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
+            <Button className={'dit w-100 w-auto-ns fr-ns mt1'}>
             <Link
               to={route.newTraining()}
               className={
-                'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns fr-ns w-100 fl tc'
+                'bg-animate dim bg-green br-pill mv0 f3 f5-ns fr-ns w-100 fl tc'
               }
             >
-              New training
+              New Training
             </Link>
-          </div>
+            </Button>
+          </Heading>
 
-          <div className={'dit w-100 mt3 w-auto-ns fl-ns'}>
+
+          <div className={'dit w-100 mt4 f4 w-auto-ns fr-ns'}>
             <TextInput
               placeholder={'Filter trainings'}
               id={'filterInput'}
@@ -104,6 +104,10 @@ export function DashboardTemplate({
               }}
             />
           </div>
+
+          <Heading size={'xl'} className={'green pb4 mt4'}>
+            Trainings
+          </Heading>
 
           {isLoading && !workoutData && <Loading />}
 
@@ -118,12 +122,9 @@ export function DashboardTemplate({
           {workoutData && (
             <>
               <div className={'dit w-100 mt3'}>
-              <Heading size={'xl'} className={'green'}>
-                Trainings
-              </Heading>
                 {workoutData.map((item) => (
                   <div
-                    className={'fl ph2 pv2 w-100 w-third-l'}
+                    className={'fl ph2 w-100 w-third-l'}
                     key={'workoutPlan' + item.id}
                   >
                     <Link
@@ -131,78 +132,62 @@ export function DashboardTemplate({
                       to={route.workout(item.id)}
                       noUnderline={true}
                     >
-                      <div
-                        className={
-                          'dim tc workout-pill br4 ba pv2 ph4 ba b--green'
-                        }
-                      >
-                        <Heading size={'md'} className={'mt2 mb3'}>
-                          {item.name}
-                        </Heading>
-                        <p className={'f4 f5-ns green'}>
-                          {item.intervalLength}s heat -{' '}
-                          {item.intervalPauseLength}s break
-                        </p>
-                        <p className={'f4 f5-ns green'}>
-                          {item.exercises.length} exercises,{' '}
-                          {item.roundsPauseLength}s round break
-                        </p>
-                        <p className={'f4 f5-ns green'}>{item.rounds} rounds</p>
-                        <p className={'f4 f5-ns green'}>
-                          {secondsToTimeString(
-                            item.rounds *
+                      <Card headerValue={item.name} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
+                        <CardBody>
+                          <p className={'f4 f5-ns green tc'}>
+                            {item.exercises.length} exercises -{' '}
+                            {item.rounds}rounds
+                          </p>
+                          <p className={'f4 f5-ns green tc'}>
+                            {item.intervalLength}s interval -{' '}
+                            {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
+                          </p>
+                          <p className={'f4 f5-ns green tc'}>total time:{' '}
+                            {secondsToTimeString(
+                              item.rounds *
                               (item.exercises.length *
                                 (item.intervalLength +
                                   item.intervalPauseLength) +
                                 item.roundsPauseLength),
-                          )}{' '}
-                          total
-                        </p>
-                      </div>
+                            )}{' '}
+                            s
+                          </p>
+                        </CardBody>
+                      </Card>
                     </Link>
                   </div>
                 ))}
               </div>
 
               <div className={'dit w-100 mt3'}>
-              <Heading size={'xl'} className={'green'}>
-                Training history
-              </Heading>
-              {workoutHistory
-                    .sort(function (a, b) {
-                      return b.startAt - a.startAt;
-                    })
-                    .map((historyItem) => (
-                      <div
-                      className={'fl ph2 pv2 w-100 w-third-l green'}
+                <Heading size={'xl'} className={'green pb4'}>
+                  Training history
+                </Heading>
+                {workoutHistory
+                  .sort(function (a, b) {
+                    return b.startAt - a.startAt;
+                  })
+                  .map((historyItem) => (
+                    <div
+                      className={'fl ph2 w-100 w-third-l green'}
                       key={'workoutPlan' + historyItem.id}
                     >
-                                          <div
-                        className={
-                          'dim tc workout-pill br4 ba pv2 ph4 ba b--green'
-                        }
-                      >
-                      <Heading size={'md'} className={'mt2 mb3'}>
-                        {historyItem.parentName}
-                      </Heading>
-                      <p className={'f4 f5-ns green'}>
-                          From: {fromUnixTimeStamp(historyItem.startAt)}
-                        </p>
-                      <p className={'f4 f5-ns green'}>
-                          Until: {fromUnixTimeStamp(historyItem.endAt)}
-                        </p>
-                      <p className={'f4 f5-ns green'}>
-                          {historyItem.calories &&
-                                ' Burnt calories: ' + historyItem.calories}
-                        </p>
-
-                      </div>
+                      <Card headerValue={historyItem.parentName} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
+                        <CardBody>
+                          <p className={'f4 f5-ns green'}>
+                            From: {fromUnixTimeStamp(historyItem.startAt)}
+                          </p>
+                          <p className={'f4 f5-ns green'}>
+                            Until: {fromUnixTimeStamp(historyItem.endAt)}
+                          </p>
+                          <p className={'f4 f5-ns green'}>
+                            {historyItem.calories &&
+                              ' Burnt calories: ' + historyItem.calories +' kcal'}
+                          </p>
+                        </CardBody>
+                      </Card>
                     </div>
-
-                    ))}
-              </div>
-
-              <div>
+                  ))}
               </div>
             </>
           )}

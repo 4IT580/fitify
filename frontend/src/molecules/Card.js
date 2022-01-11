@@ -6,7 +6,7 @@ import classNames from 'classnames';
 export function Card({ headerValue, children, className, grid }) {
   return (
     <div className={grid}>
-      <article className={classNames('ba mb4 br4 ma2', className)}>
+      <article className={classNames('ba mb4 br4', className)}>
         <Heading size={'lg'} className={'green pa3'}>
           {headerValue}
         </Heading>
