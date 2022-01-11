@@ -80,7 +80,7 @@ export function DashboardTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
-          <Heading size={'xl'} className={'green'}>
+          <Heading size={'xxl'} className={'green'}>
             Dashboard
           </Heading>
 
@@ -118,6 +118,9 @@ export function DashboardTemplate({
           {workoutData && (
             <>
               <div className={'dit w-100 mt3'}>
+              <Heading size={'xl'} className={'green'}>
+                Trainings
+              </Heading>
                 {workoutData.map((item) => (
                   <div
                     className={'fl ph2 pv2 w-100 w-third-l'}
@@ -161,41 +164,45 @@ export function DashboardTemplate({
                 ))}
               </div>
 
-              <div>
-                <Card
-                  headerValue={'Training history'}
-                  className={'mt4 mb6 green'}
-                  grid={'w-100 w-50-l center-l mw6-l'}
-                >
-                  {workoutHistory
+              <div className={'dit w-100 mt3'}>
+              <Heading size={'xl'} className={'green'}>
+                Training history
+              </Heading>
+              {workoutHistory
                     .sort(function (a, b) {
                       return b.startAt - a.startAt;
                     })
                     .map((historyItem) => (
-                      <CardBody
-                        key={
-                          'plan' +
-                          historyItem.parentId +
-                          'historyItem' +
-                          historyItem.id
+                      <div
+                      className={'fl ph2 pv2 w-100 w-third-l green'}
+                      key={'workoutPlan' + historyItem.id}
+                    >
+                                          <div
+                        className={
+                          'dim tc workout-pill br4 ba pv2 ph4 ba b--green'
                         }
                       >
-                        <Heading size={'sm'} className={'mt3 green'}>
-                          {historyItem.parentName}
-                        </Heading>
-                        <p className={'f4 f5-ns green'}>
+                      <Heading size={'md'} className={'mt2 mb3'}>
+                        {historyItem.parentName}
+                      </Heading>
+                      <p className={'f4 f5-ns green'}>
                           From: {fromUnixTimeStamp(historyItem.startAt)}
                         </p>
-                        <p className={'f4 f5-ns green'}>
+                      <p className={'f4 f5-ns green'}>
                           Until: {fromUnixTimeStamp(historyItem.endAt)}
                         </p>
-                        <p className={'f4 f5-ns green'}>
+                      <p className={'f4 f5-ns green'}>
                           {historyItem.calories &&
-                            ' Burnt calories: ' + historyItem.calories}
+                                ' Burnt calories: ' + historyItem.calories}
                         </p>
-                      </CardBody>
+
+                      </div>
+                    </div>
+
                     ))}
-                </Card>
+              </div>
+
+              <div>
               </div>
             </>
           )}
