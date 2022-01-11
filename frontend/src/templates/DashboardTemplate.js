@@ -120,36 +120,43 @@ export function DashboardTemplate({
               <div className={'dit w-100 mt3'}>
                 {workoutData.map((item) => (
                   <div
-                    className={'fl w-100 w-third-l'}
+                    className={'fl ph2 pv2 w-100 w-third-l'}
                     key={'workoutPlan' + item.id}
                   >
-                    <Card headerValue={item.name} grid={'tc'} className={'green'}>
-                      <Link
-                        className="f7 green mv0 "
-                        to={route.workout(item.id)}
-                        noUnderline={true}
+                    <Link
+                      className="f7 green mv0 mw5"
+                      to={route.workout(item.id)}
+                      noUnderline={true}
+                    >
+                      <div
+                        className={
+                          'dim tc workout-pill br4 ba pv2 ph4 ba b--green'
+                        }
                       >
-                        <CardBody>
-                          <p className={'f4 f5-ns green tc'}>
-                            {item.exercises.length} exercises -{' '}
-                            {item.rounds}rounds
-                          </p>
-                          <p className={'f4 f5-ns green tc'}>
-                            {item.intervalLength}s interval -{' '}
-                            {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
-                          </p>
-                          <p className={'f4 f5-ns green tc'}>total time:{' '}
-                            {secondsToTimeString(
-                              item.rounds *
+                        <Heading size={'md'} className={'mt2 mb3'}>
+                          {item.name}
+                        </Heading>
+                        <p className={'f4 f5-ns green'}>
+                          {item.intervalLength}s heat -{' '}
+                          {item.intervalPauseLength}s break
+                        </p>
+                        <p className={'f4 f5-ns green'}>
+                          {item.exercises.length} exercises,{' '}
+                          {item.roundsPauseLength}s round break
+                        </p>
+                        <p className={'f4 f5-ns green'}>{item.rounds} rounds</p>
+                        <p className={'f4 f5-ns green'}>
+                          {secondsToTimeString(
+                            item.rounds *
                               (item.exercises.length *
                                 (item.intervalLength +
-                                  item.intervalPauseLength)),
-                            )}{' '}
-                            s
-                          </p>
-                        </CardBody>
-                      </Link>
-                    </Card>
+                                  item.intervalPauseLength) +
+                                item.roundsPauseLength),
+                          )}{' '}
+                          total
+                        </p>
+                      </div>
+                    </Link>
                   </div>
                 ))}
               </div>
