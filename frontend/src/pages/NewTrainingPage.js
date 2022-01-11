@@ -96,6 +96,7 @@ export function NewTrainingPage() {
   console.log('workout list je', state.workout);
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
+      console.log('ve formu odesilam', values);
       createWorkoutRequest({
         variables: {
           userId: user.id,
@@ -109,7 +110,7 @@ export function NewTrainingPage() {
         },
       });
     },
-    [createWorkoutRequest],
+    [createWorkoutRequest, currentList],
   );
 
   return (

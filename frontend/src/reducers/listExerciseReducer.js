@@ -1,24 +1,24 @@
 export const initialState = {
   //workoutItems = items from database
   workoutItems: [
-    {
-      id: 0,
-      name: 'Klik',
-      position: 0,
-      selected: false,
-      index: 0,
-    },
+    // {
+    //   id: 0,
+    //   name: 'Klik',
+    //   position: 0,
+    //   selected: false,
+    //   index: 0,
+    // },
   ],
-  exercise: [
-    {
-      id: 0,
-      sequence: 3,
-    },
-    {
-      id: 1,
-      sequence: 2,
-    },
-  ],
+  // exercise: [
+  //   {
+  //     id: 0,
+  //     sequence: 3,
+  //   },
+  //   {
+  //     id: 1,
+  //     sequence: 2,
+  //   },
+  // ],
   //workout = items from workoutItems after adding
   workout: [
     // {
@@ -29,7 +29,7 @@ export const initialState = {
     // },
     // {
     //   id: 1,
-    //   name: 'Dřep',
+    //   name: 'Klik',
     //   position: 1,
     //   index: 1,
     // },

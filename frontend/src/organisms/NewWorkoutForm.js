@@ -13,18 +13,18 @@ const initialValues = {
   intPauseLength: '',
   roundsPauseLength: '',
   exercises: [
-    {
-      id: 0,
-      sequence: 3,
-    },
-    {
-      id: 1,
-      sequence: 2,
-    },
-    {
-      id: 6,
-      sequence: 6,
-    },
+    // {
+    //   id: 0,
+    //   sequence: 3,
+    // },
+    // {
+    //   id: 1,
+    //   sequence: 2,
+    // },
+    // {
+    //   id: 6,
+    //   sequence: 6,
+    // },
   ],
 };
 
@@ -45,16 +45,24 @@ export function NewWorkoutForm({
   children,
   workout,
 }) {
-  // initialValues.exercises = [
-  //   {
-  //     id: 0,
-  //     sequence: 3,
-  //   },
-  //   {
-  //     id: 1,
-  //     sequence: 2,
-  //   },
-  // ];
+  initialValues.exercises = [
+    // {
+    //   id: 0,
+    //   sequence: 0,
+    // },
+    // {
+    //   id: 1,
+    //   sequence: 1,
+    // },
+    // {
+    //   id: 3,
+    //   sequence: 3,
+    // },
+    // {
+    //   id: 4,
+    //   sequence: 4,
+    // },
+  ];
   let currentList = workout.map((value) => {
     let list = {
       id: value.id,
@@ -62,14 +70,15 @@ export function NewWorkoutForm({
     };
     return list;
   });
-  initialValues.exercises = currentList;
-  console.log('666666666666666', initialValues.exercises);
+  //initialValues.exercises = currentList;
+  //  console.log('666666666666666', initialValues.exercises);
   console.log('666666666666666 workout je', workout);
   console.log('99999999 workout je', currentList);
   return (
     <Formik
       onSubmit={function (values, actions) {
-        onSubmit(values);
+        console.log('ve formiku workout je', currentList);
+        onSubmit({ ...values, exercises: currentList });
       }}
       initialValues={initialValues}
       validationSchema={schema}

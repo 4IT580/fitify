@@ -4,7 +4,7 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { deleteWorkoutItem, swapItems } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
-  console.log('666', workoutItems);
+  console.log('list prvků uvnitř ListExercises', workoutItems);
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
       <div className="list__card-right--name flex   ">
