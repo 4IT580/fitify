@@ -4,7 +4,6 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { deleteWorkoutItem, swapItems } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
-  console.log('list prvků uvnitř ListExercises', workoutItems);
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
     <div className="list__card" index={index}>
       <div className="list__card-right--name flex   ">
@@ -15,20 +14,19 @@ export const List = ({ workoutItems, dispatch }) => {
           X
         </SmallButton>
         {value.name}
+
         <div className=" "></div>
       </div>
     </div>
   ));
 
   const SortableList = SortableContainer(({ items }) => {
-    // console.log('999', items);
     if (items == null) {
       return '';
     } else
       return (
         <div className="list">
           {items.map((value, index) => (
-            // console.log('index idčka je', value.id, index),
             <SortableItem
               value={value}
               index={index}

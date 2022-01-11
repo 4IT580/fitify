@@ -29,7 +29,6 @@ export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
                 dispatch(setWorkoutItemSelected(item.id, !item.selected))
               }
             />
-
             {item.name}
           </div>
         </div>

@@ -26,9 +26,6 @@ const WORKOUT_PLAN = gql`
   }
 `;
 
-//console.log('sem v editu, a name je:', WORKOUT_PLAN.id);
-
-
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
   rounds: yup.number().required().positive().integer(),
@@ -52,8 +49,8 @@ export function EditWorkoutForm({
   const workoutPlan = useQuery(WORKOUT_PLAN, {
     variables: { id: parseInt(workoutPlanId) },
   });
-  console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
-//  console.log('sem v editu, a PLAN je:', workoutPlan.data.name);
+  //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
+
   const initialValues = {
     name: '',
     rounds: '',
@@ -61,11 +58,7 @@ export function EditWorkoutForm({
     intPauseLength: '',
     roundsPauseLength: '',
   };
-  //const { user } = useAuth();
 
-  // const workoutPlanState = useQuery(WORKOUT_PLAN_QUERY, {
-  //   variables: { id: parseInt(workoutPlanId) },
-  // });
   return (
     <Formik
       onSubmit={function (values, actions) {

@@ -1,64 +1,16 @@
 export const initialState = {
   //workoutItems = items from database
-  workoutItems: [
-    // {
-    //   id: 0,
-    //   name: 'Klik',
-    //   position: 0,
-    //   selected: false,
-    //   index: 0,
-    // },
-  ],
-  // exercise: [
-  //   {
-  //     id: 0,
-  //     sequence: 3,
-  //   },
-  //   {
-  //     id: 1,
-  //     sequence: 2,
-  //   },
-  // ],
+  workoutItems: [],
+
   //workout = items from workoutItems after adding
-  workout: [
-    // {
-    //   id: 0,
-    //   name: 'Dřep',
-    //   position: 0,
-    //   index: 0,
-    // },
-    // {
-    //   id: 1,
-    //   name: 'Klik',
-    //   position: 1,
-    //   index: 1,
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Bicák',
-    //   position: 2,
-    //   index: 2,
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Výskok',
-    //   position: 3,
-    //   index: 3,
-    // },
-    // {
-    //   id: 4,
-    //   name: 'Výrazy',
-    //   position: 4,
-    //   index: 4,
-    // },
-  ],
+  workout: [],
 };
 
 export function listExerciseReducer(state, action) {
   switch (action.type) {
     case 'LOADED_DATA': {
       const { data } = action;
-      //console.log('data.exercises v reduceru sou', data);
+
       return {
         ...state,
         workoutItems: data.exercises.map((item, index) => ({
@@ -78,7 +30,7 @@ export function listExerciseReducer(state, action) {
     }
     case 'SET_SELECTED': {
       const { id, selected } = action;
-      //console.log('sem tady', id, selected);
+
       return {
         ...state,
         workoutItems: state.workoutItems.map((item) => {
@@ -100,14 +52,19 @@ export function listExerciseReducer(state, action) {
     }
     case 'SWAP': {
       const { oldIndex, newIndex } = action;
-      console.log('před swapem je oldIndex', oldIndex, 'a newindex', newIndex);
+
       const workout = [...state.workout];
-      const oldItem = workout[oldIndex];
-      const newItem = workout[newIndex];
+
+      let oldItem = workout[oldIndex];
+      let newItem = workout[newIndex];
+      let oldPosition = oldItem.position;
+      let newPosition = newItem.position;
+      oldItem.position = newPosition;
+      newItem.position = oldPosition;
+
       workout[oldIndex] = newItem;
       workout[newIndex] = oldItem;
-      console.log('po swapu je oldIndex', oldIndex, 'a newindex', newIndex);
-      console.log('pole po swapu je', workout);
+
       return {
         ...state,
         workout,

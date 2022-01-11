@@ -64,27 +64,13 @@ export function NewTrainingPage() {
     },
   );
 
-  //  const exercises = useQuery(EXERCISES_QUERY);
   const exercises = useQuery(EXERCISES_QUERY, {
     onCompleted(data) {
-      console.log('data z querry jsou', data);
       dispatch(loadedData(data));
-      console.log('data po ', state.workoutItems);
     },
   });
-  //const { id, name, data } = exercises;
+
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
-
-  // if (exercises.data != null && initial === true) {
-  //   const result4 = Object.keys(exercises.data).map(
-  //     (key) => exercises.data[key],
-  //   );
-  //
-  //   arrayOfItems = result4[0];
-  //   state.workoutItems = arrayOfItems;
-  //   isInitial(false);
-  // }
-
   let currentList = state.workout.map((value) => {
     let list = {
       id: value.id,
@@ -92,11 +78,9 @@ export function NewTrainingPage() {
     };
     return list;
   });
-  console.log('current list je', currentList);
-  console.log('workout list je', state.workout);
+
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
-      console.log('ve formu odesilam', values);
       createWorkoutRequest({
         variables: {
           userId: user.id,
