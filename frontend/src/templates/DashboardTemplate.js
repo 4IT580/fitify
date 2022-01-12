@@ -169,7 +169,7 @@ export function DashboardTemplate({
                   })
                   .map((historyItem) => (
                     <div
-                      className={'fl ph2 w-100 w-third-l green'}
+                      className={'fl ph2 w-100 w-third-l green o-80'}
                       key={'workoutPlan' + historyItem.id}
                     >
                       <Card headerValue={historyItem.parentName} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
