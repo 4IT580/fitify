@@ -1,67 +1,77 @@
 export const initialState = {
-  lastId: 5,
-  workoutItems: [
-    {
-      name: 'Klik',
-      description: '',
-      position: 0,
-      id: 0,
-    },
-    {
-      name: 'Dřep',
-      description: '',
-      position: 1,
-      id: 1,
-    },
-    {
-      name: 'Bicák',
-      description: '',
-      position: 2,
-      id: 2,
-    },
-    {
-      name: 'Výskok',
-      description: '',
-      position: 3,
-      id: 3,
-    },
-    {
-      name: 'Mlácení hlavou o zeď',
-      description: '',
-      position: 4,
-      id: 4,
-    },
-  ],
+  //workoutItems = items from database
+  workoutItems: [],
+
+  //workout = items from workoutItems after adding
+  workout: [],
 };
 
 export function listExerciseReducer(state, action) {
   switch (action.type) {
-    case 'ADD': {
-      const { name } = action;
-
-      const id = state.lastId + 1;
-
-      const newWorkItem = { name, description: '', id, id };
+    case 'LOADED_DATA': {
+      const { data } = action;
 
       return {
         ...state,
-        lastId: newWorkItem.id,
-        workoutItems: [newWorkItem, ...state.workoutItems],
+        workoutItems: data.exercises.map((item, index) => ({
+          ...item,
+          position: index,
+          selected: false,
+        })),
       };
     }
-    case 'DELETE': {
-      const { id } = action;
-      console.log(id);
+
+    case 'TRANSFER_DATA': {
+      const workoutItems = [...state.workoutItems];
       return {
         ...state,
-        workoutItems: state.workoutItems.filter(
-          (workoutItem) => workoutItem.id !== id,
-        ),
+        workout: workoutItems.filter((item) => item.selected),
+      };
+    }
+    case 'SET_SELECTED': {
+      const { id, selected } = action;
+
+      return {
+        ...state,
+        workoutItems: state.workoutItems.map((item) => {
+          if (item.id !== id) return item;
+          return { ...item, selected };
+        }),
+      };
+    }
+
+    case 'DELETE': {
+      const { id } = action;
+      const workout = state.workout.filter(
+        (workoutItem) => workoutItem.id !== id,
+      );
+      return {
+        ...state,
+        workout,
+      };
+    }
+    case 'SWAP': {
+      const { oldIndex, newIndex } = action;
+
+      const workout = [...state.workout];
+
+      let oldItem = workout[oldIndex];
+      let newItem = workout[newIndex];
+      let oldPosition = oldItem.position;
+      let newPosition = newItem.position;
+      oldItem.position = newPosition;
+      newItem.position = oldPosition;
+
+      workout[oldIndex] = newItem;
+      workout[newIndex] = oldItem;
+
+      return {
+        ...state,
+        workout,
       };
     }
     default:
-      console.error('Unknown action:', action);
-      return state;
+      throw new Error('Unknown action');
   }
 }
 
@@ -70,4 +80,20 @@ export function addWorkoutItem(name) {
 }
 export function deleteWorkoutItem(id) {
   return { type: 'DELETE', id };
+}
+
+export function swapItems(oldIndex, newIndex) {
+  return { type: 'SWAP', oldIndex, newIndex };
+}
+export function setList(list) {
+  return { type: 'SETLIST', list };
+}
+export function loadedData(data) {
+  return { type: 'LOADED_DATA', data };
+}
+export function transferData() {
+  return { type: 'TRANSFER_DATA' };
+}
+export function setWorkoutItemSelected(id, selected) {
+  return { type: 'SET_SELECTED', id, selected };
 }

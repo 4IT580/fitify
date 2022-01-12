@@ -1,12 +1,10 @@
 import React, { useReducer, useCallback, useState } from 'react';
-import { NewTrainingTemplate } from 'src/templates/NewTrainingTemplate';
+import { EditWorkoutTemplate } from 'src/templates/EditWorkoutTemplate';
 import { useHistory } from 'react-router-dom';
 import {
   initialState,
   listExerciseReducer,
-  loadedData,
 } from 'src/reducers/listExerciseReducer';
-
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { useAuth } from 'src/utils/auth';
 import { route } from '../Routes';
@@ -20,8 +18,8 @@ const EXERCISES_QUERY = gql`
   }
 `;
 
-const CREATEWORKOUT_MUTATION = gql`
-  mutation CreateWorkout(
+const EDITWORKOUT_MUTATION = gql`
+  mutation EditWorkout(
     $userId: Int!
     $name: String!
     $rounds: Int!
@@ -31,7 +29,7 @@ const CREATEWORKOUT_MUTATION = gql`
     $workoutLength: Int!
     $exercises: [ExerciseInput]!
   ) {
-    createWorkout(
+    editWorkout(
       userId: $userId
       name: $name
       rounds: $rounds
@@ -44,19 +42,18 @@ const CREATEWORKOUT_MUTATION = gql`
   }
 `;
 
-export function NewTrainingPage() {
+export function EditWorkoutPage() {
   const auth = useAuth();
   const history = useHistory();
   const { user } = useAuth();
   let arrayOfItems = [];
   const [initial, isInitial] = useState(true);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
-    CREATEWORKOUT_MUTATION,
+  const [editWorkoutRequest, editWorkoutRequestState] = useMutation(
+    EDITWORKOUT_MUTATION,
     {
       onCompleted: (date) => {
         setSuccessMessage('Training was successfully created.');
-        history.replace(route.dashboard());
       },
       onError: () => {
         console.log('login error');
@@ -64,24 +61,31 @@ export function NewTrainingPage() {
     },
   );
 
-  const exercises = useQuery(EXERCISES_QUERY, {
-    onCompleted(data) {
-      dispatch(loadedData(data));
-    },
-  });
-
+  const exercises = useQuery(EXERCISES_QUERY);
+  const { id, name, data } = exercises;
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
-  let currentList = state.workout.map((value) => {
-    let list = {
+
+  if (exercises.data != null && initial === true) {
+    const result4 = Object.keys(exercises.data).map(
+      (key) => exercises.data[key],
+    );
+
+    arrayOfItems = result4[0];
+    state.workoutItems = arrayOfItems;
+    isInitial(false);
+  }
+
+  const currentList = state.workoutItems.map((value) => {
+    const list = {
       id: value.id,
-      sequence: value.position,
+      sequence: value.id,
     };
     return list;
   });
 
-  const handleCreateWorkoutFormSubmit = useCallback(
+  const handleEditWorkoutFormSubmit = useCallback(
     (values) => {
-      createWorkoutRequest({
+      editWorkoutRequest({
         variables: {
           userId: user.id,
           name: values.name,
@@ -90,21 +94,20 @@ export function NewTrainingPage() {
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 0,
-          exercises: values.exercises,
+          exercises: currentList,
         },
       });
     },
-    [createWorkoutRequest, currentList],
+    [editWorkoutRequest],
   );
 
   return (
-    <NewTrainingTemplate
-      workout={state.workout}
+    <EditWorkoutTemplate
       workoutItems={state.workoutItems}
       dispatch={dispatch}
-      isLoading={createWorkoutRequestState.loading}
-      error={createWorkoutRequestState.error}
-      onSubmit={handleCreateWorkoutFormSubmit}
+      isLoading={editWorkoutRequestState.loading}
+      error={editWorkoutRequestState.error}
+      onSubmit={handleEditWorkoutFormSubmit}
     />
   );
 }
