@@ -6,7 +6,7 @@ export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
     <div>
       {workoutItems.map((item) => (
         <div className="pb1">
-          <div className="flex items-center bg-dark br1 pa1 hide-child">
+          <div className="flex items-center br1 pa1 hide-child">
             <Checkbox
               key={item.id}
               className="mh1g"
