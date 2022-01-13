@@ -24,24 +24,6 @@ export function NewTrainingTemplate({
           <div
             className={'fl w-100 w-two-l'}>
           <Card
-            headerValue={'Create New Training'}
-            className={'mt4 mb6 green'}
-            grid={'w-100 w-50-l center-m mw6-l fl'}
-          >
-            <CardBody>
-              <NewWorkoutForm
-                isLoading={isLoading}
-                errorMessage={error && error.message}
-                successMessage={successMessage}
-                onSubmit={onSubmit}
-                className="mt3"
-                workout={workout}
-              />
-                <List workoutItems={workout} dispatch={dispatch} />
-            </CardBody>
-          </Card>
-
-          <Card
             headerValue={
               <Button
                 className="w-100"
@@ -51,15 +33,33 @@ export function NewTrainingTemplate({
               </Button>
             }
             className={'mt4 mb6 green'}
-            grid={'w-100 w-50-l center-m mw6-l fr'}
+            grid={'w-100 w-50-l center-m mw6-l fl'}
           >
             <CardBody>
               <ListAllWorkoutItems
                 workoutItems={workoutItems}
                 dispatch={dispatch}
               />
+              <List workoutItems={workout} dispatch={dispatch} />
             </CardBody>
           </Card>
+
+            <Card
+              headerValue={<List workoutItems={workout} dispatch={dispatch} />}
+              className={'mt4 mb6 green'}
+              grid={'w-100 w-50-l center-m mw6-l fr'}
+            >
+              <CardBody>
+                <NewWorkoutForm
+                  isLoading={isLoading}
+                  errorMessage={error && error.message}
+                  successMessage={successMessage}
+                  onSubmit={onSubmit}
+                  className="mt3"
+                  workout={workout}
+                />
+              </CardBody>
+            </Card>
           </div>
         </MainSection>
       </PageLayout>
