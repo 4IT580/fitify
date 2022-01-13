@@ -23,26 +23,25 @@ export function NewTrainingTemplate({
           </Heading>
           <div
             className={'fl w-100 w-two-l'}>
-          <Card
-            headerValue={
-              <Button
-                className="w-100"
-                onClick={() => dispatch(transferData())}
-              >
-                set workout list
-              </Button>
-            }
-            className={'mt4 mb6 green'}
-            grid={'w-100 w-50-l center-m mw6-l fl'}
-          >
-            <CardBody>
-              <ListAllWorkoutItems
-                workoutItems={workoutItems}
-                dispatch={dispatch}
-              />
-              <List workoutItems={workout} dispatch={dispatch} />
-            </CardBody>
-          </Card>
+            <Card
+              headerValue={
+                <Button
+                  className="w-100"
+                  onClick={() => dispatch(transferData())}
+                >
+                  set workout list
+                </Button>
+              }
+              className={'mt4 mb6 green'}
+              grid={'w-100 w-50-l center-m mw6-l fl'}
+            >
+              <CardBody>
+                <ListAllWorkoutItems
+                  workoutItems={workoutItems}
+                  dispatch={dispatch}
+                />
+              </CardBody>
+            </Card>
 
             <Card
               headerValue={<List workoutItems={workout} dispatch={dispatch} />}
