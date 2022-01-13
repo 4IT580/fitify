@@ -12,7 +12,7 @@ import {
 } from 'src/atoms/';
 
 import { PageLayout } from 'src/organisms/';
-import { Card } from 'src/molecules';
+import { Card, CardLink } from 'src/molecules';
 import { route } from 'src/Routes';
 
 import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
@@ -121,19 +121,14 @@ export function DashboardTemplate({
 
           {workoutData && (
             <>
-              <div className={'dit w-100 mt3'}>
+              <div className={'mt3 overflow-x-auto nowrap-ns'}>
                 {workoutData.map((item) => (
                   <div
-                    className={'fl ph2 w-100 w-third-l'}
+                    className={'dit ph2 w-100 mw6'}
                     key={'workoutPlan' + item.id}
                   >
-                    <Link
-                      className="f7 green mv0 mw5"
-                      to={route.workout(item.id)}
-                      noUnderline={true}
-                    >
-                      <Card headerValue={item.name} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
-                        <CardBody>
+                    <CardLink headerValue={item.name} grid={'tc'} className={'green'} to={route.workout(item.id)}>
+                        <CardBody className={'green'}>
                           <p className={'f4 f5-ns green tc'}>
                             {item.exercises.length} exercises -{' '}
                             {item.rounds}rounds
@@ -153,8 +148,27 @@ export function DashboardTemplate({
                             s
                           </p>
                         </CardBody>
+                    </CardLink>
+
+                    {item.history.length > 0
+                      && <Card className={'dn db-ns green'}>
+                        {item.history.map((historyItem, index) => (
+                          <CardBody className={'green'} key={'workoutPlan' + item.id+'history'+historyItem.id} hasTopBorder={index>0}>
+                            <p className={'f4 f5-ns green'}>
+                              From: {fromUnixTimeStamp(historyItem.startAt)}
+                            </p>
+                            <p className={'f4 f5-ns green'}>
+                              Until: {fromUnixTimeStamp(historyItem.endAt)}
+                            </p>
+                            <p className={'f4 f5-ns green'}>
+                              {historyItem.calories &&
+                                ' Burnt calories: ' + historyItem.calories +' kcal'}
+                            </p>
+                          </CardBody>
+                        ))}
                       </Card>
-                    </Link>
+                    }
+
                   </div>
                 ))}
               </div>

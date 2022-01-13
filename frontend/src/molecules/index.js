@@ -6,3 +6,4 @@ export { LoadingButton } from './LoadingButton';
 export { ReloadButton } from './ReloadButton';
 export { WorkoutHeader } from './WorkoutHeader';
 export { Card } from './Card';
+export { CardLink } from './CardLink';
