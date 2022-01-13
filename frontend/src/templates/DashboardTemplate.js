@@ -12,7 +12,7 @@ import {
 } from 'src/atoms/';
 
 import { PageLayout } from 'src/organisms/';
-import { Card } from 'src/molecules';
+import { Card, CardLink } from 'src/molecules';
 import { route } from 'src/Routes';
 
 import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
@@ -80,22 +80,22 @@ export function DashboardTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
-          <Heading size={'xl'} className={'green'}>
+          <Heading size={'xxl'} className={'green'}>
             Dashboard
-          </Heading>
-
-          <div className={'dit w-100 mt3 w-auto-ns fr-ns'}>
+            <Button className={'dit w-100 w-auto-ns fr-ns mt1'}>
             <Link
               to={route.newTraining()}
               className={
-                'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns fr-ns w-100 fl tc'
+                'bg-animate dim bg-green br-pill mv0 f3 f5-ns fr-ns w-100 fl tc'
               }
             >
-              New training
+              New Training
             </Link>
-          </div>
+            </Button>
+          </Heading>
 
-          <div className={'dit w-100 mt3 w-auto-ns fl-ns'}>
+
+          <div className={'dit w-100 mt4 f4 w-auto-ns fr-ns'}>
             <TextInput
               placeholder={'Filter trainings'}
               id={'filterInput'}
@@ -104,6 +104,10 @@ export function DashboardTemplate({
               }}
             />
           </div>
+
+          <Heading size={'xl'} className={'green pb4 mt4'}>
+            Trainings
+          </Heading>
 
           {isLoading && !workoutData && <Loading />}
 
@@ -117,19 +121,14 @@ export function DashboardTemplate({
 
           {workoutData && (
             <>
-              <div className={'dit w-100 mt3'}>
+              <div className={'mt3 overflow-x-auto nowrap-ns'}>
                 {workoutData.map((item) => (
                   <div
-                    className={'fl w-100 w-third-l'}
+                    className={'dit ph2 w-100 mw6'}
                     key={'workoutPlan' + item.id}
                   >
-                    <Card headerValue={item.name} grid={'tc'} className={'green'}>
-                      <Link
-                        className="f7 green mv0 "
-                        to={route.workout(item.id)}
-                        noUnderline={true}
-                      >
-                        <CardBody>
+                    <CardLink headerValue={item.name} grid={'tc'} className={'green'} to={route.workout(item.id)}>
+                        <CardBody className={'green'}>
                           <p className={'f4 f5-ns green tc'}>
                             {item.exercises.length} exercises -{' '}
                             {item.rounds}rounds
@@ -143,52 +142,66 @@ export function DashboardTemplate({
                               item.rounds *
                               (item.exercises.length *
                                 (item.intervalLength +
-                                  item.intervalPauseLength)),
+                                  item.intervalPauseLength) +
+                                item.roundsPauseLength),
                             )}{' '}
                             s
                           </p>
                         </CardBody>
-                      </Link>
-                    </Card>
+                    </CardLink>
+
+                    {item.history.length > 0
+                      && <Card className={'dn db-ns green'}>
+                        {item.history.map((historyItem, index) => (
+                          <CardBody className={'green'} key={'workoutPlan' + item.id+'history'+historyItem.id} hasTopBorder={index>0}>
+                            <p className={'f4 f5-ns green'}>
+                              From: {fromUnixTimeStamp(historyItem.startAt)}
+                            </p>
+                            <p className={'f4 f5-ns green'}>
+                              Until: {fromUnixTimeStamp(historyItem.endAt)}
+                            </p>
+                            <p className={'f4 f5-ns green'}>
+                              {historyItem.calories &&
+                                ' Burnt calories: ' + historyItem.calories +' kcal'}
+                            </p>
+                          </CardBody>
+                        ))}
+                      </Card>
+                    }
+
                   </div>
                 ))}
               </div>
 
-              <div>
-                <Card
-                  headerValue={'Training history'}
-                  className={'mt4 mb6 green'}
-                  grid={'w-100 w-50-l center-l mw6-l'}
-                >
-                  {workoutHistory
-                    .sort(function (a, b) {
-                      return b.startAt - a.startAt;
-                    })
-                    .map((historyItem) => (
-                      <CardBody
-                        key={
-                          'plan' +
-                          historyItem.parentId +
-                          'historyItem' +
-                          historyItem.id
-                        }
-                      >
-                        <Heading size={'sm'} className={'mt3 green'}>
-                          {historyItem.parentName}
-                        </Heading>
-                        <p className={'f4 f5-ns green'}>
-                          From: {fromUnixTimeStamp(historyItem.startAt)}
-                        </p>
-                        <p className={'f4 f5-ns green'}>
-                          Until: {fromUnixTimeStamp(historyItem.endAt)}
-                        </p>
-                        <p className={'f4 f5-ns green'}>
-                          {historyItem.calories &&
-                            ' Burnt calories: ' + historyItem.calories}
-                        </p>
-                      </CardBody>
-                    ))}
-                </Card>
+              <div className={'dit w-100 mt3'}>
+                <Heading size={'xl'} className={'green pb4'}>
+                  Training history
+                </Heading>
+                {workoutHistory
+                  .sort(function (a, b) {
+                    return b.startAt - a.startAt;
+                  })
+                  .map((historyItem) => (
+                    <div
+                      className={'fl ph2 w-100 w-third-l green o-80'}
+                      key={'workoutPlan' + historyItem.id}
+                    >
+                      <Card headerValue={historyItem.parentName} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
+                        <CardBody>
+                          <p className={'f4 f5-ns green'}>
+                            From: {fromUnixTimeStamp(historyItem.startAt)}
+                          </p>
+                          <p className={'f4 f5-ns green'}>
+                            Until: {fromUnixTimeStamp(historyItem.endAt)}
+                          </p>
+                          <p className={'f4 f5-ns green'}>
+                            {historyItem.calories &&
+                              ' Burnt calories: ' + historyItem.calories +' kcal'}
+                          </p>
+                        </CardBody>
+                      </Card>
+                    </div>
+                  ))}
               </div>
             </>
           )}
