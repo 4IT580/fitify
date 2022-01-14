@@ -16,6 +16,7 @@ import { Card, CardLink } from 'src/molecules';
 import { route } from 'src/Routes';
 
 import { fromUnixTimeStamp, planEta, secondsToTimeString } from '../utils/date';
+import { Label } from "../atoms";
 
 export function DashboardTemplate({ data, isLoading, error, refetch }) {
   const [workoutData, setWorkoutData] = useState([]);
@@ -89,8 +90,11 @@ export function DashboardTemplate({ data, isLoading, error, refetch }) {
           </Heading>
 
           <div className={'dit w-100 mt4 f4 w-auto-ns fr-ns'}>
+            <Label className={'green'}>
+              Filter trainings by name
+            </Label>
             <TextInput
-              placeholder={'Filter trainings by name'}
+              placeholder={'name...'}
               id={'filterInput'}
               onChange={(e) => {
                 filterWorkoutDataBasedOnValue(e.target.value);
