@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import store from "../utils/store";
 import { useEffect, useState } from "react";
-import { addExercise, initialState, setStartTime, updateSets, updateTime, updateTotalWorkoutTime } from "../utils/Actions";
+import { addExercise, initialState, setStartTime, updateSets, updateTime } from "../utils/Actions";
 import types from "../utils/types";
+import { planEta } from "../utils/date";
 
 const WORKOUT_PLAN_QUERY = gql`
   query WorkoutPlanDetail($id: Int!) {
@@ -60,11 +61,6 @@ export function TimerWrapperPage () {
         store.dispatch(addExercise(item.name))
       })
 
-      let totalTime = workoutPlanState.data.workoutPlan.rounds *
-        (workoutPlanState.data.workoutPlan.exercises.length *
-          (workoutPlanState.data.workoutPlan.intervalLength +
-            workoutPlanState.data.workoutPlan.intervalPauseLength))
-
       store.dispatch(setStartTime(new Date()))
 
       store.dispatch(updateSets('', workoutPlanState.data.workoutPlan.rounds))
@@ -72,7 +68,7 @@ export function TimerWrapperPage () {
       store.dispatch(updateTime(types.UPDATE_REST_TIME, workoutPlanState.data.workoutPlan.intervalPauseLength))
 
       setWorkoutName(workoutPlanState.data.workoutPlan.name)
-      setTotalWorkoutTime(totalTime)
+      setTotalWorkoutTime(planEta(workoutPlanState.data.workoutPlan))
     }
     }
     , [workoutPlanState]

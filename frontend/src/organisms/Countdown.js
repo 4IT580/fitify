@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { route } from 'src/Routes';
 
 import ProgressBar from './ProgressBar';
 import { PositiveButton, NegativeButton, Heading } from 'src/atoms';

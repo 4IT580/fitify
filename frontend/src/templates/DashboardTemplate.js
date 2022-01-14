@@ -15,14 +15,13 @@ import { PageLayout } from 'src/organisms/';
 import { Card, CardLink } from 'src/molecules';
 import { route } from 'src/Routes';
 
-import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
+import { fromUnixTimeStamp, planEta, secondsToTimeString } from '../utils/date';
 
 export function DashboardTemplate({
   data,
   isLoading,
   error,
   refetch,
-  currentUser,
 }) {
   const [workoutData, setWorkoutData] = useState([]);
   const [workoutHistory, setWorkoutHistory] = useState([]);
@@ -138,14 +137,7 @@ export function DashboardTemplate({
                             {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
                           </p>
                           <p className={'f4 f5-ns green tc'}>total time:{' '}
-                            {secondsToTimeString(
-                              item.rounds *
-                              (item.exercises.length *
-                                (item.intervalLength +
-                                  item.intervalPauseLength) +
-                                item.roundsPauseLength),
-                            )}{' '}
-                            s
+                            {secondsToTimeString(planEta(item))}{' '}s
                           </p>
                         </CardBody>
                     </CardLink>

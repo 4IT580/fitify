@@ -5,14 +5,6 @@ import { route } from '../Routes';
 import classNames from 'classnames';
 
 export function WorkoutHeader({ planData, className }) {
-  let latestActiveWorkout =
-    planData &&
-    planData.history
-      .filter((historyItem) => historyItem.status === 'active')
-      .sort(function (first, second) {
-        return second.startAt - first.startAt;
-      })[0];
-
   return (
     <div className={'dit w-100'}>
       <div className={classNames('fl-ns mb4', className)}>

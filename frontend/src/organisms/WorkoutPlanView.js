@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { ErrorBanner } from 'src/atoms/';
-import { Link, Button, Loading } from 'src/atoms/';
+import { Button, Loading } from 'src/atoms/';
 import { CardBody, Heading, List } from '../atoms';
-import { fromUnixTimeStamp, secondsToTimeString } from '../utils/date';
+import { fromUnixTimeStamp, planEta, secondsToTimeString } from '../utils/date';
 import { Card, WorkoutHeader } from '../molecules';
 
 export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
@@ -37,12 +37,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                   Rounds pause length: {planData.roundsPauseLength}s
                 </p>
                 <p className={'f4 f5-ns green'}>Total time:{' '}
-                          {secondsToTimeString(
-                            planData.rounds *
-                              (planData.exercises.length *
-                                (planData.intervalLength +
-                                  planData.intervalPauseLength)),
-                          )}{' '}
+                          {secondsToTimeString(planEta(planData))}{' '}
                           s
                         </p>
               </CardBody>

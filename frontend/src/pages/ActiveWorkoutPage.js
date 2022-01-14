@@ -1,4 +1,4 @@
-import React, { Component, useCallback } from 'react';
+import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom';
 import  Countdown  from '../organisms/Countdown';
@@ -7,7 +7,7 @@ import longBeep from '../assets/longAlert.mp3';
 import { withRedux } from '../utils/WithRedux';
 
 import { MainSection } from 'src/atoms/';
-import { PageLayout, WorkoutPlanView } from 'src/organisms/';
+import { PageLayout } from 'src/organisms/';
 import { route } from "../Routes";
 import { Heading, Link } from "../atoms";
 

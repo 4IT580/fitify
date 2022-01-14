@@ -65,7 +65,7 @@ export function FinishWorkoutPage() {
       },
     });
 
-  const [setFinishedWorkout, setFinishedWorkoutState] = useMutation(
+  const [setFinishedWorkout] = useMutation(
     FINISH_WORKOUT_MUTATION,
     {
       onCompleted: () => {
@@ -89,7 +89,7 @@ export function FinishWorkoutPage() {
         },
       });
     },
-    [setFinishedWorkoutCalories],
+    [setFinishedWorkoutCalories, workoutPlanId],
   );
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export function FinishWorkoutPage() {
         variables: { workoutPlanId: parseInt(workoutPlanId), startTime: parseFloat(startTime) },
       });
     }, 5000);
-  }, []);
+  }, [setFinishedWorkout, workoutPlanId, startTime]);
 
   return (
     <FinishWorkoutTemplate

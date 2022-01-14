@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Heading, RightBlockSection } from 'src/atoms/';
-import { ResetPasswordForm, PageLayout } from 'src/organisms/';
+import { PageLayout } from 'src/organisms/';
 import { FinishWorkoutForm } from "../organisms/FinishWorkoutForm";
 import { Link } from "../atoms";
 import { route } from "../Routes";
