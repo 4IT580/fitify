@@ -90,7 +90,7 @@ export function DashboardTemplate({ data, isLoading, error, refetch }) {
 
           <div className={'dit w-100 mt4 f4 w-auto-ns fr-ns'}>
             <TextInput
-              placeholder={'Filter trainings'}
+              placeholder={'Filter trainings by name'}
               id={'filterInput'}
               onChange={(e) => {
                 filterWorkoutDataBasedOnValue(e.target.value);
