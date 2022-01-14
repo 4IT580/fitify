@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { LoadingButton } from 'src/molecules/';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { useAuth } from 'src/utils/auth';
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';
@@ -42,13 +42,13 @@ export function EditWorkoutForm({
   onSubmit,
   children,
 }) {
-  const auth = useAuth();
   const { user } = useAuth();
   const { workoutPlanId } = useParams();
 
   const workoutPlan = useQuery(WORKOUT_PLAN, {
     variables: { id: parseInt(workoutPlanId) },
   });
+  console.log(workoutPlan, user);
   //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
 
   const initialValues = {

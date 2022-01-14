@@ -5,6 +5,7 @@ import List from 'src/organisms/ListExercises';
 import { Card } from 'src/molecules';
 import ListAllWorkoutItems from 'src/organisms/ListAllWorkoutItems';
 import { transferData } from 'src/reducers/listExerciseReducer';
+
 export function NewTrainingTemplate({
   workoutItems,
   workout,
@@ -21,19 +22,12 @@ export function NewTrainingTemplate({
           <Heading size={'xl'} className={'green'}>
             New Training
           </Heading>
-          <div
-            className={'fl w-100 w-two-l'}>
+
+          <div className={'mt4 mt4-ns'}>
             <Card
-              headerValue={
-                <Button
-                  className="w-100"
-                  onClick={() => dispatch(transferData())}
-                >
-                  set workout list
-                </Button>
-              }
-              className={'mt4 mb6 green'}
-              grid={'w-100 w-50-l center-m mw6-l fl'}
+              headerValue={'Step 1 - select exercise'}
+              className={'green'}
+              grid={'w-third-l w-100 center-m fl ph2'}
             >
               <CardBody>
                 <ListAllWorkoutItems
@@ -41,23 +35,39 @@ export function NewTrainingTemplate({
                   dispatch={dispatch}
                 />
               </CardBody>
+              <CardBody>
+                <Button
+                  className="w-100 mv3"
+                  onClick={() => dispatch(transferData())}
+                >
+                  Select chosen
+                </Button>
+              </CardBody>
             </Card>
 
             <Card
-              headerValue={<List workoutItems={workout} dispatch={dispatch} />}
-              className={'mt4 mb6 green'}
-              grid={'w-100 w-50-l center-m mw6-l fl'}
+              headerValue={'Step 2 - order, remove, manipulate'}
+              className={'green'}
+              grid={'w-third-l w-100 center-m fl ph2'}
             >
               <CardBody>
-                <NewWorkoutForm
-                  isLoading={isLoading}
-                  errorMessage={error && error.message}
-                  successMessage={successMessage}
-                  onSubmit={onSubmit}
-                  className="mt3"
-                  workout={workout}
-                />
+                <List workoutItems={workout} dispatch={dispatch} />
               </CardBody>
+            </Card>
+
+            <Card
+              headerValue={'Step 3 - save workout'}
+              className={'green'}
+              grid={'w-third-l w-100 center-m fl ph2'}
+            >
+              <NewWorkoutForm
+                isLoading={isLoading}
+                errorMessage={error && error.message}
+                successMessage={successMessage}
+                onSubmit={onSubmit}
+                className=""
+                workout={workout}
+              />
             </Card>
           </div>
         </MainSection>

@@ -7,7 +7,7 @@ export function TextInput({ className, error, ...props }) {
       type="text"
       className={classNames(
         'border-box input-reset ba pa2 db w-100',
-        error ? 'b--red' : 'b--black-20',
+        error ? 'border-red' : 'border-green',
         className,
       )}
       {...props}

@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useState } from 'react';
+import React, { useCallback, useReducer, useState } from 'react';
 import { NewTrainingTemplate } from 'src/templates/NewTrainingTemplate';
 import { useHistory } from 'react-router-dom';
 import {
@@ -45,18 +45,20 @@ const CREATEWORKOUT_MUTATION = gql`
 `;
 
 export function NewTrainingPage() {
-  const auth = useAuth();
   const history = useHistory();
   const { user } = useAuth();
-  let arrayOfItems = [];
-  const [initial, isInitial] = useState(true);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [isWaiting, setIsWaiting] = useState(false);
   const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
     CREATEWORKOUT_MUTATION,
     {
       onCompleted: (date) => {
         setSuccessMessage('Training was successfully created.');
-        history.replace(route.dashboard());
+
+        setIsWaiting(true);
+        setTimeout(function () {
+          history.replace(route.dashboard());
+        }, 5000);
       },
       onError: () => {
         console.log('login error');
@@ -64,20 +66,13 @@ export function NewTrainingPage() {
     },
   );
 
-  const exercises = useQuery(EXERCISES_QUERY, {
+  useQuery(EXERCISES_QUERY, {
     onCompleted(data) {
       dispatch(loadedData(data));
     },
   });
 
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
-  let currentList = state.workout.map((value) => {
-    let list = {
-      id: value.id,
-      sequence: value.position,
-    };
-    return list;
-  });
 
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
@@ -86,15 +81,15 @@ export function NewTrainingPage() {
           userId: user.id,
           name: values.name,
           rounds: values.rounds,
-          intLength: values.intLength,
-          intPauseLength: values.intPauseLength,
+          intLength: values.intervalLength,
+          intPauseLength: values.intervalPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 0,
           exercises: values.exercises,
         },
       });
     },
-    [createWorkoutRequest, currentList],
+    [createWorkoutRequest, user.id],
   );
 
   return (
@@ -102,7 +97,8 @@ export function NewTrainingPage() {
       workout={state.workout}
       workoutItems={state.workoutItems}
       dispatch={dispatch}
-      isLoading={createWorkoutRequestState.loading}
+      successMessage={successMessage}
+      isLoading={createWorkoutRequestState.loading || isWaiting === true}
       error={createWorkoutRequestState.error}
       onSubmit={handleCreateWorkoutFormSubmit}
     />

@@ -180,3 +180,66 @@ article {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #151824;
+  margin: 0;
+  font: inherit;
+  color: #bffa29;
+  border: 0.15em solid #bffa29;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+  margin-right: 7px;
+  border-radius: 0.5em;
+  padding-top: 5px;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+input[type='checkbox'] {
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 0.1em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #bffa29;
+  background-color: #151824;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+input:checked::before {
+  transform: scale(1);
+}
+input:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+.border-green {
+  border-color: #bffa29;
+  border-width: 2px;
+}
+
+.border-red {
+  border-color: orangered;
+  border-width: 2px;
+}
+
+.dragFloatItem {
+  color: #bffa29;
+}

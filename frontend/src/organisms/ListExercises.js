@@ -5,18 +5,14 @@ import { deleteWorkoutItem, swapItems } from 'src/reducers/listExerciseReducer';
 
 export const List = ({ workoutItems, dispatch }) => {
   const SortableItem = SortableElement(({ value, index, dispatch }) => (
-    <div className="list__card" index={index}>
-      <div className="list__card-right--name flex   ">
-        <SmallButton
-          className="pa2 mr3"
-          onClick={() => dispatch(deleteWorkoutItem(value.id))}
-        >
-          X
-        </SmallButton>
-        {value.name}
-
-        <div className=" "></div>
-      </div>
+    <div className="">
+      <SmallButton
+        className="mr3 mv2 pt1 f5-ns f3"
+        onClick={() => dispatch(deleteWorkoutItem(value.id))}
+      >
+        ✖
+      </SmallButton>
+      <span className={'f5-ns f3'}>{value.name}</span>
     </div>
   ));
 
@@ -42,16 +38,16 @@ export const List = ({ workoutItems, dispatch }) => {
     dispatch(swapItems(oldIndex, newIndex));
   };
 
-  const listTitle = (
-    <div className="list__title">
-      <h2>List of workout items:</h2>
-    </div>
-  );
-
   return (
     <Fragment>
-      {listTitle}
-      <SortableList items={workoutItems} onSortEnd={onSortEnd} axis="y" />
+      <div className={'pv3'}>
+        <SortableList
+          items={workoutItems}
+          onSortEnd={onSortEnd}
+          axis="y"
+          helperClass={'dragFloatItem'}
+        />
+      </div>
     </Fragment>
   );
 };
