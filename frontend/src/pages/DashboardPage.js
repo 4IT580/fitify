@@ -39,7 +39,7 @@ export function DashboardPage() {
   }
 
   const userFetcher = useQuery(USER_WORKOUTS_QUERY, {
-    variables: {id: userId},
+    variables: { id: userId },
   });
 
   return (

@@ -13,10 +13,8 @@ const schema = yup.object().shape({
   calories: yup
     .number()
     .required()
-    .test(
-      'Has min lenght?',
-      'ERROR: must be positive integer',
-      (value) => value ? value > 0 : true,
+    .test('Has min lenght?', 'ERROR: must be positive integer', (value) =>
+      value ? value > 0 : true,
     ),
 });
 

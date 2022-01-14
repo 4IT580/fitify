@@ -1,8 +1,6 @@
 import React from 'react';
 import { Checkbox } from 'src/atoms/';
-import {
-  setWorkoutItemSelected,
-} from 'src/reducers/listExerciseReducer';
+import { setWorkoutItemSelected } from 'src/reducers/listExerciseReducer';
 export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
   return (
     <div>

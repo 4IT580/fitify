@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Heading, RightBlockSection } from 'src/atoms/';
 import { PageLayout } from 'src/organisms/';
-import { FinishWorkoutForm } from "../organisms/FinishWorkoutForm";
-import { Link } from "../atoms";
-import { route } from "../Routes";
+import { FinishWorkoutForm } from '../organisms/FinishWorkoutForm';
+import { Link } from '../atoms';
+import { route } from '../Routes';
 
 export function FinishWorkoutTemplate({
   isLoading,
   error,
   onSubmit,
   successMessage,
-  workoutName
+  workoutName,
 }) {
   return (
     <>
@@ -26,16 +26,18 @@ export function FinishWorkoutTemplate({
             onSubmit={onSubmit}
             className="mt3"
           >
-            {successMessage.length > 10 &&
+            {successMessage.length > 10 && (
               <Link
                 disabled={'disabled'}
-                className={'dim dib bg-animate pv2 ph4 br-pill pointer green bg-dark fr mt2'}
+                className={
+                  'dim dib bg-animate pv2 ph4 br-pill pointer green bg-dark fr mt2'
+                }
                 noUnderline={true}
                 to={route.dashboard()}
               >
                 Go to dashboard
               </Link>
-            }
+            )}
           </FinishWorkoutForm>
         </RightBlockSection>
       </PageLayout>

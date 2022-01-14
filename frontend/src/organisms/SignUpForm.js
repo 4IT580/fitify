@@ -68,7 +68,7 @@ export function SignUpForm({
   const successMessageRef = useRef();
   return (
     <Formik
-      onSubmit={(values, {resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         onSubmit(values);
         resetForm();
         // successMessageRef.current.scrollIntoView();
@@ -80,7 +80,9 @@ export function SignUpForm({
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
         {successMessage && (
-          <span ref={successMessageRef}><SuccessBanner title={successMessage} className="mb3" /></span>
+          <span ref={successMessageRef}>
+            <SuccessBanner title={successMessage} className="mb3" />
+          </span>
         )}
         <FormikField
           id="name"

@@ -5,7 +5,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+    monospace;
 }
 
 @font-face {
@@ -100,7 +100,6 @@ article {
   border-top-style: solid;
 }
 
-
 /* Pro Timer */
 .countdown-page {
   text-align: center;
@@ -168,13 +167,13 @@ article {
 /* Track */
 ::-webkit-scrollbar-track {
   background: #151824;
-  border-radius: 10px;;
+  border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #bffa29;
-  border-radius: 10px;;
+  border-radius: 10px;
 }
 
 /* Handle on hover */

@@ -24,7 +24,11 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
           <WorkoutHeader planData={planData} />
 
           <div className={'cf'}>
-            <Card headerValue={'Training summary'} grid={'fl w-100 w-50-l pv2 ph2'} className={'green'}>
+            <Card
+              headerValue={'Training summary'}
+              grid={'fl w-100 w-50-l pv2 ph2'}
+              className={'green'}
+            >
               <CardBody>
                 <p className={'f4 f5-ns green'}>
                   Interval length: {planData.intervalLength}s
@@ -36,14 +40,17 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                 <p className={'f4 f5-ns green'}>
                   Rounds pause length: {planData.roundsPauseLength}s
                 </p>
-                <p className={'f4 f5-ns green'}>Total time:{' '}
-                          {secondsToTimeString(planEta(planData))}{' '}
-                          s
-                        </p>
+                <p className={'f4 f5-ns green'}>
+                  Total time: {secondsToTimeString(planEta(planData))} s
+                </p>
               </CardBody>
             </Card>
 
-            <Card headerValue={'Exercises'} grid={'fr w-100 w-50-l pv2 ph2'} className={'green'}>
+            <Card
+              headerValue={'Exercises'}
+              grid={'fr w-100 w-50-l pv2 ph2'}
+              className={'green'}
+            >
               {planData.exercises.map((exerciseItem, index) => (
                 <CardBody key={'exerciseItem' + exerciseItem.id}>
                   <Heading size={'md'} className={'green mt3'}>
@@ -72,7 +79,11 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
               ))}
             </Card>
 
-            <Card headerValue={'Workout history'} grid={'fl w-100 w-50-l pv2 ph2'} className={'green'}>
+            <Card
+              headerValue={'Workout history'}
+              grid={'fl w-100 w-50-l pv2 ph2'}
+              className={'green'}
+            >
               {planData.history
                 .filter((historyItem) => historyItem.status === 'finished')
                 .reverse()

@@ -7,9 +7,11 @@ export function Card({ headerValue, children, className, grid }) {
   return (
     <div className={grid}>
       <article className={classNames('ba mb4 br4', className)}>
-        {headerValue
-          && <Heading size={'lg'} className={'green pa3'}>{headerValue}</Heading>
-        }
+        {headerValue && (
+          <Heading size={'lg'} className={'green pa3'}>
+            {headerValue}
+          </Heading>
+        )}
         {children}
       </article>
     </div>

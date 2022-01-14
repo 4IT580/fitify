@@ -65,20 +65,17 @@ export function FinishWorkoutPage() {
       },
     });
 
-  const [setFinishedWorkout] = useMutation(
-    FINISH_WORKOUT_MUTATION,
-    {
-      onCompleted: () => {
-        setSuccessMessage(
-          'Your thaining has been finished. If you wish to, you can set your calories',
-        );
-        console.log('done');
-      },
-      onError: (error) => {
-        console.error(error);
-      },
+  const [setFinishedWorkout] = useMutation(FINISH_WORKOUT_MUTATION, {
+    onCompleted: () => {
+      setSuccessMessage(
+        'Your thaining has been finished. If you wish to, you can set your calories',
+      );
+      console.log('done');
     },
-  );
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
   const handleSetFinishedWorkoutCaloriesFormSubmit = useCallback(
     (values) => {
@@ -95,7 +92,10 @@ export function FinishWorkoutPage() {
   useEffect(() => {
     setTimeout(function () {
       setFinishedWorkout({
-        variables: { workoutPlanId: parseInt(workoutPlanId), startTime: parseFloat(startTime) },
+        variables: {
+          workoutPlanId: parseInt(workoutPlanId),
+          startTime: parseFloat(startTime),
+        },
       });
     }, 5000);
   }, [setFinishedWorkout, workoutPlanId, startTime]);

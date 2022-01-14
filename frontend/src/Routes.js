@@ -31,7 +31,8 @@ export const route = {
   workoutTimer: (workoutPlanId, workoutHistoryItemId) =>
     `/workout/${workoutPlanId}/${workoutHistoryItemId}`,
   activeWorkout: (workoutPlanId) => `/active-workout/${workoutPlanId}`,
-  finishWorkout: (workoutPlanId, startTime) => `/finisned-workout/${workoutPlanId}/${startTime}`,
+  finishWorkout: (workoutPlanId, startTime) =>
+    `/finisned-workout/${workoutPlanId}/${startTime}`,
   editWorkout: (workoutPlanId) => `/edit-workout/${workoutPlanId}`,
 };
 

@@ -17,12 +17,7 @@ import { route } from 'src/Routes';
 
 import { fromUnixTimeStamp, planEta, secondsToTimeString } from '../utils/date';
 
-export function DashboardTemplate({
-  data,
-  isLoading,
-  error,
-  refetch,
-}) {
+export function DashboardTemplate({ data, isLoading, error, refetch }) {
   const [workoutData, setWorkoutData] = useState([]);
   const [workoutHistory, setWorkoutHistory] = useState([]);
 
@@ -82,17 +77,16 @@ export function DashboardTemplate({
           <Heading size={'xxl'} className={'green'}>
             Dashboard
             <Button className={'dit w-100 w-auto-ns fr-ns mt1'}>
-            <Link
-              to={route.newTraining()}
-              className={
-                'bg-animate dim bg-green br-pill mv0 f3 f5-ns fr-ns w-100 fl tc'
-              }
-            >
-              New Training
-            </Link>
+              <Link
+                to={route.newTraining()}
+                className={
+                  'bg-animate dim bg-green br-pill mv0 f3 f5-ns fr-ns w-100 fl tc'
+                }
+              >
+                New Training
+              </Link>
             </Button>
           </Heading>
-
 
           <div className={'dit w-100 mt4 f4 w-auto-ns fr-ns'}>
             <TextInput
@@ -126,27 +120,42 @@ export function DashboardTemplate({
                     className={'dit ph2 w-100 mw6'}
                     key={'workoutPlan' + item.id}
                   >
-                    <CardLink headerValue={item.name} grid={'tc'} className={'green'} to={route.workout(item.id)}>
-                        <CardBody className={'green'}>
-                          <p className={'f4 f5-ns green tc'}>
-                            {item.exercises.length} exercises -{' '}
-                            {item.rounds}rounds
-                          </p>
-                          <p className={'f4 f5-ns green tc'}>
-                            {item.intervalLength}s interval -{' '}
-                            {item.intervalPauseLength}s break -{' '}{item.roundsPauseLength}s round break
-                          </p>
-                          <p className={'f4 f5-ns green tc'}>total time:{' '}
-                            {secondsToTimeString(planEta(item))}{' '}s
-                          </p>
-                        </CardBody>
+                    <CardLink
+                      headerValue={item.name}
+                      grid={'tc'}
+                      className={'green'}
+                      to={route.workout(item.id)}
+                    >
+                      <CardBody className={'green'}>
+                        <p className={'f4 f5-ns green tc'}>
+                          {item.exercises.length} exercises - {item.rounds}
+                          rounds
+                        </p>
+                        <p className={'f4 f5-ns green tc'}>
+                          {item.intervalLength}s interval -{' '}
+                          {item.intervalPauseLength}s break -{' '}
+                          {item.roundsPauseLength}s round break
+                        </p>
+                        <p className={'f4 f5-ns green tc'}>
+                          total time: {secondsToTimeString(planEta(item))} s
+                        </p>
+                      </CardBody>
                     </CardLink>
 
                     <div className={'overflow-y-auto-ns vh-50-ns ph2 mb3'}>
-                      {item.history.length > 0
-                        && <Card className={'dn db-ns green'}>
+                      {item.history.length > 0 && (
+                        <Card className={'dn db-ns green'}>
                           {item.history.map((historyItem, index) => (
-                            <CardBody className={'green'} key={'workoutPlan' + item.id+'history'+historyItem.id} hasTopBorder={index>0}>
+                            <CardBody
+                              className={'green'}
+                              key={
+                                'workoutPlan' +
+                                item.id +
+                                'history' +
+                                historyItem.id
+                              }
+                              hasTopBorder={index > 0}
+                            >
                               <p className={'f4 f5-ns green'}>
                                 From: {fromUnixTimeStamp(historyItem.startAt)}
                               </p>
@@ -155,14 +164,15 @@ export function DashboardTemplate({
                               </p>
                               <p className={'f4 f5-ns green'}>
                                 {historyItem.calories &&
-                                  ' Burnt calories: ' + historyItem.calories +' kcal'}
+                                  ' Burnt calories: ' +
+                                    historyItem.calories +
+                                    ' kcal'}
                               </p>
                             </CardBody>
                           ))}
                         </Card>
-                      }
+                      )}
                     </div>
-
                   </div>
                 ))}
               </div>
@@ -180,7 +190,11 @@ export function DashboardTemplate({
                       className={'fl ph2 w-100 w-third-l green o-80'}
                       key={'workoutPlan' + historyItem.id}
                     >
-                      <Card headerValue={historyItem.parentName} grid={'w-100 w-100-l mw6-l tc'} className={'green'}>
+                      <Card
+                        headerValue={historyItem.parentName}
+                        grid={'w-100 w-100-l mw6-l tc'}
+                        className={'green'}
+                      >
                         <CardBody>
                           <p className={'f4 f5-ns green'}>
                             From: {fromUnixTimeStamp(historyItem.startAt)}
@@ -190,7 +204,9 @@ export function DashboardTemplate({
                           </p>
                           <p className={'f4 f5-ns green'}>
                             {historyItem.calories &&
-                              ' Burnt calories: ' + historyItem.calories +' kcal'}
+                              ' Burnt calories: ' +
+                                historyItem.calories +
+                                ' kcal'}
                           </p>
                         </CardBody>
                       </Card>

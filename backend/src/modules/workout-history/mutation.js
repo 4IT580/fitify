@@ -3,7 +3,6 @@ export const finishWorkout = async (
   { workoutPlanId, startTime },
   { dbConnection },
 ) => {
-
   await dbConnection.query(
     `INSERT INTO workoutHistory
        (status, startAt, endAt, workoutPlanId)
@@ -21,10 +20,15 @@ export const setCaloriesFinishedWorkout = async (
 ) => {
   console.log(workoutPlanId, calories);
 
-  const lastIdRequest = await dbConnection.query(`SELECT wh.id FROM workoutHistory wh WHERE wh.workoutPlanId = ? ORDER BY wh.endAt DESC LIMIT 1`, [workoutPlanId]);
+  const lastIdRequest = await dbConnection.query(
+    `SELECT wh.id FROM workoutHistory wh WHERE wh.workoutPlanId = ? ORDER BY wh.endAt DESC LIMIT 1`,
+    [workoutPlanId],
+  );
 
-  await dbConnection.query(`UPDATE workoutHistory SET calories = ? WHERE id = ?;`, [calories, lastIdRequest[0].id]);
+  await dbConnection.query(
+    `UPDATE workoutHistory SET calories = ? WHERE id = ?;`,
+    [calories, lastIdRequest[0].id],
+  );
 
   return true;
 };
-
