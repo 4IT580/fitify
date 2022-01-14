@@ -52,12 +52,12 @@ export function NewTrainingPage() {
   const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
     CREATEWORKOUT_MUTATION,
     {
-      onCompleted: (date) => {
+      onCompleted: (data) => {
         setSuccessMessage('Training was successfully created.');
 
         setIsWaiting(true);
         setTimeout(function () {
-          history.replace(route.dashboard());
+          history.replace(route.workout(data.createWorkout));
         }, 5000);
       },
       onError: () => {

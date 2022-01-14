@@ -27,7 +27,7 @@ export const createWorkout = async (
     insertExercises(workoutPlanId, exercise, dbConnection),
   );
 
-  return true;
+  return workoutPlanId;
 };
 
 export const editWorkout = async (

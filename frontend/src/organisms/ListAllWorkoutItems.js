@@ -4,8 +4,8 @@ import { setWorkoutItemSelected } from 'src/reducers/listExerciseReducer';
 export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
   return (
     <div className={'pv3'}>
-      {workoutItems.map((item) => (
-        <div className="pb1">
+      {workoutItems.map((item, index) => (
+        <div className="pb1" key={index}>
           <div className="flex items-center br1 pa1 hide-child f5-ns f3">
             <Checkbox
               key={item.id}

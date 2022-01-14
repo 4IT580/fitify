@@ -17,8 +17,6 @@ export function secondsToTimeString(allSeconds) {
   const seconds = allSeconds % 60;
 
   return seconds < 10 ? minutes + ':0' + seconds : minutes + ':' + seconds;
-
-  //minutes + ':' + seconds;
 }
 
 export function planEta(plan) {

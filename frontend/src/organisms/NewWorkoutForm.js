@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { FormikField, LoadingButton } from 'src/molecules/';
 import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { CardBody } from '../atoms';
+import { secondsToTimeString } from '../utils/date';
 
 const initialValues = {
   name: '',
@@ -61,57 +62,67 @@ export function NewWorkoutForm({
       validationSchema={schema}
       validateOnBlur={false}
     >
-      <Form className={className}>
-        {errorMessage && <ErrorBanner title={errorMessage} />}
-        {successMessage && <SuccessBanner title={successMessage} />}
-        {notEnoughExercisesMessage && (
-          <ErrorBanner title={notEnoughExercisesMessage} />
-        )}
-        <CardBody className={'pv3'}>
-          <FormikField
-            id="name"
-            name="name"
-            label="Name of workout"
-            type="text"
-            autoFocus="autofocus"
-          />
-          <FormikField
-            id="rounds"
-            name="rounds"
-            label="Number of laps"
-            type="number"
-          />
-          <FormikField
-            id="intLength"
-            name="intervalLength"
-            label="Length of workout item in seconds"
-            type="number"
-          />
-          <FormikField
-            id="roundsPauseLength"
-            name="roundsPauseLength"
-            label="Pause between workout item in seconds"
-            type="number"
-          />
-          <FormikField
-            id="intPauseLength"
-            name="intervalPauseLength"
-            label="Pause between laps in seconds"
-            type="number"
-          />
-        </CardBody>
-        <CardBody>
-          <LoadingButton
-            type="submit"
-            className="mv3 tc w-100"
-            loading={isLoading}
-            color="green"
-          >
-            Create New Training
-          </LoadingButton>
-          {children}
-        </CardBody>
-      </Form>
+      {({ values }) => (
+        <Form className={className}>
+          {errorMessage && <ErrorBanner title={errorMessage} />}
+          {successMessage && <SuccessBanner title={successMessage} />}
+          {notEnoughExercisesMessage && (
+            <ErrorBanner title={notEnoughExercisesMessage} />
+          )}
+          <CardBody className={'pv3'}>
+            <FormikField
+              id="name"
+              name="name"
+              label="Name of workout"
+              type="text"
+              autoFocus="autofocus"
+            />
+            <FormikField
+              id="rounds"
+              name="rounds"
+              label="Number of laps"
+              type="number"
+            />
+            <FormikField
+              id="intLength"
+              name="intervalLength"
+              label="Length of workout item in seconds"
+              type="number"
+            />
+            <FormikField
+              id="intPauseLength"
+              name="intervalPauseLength"
+              label="Pause between workout item in seconds"
+              type="number"
+            />
+            <FormikField
+              id="roundsPauseLength"
+              name="roundsPauseLength"
+              label="Pause between laps in seconds"
+              type="number"
+            />
+          </CardBody>
+          <CardBody>
+            <LoadingButton
+              type="submit"
+              className="mv3 tc w-100"
+              loading={isLoading}
+              color="green"
+            >
+              Create training (
+              {secondsToTimeString(
+                (values.rounds || 0) *
+                  (workout.length *
+                    ((values.intervalLength || 0) +
+                      (values.intervalPauseLength || 0))) -
+                  (values.intervalPauseLength || 0),
+              )}
+              )
+            </LoadingButton>
+            {children}
+          </CardBody>
+        </Form>
+      )}
     </Formik>
   );
 }
