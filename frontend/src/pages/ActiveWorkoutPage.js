@@ -110,7 +110,9 @@ class ActiveWorkoutPage extends Component {
       const { workTime, restTime, isRadialCounterOn, workoutName, workoutPlanId, startTime } = this.props;
 
       if (this.state.workoutTotalTime === 0) {
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.workoutTotalTime = this.props.workoutTotalTime;
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.secondsLeft = this.props.workTime;
       }
 

@@ -1,4 +1,4 @@
-export default {
+const types = {
     ADD_EXERCISE: "add_exercise",
     EDIT_EXERCISE: "edit_exercise",
     UPDATE_EXERCISES: "update_exercises",
@@ -13,3 +13,5 @@ export default {
     IS_RADIAL_COUNTER_ON: "is_radial_counter_on",
     INITIAL_STATE: "initial"
 };
+
+export default types;
