@@ -46,7 +46,7 @@ export function NewTrainingTemplate({
             <Card
               headerValue={<List workoutItems={workout} dispatch={dispatch} />}
               className={'mt4 mb6 green'}
-              grid={'w-100 w-50-l center-m mw6-l fr'}
+              grid={'w-100 w-50-l center-m mw6-l fl'}
             >
               <CardBody>
                 <NewWorkoutForm
