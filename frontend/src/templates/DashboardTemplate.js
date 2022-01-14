@@ -150,30 +150,32 @@ export function DashboardTemplate({
                         </CardBody>
                     </CardLink>
 
-                    {item.history.length > 0
-                      && <Card className={'dn db-ns green'}>
-                        {item.history.map((historyItem, index) => (
-                          <CardBody className={'green'} key={'workoutPlan' + item.id+'history'+historyItem.id} hasTopBorder={index>0}>
-                            <p className={'f4 f5-ns green'}>
-                              From: {fromUnixTimeStamp(historyItem.startAt)}
-                            </p>
-                            <p className={'f4 f5-ns green'}>
-                              Until: {fromUnixTimeStamp(historyItem.endAt)}
-                            </p>
-                            <p className={'f4 f5-ns green'}>
-                              {historyItem.calories &&
-                                ' Burnt calories: ' + historyItem.calories +' kcal'}
-                            </p>
-                          </CardBody>
-                        ))}
-                      </Card>
-                    }
+                    <div className={'overflow-y-auto-ns vh-50-ns ph2 mb3'}>
+                      {item.history.length > 0
+                        && <Card className={'dn db-ns green'}>
+                          {item.history.map((historyItem, index) => (
+                            <CardBody className={'green'} key={'workoutPlan' + item.id+'history'+historyItem.id} hasTopBorder={index>0}>
+                              <p className={'f4 f5-ns green'}>
+                                From: {fromUnixTimeStamp(historyItem.startAt)}
+                              </p>
+                              <p className={'f4 f5-ns green'}>
+                                Until: {fromUnixTimeStamp(historyItem.endAt)}
+                              </p>
+                              <p className={'f4 f5-ns green'}>
+                                {historyItem.calories &&
+                                  ' Burnt calories: ' + historyItem.calories +' kcal'}
+                              </p>
+                            </CardBody>
+                          ))}
+                        </Card>
+                      }
+                    </div>
 
                   </div>
                 ))}
               </div>
 
-              <div className={'dit w-100 mt3'}>
+              <div className={'dit w-100 mt3 dn-ns db'}>
                 <Heading size={'xl'} className={'green pb4'}>
                   Training history
                 </Heading>
