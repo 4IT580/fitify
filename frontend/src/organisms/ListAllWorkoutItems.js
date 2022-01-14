@@ -3,10 +3,10 @@ import { Checkbox } from 'src/atoms/';
 import { setWorkoutItemSelected } from 'src/reducers/listExerciseReducer';
 export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
   return (
-    <div>
+    <div className={'pv3'}>
       {workoutItems.map((item) => (
         <div className="pb1">
-          <div className="flex items-center bg-dark br1 pa1 hide-child">
+          <div className="flex items-center br1 pa1 hide-child f5-ns f3">
             <Checkbox
               key={item.id}
               className="mh1g"
@@ -15,7 +15,7 @@ export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
                 dispatch(setWorkoutItemSelected(item.id, !item.selected))
               }
             />
-            {item.name}
+            <span className={'ml2'}>{item.name}</span>
           </div>
         </div>
       ))}
