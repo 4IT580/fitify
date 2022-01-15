@@ -14,8 +14,6 @@ import { ConfirmModal } from '../molecules';
 
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-var firstFiveSec = true;
-
 class ActiveWorkoutPage extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +31,7 @@ class ActiveWorkoutPage extends Component {
       countFiveSecOnStart: false,
       countFiveSec: false,
       cancelCalled: false,
+      firstFiveSec: true,
     };
     this.startOrPause = this.startOrPause.bind(this);
     this.tick = this.tick.bind(this);
@@ -56,9 +55,9 @@ class ActiveWorkoutPage extends Component {
         this.setState({ showPause: !this.state.showPause });
       }
     } else {
-      if (firstFiveSec) {
+      if (this.state.firstFiveSec) {
         this.setState({ countFiveSecOnStart: !this.state.countFiveSecOnStart });
-        firstFiveSec = false;
+        this.state.firstFiveSec = false;
       } else {
         this.setState({ countFiveSecOnStart: false });
         this.startTimer();
