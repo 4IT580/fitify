@@ -71,7 +71,6 @@ class ActiveWorkoutPage extends Component {
   };
 
   cancelWorkout = () => {
-    this.state.cancelCalled = true;
     if (this.state.isRunning) {
       this.startOrPause();
     }
@@ -195,7 +194,13 @@ class ActiveWorkoutPage extends Component {
                   noUnderline={true}
                   to={'#'}
                   onClick={() => {
-                    this.setState({ showCancel: false });
+                    if (this.state.showCancel) {
+                      this.setState({showCancel: false});
+                    }
+                    if (this.state.showPause) {
+                      this.setState({showPause: false});
+                    }
+
                     this.setState({ countFiveSec: !this.state.countFiveSec });
                   }}
                 >
@@ -214,7 +219,12 @@ class ActiveWorkoutPage extends Component {
                     children={{ color: 'green' }}
                     trailColor={['#282c34']}
                     onComplete={() => {
-                      this.setState({ countFiveSec: false });
+                      if (this.state.countFiveSec) {
+                        this.setState({countFiveSec: false});
+                      }
+                      if (this.state.countFiveSecOnStart) {
+                        this.setState({countFiveSecOnStart: false});
+                      }
                       this.startOrPause()
                     }}
                   >
