@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -70,7 +70,7 @@ export function SignUpForm({
       onSubmit={(values, { resetForm }) => {
         onSubmit(values);
         resetForm();
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -125,7 +125,10 @@ export function SignUpForm({
           name="sex"
           label="Gender"
           as="radio"
-          radioOptions={[{'value': 'male', 'name': 'Male'}, {'value': 'female', 'name': 'Female'}]}
+          radioOptions={[
+            { value: 'male', name: 'Male' },
+            { value: 'female', name: 'Female' },
+          ]}
           autoFocus="autofocus"
         />
         <FormikField

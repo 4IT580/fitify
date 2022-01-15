@@ -15,6 +15,7 @@ const USER_WORKOUTS_QUERY = gql`
         intervalPauseLength
         rounds
         roundsPauseLength
+        isArchived
         exercises {
           id
         }

@@ -1,38 +1,22 @@
 import React from 'react';
-import { Heading, Link } from '../atoms';
-import { fromUnixTimeStamp } from '../utils/date';
-import { route } from '../Routes';
-import classNames from 'classnames';
+import { Heading } from '../atoms';
+import {
+  WorkoutHeaderButtonsArchived,
+  WorkoutHeaderButtonsActive,
+} from 'src/molecules';
 
-export function WorkoutHeader({ planData, className }) {
+export function WorkoutHeader({ planData }) {
   return (
-    <div className={'dit w-100'}>
-      <div className={classNames('fl-ns mb4', className)}>
-        <Heading size={'xl'} className={'green'}>
+    <div className={'dt-l dt--fixed'}>
+      <div className={'dtc-l'}>
+        <Heading size={'xxl'} className={'green'}>
           {planData.name}
         </Heading>
-        <small className={'green'}>
-          Created at: {fromUnixTimeStamp(planData.createdAt)}
-        </small>
       </div>
-      <div className={'fr-ns ml0 tc items-center tr-ns mb4 mb0-ns'}>
-        <div className={'w-100'}>
-          <Link
-            className={'bg-animate dim bg-green br-pill ph4 mv0 f3 f5-ns '}
-            to={route.activeWorkout(planData.id)}
-          >
-            Start workout
-          </Link>
-        </div>
-        <div className={'w-100 mt4'}>
-          <Link
-            className={'bg-animate dim bg-green br-pill ph3 f3 f5-ns'}
-            noUnderline={true}
-            to={route.editWorkout(planData.id)}
-          >
-            Edit
-          </Link>
-        </div>
+      <div className={'dtc-l tr-l items-end-l mb3'}>
+        {(planData.isArchived === true && (
+          <WorkoutHeaderButtonsArchived planData={planData} />
+        )) || <WorkoutHeaderButtonsActive planData={planData} />}
       </div>
     </div>
   );

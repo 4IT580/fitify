@@ -78,6 +78,18 @@ export const deleteWorkout = async (_, { workoutPlanId }, { dbConnection }) => {
   return true;
 };
 
+export const archiveWorkout = async (
+  _,
+  { workoutPlanId },
+  { dbConnection },
+) => {
+  await dbConnection.query(`UPDATE workoutPlan SET isArchived=1 WHERE id = ?`, [
+    workoutPlanId,
+  ]);
+
+  return true;
+};
+
 function insertExercises(workoutPlanId, exercise, dbConnection) {
   const workoutExerciseResponse = dbConnection.query(
     `INSERT INTO workoutPlanExercise(workoutPlanId, exerciseId, sequence)  VALUES (?, ?, ?)`,

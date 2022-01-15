@@ -12,3 +12,4 @@ export { MobileNavigation } from './MobileNavigation';
 export { Navigation } from './Navigation';
 export { BurgerDesktop } from './BurgerDesktop';
 export { PageLayout } from './PageLayout';
+export { DashboardTrainingCard } from './DashboardTrainingCard';

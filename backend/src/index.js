@@ -47,6 +47,7 @@ const typeDefs = gql`
     intervalPauseLength: Int!
     roundsPauseLength: Int!
     workoutLength: Int!
+    isArchived: Boolean!
     createdAt: String!
     exercises: [Exercise!]!
     history: [WorkoutHistory!]!
@@ -136,7 +137,9 @@ const typeDefs = gql`
       workoutLength: Int!
       exercises: [ExerciseInput]!
     ): Boolean!
+
     deleteWorkout(workoutPlanId: Int!): Boolean!
+    archiveWorkout(workoutPlanId: Int!): Boolean!
 
     forgottenPassword(email: String!, appOrigin: String!): Boolean!
     resetPassword(passwordToken: String!, newPassword: String!): AuthInfo!
