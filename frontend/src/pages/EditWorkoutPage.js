@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import {
   initialState,
   listExerciseReducer,
+  loadedData,
 } from 'src/reducers/listExerciseReducer';
+
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { useAuth } from 'src/utils/auth';
 import { route } from '../Routes';
@@ -60,25 +62,17 @@ export function EditWorkoutPage() {
       },
     },
   );
+  const exercises = useQuery(EXERCISES_QUERY, {
+    onCompleted(data) {
+      dispatch(loadedData(data));
+    },
+  });
 
-  const exercises = useQuery(EXERCISES_QUERY);
-  const { id, name, data } = exercises;
   const [state, dispatch] = useReducer(listExerciseReducer, initialState);
-
-  if (exercises.data != null && initial === true) {
-    const result4 = Object.keys(exercises.data).map(
-      (key) => exercises.data[key],
-    );
-
-    arrayOfItems = result4[0];
-    state.workoutItems = arrayOfItems;
-    isInitial(false);
-  }
-
-  const currentList = state.workoutItems.map((value) => {
-    const list = {
+  let currentList = state.workout.map((value) => {
+    let list = {
       id: value.id,
-      sequence: value.id,
+      sequence: value.position,
     };
     return list;
   });
@@ -94,15 +88,16 @@ export function EditWorkoutPage() {
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 0,
-          exercises: currentList,
+          exercises: values.exercises,
         },
       });
     },
-    [editWorkoutRequest],
+    [editWorkoutRequest, currentList],
   );
 
   return (
     <EditWorkoutTemplate
+      workout={state.workout}
       workoutItems={state.workoutItems}
       dispatch={dispatch}
       isLoading={editWorkoutRequestState.loading}

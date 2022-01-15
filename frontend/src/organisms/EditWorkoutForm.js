@@ -28,10 +28,10 @@ const WORKOUT_PLAN = gql`
 
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
-  rounds: yup.number().required().positive().integer(),
-  intLength: yup.number().required().positive().integer(),
-  intPauseLength: yup.number().required().positive().integer(),
-  roundsPauseLength: yup.number().required().positive().integer(),
+  rounds: yup.string(),
+  intLength: yup.number().min(5).required().integer(),
+  intPauseLength: yup.number().min(5).required().integer(),
+  roundsPauseLength: yup.number().min(5).required().integer(),
 });
 
 export function EditWorkoutForm({
@@ -41,28 +41,42 @@ export function EditWorkoutForm({
   className,
   onSubmit,
   children,
+  workout,
 }) {
   const auth = useAuth();
   const { user } = useAuth();
   const { workoutPlanId } = useParams();
-
   const workoutPlan = useQuery(WORKOUT_PLAN, {
     variables: { id: parseInt(workoutPlanId) },
   });
   //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
-
   const initialValues = {
     name: '',
     rounds: '',
     intLength: '',
     intPauseLength: '',
     roundsPauseLength: '',
+    exercises: [],
   };
+  initialValues.exercises = [];
+  let currentList = workout.map((value) => {
+    let list = {
+      id: value.id,
+      sequence: value.position,
+    };
+    return list;
+  });
 
+  if (workoutPlan.loading === false) {
+    console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
+    console.log('sem v editu, initial pred je:', initialValues.name);
+    initialValues.name = workoutPlan.data.workoutPlan.name;
+    console.log('sem v editu, initial po je:', initialValues.name);
+  }
   return (
     <Formik
       onSubmit={function (values, actions) {
-        onSubmit(values);
+        onSubmit({ ...values, exercises: currentList });
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -74,6 +88,7 @@ export function EditWorkoutForm({
           <SuccessBanner title={successMessage} className="mb3" />
         )}
         <FormikField
+          value="jkjk"
           id="name"
           name="name"
           label="Name of workout"
