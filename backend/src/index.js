@@ -47,6 +47,7 @@ const typeDefs = gql`
     intervalPauseLength: Int!
     roundsPauseLength: Int!
     workoutLength: Int!
+    isArchived: Boolean!
     createdAt: String!
     exercises: [Exercise!]!
     history: [WorkoutHistory!]!

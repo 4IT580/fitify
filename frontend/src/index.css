@@ -243,3 +243,7 @@ input:focus {
 .dragFloatItem {
   color: #bffa29;
 }
+
+.max-vh-50-ns{
+  max-height: 30vh;
+}
