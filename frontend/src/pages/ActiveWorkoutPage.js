@@ -12,6 +12,10 @@ import { route } from '../Routes';
 import { Link } from '../atoms';
 import { ConfirmModal } from '../molecules';
 
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+
+var firstFiveSec = true;
+
 class ActiveWorkoutPage extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +29,10 @@ class ActiveWorkoutPage extends Component {
       currentSet: 1,
       workoutTotalTime: 0,
       showCancel: false,
+      showPause: false,
+      countFiveSecOnStart: false,
+      countFiveSec: false,
+      cancelCalled: false,
     };
     this.startOrPause = this.startOrPause.bind(this);
     this.tick = this.tick.bind(this);
@@ -41,9 +49,21 @@ class ActiveWorkoutPage extends Component {
     if (isRunning) {
       this.stopTimer();
       this.setState({ isRunning: !isRunning, startPauseIcon: 'play' });
+      if (this.state.cancelCalled) {
+        this.setState({ showCancel: !this.state.showCancel });
+        this.state.cancelCalled = false;
+      } else {
+        this.setState({ showPause: !this.state.showPause });
+      }
     } else {
-      this.startTimer();
-      this.setState({ isRunning: !isRunning, startPauseIcon: 'pause' });
+      if (firstFiveSec) {
+        this.setState({ countFiveSecOnStart: !this.state.countFiveSecOnStart });
+        firstFiveSec = false;
+      } else {
+        this.setState({ countFiveSecOnStart: false });
+        this.startTimer();
+        this.setState({ isRunning: !isRunning, startPauseIcon: 'pause' });
+      }
     }
   };
 
@@ -52,6 +72,7 @@ class ActiveWorkoutPage extends Component {
   };
 
   cancelWorkout = () => {
+    this.state.cancelCalled = true;
     if (this.state.isRunning) {
       this.startOrPause();
     }
@@ -157,14 +178,16 @@ class ActiveWorkoutPage extends Component {
               />
             )}
 
-            {this.state.showCancel && (
-              <ConfirmModal message={'Cancel the workout?'}>
+            {(this.state.showCancel || this.state.showPause) && (
+              <ConfirmModal message={'Workout is paused.'}>
                 <Link
-                  className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
+                  className={
+                    'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'
+                  }
                   noUnderline={true}
                   to={route.dashboard()}
                 >
-                  Yes
+                  End training
                 </Link>
                 <Link
                   className={
@@ -174,10 +197,31 @@ class ActiveWorkoutPage extends Component {
                   to={'#'}
                   onClick={() => {
                     this.setState({ showCancel: false });
+                    this.setState({ countFiveSec: !this.state.countFiveSec });
                   }}
                 >
-                  No
+                  Continue
                 </Link>
+              </ConfirmModal>
+            )}
+
+            {(this.state.countFiveSec || this.state.countFiveSecOnStart) && (
+              <ConfirmModal message={(this.state.countFiveSecOnStart ? 'Your training is starting in' : 'Your training is being resumed in')}>
+                <div className="fiveSecTimer absolute--fill flex  justify-center mt5">
+                  <CountdownCircleTimer
+                    isPlaying
+                    duration={5}
+                    colors={['#bffa29']}
+                    children={{ color: 'green' }}
+                    trailColor={['#282c34']}
+                    onComplete={() => {
+                      this.setState({ countFiveSec: false });
+                      this.startOrPause()
+                    }}
+                  >
+                    {({ remainingTime }) => remainingTime}
+                  </CountdownCircleTimer>
+                </div>
               </ConfirmModal>
             )}
           </MainSection>
