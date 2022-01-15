@@ -22,7 +22,7 @@ const EXERCISES_QUERY = gql`
 
 const EDITWORKOUT_MUTATION = gql`
   mutation EditWorkout(
-    $userId: Int!
+    $workoutPlanId: Int!
     $name: String!
     $rounds: Int!
     $intLength: Int!
@@ -32,7 +32,7 @@ const EDITWORKOUT_MUTATION = gql`
     $exercises: [ExerciseInput]!
   ) {
     editWorkout(
-      userId: $userId
+      workoutPlanId: $workoutPlanId
       name: $name
       rounds: $rounds
       intLength: $intLength
@@ -58,7 +58,7 @@ export function EditWorkoutPage() {
         setSuccessMessage('Training was successfully created.');
       },
       onError: () => {
-        console.log('login error');
+        console.log('edit error');
       },
     },
   );
@@ -81,14 +81,14 @@ export function EditWorkoutPage() {
     (values) => {
       editWorkoutRequest({
         variables: {
-          userId: user.id,
+          workoutPlanId: values.workoutPlanId,
           name: values.name,
           rounds: values.rounds,
           intLength: values.intLength,
           intPauseLength: values.intPauseLength,
           roundsPauseLength: values.roundsPauseLength,
           workoutLength: 0,
-          exercises: values.exercises,
+          exercises: [],
         },
       });
     },

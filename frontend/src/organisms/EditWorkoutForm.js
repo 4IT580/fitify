@@ -55,9 +55,10 @@ export function EditWorkoutForm({
     intLength: '',
     intPauseLength: '',
     roundsPauseLength: '',
-    exercises: [],
+    workoutPlanId: '',
   };
-  initialValues.exercises = [];
+  // initialValues.exercises = [];
+
   let currentList = workout.map((value) => {
     let list = {
       id: value.id,
@@ -67,10 +68,16 @@ export function EditWorkoutForm({
   });
 
   if (workoutPlan.loading === false) {
+    console.log('workoutplan pred', workoutPlan.data.workoutPlan);
     initialValues.name = workoutPlan.data.workoutPlan.name;
     initialValues.rounds = workoutPlan.data.workoutPlan.rounds;
-    initialValues.intLength = workoutPlan.data.workoutPlan.intLength;
-    initialValues.intPauseLength = workoutPlan.data.workoutPlan.intPauseLength;
+    initialValues.intLength = workoutPlan.data.workoutPlan.intervalLength;
+    initialValues.intPauseLength =
+      workoutPlan.data.workoutPlan.intervalPauseLength;
+    initialValues.roundsPauseLength =
+      workoutPlan.data.workoutPlan.roundsPauseLength;
+    initialValues.workoutPlanId = workoutPlanId;
+    console.log('workoutplan po', workoutPlan.data.workoutPlan);
   }
   return (
     <Formik
