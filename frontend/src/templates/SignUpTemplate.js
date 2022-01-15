@@ -9,14 +9,14 @@ export function SignUpTemplate({ isLoading, error, onSubmit, successMessage }) {
     <>
       <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
-          <Heading>Sign Up</Heading>
+          <Heading className={'green'}>Sign Up</Heading>
 
           <SignUpForm
             isLoading={isLoading}
             errorMessage={error && error.message}
             successMessage={successMessage}
             onSubmit={onSubmit}
-            className="mt3"
+            className="mt3 green"
           />
         </RightBlockSection>
       </PageLayout>

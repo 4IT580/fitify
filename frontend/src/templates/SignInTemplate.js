@@ -9,12 +9,12 @@ export function SignInTemplate({ isLoading, error, onSubmit }) {
     <>
       <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
-          <Heading>Sign In</Heading>
+          <Heading className={'green'}>Sign In</Heading>
           <SignInForm
             isLoading={isLoading}
             errorMessage={error && error.message}
             onSubmit={onSubmit}
-            className="mt3"
+            className="mt3 green"
           />
         </RightBlockSection>
       </PageLayout>
