@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Link } from 'src/atoms';
+import { Button, Link, Heading } from 'src/atoms';
 
 import { HomePage } from 'src/molecules/';
 import { PageLayout } from 'src/organisms/';
@@ -10,10 +10,10 @@ export function HomeTemplate() {
     <>
       <PageLayout bgClass={'background background-gym-clap'}>
         <HomePage>
-          <h1 className='green'>FITIFY</h1>
-          <h3 className='white'>Aplikace, která bude cvičit s vámi!</h3>
+          <Heading className='green' size='xxl'>FITIFY</Heading>
+          <Heading className='white mt2 mb3' size='l'>Aplikace, která bude cvičit s vámi!</Heading>
 
-          <h3 className='white'>Zaregistrujte se a začněte s tréninkem.</h3>
+          <Heading className='white mt2 mb3 ' size='l'>Zaregistrujte se a začněte s tréninkem.</Heading>
           <Link exact to={route.signIn()} >
           <Button className={'ma2'}>
             Sign In
