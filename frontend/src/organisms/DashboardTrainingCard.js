@@ -35,7 +35,7 @@ export function DashboardTrainingCard({ item }) {
               <CardBody
                 className={'green'}
                 key={'workoutPlan' + item.id + 'history' + historyItem.id}
-                hasTopBorder={index > 0}
+                hasTopBorder={index+1 !== item.history.length}
               >
                 <p className={'f4 f5-ns green'}>
                   From: {fromUnixTimeStamp(historyItem.startAt)}
@@ -48,7 +48,7 @@ export function DashboardTrainingCard({ item }) {
                     ' Burnt calories: ' + historyItem.calories + ' kcal'}
                 </p>
               </CardBody>
-            ))}
+            )).reverse()}
           </Card>
         )}
       </div>

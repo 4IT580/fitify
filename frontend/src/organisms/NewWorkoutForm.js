@@ -42,11 +42,7 @@ export function NewWorkoutForm({
   const [notEnoughExercisesMessage, setNotEnoughExercisesMessage] =
     useState('');
   useEffect(() => {
-    if (workout.length === 0) {
-      setNotEnoughExercisesMessage('Add some exercises');
-    } else {
-      setNotEnoughExercisesMessage('');
-    }
+    setNotEnoughExercisesMessage('');
   }, [workout]);
 
   return (
