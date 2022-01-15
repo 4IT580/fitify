@@ -12,7 +12,7 @@ export const List = ({ workoutItems, dispatch }) => {
       >
         ✖
       </SmallButton>
-      <span className={'f5-ns f3'}>{value.name}</span>
+      <span className={'f5-ns f3 pointer'}>{value.name}</span>
     </div>
   ));
 

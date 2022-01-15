@@ -247,3 +247,8 @@ input:focus {
 .max-vh-50-ns {
   max-height: 30vh;
 }
+
+.fiveSecTimer{
+  color: #bffa29;
+  font-size: 40px;
+}

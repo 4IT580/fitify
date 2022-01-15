@@ -40,7 +40,7 @@ export function NewTrainingTemplate({
                   className="w-100 mv3"
                   onClick={() => dispatch(transferData())}
                 >
-                  Select chosen
+                  Add excercises
                 </Button>
               </CardBody>
             </Card>
