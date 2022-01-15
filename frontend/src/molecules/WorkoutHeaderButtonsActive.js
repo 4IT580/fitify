@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button, Link } from '../atoms';
+import React, { useState } from 'react';
+import { Button, Link } from 'src/atoms';
+import { ConfirmModal } from 'src/molecules';
 import { route } from '../Routes';
-import { useHistory } from 'react-router-dom';
 
-export function WorkoutHeaderButtonsActive ({planData}) {
-  const history = useHistory();
+export function WorkoutHeaderButtonsActive({ planData }) {
+  const [isConfirmModalShown, setIsConfirmModalShown] = useState(false);
 
   return (
     <div>
@@ -32,31 +32,50 @@ export function WorkoutHeaderButtonsActive ({planData}) {
           </Button>
         </Link>
 
-        {(planData.history.length > 0
-          && (<Link
+        {(planData.history.length > 0 && (
+          <Link
             to={route.archiveWorkout(planData.id)}
             className={'bg-animate br-pill f3 f5-m  tc'}
           >
             <Button className={'w-100  w-auto-l mt3 mh1-ns'} color={'red'}>
               Archive
             </Button>
-          </Link>)
-          || (<Link
-              to={'#'}
-              onClick={() => {
-                if (window.confirm('really delete?')) {
-                  //todo as modal
-                  history.replace(route.deleteWorkout(planData.id));
-                }
-              }}
-              className={'bg-animate br-pill f3 f5-m  tc'}
-            >
-              <Button className={'w-100  w-auto-l mt3 mh1-ns'} color={'red'}>
-                Delete
-              </Button>
-            </Link>
-          ))}
+          </Link>
+        )) || (
+          <Link
+            to={'#'}
+            onClick={() => {
+              setIsConfirmModalShown(true);
+            }}
+            className={'bg-animate br-pill f3 f5-m  tc'}
+          >
+            <Button className={'w-100  w-auto-l mt3 mh1-ns'} color={'red'}>
+              Delete
+            </Button>
+          </Link>
+        )}
       </div>
+      {isConfirmModalShown && (
+        <ConfirmModal message={'Do you really want to delete this traning?'}>
+          <Link
+            className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
+            noUnderline={true}
+            to={route.deleteWorkout(planData.id)}
+          >
+            Yes
+          </Link>
+          <Link
+            className={'w-40 link dim br-pill ph4 pv3 dib dark bg-green ml1'}
+            noUnderline={true}
+            to={'#'}
+            onClick={() => {
+              setIsConfirmModalShown(false);
+            }}
+          >
+            No
+          </Link>
+        </ConfirmModal>
+      )}
     </div>
   );
 }

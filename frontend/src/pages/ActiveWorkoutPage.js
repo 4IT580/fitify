@@ -9,7 +9,8 @@ import { withRedux } from '../utils/WithRedux';
 import { MainSection } from 'src/atoms/';
 import { PageLayout } from 'src/organisms/';
 import { route } from '../Routes';
-import { Heading, Link } from '../atoms';
+import { Link } from '../atoms';
+import { ConfirmModal } from '../molecules';
 
 class ActiveWorkoutPage extends Component {
   constructor(props) {
@@ -157,38 +158,27 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {this.state.showCancel && (
-              <div
-                className={'modal absolute absolute--fill flex  justify-center'}
-              >
-                <div className="bg-dark br3 pa5 tc fa-border w-30 self-start mt6">
-                  <Heading size={'xl'} className={'white'}>
-                    Cancel the workout?
-                  </Heading>
-                  <div className={'mt4'}>
-                    <Link
-                      className={
-                        'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'
-                      }
-                      noUnderline={true}
-                      to={route.dashboard()}
-                    >
-                      Yes
-                    </Link>
-                    <Link
-                      className={
-                        'w-40 link dim br-pill ph4 pv3 dib dark bg-green ml1'
-                      }
-                      noUnderline={true}
-                      to={'#'}
-                      onClick={() => {
-                        this.setState({ showCancel: false });
-                      }}
-                    >
-                      No
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <ConfirmModal message={'Cancel the workout?'}>
+                <Link
+                  className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
+                  noUnderline={true}
+                  to={route.dashboard()}
+                >
+                  Yes
+                </Link>
+                <Link
+                  className={
+                    'w-40 link dim br-pill ph4 pv3 dib dark bg-green ml1'
+                  }
+                  noUnderline={true}
+                  to={'#'}
+                  onClick={() => {
+                    this.setState({ showCancel: false });
+                  }}
+                >
+                  No
+                </Link>
+              </ConfirmModal>
             )}
           </MainSection>
         </PageLayout>

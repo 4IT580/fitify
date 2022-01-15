@@ -9,3 +9,4 @@ export { WorkoutHeaderButtonsArchived } from './WorkoutHeaderButtonsArchived';
 export { WorkoutHeaderButtonsActive } from './WorkoutHeaderButtonsActive';
 export { Card } from './Card';
 export { CardLink } from './CardLink';
+export { ConfirmModal } from './ConfirmModal';

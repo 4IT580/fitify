@@ -11,29 +11,29 @@ import {
 } from '../atoms';
 import { PageLayout } from '../organisms';
 
-const ARCHIVE_WORKOUT_MUTATION = gql`
-  mutation ArchiveWorkout($workoutPlanId: Int!) {
-    archiveWorkout(workoutPlanId: $workoutPlanId)
+const DELETE_WORKOUT_MUTATION = gql`
+  mutation DeleteWorkout($workoutPlanId: Int!) {
+    deleteWorkout(workoutPlanId: $workoutPlanId)
   }
 `;
 
-export function ArchiveWorkoutPage() {
+export function DeleteWorkoutPage() {
   const { workoutPlanId } = useParams();
   const history = useHistory();
   const [message, setMessage] = useState(null);
 
-  const [setArchivedWorkout, setArchivedWorkoutState] = useMutation(
-    ARCHIVE_WORKOUT_MUTATION,
+  const [setDeletedWorkout, setDeletedWorkoutState] = useMutation(
+    DELETE_WORKOUT_MUTATION,
     {
       onCompleted: () => {
         setMessage(
           <SuccessMessage>
-            Training archived, redirecting to training Detail
+            Training deleted, redirecting to Dashboard
           </SuccessMessage>,
         );
 
         setTimeout(function () {
-          history.replace(route.workout(workoutPlanId));
+          history.replace(route.dashboard());
         }, 2000);
       },
       onError: (error) => {
@@ -43,7 +43,7 @@ export function ArchiveWorkoutPage() {
   );
 
   useEffect(() => {
-    setArchivedWorkout({
+    setDeletedWorkout({
       variables: {
         workoutPlanId: parseInt(workoutPlanId),
       },
@@ -54,7 +54,7 @@ export function ArchiveWorkoutPage() {
   return (
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
-        {(setArchivedWorkoutState.loading === true && <Loading />) || (
+        {(setDeletedWorkoutState.loading === true && <Loading />) || (
           <RightBlockSection>
             <SuccessBanner>{message}</SuccessBanner>
           </RightBlockSection>
