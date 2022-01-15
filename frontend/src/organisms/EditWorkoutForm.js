@@ -49,7 +49,6 @@ export function EditWorkoutForm({
   const workoutPlan = useQuery(WORKOUT_PLAN, {
     variables: { id: parseInt(workoutPlanId) },
   });
-  //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
   const initialValues = {
     name: '',
     rounds: '',
@@ -68,10 +67,10 @@ export function EditWorkoutForm({
   });
 
   if (workoutPlan.loading === false) {
-    console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
-    console.log('sem v editu, initial pred je:', initialValues.name);
     initialValues.name = workoutPlan.data.workoutPlan.name;
-    console.log('sem v editu, initial po je:', initialValues.name);
+    initialValues.rounds = workoutPlan.data.workoutPlan.rounds;
+    initialValues.intLength = workoutPlan.data.workoutPlan.intLength;
+    initialValues.intPauseLength = workoutPlan.data.workoutPlan.intPauseLength;
   }
   return (
     <Formik
@@ -79,6 +78,7 @@ export function EditWorkoutForm({
         onSubmit({ ...values, exercises: currentList });
       }}
       initialValues={initialValues}
+      enableReinitialize={true}
       validationSchema={schema}
       validateOnBlur={false}
     >
@@ -88,7 +88,6 @@ export function EditWorkoutForm({
           <SuccessBanner title={successMessage} className="mb3" />
         )}
         <FormikField
-          value="jkjk"
           id="name"
           name="name"
           label="Name of workout"
