@@ -16,6 +16,7 @@ const WORKOUT_PLAN_QUERY = gql`
       intervalPauseLength
       workoutLength
       createdAt
+      isArchived
       exercises {
         id
         name

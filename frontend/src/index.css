@@ -244,17 +244,6 @@ input:focus {
   color: #bffa29;
 }
 
-.max-vh-50-ns{
+.max-vh-50-ns {
   max-height: 30vh;
-}
-
-@media screen and (max-width: 30em) {
-  .dtig{
-    display: inline-grid;
-  }
-}
-@media screen and (min-width: 30em) {
-  .mb15-ns{
-    margin-bottom: 1.5rem;
-  }
 }

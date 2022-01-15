@@ -8,23 +8,23 @@ import {
   Loading,
   MainSection,
   TextInput,
-  Label
+  Label,
 } from 'src/atoms/';
 
 import { PageLayout, DashboardTrainingCard } from 'src/organisms/';
 import { route } from 'src/Routes';
 
-export function DashboardTemplate ({data, isLoading, error, refetch}) {
+export function DashboardTemplate({ data, isLoading, error, refetch }) {
   const [workoutData, setWorkoutData] = useState([]);
 
-  function normalizeString (string) {
+  function normalizeString(string) {
     return string
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase();
   }
 
-  function filterWorkoutDataBasedOnValue (searchedValue) {
+  function filterWorkoutDataBasedOnValue(searchedValue) {
     if (isLoading === true) {
       setWorkoutData([]);
     } else {
@@ -51,27 +51,22 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
-          <div className={' dt-l dt--fixed'}>
+          <div className={'dt-l dt--fixed'}>
             <div className={'dtc-l'}>
               <Heading size={'xxl'} className={'green'}>
                 Dashboard
               </Heading>
-
             </div>
             <div className={'dtc-l tr-l items-end-l'}>
               <Button className={'w-100  w-auto-l pv3 mt3'}>
                 <Link
                   to={route.newTraining()}
-                  className={
-                    'bg-animate dim bg-green br-pill f3 f5-m  tc'
-                  }
+                  className={'bg-animate dim bg-green br-pill f3 f5-m  tc'}
                 >
                   New Training
                 </Link>
               </Button>
-              <Label className={'green mt4'}>
-                Filter trainings by name
-              </Label>
+              <Label className={'green mt4'}>Filter trainings by name</Label>
               <TextInput
                 className={'mw5-l ml-auto-l tr-l'}
                 placeholder={'name...'}
@@ -83,7 +78,7 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
             </div>
           </div>
 
-          {isLoading && !workoutData && <Loading/>}
+          {isLoading && !workoutData && <Loading />}
 
           {error && (
             <ErrorBanner title={error.message}>
@@ -99,19 +94,22 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                 Trainings
               </Heading>
               <div className={'mt3 overflow-x-auto nowrap-ns'}>
-                {workoutData.filter((item) => item.isArchived === false).map((item) => (
-                  <DashboardTrainingCard item={item}/>
-                ))}
+                {workoutData
+                  .filter((item) => item.isArchived === false)
+                  .map((item) => (
+                    <DashboardTrainingCard item={item} />
+                  ))}
               </div>
               <Heading size={'xl'} className={'green pb4 mt4'}>
                 Archived
               </Heading>
               <div className={'mt3 overflow-x-auto nowrap-ns'}>
-                {workoutData.filter((item) => item.isArchived === true).map((item) => (
-                  <DashboardTrainingCard item={item}/>
-                ))}
+                {workoutData
+                  .filter((item) => item.isArchived === true)
+                  .map((item) => (
+                    <DashboardTrainingCard item={item} />
+                  ))}
               </div>
-
             </div>
           )}
         </MainSection>

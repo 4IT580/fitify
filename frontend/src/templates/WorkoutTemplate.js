@@ -14,14 +14,12 @@ export function WorkoutTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
-          <main className="grid-container-left pt4">
-            <WorkoutPlanView
-              planData={data && data.workoutPlan}
-              isLoading={loading}
-              error={error}
-              refetch={refetch}
-            />
-          </main>
+          <WorkoutPlanView
+            planData={data && data.workoutPlan}
+            isLoading={loading}
+            error={error}
+            refetch={refetch}
+          />
         </MainSection>
       </PageLayout>
     </>

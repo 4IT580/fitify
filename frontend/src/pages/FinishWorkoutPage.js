@@ -68,7 +68,7 @@ export function FinishWorkoutPage() {
   const [setFinishedWorkout] = useMutation(FINISH_WORKOUT_MUTATION, {
     onCompleted: () => {
       setSuccessMessage(
-        'Your thaining has been finished. If you wish to, you can set your calories',
+        'Your training has been finished. If you wish to, you can set your calories',
       );
       console.log('done');
     },
