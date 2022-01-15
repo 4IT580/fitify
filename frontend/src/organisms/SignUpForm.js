@@ -65,13 +65,12 @@ export function SignUpForm({
   onSubmit,
   children,
 }) {
-  const successMessageRef = useRef();
   return (
     <Formik
       onSubmit={(values, { resetForm }) => {
         onSubmit(values);
         resetForm();
-        // successMessageRef.current.scrollIntoView();
+        window.scrollTo(0, 0)
       }}
       initialValues={initialValues}
       validationSchema={schema}
@@ -80,7 +79,7 @@ export function SignUpForm({
       <Form className={className}>
         {errorMessage && <ErrorBanner title={errorMessage} className="mb3" />}
         {successMessage && (
-          <span ref={successMessageRef}>
+          <span>
             <SuccessBanner title={successMessage} className="mb3" />
           </span>
         )}
@@ -126,7 +125,7 @@ export function SignUpForm({
           name="sex"
           label="Gender"
           as="radio"
-          radioOptions={['male', 'female']}
+          radioOptions={[{'value': 'male', 'name': 'Male'}, {'value': 'female', 'name': 'Female'}]}
           autoFocus="autofocus"
         />
         <FormikField
