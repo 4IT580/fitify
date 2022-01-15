@@ -98,7 +98,7 @@ export function DashboardTemplate({ data, isLoading, error, refetch }) {
                   .filter((item) => item.isArchived === false)
                   .map((item) => (
                     <DashboardTrainingCard item={item} />
-                  )).reverse()}
+                  ))}
               </div>
               <Heading size={'xl'} className={'green pb4 mt4'}>
                 Archived
