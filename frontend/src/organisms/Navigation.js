@@ -15,13 +15,21 @@ export function Navigation() {
   return (
     <main className="dn db-ns">
       <nav className="flex justify-between bb bg-dark">
-        <Link
+        {user ? (
+          <Link
+            to={route.dashboard()}
+            noUnderline
+            className="b flex items-center green"
+          >
+            <Logo className="mr1 ml3 f2 fitify-logo" />
+          </Link>
+        ) : (<Link
           to={route.home()}
           noUnderline
           className="b flex items-center green"
         >
           <Logo className="mr1 ml3 f2 fitify-logo" />
-        </Link>
+        </Link>)}
         <div className="flex-grow flex items-center mr4">
           {user ? (
             <>
