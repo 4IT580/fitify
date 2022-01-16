@@ -12,7 +12,7 @@ import { route } from '../Routes';
 import { Link } from '../atoms';
 import { ConfirmModal } from '../molecules';
 
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 class ActiveWorkoutPage extends Component {
   constructor(props) {
@@ -179,9 +179,7 @@ class ActiveWorkoutPage extends Component {
             {(this.state.showCancel || this.state.showPause) && (
               <ConfirmModal message={'Workout is paused.'}>
                 <Link
-                  className={
-                    'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'
-                  }
+                  className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
                   noUnderline={true}
                   to={route.dashboard()}
                 >
@@ -195,10 +193,10 @@ class ActiveWorkoutPage extends Component {
                   to={'#'}
                   onClick={() => {
                     if (this.state.showCancel) {
-                      this.setState({showCancel: false});
+                      this.setState({ showCancel: false });
                     }
                     if (this.state.showPause) {
-                      this.setState({showPause: false});
+                      this.setState({ showPause: false });
                     }
 
                     this.setState({ countFiveSec: !this.state.countFiveSec });
@@ -210,7 +208,13 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.countFiveSec || this.state.countFiveSecOnStart) && (
-              <ConfirmModal message={(this.state.countFiveSecOnStart ? 'Your training is starting in' : 'Your training is being resumed in')}>
+              <ConfirmModal
+                message={
+                  this.state.countFiveSecOnStart
+                    ? 'Your training is starting in'
+                    : 'Your training is being resumed in'
+                }
+              >
                 <div className="fiveSecTimer absolute--fill flex  justify-center mt5">
                   <CountdownCircleTimer
                     isPlaying
@@ -220,12 +224,12 @@ class ActiveWorkoutPage extends Component {
                     trailColor={['#282c34']}
                     onComplete={() => {
                       if (this.state.countFiveSec) {
-                        this.setState({countFiveSec: false});
+                        this.setState({ countFiveSec: false });
                       }
                       if (this.state.countFiveSecOnStart) {
-                        this.setState({countFiveSecOnStart: false});
+                        this.setState({ countFiveSecOnStart: false });
                       }
-                      this.startOrPause()
+                      this.startOrPause();
                     }}
                   >
                     {({ remainingTime }) => remainingTime}

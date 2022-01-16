@@ -4,6 +4,9 @@ export const initialState = {
 
   //workout = items from workoutItems after adding
   workout: [],
+
+  //workoutPlan = plan data for duplicate/edit
+  workoutPlan: [],
 };
 
 export function listExerciseReducer(state, action) {
@@ -18,6 +21,26 @@ export function listExerciseReducer(state, action) {
           position: index,
           selected: false,
         })),
+      };
+    }
+
+    case 'LOADED_PLAN_DATA': {
+      const { data } = action;
+
+      return {
+        ...state,
+        workoutPlan: data,
+        workout: data.exercises.map((item) => {
+          return { ...item, position: item.sequence };
+        }),
+        workoutItems: state.workoutItems.map((workoutItem) => {
+          return {
+            ...workoutItem,
+            selected: data.exercises.filter(function (planExercise) {
+              return planExercise.id === workoutItem.id;
+            }).length,
+          };
+        }),
       };
     }
 
@@ -90,6 +113,9 @@ export function setList(list) {
 }
 export function loadedData(data) {
   return { type: 'LOADED_DATA', data };
+}
+export function loadedPlanData(data) {
+  return { type: 'LOADED_PLAN_DATA', data };
 }
 export function transferData() {
   return { type: 'TRANSFER_DATA' };

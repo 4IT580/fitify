@@ -36,7 +36,8 @@ export const route = {
   finishWorkout: (workoutPlanId, startTime) =>
     `/finisned-workout/${workoutPlanId}/${startTime}`,
   editWorkout: (workoutPlanId) => `/edit-workout/${workoutPlanId}`,
-  duplicateWorkout: (workoutPlanId) => `/duplicate-workout/${workoutPlanId}`,
+  duplicateWorkout: (workoutPlanIdToDuplicate) =>
+    `/new-training/${workoutPlanIdToDuplicate}`,
   archiveWorkout: (workoutPlanId) => `/archive-workout/${workoutPlanId}`,
   deleteWorkout: (workoutPlanId) => `/delete-workout/${workoutPlanId}`,
 };
@@ -89,9 +90,9 @@ export function Routes() {
       />
 
       <Route
-        path={route.duplicateWorkout(':workoutPlanId')}
+        path={route.duplicateWorkout(':workoutPlanIdToDuplicate')}
         exact
-        component={PageNotFound}
+        component={NewTrainingPage}
       />
 
       <Route path="*" component={PageNotFound} />

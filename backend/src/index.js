@@ -49,7 +49,7 @@ const typeDefs = gql`
     workoutLength: Int!
     isArchived: Boolean!
     createdAt: String!
-    exercises: [Exercise!]!
+    exercises: [WorkoutExercise!]!
     history: [WorkoutHistory!]!
   }
 
@@ -67,6 +67,15 @@ const typeDefs = gql`
     description: String
     bodyParts: [BodyPart!]!
     equipment: [Equipment!]!
+  }
+
+  type WorkoutExercise {
+    id: Int!
+    name: String!
+    description: String
+    bodyParts: [BodyPart!]!
+    equipment: [Equipment!]!
+    sequence: Int!
   }
 
   type BodyPart {

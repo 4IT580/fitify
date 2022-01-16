@@ -1,10 +1,11 @@
 import React, { useCallback, useReducer, useState } from 'react';
 import { NewTrainingTemplate } from 'src/templates/NewTrainingTemplate';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import {
   initialState,
   listExerciseReducer,
   loadedData,
+  loadedPlanData,
 } from 'src/reducers/listExerciseReducer';
 
 import { gql, useMutation, useQuery } from '@apollo/client';
@@ -16,6 +17,23 @@ const EXERCISES_QUERY = gql`
     exercises {
       id
       name
+    }
+  }
+`;
+
+const WORKOUT_PLAN_LOAD_QUERY = gql`
+  query WorkoutPlan($id: Int!) {
+    workoutPlan(id: $id) {
+      name
+      rounds
+      roundsPauseLength
+      intervalLength
+      intervalPauseLength
+      exercises {
+        name
+        id
+        sequence
+      }
     }
   }
 `;
@@ -47,6 +65,8 @@ const CREATEWORKOUT_MUTATION = gql`
 export function NewTrainingPage() {
   const history = useHistory();
   const { user } = useAuth();
+  const { workoutPlanIdToDuplicate } = useParams();
+
   const [successMessage, setSuccessMessage] = useState(null);
   const [isWaiting, setIsWaiting] = useState(false);
   const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
@@ -60,8 +80,8 @@ export function NewTrainingPage() {
           history.replace(route.workout(data.createWorkout));
         }, 5000);
       },
-      onError: () => {
-        console.log('login error');
+      onError: (error) => {
+        console.error(error);
       },
     },
   );
@@ -69,6 +89,14 @@ export function NewTrainingPage() {
   useQuery(EXERCISES_QUERY, {
     onCompleted(data) {
       dispatch(loadedData(data));
+    },
+  });
+
+  useQuery(WORKOUT_PLAN_LOAD_QUERY, {
+    skip: workoutPlanIdToDuplicate === undefined,
+    variables: { id: parseInt(workoutPlanIdToDuplicate) },
+    onCompleted(data) {
+      dispatch(loadedPlanData(data.workoutPlan));
     },
   });
 
@@ -96,6 +124,7 @@ export function NewTrainingPage() {
     <NewTrainingTemplate
       workout={state.workout}
       workoutItems={state.workoutItems}
+      workoutPlan={state.workoutPlan}
       dispatch={dispatch}
       successMessage={successMessage}
       isLoading={createWorkoutRequestState.loading || isWaiting === true}

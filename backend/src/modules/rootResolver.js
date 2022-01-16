@@ -45,7 +45,7 @@ export default {
   WorkoutPlan: {
     async exercises(parent, _, { dbConnection }) {
       return await dbConnection.query(
-        'SELECT exercise.* FROM workoutPlanExercise JOIN exercise ON workoutPlanExercise.exerciseId = exercise.id WHERE workoutPlanId = ?;',
+        'SELECT exercise.*, workoutPlanExercise.sequence FROM workoutPlanExercise JOIN exercise ON workoutPlanExercise.exerciseId = exercise.id WHERE workoutPlanId = ? ORDER BY sequence ASC;',
         [parent.id],
       );
     },
@@ -56,7 +56,7 @@ export default {
       );
     },
   },
-  Exercise: {
+  WorkoutExercise: {
     async bodyParts(parent, _, { dbConnection }) {
       return await dbConnection.query(
         'SELECT body.* FROM body JOIN exerciseBody eB ON body.id = eB.bodyId and exerciseId = ?;',
