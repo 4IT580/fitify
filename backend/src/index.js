@@ -165,8 +165,12 @@ const typeDefs = gql`
       sex: String!
       birthdate: String!
     ): Boolean!
-    
-    changePassword(id: Int!, currentPassword: String!, newPassword: String!): Boolean!
+
+    changePassword(
+      id: Int!
+      currentPassword: String!
+      newPassword: String!
+    ): Boolean!
   }
 `;
 

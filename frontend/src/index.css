@@ -181,10 +181,11 @@ article {
   background: #555;
 }
 
-input, select {
+input,
+select {
   -webkit-appearance: none;
   appearance: none;
-  background-color:#23293d;
+  background-color: #23293d;
   margin: 0;
   font: inherit;
   color: #bffa29;

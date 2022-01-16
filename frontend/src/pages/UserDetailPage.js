@@ -83,9 +83,7 @@ export function UserDetailPage() {
     USER_PASSWORD_CHANGE_MUTATION,
     {
       onCompleted: (data) => {
-        setSuccessMessage(
-          'Your password has been succesfully changed.',
-        );
+        setSuccessMessage('Your password has been succesfully changed.');
       },
       onError: (e) => {
         console.log('error', e);
@@ -108,7 +106,7 @@ export function UserDetailPage() {
         },
       });
     },
-    [userDetailRequest],
+    [userDetailRequest, user],
   );
 
   const handleUserPasswordChange = useCallback(
@@ -121,7 +119,7 @@ export function UserDetailPage() {
         },
       });
     },
-    [userPasswordRequest],
+    [userPasswordRequest, user],
   );
 
   if (userFetcher.data && userFetcher.data.user === null) {

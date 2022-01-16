@@ -14,6 +14,7 @@ export { ScrollToTop } from './ScrollToTop';
 export { Spinner } from './Spinner';
 export { TextArea } from './TextArea';
 export { TextInput } from './TextInput';
+export { SelectInput } from './SelectInput';
 export { RadioInput } from './RadioInput';
 export { TransparentButton } from './TransparentButton';
 export { UserName } from './UserName';

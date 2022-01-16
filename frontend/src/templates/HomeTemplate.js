@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Link, Heading } from 'src/atoms';
+import { Heading } from 'src/atoms';
 
 import { HomePage } from 'src/molecules/';
 import { PageLayout } from 'src/organisms/';
-import { route } from 'src/Routes';
 
 export function HomeTemplate() {
   return (

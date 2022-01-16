@@ -52,6 +52,7 @@ class ActiveWorkoutPage extends Component {
     } else {
       if (this.state.firstFiveSec) {
         this.setState({ countFiveSecOnStart: !this.state.countFiveSecOnStart });
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.firstFiveSec = false;
       } else {
         this.setState({ countFiveSecOnStart: false });
@@ -74,6 +75,7 @@ class ActiveWorkoutPage extends Component {
 
   startTimer = () => {
     this.timer = setInterval(this.tick, 100);
+    // eslint-disable-next-line react/no-direct-mutation-state
     this.state.firstCancelCalled = false;
   };
 
@@ -140,7 +142,9 @@ class ActiveWorkoutPage extends Component {
     } = this.props;
 
     if (this.state.workoutTotalTime === 0) {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.workoutTotalTime = this.props.workoutTotalTime;
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.secondsLeft = this.props.workTime;
     }
 

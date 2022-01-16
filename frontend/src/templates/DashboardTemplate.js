@@ -13,10 +13,14 @@ import {
 
 import { PageLayout, DashboardTrainingCard } from 'src/organisms/';
 import { route } from 'src/Routes';
-import { SelectInput } from "../atoms/SelectInput";
-import { intervalMatches, nameMatches, pauseMatches } from "../utils/workoutFilterMatch";
+import { SelectInput } from '../atoms/SelectInput';
+import {
+  intervalMatches,
+  nameMatches,
+  pauseMatches,
+} from '../utils/workoutFilterMatch';
 
-export function DashboardTemplate ({data, isLoading, error, refetch}) {
+export function DashboardTemplate({ data, isLoading, error, refetch }) {
   const [workoutData, setWorkoutData] = useState([]);
   const [workoutFilter, setWorkoutFilter] = useState({
     name: '',
@@ -24,22 +28,22 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
     pause: '',
   });
 
-  function handleFilter (evt) {
+  function handleFilter(evt) {
     setWorkoutFilter({
       ...workoutFilter,
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   }
 
   useEffect(() => {
     if (isLoading === true) {
-      return
+      return;
     }
 
     setWorkoutData(
       data.user.workouts.filter((item) => {
         if (!nameMatches(workoutFilter, item.name)) {
-          return false
+          return false;
         }
 
         if (!intervalMatches(workoutFilter, item.intervalLength)) {
@@ -53,7 +57,7 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
         return true;
       }),
     );
-  }, [isLoading, data, workoutFilter])
+  }, [isLoading, data, workoutFilter]);
 
   return (
     <>
@@ -74,11 +78,10 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                   New Training
                 </Link>
               </Button>
-
             </div>
           </div>
 
-          {(isLoading || !workoutData) && <Loading/>}
+          {(isLoading || !workoutData) && <Loading />}
 
           {error && (
             <ErrorBanner title={error.message}>
@@ -92,7 +95,9 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
             <div className={'mb4'}>
               <div className={'dt-l'}>
                 <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterName'}>Filter trainings by name</Label>
+                  <Label className={'green mt4'} htmlFor={'filterName'}>
+                    Filter trainings by name
+                  </Label>
                   <TextInput
                     className={'mw5-l  '}
                     placeholder={'name...'}
@@ -103,7 +108,9 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                   />
                 </div>
                 <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterInterval'}>Filter trainings by interval</Label>
+                  <Label className={'green mt4'} htmlFor={'filterInterval'}>
+                    Filter trainings by interval
+                  </Label>
                   <SelectInput
                     className={'mw5-l tr-l'}
                     id={'filterInterval'}
@@ -120,7 +127,9 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                   />
                 </div>
                 <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterPause'}>Filter trainings by pause</Label>
+                  <Label className={'green mt4'} htmlFor={'filterPause'}>
+                    Filter trainings by pause
+                  </Label>
                   <SelectInput
                     className={'mw5-l tr-l'}
                     id={'filterPause'}
@@ -143,7 +152,10 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                 {workoutData
                   .filter((item) => item.isArchived === false)
                   .map((item, index) => (
-                    <DashboardTrainingCard item={item} key={'trainings' + index}/>
+                    <DashboardTrainingCard
+                      item={item}
+                      key={'trainings' + index}
+                    />
                   ))}
               </div>
               <Heading size={'xl'} className={'green pb4 mt4'}>
@@ -153,7 +165,10 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                 {workoutData
                   .filter((item) => item.isArchived === true)
                   .map((item, index) => (
-                    <DashboardTrainingCard item={item} key={'archived-trainings' + index}/>
+                    <DashboardTrainingCard
+                      item={item}
+                      key={'archived-trainings' + index}
+                    />
                   ))}
               </div>
             </div>
