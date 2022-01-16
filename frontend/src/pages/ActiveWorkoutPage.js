@@ -173,7 +173,7 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.showCancel || this.state.showPause) && (
-              <ConfirmModal message={(this.state.showCancel ? 'End this workout?' : 'Your training is paused')}>
+              <ConfirmModal message={(this.state.showCancel ? 'End this training?' : 'Your training is paused')}>
                 <Link
                   className={
                     'w-40 link dim br-pill tc pv3 dib red bg-red ma2'
@@ -191,15 +191,12 @@ class ActiveWorkoutPage extends Component {
                   to={'#'}
                   onClick={() => {
                       if(this.state.showCancel && this.state.firstCancelCalled){
-                        console.log('Show first cancel');
                         this.setState({showCancel: false});
                       }else if(this.state.showCancel){
-                        console.log('Show cancel');
                         this.setState({showCancel: false});
                         this.setState({ countFiveSec: !this.state.countFiveSec });
                       }
                       if(this.state.showPause){
-                        console.log('Show pause')
                         this.setState({showPause: false});
                         this.setState({ countFiveSec: !this.state.countFiveSec });
                       }

@@ -58,7 +58,7 @@ export function NewTrainingTemplate({
             </Card>
 
             <Card
-              headerValue={'Step 3 - save workout'}
+              headerValue={'Step 3 - save training'}
               className={'green'}
               grid={'w-third-l w-100 center-m fl ph2'}
             >

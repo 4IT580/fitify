@@ -10,7 +10,7 @@ export function WorkoutHeaderButtonsArchived({ planData }) {
         to={route.duplicateWorkout(planData.id)}
         className={'bg-animate br-pill f3 f5-m tc'}
       >
-        <Button className={'w-100 w-auto-l pv3'}>Duplicate workout</Button>
+        <Button className={'w-100 w-auto-l pv3'}>Duplicate training</Button>
       </Link>
     </div>
   );
