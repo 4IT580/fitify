@@ -27,7 +27,7 @@ export function NewTrainingTemplate({
 
           <div className={'mt4 mt4-ns'}>
             <Card
-              headerValue={'Step 1 - select exercise'}
+              headerValue={'Step 1 - select exercises'}
               className={'green'}
               grid={'w-third-l w-100 center-m fl ph2'}
             >
@@ -42,7 +42,7 @@ export function NewTrainingTemplate({
                   className="w-100 mv3"
                   onClick={() => dispatch(transferData())}
                 >
-                  Add excercises
+                  Set excercises
                 </Button>
               </CardBody>
             </Card>
