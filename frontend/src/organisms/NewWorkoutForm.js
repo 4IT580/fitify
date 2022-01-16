@@ -31,7 +31,6 @@ export function NewWorkoutForm({
       sequence: value.position,
     };
   });
-
   const [notEnoughExercisesMessage, setNotEnoughExercisesMessage] =
     useState('');
 
@@ -112,7 +111,7 @@ export function NewWorkoutForm({
                   (workout.length *
                     ((values.intervalLength || 0) +
                       (values.intervalPauseLength || 0))) -
-                  (values.intervalPauseLength || 0),
+                  (values.intervalPauseLength || 0) * (0 || currentList.length > 1),
               )}
               )
             </LoadingButton>
