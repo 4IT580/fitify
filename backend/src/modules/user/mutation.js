@@ -162,3 +162,51 @@ export const activateUser = async (
 
   return true;
 };
+
+export const setUserDetail = async (
+  _,
+  { id, name, surname, height, weight, sex, birthdate },
+  { dbConnection },
+) => {
+  if (height <= 0 || height % 1 != 0) {
+    throw Error('Height must be greater than 0 and whole!');
+  }
+  if (weight <= 0) {
+    throw Error('Weight must be greater than 0!');
+  }
+
+  await dbConnection.query(
+    `UPDATE user SET name = ?, surname = ?, height = ?, weight = ?, sex = ?, birthdate = ? WHERE id = ?`,
+    [name, surname, height, weight, sex, birthdate, id],
+  );
+
+  return true;
+};
+
+export const changePassword = async (
+  _,
+  { id, currentPassword, newPassword },
+  { dbConnection },
+) => {
+  if (newPassword.length < 8) {
+    throw Error('New password lenght must be atleast 8 characters!');
+  }
+
+  const dbResponse = await dbConnection.query(
+    `SELECT password FROM user WHERE id = ?`,
+    [id],
+  );
+  const user = dbResponse[0];
+
+  if (await argon2.verify(user.password, currentPassword)) {
+    const passwordHash = await argon2.hash(newPassword);
+
+    await dbConnection.query(`UPDATE user SET password = ? WHERE id = ?`, [
+      passwordHash,
+      id,
+    ]);
+    return true;
+  } else {
+    throw Error('Incorrect password provided.');
+  }
+};

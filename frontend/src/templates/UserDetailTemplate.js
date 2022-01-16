@@ -1,46 +1,70 @@
 import React from 'react';
 
-import { Button, ErrorBanner, Heading, Loading, MainSection } from 'src/atoms/';
-import { ReloadButton } from 'src/molecules/';
-import { PageLayout } from 'src/organisms/';
+import {
+  SuccessBanner,
+  ErrorBanner,
+  Loading,
+  MainSection,
+  CardBody,
+} from 'src/atoms/';
+import { UserDetailForm, PasswordChangeForm } from 'src/organisms/';
+import { PageLayout } from '../organisms';
+import { Card } from 'src/molecules';
 
 export function UserDetailTemplate({
-  userName,
   data,
   loading,
-  error,
-  onReload,
-  currentUser,
+  errorDetail,
+  errorPassword,
+  onSubmit,
+  onPasswordChange,
+  successMessage,
 }) {
   return (
     <>
-      <PageLayout bgClass={'background bg-white'}>
+      <PageLayout bgClass={'background background-gym-dumbbell'}>
         <MainSection>
           {loading && !data && <Loading />}
 
-          {error && (
-            <ErrorBanner title={error.message}>
-              <Button color="red" onClick={onReload}>
-                Reload
-              </Button>
-            </ErrorBanner>
+          {errorDetail && <ErrorBanner title={errorDetail.message} className="mb3" />}
+          {errorPassword && <ErrorBanner title={errorPassword.message} className="mb3" />}
+          {successMessage && (
+            <span>
+              <SuccessBanner title={successMessage} className="mb3" />
+            </span>
           )}
 
           {data && (
-            <>
-              <header>
-                <Heading size="lg">{data.user.name}</Heading>
-                <Heading size="sm" className="fw4 gray">
-                  {data.user.email}
-                </Heading>
-              </header>
+            <div className={'tc'}>
+              <Card
+                headerValue={'User Info: '+data.user.email+''}
+                className={'green'}
+                grid={'w-third-l w-100 center-m fl ph2'}
+              >
+                <CardBody>
+                  <UserDetailForm
+                    data={data}
+                    isLoading={loading}
+                    onSubmit={onSubmit}
+                    className="mt3 green"
+                  />
+                </CardBody>
+              </Card>
 
-              <ReloadButton
-                onClick={onReload}
-                isLoading={loading}
-                className="fr"
-              />
-            </>
+              <Card
+                headerValue={'Password Change'}
+                className={'green'}
+                grid={'w-third-l w-100 center-m fl ph2'}
+              >
+                <CardBody>
+                  <PasswordChangeForm
+                    isLoading={loading}
+                    onSubmit={onPasswordChange}
+                    className="mt3 green"
+                  />
+                </CardBody>
+              </Card>
+            </div>
           )}
         </MainSection>
       </PageLayout>
