@@ -181,7 +181,7 @@ article {
   background: #555;
 }
 
-input {
+input, select {
   -webkit-appearance: none;
   appearance: none;
   background-color: #151824;
