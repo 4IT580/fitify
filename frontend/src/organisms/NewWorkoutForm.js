@@ -23,7 +23,7 @@ export function NewWorkoutForm({
   children,
   workout,
   workoutPlan,
-  submitText
+  submitText,
 }) {
   let currentList = workout.map((value) => {
     return {

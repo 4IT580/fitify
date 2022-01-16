@@ -17,7 +17,9 @@ export function FinishWorkoutTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <RightBlockSection>
-          <Heading className={'green'}>Training finished: {workoutName}</Heading>
+          <Heading className={'green'}>
+            Training finished: {workoutName}
+          </Heading>
 
           <FinishWorkoutForm
             isLoading={isLoading}

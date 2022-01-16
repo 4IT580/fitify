@@ -16,7 +16,7 @@ import { TimerWrapperPage } from 'src/pages/TimerWrapperPage';
 import { FinishWorkoutPage } from 'src/pages/FinishWorkoutPage';
 import { ArchiveWorkoutPage } from './pages/ArchiveWorkoutPage';
 import { DeleteWorkoutPage } from './pages/DeleteWorkoutPage';
-import { EditTrainingPage } from "./pages/EditTrainingPage";
+import { EditTrainingPage } from './pages/EditTrainingPage';
 
 export const route = {
   home: () => `/`,

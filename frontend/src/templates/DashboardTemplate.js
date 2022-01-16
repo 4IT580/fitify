@@ -97,7 +97,10 @@ export function DashboardTemplate({ data, isLoading, error, refetch }) {
                 {workoutData
                   .filter((item) => item.isArchived === false)
                   .map((item, index) => (
-                    <DashboardTrainingCard item={item} key={'trainings'+index}/>
+                    <DashboardTrainingCard
+                      item={item}
+                      key={'trainings' + index}
+                    />
                   ))}
               </div>
               <Heading size={'xl'} className={'green pb4 mt4'}>
@@ -107,7 +110,10 @@ export function DashboardTemplate({ data, isLoading, error, refetch }) {
                 {workoutData
                   .filter((item) => item.isArchived === true)
                   .map((item, index) => (
-                    <DashboardTrainingCard item={item} key={'archived-trainings'+index}/>
+                    <DashboardTrainingCard
+                      item={item}
+                      key={'archived-trainings' + index}
+                    />
                   ))}
               </div>
             </div>

@@ -12,7 +12,7 @@ import { route } from '../Routes';
 import { Link } from '../atoms';
 import { ConfirmModal } from '../molecules';
 
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 class ActiveWorkoutPage extends Component {
   constructor(props) {
@@ -48,8 +48,7 @@ class ActiveWorkoutPage extends Component {
     if (isRunning) {
       this.stopTimer();
       this.setState({ isRunning: !isRunning, startPauseIcon: 'play' });
-        this.setState({ showPause: !this.state.showPause });
-
+      this.setState({ showPause: !this.state.showPause });
     } else {
       if (this.state.firstFiveSec) {
         this.setState({ countFiveSecOnStart: !this.state.countFiveSecOnStart });
@@ -75,8 +74,7 @@ class ActiveWorkoutPage extends Component {
 
   startTimer = () => {
     this.timer = setInterval(this.tick, 100);
-    this.state.firstCancelCalled=false;
-
+    this.state.firstCancelCalled = false;
   };
 
   tick = () => {
@@ -173,11 +171,15 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.showCancel || this.state.showPause) && (
-              <ConfirmModal message={(this.state.showCancel ? 'End this training?' : 'Your training is paused')}>
+              <ConfirmModal
+                message={
+                  this.state.showCancel
+                    ? 'End this training?'
+                    : 'Your training is paused'
+                }
+              >
                 <Link
-                  className={
-                    'w-40 link dim br-pill tc pv3 dib red bg-red ma2'
-                  }
+                  className={'w-40 link dim br-pill tc pv3 dib red bg-red ma2'}
                   noUnderline={true}
                   to={route.dashboard()}
                 >
@@ -190,16 +192,16 @@ class ActiveWorkoutPage extends Component {
                   noUnderline={true}
                   to={'#'}
                   onClick={() => {
-                      if(this.state.showCancel && this.state.firstCancelCalled){
-                        this.setState({showCancel: false});
-                      }else if(this.state.showCancel){
-                        this.setState({showCancel: false});
-                        this.setState({ countFiveSec: !this.state.countFiveSec });
-                      }
-                      if(this.state.showPause){
-                        this.setState({showPause: false});
-                        this.setState({ countFiveSec: !this.state.countFiveSec });
-                      }
+                    if (this.state.showCancel && this.state.firstCancelCalled) {
+                      this.setState({ showCancel: false });
+                    } else if (this.state.showCancel) {
+                      this.setState({ showCancel: false });
+                      this.setState({ countFiveSec: !this.state.countFiveSec });
+                    }
+                    if (this.state.showPause) {
+                      this.setState({ showPause: false });
+                      this.setState({ countFiveSec: !this.state.countFiveSec });
+                    }
                   }}
                 >
                   Continue
@@ -208,7 +210,13 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.countFiveSec || this.state.countFiveSecOnStart) && (
-              <ConfirmModal message={(this.state.countFiveSecOnStart ? 'Your training is starting in' : 'Your training is being resumed in')}>
+              <ConfirmModal
+                message={
+                  this.state.countFiveSecOnStart
+                    ? 'Your training is starting in'
+                    : 'Your training is being resumed in'
+                }
+              >
                 <div className="fiveSecTimer absolute--fill flex  justify-center mt5">
                   <CountdownCircleTimer
                     isPlaying
@@ -218,12 +226,12 @@ class ActiveWorkoutPage extends Component {
                     trailColor={['#282c34']}
                     onComplete={() => {
                       if (this.state.countFiveSec) {
-                        this.setState({countFiveSec: false});
+                        this.setState({ countFiveSec: false });
                       }
                       if (this.state.countFiveSecOnStart) {
-                        this.setState({countFiveSecOnStart: false});
+                        this.setState({ countFiveSecOnStart: false });
                       }
-                      this.startOrPause()
+                      this.startOrPause();
                     }}
                   >
                     {({ remainingTime }) => remainingTime}

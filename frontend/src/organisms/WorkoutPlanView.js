@@ -56,10 +56,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                   <Heading size={'md'} className={'green mt3'}>
                     {index + 1} : {exerciseItem.name}
                   </Heading>
-                  <Heading
-                    size={'sm'}
-                    className={'green pa3 br3 lh-copy'}
-                  >
+                  <Heading size={'sm'} className={'green pa3 br3 lh-copy'}>
                     {exerciseItem.description}
                   </Heading>
 

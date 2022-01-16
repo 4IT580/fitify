@@ -20,7 +20,9 @@ export function WorkoutHeaderButtonsActive({ planData }) {
           to={route.editWorkout(planData.id)}
           className={'bg-animate br-pill f3 f5-m  tc'}
         >
-          <Button className={'w-100  w-auto-l mt3 mb3 mh1-ns'}>Edit training</Button>
+          <Button className={'w-100  w-auto-l mt3 mb3 mh1-ns'}>
+            Edit training
+          </Button>
         </Link>
 
         <Link

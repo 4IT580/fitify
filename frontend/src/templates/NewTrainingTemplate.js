@@ -15,7 +15,7 @@ export function NewTrainingTemplate({
   successMessage,
   error,
   onSubmit,
-  submitText
+  submitText,
 }) {
   return (
     <>
