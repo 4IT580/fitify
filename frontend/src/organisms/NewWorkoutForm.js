@@ -38,6 +38,20 @@ export function NewWorkoutForm({
     setNotEnoughExercisesMessage('');
   }, [workout]);
 
+  function getAllSeconds(values) {
+    const seconds =
+      (values.rounds || 0) *
+        (workout.length *
+          ((values.intervalLength || 0) + (values.intervalPauseLength || 0))) -
+      (values.intervalPauseLength || 0);
+
+    if (seconds > 0) {
+      return seconds;
+    }
+
+    return 0;
+  }
+
   return (
     <Formik
       onSubmit={function (values, actions) {
@@ -105,15 +119,7 @@ export function NewWorkoutForm({
               loading={isLoading}
               color="green"
             >
-              {submitText} (
-              {secondsToTimeString(
-                (values.rounds || 0) *
-                  (workout.length *
-                    ((values.intervalLength || 0) +
-                      (values.intervalPauseLength || 0))) -
-                  (values.intervalPauseLength || 0) * (0 || currentList.length > 1),
-              )}
-              )
+              {submitText} ({secondsToTimeString(getAllSeconds(values))})
             </LoadingButton>
             {children}
           </CardBody>

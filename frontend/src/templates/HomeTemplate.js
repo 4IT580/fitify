@@ -20,12 +20,6 @@ export function HomeTemplate() {
           <Heading className="white mt2 mb3 " size="l">
             Zaregistrujte se a začněte s tréninkem.
           </Heading>
-          <Link exact to={route.signIn()}>
-            <Button className={'ma2'}>Sign In</Button>
-          </Link>
-          <Link exact to={route.signUp()}>
-            <Button className={'ma2'}>Sign Up</Button>
-          </Link>
         </HomePage>
       </PageLayout>
     </>
