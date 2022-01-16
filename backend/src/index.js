@@ -145,7 +145,7 @@ const typeDefs = gql`
       roundsPauseLength: Int!
       workoutLength: Int!
       exercises: [ExerciseInput]!
-    ): Boolean!
+    ): Int!
 
     deleteWorkout(workoutPlanId: Int!): Boolean!
     archiveWorkout(workoutPlanId: Int!): Boolean!

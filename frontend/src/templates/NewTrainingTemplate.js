@@ -15,6 +15,7 @@ export function NewTrainingTemplate({
   successMessage,
   error,
   onSubmit,
+  submitText
 }) {
   return (
     <>
@@ -69,6 +70,7 @@ export function NewTrainingTemplate({
                 className=""
                 workout={workout}
                 workoutPlan={workoutPlan}
+                submitText={submitText}
               />
             </Card>
           </div>

@@ -23,6 +23,7 @@ export function NewWorkoutForm({
   children,
   workout,
   workoutPlan,
+  submitText
 }) {
   let currentList = workout.map((value) => {
     return {
@@ -105,7 +106,7 @@ export function NewWorkoutForm({
               loading={isLoading}
               color="green"
             >
-              Create training (
+              {submitText} (
               {secondsToTimeString(
                 (values.rounds || 0) *
                   (workout.length *
