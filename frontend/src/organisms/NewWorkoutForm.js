@@ -70,7 +70,7 @@ export function NewWorkoutForm({
             <FormikField
               id="name"
               name="name"
-              label="Name of workout"
+              label="Name of training"
               type="text"
               autoFocus="autofocus"
             />
@@ -83,13 +83,13 @@ export function NewWorkoutForm({
             <FormikField
               id="intLength"
               name="intervalLength"
-              label="Length of workout item in seconds"
+              label="Length of training item in seconds"
               type="number"
             />
             <FormikField
               id="intPauseLength"
               name="intervalPauseLength"
-              label="Pause between workout item in seconds"
+              label="Pause between training item in seconds"
               type="number"
             />
             <FormikField

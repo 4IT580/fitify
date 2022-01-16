@@ -58,7 +58,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                   </Heading>
                   <Heading
                     size={'sm'}
-                    className={'green mt3 bg-dark pa3 br3 lh-copy'}
+                    className={'green pa3 br3 lh-copy'}
                   >
                     {exerciseItem.description}
                   </Heading>
@@ -80,7 +80,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
             </Card>
 
             <Card
-              headerValue={'Workout history'}
+              headerValue={'Training history'}
               grid={'fl w-100 w-50-l pv2 ph2'}
               className={'green'}
             >

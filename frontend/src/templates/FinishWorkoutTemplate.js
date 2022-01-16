@@ -17,14 +17,14 @@ export function FinishWorkoutTemplate({
     <>
       <PageLayout bgClass={'background background-gym-dumbbell'}>
         <RightBlockSection>
-          <Heading>Training finished: {workoutName}</Heading>
+          <Heading className={'green'}>Training finished: {workoutName}</Heading>
 
           <FinishWorkoutForm
             isLoading={isLoading}
             errorMessage={error && error.message}
             successMessage={successMessage}
             onSubmit={onSubmit}
-            className="mt3"
+            className="mt3 green"
           >
             {successMessage.length > 10 && (
               <Link

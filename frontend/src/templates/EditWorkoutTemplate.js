@@ -16,7 +16,7 @@ export function EditWorkoutTemplate({
       <PageLayout bgClass={'background  background-gym-dumbbell'}>
         <MainSection>
           <Heading size={'lg'} className={'green'}>
-            Edit workout
+            Edit training
           </Heading>
 
           <main className="flex grid-container-left br2 ml3 pa2 "></main>

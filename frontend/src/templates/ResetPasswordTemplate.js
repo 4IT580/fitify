@@ -13,14 +13,14 @@ export function ResetPasswordTemplate({
     <>
       <PageLayout bgClass={'background background-gym-clap'}>
         <RightBlockSection>
-          <Heading>Reset Password</Heading>
+          <Heading className={'green'}>Reset Password</Heading>
 
           <ResetPasswordForm
             isLoading={isLoading}
             errorMessage={error && error.message}
             successMessage={successMessage}
             onSubmit={onSubmit}
-            className="mt3"
+            className="mt3 green"
           />
         </RightBlockSection>
       </PageLayout>

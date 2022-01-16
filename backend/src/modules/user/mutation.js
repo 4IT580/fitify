@@ -30,7 +30,6 @@ export const signup = async (
   { name, surname, email, password, height, weight, sex, birthdate, appOrigin },
   { dbConnection, mailer },
 ) => {
-  console.log(name);
   const userByEmail = (
     await dbConnection.query(`SELECT * FROM user WHERE email = ?`, [email])
   )[0];
@@ -67,9 +66,6 @@ export const signup = async (
     'Fitify aktivace účtu',
     'For account activation go to ' + goToUrl,
   );
-
-  console.log('Message sent: %s', info.messageId);
-
   return true;
 };
 
@@ -104,8 +100,6 @@ export const forgottenPassword = async (
     'For password reset go to ' + goToUrl,
   );
 
-  console.log('Message sent: %s', info.messageId);
-
   return true;
 };
 
@@ -132,7 +126,6 @@ export const resetPassword = async (
     `UPDATE user SET password = ?,lostPasswordHash = ? WHERE id = ?`,
     [argonHash, null, user.id],
   );
-  console.log(user);
   return {
     user: { ...user },
     token,

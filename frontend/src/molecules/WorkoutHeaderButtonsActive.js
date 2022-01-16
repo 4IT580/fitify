@@ -12,7 +12,7 @@ export function WorkoutHeaderButtonsActive({ planData }) {
         to={route.activeWorkout(planData.id)}
         className={'bg-animate br-pill f3 f5-m  tc'}
       >
-        <Button className={'w-100  w-auto-l pv3 mt3'}>Start workout</Button>
+        <Button className={'w-100  w-auto-l pv3 mt3'}>Start training</Button>
       </Link>
 
       <div>
@@ -20,15 +20,15 @@ export function WorkoutHeaderButtonsActive({ planData }) {
           to={route.editWorkout(planData.id)}
           className={'bg-animate br-pill f3 f5-m  tc'}
         >
-          <Button className={'w-100  w-auto-l mt3 mh1-ns'}>Edit workout</Button>
+          <Button className={'w-100  w-auto-l mt3 mb3 mh1-ns'}>Edit training</Button>
         </Link>
 
         <Link
           to={route.duplicateWorkout(planData.id)}
           className={'bg-animate br-pill f3 f5-m  tc'}
         >
-          <Button className={'w-100  w-auto-l mt3 mh1-ns'}>
-            Duplicate workout
+          <Button className={'w-100  w-auto-l mb3 mt3 mh1-ns'}>
+            Duplicate training
           </Button>
         </Link>
 
@@ -37,7 +37,7 @@ export function WorkoutHeaderButtonsActive({ planData }) {
             to={route.archiveWorkout(planData.id)}
             className={'bg-animate br-pill f3 f5-m  tc'}
           >
-            <Button className={'w-100  w-auto-l mt3 mh1-ns'} color={'red'}>
+            <Button className={'w-100  w-auto-l mt3 mb3 mh1-ns'} color={'red'}>
               Archive
             </Button>
           </Link>
@@ -49,14 +49,14 @@ export function WorkoutHeaderButtonsActive({ planData }) {
             }}
             className={'bg-animate br-pill f3 f5-m  tc'}
           >
-            <Button className={'w-100  w-auto-l mt3 mh1-ns'} color={'red'}>
+            <Button className={'w-100  w-auto-l mt3 mb3 mh1-ns'} color={'red'}>
               Delete
             </Button>
           </Link>
         )}
       </div>
       {isConfirmModalShown && (
-        <ConfirmModal message={'Do you really want to delete this traning?'}>
+        <ConfirmModal message={'Do you really want to delete this training?'}>
           <Link
             className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
             noUnderline={true}
