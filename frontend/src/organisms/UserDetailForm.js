@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 
-import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { FormikField, LoadingButton } from 'src/molecules/';
 
 const schema = yup.object().shape({

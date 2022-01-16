@@ -26,8 +26,12 @@ export function UserDetailTemplate({
         <MainSection>
           {loading && !data && <Loading />}
 
-          {errorDetail && <ErrorBanner title={errorDetail.message} className="mb3" />}
-          {errorPassword && <ErrorBanner title={errorPassword.message} className="mb3" />}
+          {errorDetail && (
+            <ErrorBanner title={errorDetail.message} className="mb3" />
+          )}
+          {errorPassword && (
+            <ErrorBanner title={errorPassword.message} className="mb3" />
+          )}
           {successMessage && (
             <span>
               <SuccessBanner title={successMessage} className="mb3" />
@@ -37,7 +41,7 @@ export function UserDetailTemplate({
           {data && (
             <div className={'tc'}>
               <Card
-                headerValue={'User Info: '+data.user.email+''}
+                headerValue={'User Info: ' + data.user.email + ''}
                 className={'green'}
                 grid={'w-third-l w-100 center-m fl ph2'}
               >

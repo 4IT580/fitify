@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export function SelectInput ({className, error, selectOptions, ...props}) {
+export function SelectInput({ className, error, selectOptions, ...props }) {
   return (
     <select
       className={classNames(
@@ -12,11 +12,8 @@ export function SelectInput ({className, error, selectOptions, ...props}) {
       {...props}
     >
       {selectOptions.map((option) => {
-        return (<option value={option.value}>
-          {option.name}
-        </option>)
-      })
-      }
+        return <option value={option.value}>{option.name}</option>;
+      })}
     </select>
   );
 }
