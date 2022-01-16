@@ -41,7 +41,7 @@ export function WorkoutPlanView({ planData, isLoading, error, refetch }) {
                   Rounds pause length: {planData.roundsPauseLength}s
                 </p>
                 <p className={'f4 f5-ns green'}>
-                  Total time: {secondsToTimeString(planEta(planData))} s
+                  Total time: {secondsToTimeString(planEta(planData))}s
                 </p>
               </CardBody>
             </Card>

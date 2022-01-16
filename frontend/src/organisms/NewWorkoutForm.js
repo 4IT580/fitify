@@ -31,13 +31,26 @@ export function NewWorkoutForm({
       sequence: value.position,
     };
   });
-
   const [notEnoughExercisesMessage, setNotEnoughExercisesMessage] =
     useState('');
 
   useEffect(() => {
     setNotEnoughExercisesMessage('');
   }, [workout]);
+
+  function getAllSeconds(values) {
+    const seconds =
+      (values.rounds || 0) *
+        (workout.length *
+          ((values.intervalLength || 0) + (values.intervalPauseLength || 0))) -
+      (values.intervalPauseLength || 0);
+
+    if (seconds > 0) {
+      return seconds;
+    }
+
+    return 0;
+  }
 
   return (
     <Formik
@@ -106,15 +119,7 @@ export function NewWorkoutForm({
               loading={isLoading}
               color="green"
             >
-              {submitText} (
-              {secondsToTimeString(
-                (values.rounds || 0) *
-                  (workout.length *
-                    ((values.intervalLength || 0) +
-                      (values.intervalPauseLength || 0))) -
-                  (values.intervalPauseLength || 0),
-              )}
-              )
+              {submitText} ({secondsToTimeString(getAllSeconds(values))})
             </LoadingButton>
             {children}
           </CardBody>

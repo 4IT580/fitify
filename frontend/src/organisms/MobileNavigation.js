@@ -16,7 +16,7 @@ export function MobileNavigation() {
     <main className="db dn-ns f3">
       <nav className="flex justify-between bb bg-dark">
         <Link
-          to={route.home()}
+          to={user ? route.dashboard() : route.home()}
           noUnderline
           className="b flex items-center green"
         >

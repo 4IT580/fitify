@@ -23,7 +23,7 @@ export function DashboardTrainingCard({ item }) {
             - {item.roundsPauseLength}s round break
           </p>
           <p className={'f4 f5-ns green tc'}>
-            total time: {secondsToTimeString(planEta(item))} s
+            total time: {secondsToTimeString(planEta(item))}s
           </p>
         </CardBody>
       </CardLink>

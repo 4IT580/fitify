@@ -9,7 +9,7 @@ export const ListAllWorkoutItems = ({ workoutItems, dispatch }) => {
           <div className="flex items-center br1 pa1 hide-child f5-ns f3">
             <Checkbox
               key={item.id}
-              className="mh1g pointer"
+              className="mh1g pr1 pl1 pointer"
               checked={item.selected}
               onChange={() =>
                 dispatch(setWorkoutItemSelected(item.id, !item.selected))
