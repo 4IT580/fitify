@@ -74,52 +74,6 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
                   New Training
                 </Link>
               </Button>
-              <div className={'dt-l dt--fixed'}>
-                <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterName'}>Filter trainings by name</Label>
-                  <TextInput
-                    className={'mw5-l ml-auto-l '}
-                    placeholder={'name...'}
-                    id={'filterName'}
-                    name={'name'}
-                    value={workoutFilter.name}
-                    onChange={handleFilter}
-                  />
-                </div>
-                <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterInterval'}>Filter trainings by interval</Label>
-                  <SelectInput
-                    className={'mw5-l ml-auto-l tr-l'}
-                    id={'filterInterval'}
-                    name={'interval'}
-                    value={workoutFilter.interval}
-                    selectOptions={[
-                      {name: '', value: ''},
-                      {name: 'Less than 20s', value: 'lessThan20'},
-                      {name: '20-30s', value: '20to30'},
-                      {name: '30-60s', value: '30to60'},
-                      {name: 'More than 60s', value: 'moreThan60'},
-                    ]}
-                    onChange={handleFilter}
-                  />
-                </div>
-                <div className={'dtc-l ph3'}>
-                  <Label className={'green mt4'} htmlFor={'filterPause'}>Filter trainings by pause</Label>
-                  <SelectInput
-                    className={'mw5-l ml-auto-l tr-l'}
-                    id={'filterPause'}
-                    name={'pause'}
-                    value={workoutFilter.pause}
-                    selectOptions={[
-                      {name: '', value: ''},
-                      {name: 'Less than 10s', value: 'lessThan10'},
-                      {name: '10-20s', value: '10to20'},
-                      {name: 'More than 20s', value: 'moreThan20'},
-                    ]}
-                    onChange={handleFilter}
-                  />
-                </div>
-              </div>
 
             </div>
           </div>
@@ -136,6 +90,52 @@ export function DashboardTemplate ({data, isLoading, error, refetch}) {
 
           {workoutData && (
             <div className={'mb4'}>
+              <div className={'dt-l'}>
+                <div className={'dtc-l ph3'}>
+                  <Label className={'green mt4'} htmlFor={'filterName'}>Filter trainings by name</Label>
+                  <TextInput
+                    className={'mw5-l  '}
+                    placeholder={'name...'}
+                    id={'filterName'}
+                    name={'name'}
+                    value={workoutFilter.name}
+                    onChange={handleFilter}
+                  />
+                </div>
+                <div className={'dtc-l ph3'}>
+                  <Label className={'green mt4'} htmlFor={'filterInterval'}>Filter trainings by interval</Label>
+                  <SelectInput
+                    className={'mw5-l tr-l'}
+                    id={'filterInterval'}
+                    name={'interval'}
+                    value={workoutFilter.interval}
+                    selectOptions={[
+                      { name: '', value: '' },
+                      { name: 'Less than 20s', value: 'lessThan20' },
+                      { name: '20-30s', value: '20to30' },
+                      { name: '30-60s', value: '30to60' },
+                      { name: 'More than 60s', value: 'moreThan60' },
+                    ]}
+                    onChange={handleFilter}
+                  />
+                </div>
+                <div className={'dtc-l ph3'}>
+                  <Label className={'green mt4'} htmlFor={'filterPause'}>Filter trainings by pause</Label>
+                  <SelectInput
+                    className={'mw5-l tr-l'}
+                    id={'filterPause'}
+                    name={'pause'}
+                    value={workoutFilter.pause}
+                    selectOptions={[
+                      { name: '', value: '' },
+                      { name: 'Less than 10s', value: 'lessThan10' },
+                      { name: '10-20s', value: '10to20' },
+                      { name: 'More than 20s', value: 'moreThan20' },
+                    ]}
+                    onChange={handleFilter}
+                  />
+                </div>
+              </div>
               <Heading size={'xl'} className={'green pb4 mt4'}>
                 Trainings
               </Heading>
