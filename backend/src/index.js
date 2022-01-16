@@ -30,7 +30,7 @@ const typeDefs = gql`
     role: String!
     active: Boolean!
     height: Int!
-    weight: Int!
+    weight: Float!
     sex: String!
     birthdate: String!
     lostPasswordHash: String!
@@ -155,6 +155,18 @@ const typeDefs = gql`
     activateUser(activateToken: String!): Boolean!
     finishWorkout(workoutPlanId: Int!, startTime: Float!): Boolean!
     setCaloriesFinishedWorkout(workoutPlanId: Int!, calories: Int!): Boolean!
+
+    setUserDetail(
+      id: Int!
+      name: String!
+      surname: String!
+      height: Int!
+      weight: Float!
+      sex: String!
+      birthdate: String!
+    ): Boolean!
+    
+    changePassword(id: Int!, currentPassword: String!, newPassword: String!): Boolean!
   }
 `;
 
