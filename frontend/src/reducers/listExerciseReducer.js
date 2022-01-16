@@ -78,15 +78,25 @@ export function listExerciseReducer(state, action) {
 
       const workout = [...state.workout];
 
-      let oldItem = workout[oldIndex];
-      let newItem = workout[newIndex];
-      let oldPosition = oldItem.position;
-      let newPosition = newItem.position;
-      oldItem.position = newPosition;
-      newItem.position = oldPosition;
+      function move(array, from, to) {
+        if( to === from ) return array;
 
-      workout[oldIndex] = newItem;
-      workout[newIndex] = oldItem;
+        let target = array[from];
+        let increment = to < from ? -1 : 1;
+
+        for(let k = from; k !== to; k += increment){
+          array[k] = array[k + increment];
+        }
+        array[to] = target;
+
+        for(let l = 0; l<array.length; l++){
+          array[l].position = l+1;
+        }
+
+        return array;
+      }
+
+      move(workout, oldIndex, newIndex)
 
       return {
         ...state,
