@@ -4,6 +4,9 @@ export const initialState = {
 
   //workout = items from workoutItems after adding
   workout: [],
+
+  //workoutPlan = plan data for duplicate/edit
+  workoutPlan: [],
 };
 
 export function listExerciseReducer(state, action) {
@@ -18,6 +21,26 @@ export function listExerciseReducer(state, action) {
           position: index,
           selected: false,
         })),
+      };
+    }
+
+    case 'LOADED_PLAN_DATA': {
+      const { data } = action;
+
+      return {
+        ...state,
+        workoutPlan: data,
+        workout: data.exercises.map((item) => {
+          return { ...item, position: item.sequence };
+        }),
+        workoutItems: state.workoutItems.map((workoutItem) => {
+          return {
+            ...workoutItem,
+            selected: data.exercises.filter(function (planExercise) {
+              return planExercise.id === workoutItem.id;
+            }).length,
+          };
+        }),
       };
     }
 
@@ -55,15 +78,25 @@ export function listExerciseReducer(state, action) {
 
       const workout = [...state.workout];
 
-      let oldItem = workout[oldIndex];
-      let newItem = workout[newIndex];
-      let oldPosition = oldItem.position;
-      let newPosition = newItem.position;
-      oldItem.position = newPosition;
-      newItem.position = oldPosition;
+      function move(array, from, to) {
+        if( to === from ) return array;
 
-      workout[oldIndex] = newItem;
-      workout[newIndex] = oldItem;
+        let target = array[from];
+        let increment = to < from ? -1 : 1;
+
+        for(let k = from; k !== to; k += increment){
+          array[k] = array[k + increment];
+        }
+        array[to] = target;
+
+        for(let l = 0; l<array.length; l++){
+          array[l].position = l+1;
+        }
+
+        return array;
+      }
+
+      move(workout, oldIndex, newIndex)
 
       return {
         ...state,
@@ -90,6 +123,9 @@ export function setList(list) {
 }
 export function loadedData(data) {
   return { type: 'LOADED_DATA', data };
+}
+export function loadedPlanData(data) {
+  return { type: 'LOADED_PLAN_DATA', data };
 }
 export function transferData() {
   return { type: 'TRANSFER_DATA' };

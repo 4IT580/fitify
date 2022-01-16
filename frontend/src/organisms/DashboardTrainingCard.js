@@ -31,24 +31,26 @@ export function DashboardTrainingCard({ item }) {
       <div className={'overflow-y-auto-ns max-vh-50-ns ph2 mb3'}>
         {item.history.length > 0 && (
           <Card className={'dn db-ns green'}>
-            {item.history.map((historyItem, index) => (
-              <CardBody
-                className={'green'}
-                key={'workoutPlan' + item.id + 'history' + historyItem.id}
-                hasTopBorder={index+1 !== item.history.length}
-              >
-                <p className={'f4 f5-ns green'}>
-                  From: {fromUnixTimeStamp(historyItem.startAt)}
-                </p>
-                <p className={'f4 f5-ns green'}>
-                  Until: {fromUnixTimeStamp(historyItem.endAt)}
-                </p>
-                <p className={'f4 f5-ns green'}>
-                  {historyItem.calories &&
-                    ' Burnt calories: ' + historyItem.calories + ' kcal'}
-                </p>
-              </CardBody>
-            )).reverse()}
+            {item.history
+              .map((historyItem, index) => (
+                <CardBody
+                  className={'green'}
+                  key={'workoutPlan' + item.id + 'history' + historyItem.id}
+                  hasTopBorder={index + 1 !== item.history.length}
+                >
+                  <p className={'f4 f5-ns green'}>
+                    From: {fromUnixTimeStamp(historyItem.startAt)}
+                  </p>
+                  <p className={'f4 f5-ns green'}>
+                    Until: {fromUnixTimeStamp(historyItem.endAt)}
+                  </p>
+                  <p className={'f4 f5-ns green'}>
+                    {historyItem.calories &&
+                      ' Burnt calories: ' + historyItem.calories + ' kcal'}
+                  </p>
+                </CardBody>
+              ))
+              .reverse()}
           </Card>
         )}
       </div>

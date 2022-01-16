@@ -21,6 +21,7 @@ const WORKOUT_PLAN_QUERY = gql`
         id
         name
         description
+        sequence
         bodyParts {
           id
           name

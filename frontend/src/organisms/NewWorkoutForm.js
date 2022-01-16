@@ -6,14 +6,6 @@ import { ErrorBanner, SuccessBanner } from 'src/atoms/';
 import { CardBody } from '../atoms';
 import { secondsToTimeString } from '../utils/date';
 
-const initialValues = {
-  name: '',
-  rounds: '',
-  intervalLength: '',
-  intervalPauseLength: '',
-  roundsPauseLength: '',
-};
-
 const schema = yup.object().shape({
   name: yup.string().required().label('Name'),
   rounds: yup.number().required().integer(),
@@ -30,8 +22,9 @@ export function NewWorkoutForm({
   onSubmit,
   children,
   workout,
+  workoutPlan,
+  submitText
 }) {
-  initialValues.exercises = [];
   let currentList = workout.map((value) => {
     return {
       id: value.id,
@@ -41,6 +34,7 @@ export function NewWorkoutForm({
 
   const [notEnoughExercisesMessage, setNotEnoughExercisesMessage] =
     useState('');
+
   useEffect(() => {
     setNotEnoughExercisesMessage('');
   }, [workout]);
@@ -54,7 +48,14 @@ export function NewWorkoutForm({
           setNotEnoughExercisesMessage('Cannot submit without exercises');
         }
       }}
-      initialValues={initialValues}
+      enableReinitialize={true}
+      initialValues={{
+        name: workoutPlan?.name ?? '',
+        rounds: workoutPlan?.rounds ?? '',
+        intervalLength: workoutPlan?.intervalLength ?? '',
+        intervalPauseLength: workoutPlan?.intervalPauseLength ?? '',
+        roundsPauseLength: workoutPlan?.roundsPauseLength ?? '',
+      }}
       validationSchema={schema}
       validateOnBlur={false}
     >
@@ -105,7 +106,7 @@ export function NewWorkoutForm({
               loading={isLoading}
               color="green"
             >
-              Create training (
+              {submitText} (
               {secondsToTimeString(
                 (values.rounds || 0) *
                   (workout.length *

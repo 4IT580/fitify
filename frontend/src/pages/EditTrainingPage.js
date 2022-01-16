@@ -9,7 +9,6 @@ import {
 } from 'src/reducers/listExerciseReducer';
 
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { useAuth } from 'src/utils/auth';
 import { route } from '../Routes';
 
 const EXERCISES_QUERY = gql`
@@ -38,9 +37,9 @@ const WORKOUT_PLAN_LOAD_QUERY = gql`
   }
 `;
 
-const CREATEWORKOUT_MUTATION = gql`
-  mutation CreateWorkout(
-    $userId: Int!
+const EDIT_WORKOUT_MUTATION = gql`
+  mutation EditWorkout(
+    $workoutPlanId: Int!
     $name: String!
     $rounds: Int!
     $intLength: Int!
@@ -49,8 +48,8 @@ const CREATEWORKOUT_MUTATION = gql`
     $workoutLength: Int!
     $exercises: [ExerciseInput]!
   ) {
-    createWorkout(
-      userId: $userId
+    editWorkout(
+      workoutPlanId: $workoutPlanId
       name: $name
       rounds: $rounds
       intLength: $intLength
@@ -62,22 +61,21 @@ const CREATEWORKOUT_MUTATION = gql`
   }
 `;
 
-export function NewTrainingPage() {
+export function EditTrainingPage() {
   const history = useHistory();
-  const { user } = useAuth();
-  const { workoutPlanIdToDuplicate } = useParams();
+  const { workoutPlanIdToEdit } = useParams();
 
   const [successMessage, setSuccessMessage] = useState(null);
   const [isWaiting, setIsWaiting] = useState(false);
-  const [createWorkoutRequest, createWorkoutRequestState] = useMutation(
-    CREATEWORKOUT_MUTATION,
+  const [editWorkoutRequest, editWorkoutRequestState] = useMutation(
+    EDIT_WORKOUT_MUTATION,
     {
       onCompleted: (data) => {
-        setSuccessMessage('Training was successfully created.');
+        setSuccessMessage('Training was successfully edited.');
 
         setIsWaiting(true);
         setTimeout(function () {
-          history.replace(route.workout(data.createWorkout));
+          history.replace(route.workout(data.editWorkout));
         }, 5000);
       },
       onError: (error) => {
@@ -93,8 +91,7 @@ export function NewTrainingPage() {
   });
 
   useQuery(WORKOUT_PLAN_LOAD_QUERY, {
-    skip: workoutPlanIdToDuplicate === undefined,
-    variables: { id: parseInt(workoutPlanIdToDuplicate) },
+    variables: { id: parseInt(workoutPlanIdToEdit) },
     onCompleted(data) {
       dispatch(loadedPlanData(data.workoutPlan));
     },
@@ -104,9 +101,9 @@ export function NewTrainingPage() {
 
   const handleCreateWorkoutFormSubmit = useCallback(
     (values) => {
-      createWorkoutRequest({
+      editWorkoutRequest({
         variables: {
-          userId: user.id,
+          workoutPlanId: parseInt(workoutPlanIdToEdit),
           name: values.name,
           rounds: values.rounds,
           intLength: values.intervalLength,
@@ -117,7 +114,7 @@ export function NewTrainingPage() {
         },
       });
     },
-    [createWorkoutRequest, user.id],
+    [editWorkoutRequest, workoutPlanIdToEdit],
   );
 
   return (
@@ -127,8 +124,8 @@ export function NewTrainingPage() {
       workoutPlan={state.workoutPlan}
       dispatch={dispatch}
       successMessage={successMessage}
-      isLoading={createWorkoutRequestState.loading || isWaiting === true}
-      error={createWorkoutRequestState.error}
+      isLoading={editWorkoutRequestState.loading || isWaiting === true}
+      error={editWorkoutRequestState.error}
       onSubmit={handleCreateWorkoutFormSubmit}
       submitText={'Save training'}
     />

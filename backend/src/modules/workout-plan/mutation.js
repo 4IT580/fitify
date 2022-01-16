@@ -67,7 +67,7 @@ export const editWorkout = async (
     insertExercises(workoutPlanId, exercise, dbConnection),
   );
 
-  return true;
+  return workoutPlanId;
 };
 
 export const deleteWorkout = async (_, { workoutPlanId }, { dbConnection }) => {

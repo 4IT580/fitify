@@ -16,6 +16,7 @@ import { TimerWrapperPage } from 'src/pages/TimerWrapperPage';
 import { FinishWorkoutPage } from 'src/pages/FinishWorkoutPage';
 import { ArchiveWorkoutPage } from './pages/ArchiveWorkoutPage';
 import { DeleteWorkoutPage } from './pages/DeleteWorkoutPage';
+import { EditTrainingPage } from "./pages/EditTrainingPage";
 
 export const route = {
   home: () => `/`,
@@ -36,7 +37,8 @@ export const route = {
   finishWorkout: (workoutPlanId, startTime) =>
     `/finisned-workout/${workoutPlanId}/${startTime}`,
   editWorkout: (workoutPlanId) => `/edit-workout/${workoutPlanId}`,
-  duplicateWorkout: (workoutPlanId) => `/duplicate-workout/${workoutPlanId}`,
+  duplicateWorkout: (workoutPlanIdToDuplicate) =>
+    `/new-training/${workoutPlanIdToDuplicate}`,
   archiveWorkout: (workoutPlanId) => `/archive-workout/${workoutPlanId}`,
   deleteWorkout: (workoutPlanId) => `/delete-workout/${workoutPlanId}`,
 };
@@ -89,9 +91,15 @@ export function Routes() {
       />
 
       <Route
-        path={route.duplicateWorkout(':workoutPlanId')}
+        path={route.duplicateWorkout(':workoutPlanIdToDuplicate')}
         exact
-        component={PageNotFound}
+        component={NewTrainingPage}
+      />
+
+      <Route
+        path={route.editWorkout(':workoutPlanIdToEdit')}
+        exact
+        component={EditTrainingPage}
       />
 
       <Route path="*" component={PageNotFound} />

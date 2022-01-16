@@ -8,12 +8,14 @@ import { transferData } from 'src/reducers/listExerciseReducer';
 
 export function NewTrainingTemplate({
   workoutItems,
+  workoutPlan,
   workout,
   dispatch,
   isLoading,
   successMessage,
   error,
   onSubmit,
+  submitText
 }) {
   return (
     <>
@@ -67,6 +69,8 @@ export function NewTrainingTemplate({
                 onSubmit={onSubmit}
                 className=""
                 workout={workout}
+                workoutPlan={workoutPlan}
+                submitText={submitText}
               />
             </Card>
           </div>
