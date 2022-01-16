@@ -29,11 +29,16 @@ export default class Countdown extends Component {
         ? parseFloat(secondsLeft).toFixed(1).toString().padStart(4, 0)
         : parseFloat(secondsLeft).toFixed(1);
 
-    const eta =
+    let eta =
       workoutTotalTime <= 0
         ? parseFloat(workoutTotalTime).toFixed(0).toString().padStart(4, 0)
         : parseFloat(workoutTotalTime).toFixed(0);
+    if(workoutTotalTime < 0){
+      eta = 0;
+    }
 
+    console.log(secondsToTimeString(eta));
+    console.log(workoutTotalTime);
     return (
       <div className="countdown-page">
         <Heading size={'xl'} className={'green fl'}>
