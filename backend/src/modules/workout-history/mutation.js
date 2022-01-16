@@ -18,8 +18,6 @@ export const setCaloriesFinishedWorkout = async (
   { workoutPlanId, calories },
   { dbConnection },
 ) => {
-  console.log(workoutPlanId, calories);
-
   const lastIdRequest = await dbConnection.query(
     `SELECT wh.id FROM workoutHistory wh WHERE wh.workoutPlanId = ? ORDER BY wh.endAt DESC LIMIT 1`,
     [workoutPlanId],

@@ -48,8 +48,6 @@ export function EditWorkoutForm({
   const workoutPlan = useQuery(WORKOUT_PLAN, {
     variables: { id: parseInt(workoutPlanId) },
   });
-  console.log(workoutPlan, user);
-  //console.log('sem v editu, a PLAN je:', workoutPlan.data.workoutPlan.name);
 
   const initialValues = {
     name: '',

@@ -48,7 +48,6 @@ export function ResetPasswordPage() {
 
   const handleResetPasswordFormSubmit = useCallback(
     (values) => {
-      console.log(values);
       resetPasswordRequest({
         variables: { newPassword: values.password, passwordToken: token },
       });
