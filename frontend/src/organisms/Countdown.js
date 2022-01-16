@@ -36,9 +36,7 @@ export default class Countdown extends Component {
     if(workoutTotalTime < 0){
       eta = 0;
     }
-
-    console.log(secondsToTimeString(eta));
-    console.log(workoutTotalTime);
+    
     return (
       <div className="countdown-page">
         <Heading size={'xl'} className={'green fl'}>
