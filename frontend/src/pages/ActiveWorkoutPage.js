@@ -12,7 +12,7 @@ import { route } from '../Routes';
 import { Link } from '../atoms';
 import { ConfirmModal } from '../molecules';
 
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 class ActiveWorkoutPage extends Component {
   constructor(props) {
@@ -30,8 +30,8 @@ class ActiveWorkoutPage extends Component {
       showPause: false,
       countFiveSecOnStart: false,
       countFiveSec: false,
-      cancelCalled: false,
       firstFiveSec: true,
+      firstCancelCalled: true,
     };
     this.startOrPause = this.startOrPause.bind(this);
     this.tick = this.tick.bind(this);
@@ -48,12 +48,8 @@ class ActiveWorkoutPage extends Component {
     if (isRunning) {
       this.stopTimer();
       this.setState({ isRunning: !isRunning, startPauseIcon: 'play' });
-      if (this.state.cancelCalled) {
-        this.setState({ showCancel: !this.state.showCancel });
-        this.state.cancelCalled = false;
-      } else {
         this.setState({ showPause: !this.state.showPause });
-      }
+
     } else {
       if (this.state.firstFiveSec) {
         this.setState({ countFiveSecOnStart: !this.state.countFiveSecOnStart });
@@ -79,6 +75,8 @@ class ActiveWorkoutPage extends Component {
 
   startTimer = () => {
     this.timer = setInterval(this.tick, 100);
+    this.state.firstCancelCalled=false;
+
   };
 
   tick = () => {
@@ -144,9 +142,7 @@ class ActiveWorkoutPage extends Component {
     } = this.props;
 
     if (this.state.workoutTotalTime === 0) {
-      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.workoutTotalTime = this.props.workoutTotalTime;
-      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.secondsLeft = this.props.workTime;
     }
 
@@ -177,29 +173,36 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.showCancel || this.state.showPause) && (
-              <ConfirmModal message={'Workout is paused.'}>
+              <ConfirmModal message={(this.state.showCancel ? 'End this workout?' : 'Your training is paused')}>
                 <Link
-                  className={'w-40 link dim br-pill ph4 pv3 dib red bg-red mr1'}
+                  className={
+                    'w-40 link dim br-pill tc pv3 dib red bg-red ma2'
+                  }
                   noUnderline={true}
                   to={route.dashboard()}
                 >
-                  End training
+                  End
                 </Link>
                 <Link
                   className={
-                    'w-40 link dim br-pill ph4 pv3 dib dark bg-green ml1'
+                    'w-40 link dim br-pill tc pv3 dib dark bg-green ma2'
                   }
                   noUnderline={true}
                   to={'#'}
                   onClick={() => {
-                    if (this.state.showCancel) {
-                      this.setState({ showCancel: false });
-                    }
-                    if (this.state.showPause) {
-                      this.setState({ showPause: false });
-                    }
-
-                    this.setState({ countFiveSec: !this.state.countFiveSec });
+                      if(this.state.showCancel && this.state.firstCancelCalled){
+                        console.log('Show first cancel');
+                        this.setState({showCancel: false});
+                      }else if(this.state.showCancel){
+                        console.log('Show cancel');
+                        this.setState({showCancel: false});
+                        this.setState({ countFiveSec: !this.state.countFiveSec });
+                      }
+                      if(this.state.showPause){
+                        console.log('Show pause')
+                        this.setState({showPause: false});
+                        this.setState({ countFiveSec: !this.state.countFiveSec });
+                      }
                   }}
                 >
                   Continue
@@ -208,13 +211,7 @@ class ActiveWorkoutPage extends Component {
             )}
 
             {(this.state.countFiveSec || this.state.countFiveSecOnStart) && (
-              <ConfirmModal
-                message={
-                  this.state.countFiveSecOnStart
-                    ? 'Your training is starting in'
-                    : 'Your training is being resumed in'
-                }
-              >
+              <ConfirmModal message={(this.state.countFiveSecOnStart ? 'Your training is starting in' : 'Your training is being resumed in')}>
                 <div className="fiveSecTimer absolute--fill flex  justify-center mt5">
                   <CountdownCircleTimer
                     isPlaying
@@ -224,12 +221,12 @@ class ActiveWorkoutPage extends Component {
                     trailColor={['#282c34']}
                     onComplete={() => {
                       if (this.state.countFiveSec) {
-                        this.setState({ countFiveSec: false });
+                        this.setState({countFiveSec: false});
                       }
                       if (this.state.countFiveSecOnStart) {
-                        this.setState({ countFiveSecOnStart: false });
+                        this.setState({countFiveSecOnStart: false});
                       }
-                      this.startOrPause();
+                      this.startOrPause()
                     }}
                   >
                     {({ remainingTime }) => remainingTime}
