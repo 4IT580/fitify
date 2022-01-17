@@ -27,7 +27,7 @@ const USER_DETAIL_MUTATION = gql`
     $name: String!
     $surname: String!
     $height: Int!
-    $weight: Float!
+    $weight: Int!
     $sex: String!
     $birthdate: String!
   ) {
