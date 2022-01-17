@@ -30,7 +30,7 @@ const typeDefs = gql`
     role: String!
     active: Boolean!
     height: Int!
-    weight: Float!
+    weight: Int!
     sex: String!
     birthdate: String!
     lostPasswordHash: String!
@@ -161,7 +161,7 @@ const typeDefs = gql`
       name: String!
       surname: String!
       height: Int!
-      weight: Float!
+      weight: Int!
       sex: String!
       birthdate: String!
     ): Boolean!
